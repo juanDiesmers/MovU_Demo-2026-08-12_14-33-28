@@ -23,14 +23,16 @@ public class GuidanceArrow : MonoBehaviour
     [SerializeField] private bool drawDebugPath = true;
 
     private Transform playerCamera;
+    private Transform playerTransform;
     private Transform objectiveTarget;
     private MeshRenderer meshRenderer;
     private MeshFilter meshFilter;
+    private Mesh arrowMesh;
 
     private Vector3 targetDirection = Vector3.forward;
     private NavMeshPath navMeshPath;
     private float lastRepathTime = 0f;
-    private Vector3 lastPosition;
+    private Vector3 lastPlayerPosition;
 
     // Cache estático de material (Hallazgo #17)
     private static Material cachedArrowMaterial;
@@ -51,7 +53,18 @@ public class GuidanceArrow : MonoBehaviour
     {
         navMeshPath = new NavMeshPath();
         BuildProceduralArrowMesh();
-        lastPosition = transform.position;
+    }
+
+    private void OnDestroy()
+    {
+        // Hallazgo #17b: el Mesh procedural es un objeto de Unity que no lo recoge
+        // el GC de C#. Sin esto se filtra una malla por cada recarga de escena ([R]).
+        if (arrowMesh != null)
+        {
+            if (Application.isPlaying) Destroy(arrowMesh);
+            else DestroyImmediate(arrowMesh);
+            arrowMesh = null;
+        }
     }
 
     private void Start()
@@ -65,6 +78,14 @@ public class GuidanceArrow : MonoBehaviour
         {
             GameObject player = GameObject.FindWithTag("Player");
             if (player != null) playerCamera = player.GetComponentInChildren<Camera>()?.transform;
+        }
+
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj != null)
+        {
+            playerTransform = playerObj.transform;
+            lastPlayerPosition = playerTransform.position;
+            lastPlayerPosition.y = 0f;
         }
 
         if (MissionManager.Instance != null && MissionManager.Instance.ActiveObjective != null)
@@ -115,9 +136,32 @@ public class GuidanceArrow : MonoBehaviour
         if (MissionManager.Instance == null || !MissionManager.Instance.IsTimerRunning) return;
 
         float dt = Time.deltaTime;
-        float frameDist = Vector3.Distance(transform.position, lastPosition);
-        if (frameDist > 5f) frameDist = 0f; // Evitar saltos bruscos
-        lastPosition = transform.position;
+
+        // Hallazgo #8 (corregido): se mide el desplazamiento HORIZONTAL DEL JUGADOR,
+        // la misma fuente que HUDController.totalDistanceTraveled. Antes se medía la
+        // posición de la propia flecha, que salta ~0.8 m al cambiar de modo y se mueve
+        // en 3D, así que DistOff+DistDirect+DistNavMesh nunca sumaba TotalDistance.
+        if (playerTransform == null)
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+            if (playerObj != null)
+            {
+                playerTransform = playerObj.transform;
+                lastPlayerPosition = playerTransform.position;
+                lastPlayerPosition.y = 0f;
+            }
+        }
+
+        float frameDist = 0f;
+        if (playerTransform != null)
+        {
+            Vector3 currentPos = playerTransform.position;
+            currentPos.y = 0f;
+
+            frameDist = Vector3.Distance(currentPos, lastPlayerPosition);
+            if (frameDist >= 5f) frameDist = 0f; // Descartar saltos bruscos (recarga/teleport)
+            lastPlayerPosition = currentPos;
+        }
 
         switch (currentMode)
         {
@@ -236,8 +280,12 @@ public class GuidanceArrow : MonoBehaviour
 
     private void BuildProceduralArrowMesh()
     {
-        meshFilter = gameObject.AddComponent<MeshFilter>();
-        meshRenderer = gameObject.AddComponent<MeshRenderer>();
+        // No re-añadir componentes si el prefab/escena ya los trae
+        meshFilter = GetComponent<MeshFilter>();
+        if (meshFilter == null) meshFilter = gameObject.AddComponent<MeshFilter>();
+
+        meshRenderer = GetComponent<MeshRenderer>();
+        if (meshRenderer == null) meshRenderer = gameObject.AddComponent<MeshRenderer>();
 
         Mesh mesh = new Mesh();
         mesh.name = "ProceduralArrowMesh";
@@ -281,6 +329,7 @@ public class GuidanceArrow : MonoBehaviour
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
 
+        arrowMesh = mesh;
         meshFilter.sharedMesh = mesh;
 
         // Cache estático de material para evitar pérdidas de memoria (Hallazgo #17)

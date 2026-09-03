@@ -19,12 +19,14 @@ public class MissionManager : MonoBehaviour
     private bool isTimerRunning = false;
     private float optimalPathLength = 0f;
     private bool isNavMeshValid = false;
+    private float goalCaptureRadius = 0f;
 
     public float ElapsedTime => elapsedTime;
     public float OptimalPathLength => optimalPathLength;
     public Objective ActiveObjective => activeObjective;
     public bool IsTimerRunning => isTimerRunning;
     public bool IsNavMeshValid => isNavMeshValid;
+    public float GoalCaptureRadius => goalCaptureRadius;
 
     private void Awake()
     {
@@ -103,9 +105,13 @@ public class MissionManager : MonoBehaviour
                     rawLength += Vector3.Distance(path.corners[i], path.corners[i + 1]);
                 }
 
-                // Hallazgo #6: Descontar el radio del trigger (0.6m) para eliminar sesgo de distancia
-                optimalPathLength = Mathf.Max(0.1f, rawLength - 0.6f);
-                Debug.Log($"[MissionManager] Ruta óptima NavMesh calculada: {optimalPathLength:F2} m (Ajustada con radio de trigger).");
+                // Hallazgo #6 (corregido): descontar el radio REAL de captura del objetivo.
+                // Antes se restaba una constante de 0.6 m que no coincidía con el
+                // SphereCollider de 1.5 m creado por DemoSceneBuilder, lo que sesgaba
+                // sistemáticamente detourRatio y SPL.
+                goalCaptureRadius = MeasureGoalCaptureRadius();
+                optimalPathLength = Mathf.Max(0.1f, rawLength - goalCaptureRadius);
+                Debug.Log($"[MissionManager] Ruta óptima NavMesh: {optimalPathLength:F2} m (bruta {rawLength:F2} m − radio de captura {goalCaptureRadius:F2} m).");
             }
             else
             {
@@ -120,6 +126,43 @@ public class MissionManager : MonoBehaviour
             isNavMeshValid = false;
             optimalPathLength = Vector3.Distance(startPos, targetPos);
         }
+    }
+
+    /// <summary>
+    /// Mide el radio efectivo de captura del objetivo: el radio del SphereCollider
+    /// del Goal ya escalado a mundo, más el radio de la cápsula del jugador.
+    /// Es la distancia real que separa al jugador del centro del objetivo en el
+    /// instante en que dispara OnTriggerEnter.
+    /// </summary>
+    private float MeasureGoalCaptureRadius()
+    {
+        float triggerRadius = 0f;
+
+        if (activeObjective != null && activeObjective.target != null)
+        {
+            SphereCollider sphere = activeObjective.target.GetComponent<SphereCollider>();
+            if (sphere != null)
+            {
+                Vector3 scale = sphere.transform.lossyScale;
+                float maxScale = Mathf.Max(Mathf.Abs(scale.x), Mathf.Abs(scale.y), Mathf.Abs(scale.z));
+                triggerRadius = sphere.radius * maxScale;
+            }
+        }
+
+        float playerRadius = 0f;
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj != null)
+        {
+            CharacterController cc = playerObj.GetComponent<CharacterController>();
+            if (cc != null) playerRadius = cc.radius;
+        }
+
+        if (triggerRadius <= 0f)
+        {
+            Debug.LogWarning("[MissionManager] No se encontró SphereCollider en el objetivo; no se aplica corrección de radio.");
+        }
+
+        return triggerRadius + playerRadius;
     }
 
     public void SetActiveObjective(Objective objective)

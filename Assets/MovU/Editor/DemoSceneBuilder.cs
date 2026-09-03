@@ -594,8 +594,20 @@ public static class DemoSceneBuilder
         rect.sizeDelta = sizeDelta;
     }
 
+    // Tags que Unity ya trae de fábrica: volver a registrarlos produce la
+    // advertencia "Default GameObject Tag: X already registered".
+    private static readonly string[] BuiltInTags =
+    {
+        "Untagged", "Respawn", "Finish", "EditorOnly", "MainCamera", "Player", "GameController"
+    };
+
     private static void EnsureTagExists(string tagName)
     {
+        foreach (string builtIn in BuiltInTags)
+        {
+            if (builtIn == tagName) return;
+        }
+
         var tagManagerAsset = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset");
         if (tagManagerAsset != null && tagManagerAsset.Length > 0)
         {

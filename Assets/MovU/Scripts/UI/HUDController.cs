@@ -27,6 +27,7 @@ public class HUDController : MonoBehaviour
     private float totalDistanceTraveled = 0f;
     private Vector3 lastPlayerPosition;
     private MazeData mazeData;
+    private float bestTimeBeforeRun = 9999f;
 
     private HashSet<(int x, int y)> visitedCells = new HashSet<(int, int)>();
 
@@ -58,6 +59,13 @@ public class HUDController : MonoBehaviour
         }
 
         mazeData = FindFirstObjectByType<MazeData>();
+
+        // Se cachea el récord ANTES de que empiece la corrida. Si se leyera al
+        // completar el objetivo, el valor dependería de si GameManager ya guardó
+        // el nuevo récord (ambos escuchan el mismo evento y el orden de Start()
+        // no está garantizado), y el panel podía mostrar la corrida actual como
+        // si fuera la mejor marca anterior.
+        bestTimeBeforeRun = SaveSystem.LoadBestTime(mazeData != null ? mazeData.seed : 42);
 
         if (MissionManager.Instance != null)
         {
@@ -213,17 +221,18 @@ public class HUDController : MonoBehaviour
 
         if (txtResultsBestTime != null)
         {
-            int seed = mazeData != null ? mazeData.seed : 42;
-            float bestTime = SaveSystem.LoadBestTime(seed);
-            if (bestTime < 9999f)
+            bool isNewRecord = finalTime < bestTimeBeforeRun;
+
+            if (bestTimeBeforeRun >= 9999f)
             {
-                int bMin = Mathf.FloorToInt(bestTime / 60f);
-                int bSec = Mathf.FloorToInt(bestTime % 60f);
-                txtResultsBestTime.text = $"Mejor tiempo: {bMin:00}:{bSec:00}";
+                txtResultsBestTime.text = "Mejor tiempo: --:-- (primera corrida)";
             }
             else
             {
-                txtResultsBestTime.text = "Mejor tiempo: --:--";
+                int bMin = Mathf.FloorToInt(bestTimeBeforeRun / 60f);
+                int bSec = Mathf.FloorToInt(bestTimeBeforeRun % 60f);
+                string prefix = isNewRecord ? "¡NUEVO RÉCORD! Anterior" : "Mejor tiempo";
+                txtResultsBestTime.text = $"{prefix}: {bMin:00}:{bSec:00}";
             }
         }
     }
