@@ -1,0 +1,21 @@
+newmtl Piso
+Kd 0.6400 0.6600 0.6900
+Ks 0 0 0
+Ns 10.0
+d 1.0
+illum 2
+
+newmtl Muro
+Kd 0.8700 0.8700 0.8400
+Ks 0 0 0
+Ns 10.0
+d 1.0
+illum 2
+
+newmtl Corona
+Kd 0.5500 0.5700 0.6100
+Ks 0 0 0
+Ns 10.0
+d 1.0
+illum 2
+

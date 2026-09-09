@@ -1,0 +1,25 @@
+# MovU - materiales base del entorno.
+# Colores planos a proposito: en Unity cada ranura recibe su
+# propio material (procedural o con texturas PBR).
+
+newmtl Piso
+Kd 0.6400 0.6600 0.6900
+Ks 0.0000 0.0000 0.0000
+Ns 10.0
+d 1.0
+illum 2
+
+newmtl Muro
+Kd 0.8700 0.8700 0.8400
+Ks 0.0000 0.0000 0.0000
+Ns 10.0
+d 1.0
+illum 2
+
+newmtl Techo
+Kd 0.9300 0.9300 0.9500
+Ks 0.0000 0.0000 0.0000
+Ns 10.0
+d 1.0
+illum 2
+

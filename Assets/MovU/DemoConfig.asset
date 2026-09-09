@@ -20,7 +20,7 @@ MonoBehaviour:
   wallHeight: 3
   wallThickness: 0.2
   walkSpeed: 3
-  mouseSensitivity: 2
+  mouseSensitivity: 0.15
   cameraHeight: 1.65
   capsuleHeight: 1.8
   capsuleRadius: 0.3

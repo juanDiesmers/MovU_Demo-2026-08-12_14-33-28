@@ -108,3 +108,6 @@ InitTestScene*.unity*
 
 # Modelos crudos / pruebas de pipeline (fuera de Assets, no se versionan)
 /_ModelosCrudos/
+
+# Cache de Python de los scripts de Tools/
+Tools/__pycache__/
