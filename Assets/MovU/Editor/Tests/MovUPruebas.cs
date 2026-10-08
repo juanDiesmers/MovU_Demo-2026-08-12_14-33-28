@@ -18,8 +18,11 @@ public class MovUPruebas
 {
     private const string RutaJson = "Assets/MovU/Resources/MovU/contenido_piso9.json";
 
-    /// <summary>Triángulos de un piso: planta de Meshy (78.878) + relleno de corona (15.562).</summary>
-    private const int TriangulosDeUnPiso = 94440;
+    /// <summary>
+    /// Triángulos de un piso: planta de Meshy (78.878) + relleno de corona (14.750).
+    /// El relleno eran 15.562 hasta que se le abrió el hueco de la escalera.
+    /// </summary>
+    private const int TriangulosDeUnPiso = 93628;
     private const int PresupuestoRD4 = 100000;
 
     private static ContenidoPiso Leer()
@@ -228,5 +231,127 @@ public class MovUPruebas
 
         Assert.LessOrEqual(total, PresupuestoRD4,
             $"{gente} NPC llevan el piso a {total:N0} triángulos; el SRS deja {PresupuestoRD4:N0}.");
+    }
+
+    // ------------------------------------------------------------------
+    // Ambientación, inventario y escalera (octubre de 2026)
+    // ------------------------------------------------------------------
+    [Test]
+    public void Inventario_ElJugadorEmpiezaConElCarne()
+    {
+        ContenidoPiso d = Leer();
+
+        var vistos = new HashSet<string>();
+        foreach (ObjetoDef o in d.objetos)
+        {
+            Assert.IsFalse(string.IsNullOrEmpty(o.id), "Hay un objeto sin id.");
+            Assert.IsFalse(string.IsNullOrEmpty(o.nombre), $"El objeto {o.id} no tiene nombre.");
+            Assert.IsTrue(vistos.Add(o.id.ToLowerInvariant()), $"El id de objeto '{o.id}' está repetido.");
+            Assert.LessOrEqual(o.sigla.Length, 3, $"La sigla de '{o.id}' no cabe en la casilla.");
+        }
+
+        ObjetoDef carne = d.objetos.Find(o => o.id == "carne");
+        Assert.IsNotNull(carne, "Falta el carné en 'objetos'.");
+        Assert.IsTrue(carne.inicial, "El carné tiene que estar desde el principio.");
+    }
+
+    [Test]
+    public void Inventario_LoQueEntreganLasMisionesEstaEnElCatalogo()
+    {
+        ContenidoPiso d = Leer();
+
+        foreach (MisionDef m in d.misiones)
+        {
+            if (string.IsNullOrEmpty(m.entrega)) continue;
+            ObjetoDef o = d.objetos.Find(x => x.id == m.entrega);
+            Assert.IsNotNull(o, $"La misión {m.id} entrega '{m.entrega}', que no está en 'objetos'.");
+            Assert.IsFalse(o.inicial, $"'{o.id}' se entrega en la misión {m.id}: no puede ser inicial.");
+        }
+    }
+
+    [Test]
+    public void Inventario_LaDescripcionDelCarneLlevaAlParticipante()
+    {
+        var o = new ObjetoDef { id = "x", descripcion = "Carné de {participante}." };
+        // Fuera de Play no hay sesión: se pone una raya, nunca el texto crudo.
+        StringAssert.DoesNotContain("{participante}", InventoryManager.Descripcion(o));
+    }
+
+    [Test]
+    public void Puertas_CadaUnaTieneMedidasYPoiValidos()
+    {
+        ContenidoPiso d = Leer();
+        Assert.Greater(d.puertas.Count, 0, "No hay puertas en el JSON.");
+
+        var vistos = new HashSet<string>();
+        foreach (PuertaDef p in d.puertas)
+        {
+            Assert.IsTrue(vistos.Add(p.id.ToLowerInvariant()), $"El id de puerta '{p.id}' está repetido.");
+            Assert.That(p.u, Is.InRange(0f, 1f), $"Puerta {p.id}: u fuera de la planta.");
+            Assert.That(p.v, Is.InRange(0f, 1f), $"Puerta {p.id}: v fuera de la planta.");
+            Assert.That(p.ancho, Is.InRange(0.8f, 4f), $"Puerta {p.id}: ancho raro.");
+            if (!string.IsNullOrEmpty(p.poi))
+            {
+                Assert.IsTrue(d.pois.Exists(x => x.id == p.poi),
+                              $"La puerta {p.id} da paso al POI '{p.poi}', que no existe.");
+            }
+        }
+    }
+
+    [Test]
+    public void Escalera_SusMedidasSonLasDeUnaEscaleraCaminable()
+    {
+        ContenidoPiso d = Leer();
+        EscaleraDef e = d.escalera;
+        Assert.IsTrue(e.usar, "La escalera está apagada en el JSON.");
+
+        Assert.Less(e.tramo.u0, e.tramo.u1);
+        Assert.Less(e.tramo.v0, e.tramo.v1, "El tramo sube en +v: v0 es el pie y v1 la cima.");
+        Assert.LessOrEqual(e.tramo.v1, e.rellano.v0 + 0.0001f, "El rellano empieza donde acaba el tramo o después.");
+        Assert.Less(e.rellano.v0, e.rellano.v1);
+        Assert.That(e.puertaU, Is.InRange(e.ocultoU0, e.tramo.u0), "Las puertas van en el tabique del tramo oculto.");
+
+        // Con la planta de 106,62 m de largo que tiene hoy el edificio.
+        const float largoDeLaPlanta = 106.62f;
+        float largo = (e.tramo.v1 - e.tramo.v0) * largoDeLaPlanta;
+        float contrahuella = e.alturaDelRellano / e.peldanos;
+        float pendiente = Mathf.Atan2(e.alturaDelRellano, largo) * Mathf.Rad2Deg;
+
+        Assert.That(contrahuella, Is.InRange(0.14f, 0.21f), "Contrahuella fuera de lo cómodo.");
+        Assert.Less(pendiente, 40f, "Más de 40° y el CharacterController (límite 45°) no sube con margen.");
+    }
+
+    [Test]
+    public void Formas_LasMallasCuestanLoQueDicen()
+    {
+        Assert.AreEqual(FormasMovU.TriangulosDeCaja, FormasMovU.Cubo.triangles.Length / 3);
+        Assert.AreEqual(FormasMovU.TriangulosDePlaca, FormasMovU.Placa.triangles.Length / 3);
+
+        Mesh escalones = FormasMovU.Escalones(18, 2.8f, 7.6f, 3.55f, out int triangulos);
+        Assert.AreEqual(18 * 2 + 17 * 2, triangulos, "Dos por contrahuella y dos por huella.");
+        Assert.AreEqual(3.55f, escalones.bounds.max.y, 0.001f);
+        Assert.AreEqual(7.6f, escalones.bounds.max.z, 0.001f);
+        Object.DestroyImmediate(escalones);
+    }
+
+    [Test]
+    public void Presupuesto_ElPisoAmbientadoCabeEnRD4()
+    {
+        ContenidoPiso d = Leer();
+
+        int gente = d.npcs.Count + d.multitud.estudiantes + d.multitud.visitantes;
+        int puertas = d.puertas.Count * DoorManager.TriangulosPorPuerta;
+        int escalera = d.escalera.usar ? StairsManager.Triangulos(d.escalera.peldanos) : 0;
+        int mostradores = d.mobiliario.Count * 6 * FormasMovU.TriangulosDeCaja;
+        // Techo (1 placa) + lámparas: una cada 6 m sobre 39 x 107 m son 126 como mucho.
+        int techo = (1 + 126) * FormasMovU.TriangulosDePlaca;
+        int ascensor = 8 * FormasMovU.TriangulosDeCaja;
+        int jugador = NpcMeshFactory.Triangulos;
+
+        int total = TriangulosDeUnPiso + gente * NpcMeshFactory.Triangulos +
+                    puertas + escalera + mostradores + techo + ascensor + jugador;
+
+        Assert.LessOrEqual(total, PresupuestoRD4,
+            $"El piso ambientado llega a {total:N0} triángulos; el SRS deja {PresupuestoRD4:N0}.");
     }
 }

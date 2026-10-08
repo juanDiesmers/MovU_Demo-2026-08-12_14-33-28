@@ -21,6 +21,10 @@ public class HUDController : MonoBehaviour
 {
     public static HUDController Instance { get; private set; }
 
+    /// <summary>Velocidad a la que se va escribiendo un subtítulo. La voz de los
+    /// NPC (AudioManager) va al mismo ritmo.</summary>
+    public const float LetrasPorSegundo = 42f;
+
     [Header("Elementos de Pantalla (TextMeshPro)")]
     [SerializeField] private TextMeshProUGUI txtObjective;
     [SerializeField] private TextMeshProUGUI txtTimer;
@@ -62,6 +66,17 @@ public class HUDController : MonoBehaviour
     private MissionManager misiones;
     private FloorManager pisos;
     private NpcManager npcs;
+    private StairsManager escalera;
+
+    // Dos fuentes para el mismo aviso: lo que hay a mano en el entorno (la
+    // escalera) y el NPC que se tiene delante. Si coinciden gana el entorno.
+    private string avisoDeNpc = "";
+    private string avisoDelEntorno = "";
+
+    // Subtítulo que se va escribiendo.
+    private float letrasVisibles;
+    private int letrasTotales;
+    private bool escribiendo;
 
     public float TotalDistanceTraveled => totalDistanceTraveled;
     public int UniqueCellsVisitedCount => visitedCells.Count;
@@ -173,6 +188,9 @@ public class HUDController : MonoBehaviour
             npcs.OnNpcHabla += AlHablarNpc;
         }
 
+        escalera = StairsManager.Instance;
+        if (escalera != null) escalera.OnAvisoCambiado += MostrarAvisoDelEntorno;
+
         // Hallazgo #14: Consultar el modo actual de la flecha en lugar de incondicional "Sin guía"
         GuidanceArrow arrow = FindFirstObjectByType<GuidanceArrow>();
         if (arrow != null)
@@ -205,6 +223,7 @@ public class HUDController : MonoBehaviour
             npcs.OnAvisoCambiado -= MostrarAviso;
             npcs.OnNpcHabla -= AlHablarNpc;
         }
+        if (escalera != null) escalera.OnAvisoCambiado -= MostrarAvisoDelEntorno;
 
         // Hallazgo #16: Limpiar Instance al destruirse
         if (Instance == this)
@@ -219,9 +238,24 @@ public class HUDController : MonoBehaviour
         UpdateDistanceAndTraveled();
         TrackVisitedCells();
 
+        if (escribiendo && txtSubtitle != null)
+        {
+            letrasVisibles += LetrasPorSegundo * Time.unscaledDeltaTime;
+            if (letrasVisibles >= letrasTotales)
+            {
+                escribiendo = false;
+                txtSubtitle.maxVisibleCharacters = 99999;
+            }
+            else
+            {
+                txtSubtitle.maxVisibleCharacters = Mathf.FloorToInt(letrasVisibles);
+            }
+        }
+
         if (ocultarSubtituloEn > 0f && Time.unscaledTime >= ocultarSubtituloEn)
         {
             ocultarSubtituloEn = -1f;
+            escribiendo = false;
             if (subtitleBox != null) subtitleBox.SetActive(false);
         }
     }
@@ -376,26 +410,67 @@ public class HUDController : MonoBehaviour
         if (txtFloor != null) txtFloor.text = $"Piso {FloorManager.NumeroVisible(indice)}";
     }
 
-    /// <summary>Aviso corto de interacción ("E — Preguntar a..."). Vacío = ocultarlo.</summary>
+    /// <summary>Aviso corto de interacción con un NPC ("E — Preguntar a..."). Vacío = ocultarlo.</summary>
     public void MostrarAviso(string texto)
+    {
+        avisoDeNpc = texto ?? "";
+        RefrescarAviso();
+    }
+
+    /// <summary>Aviso de algo del entorno que se tiene a mano (la escalera). Vacío = ocultarlo.</summary>
+    public void MostrarAvisoDelEntorno(string texto)
+    {
+        avisoDelEntorno = texto ?? "";
+        RefrescarAviso();
+    }
+
+    private void RefrescarAviso()
     {
         if (promptBox == null || txtPrompt == null) return;
 
-        bool visible = !string.IsNullOrEmpty(texto);
+        string texto = avisoDelEntorno.Length > 0 ? avisoDelEntorno : avisoDeNpc;
+        bool visible = texto.Length > 0;
         if (visible) txtPrompt.text = texto;
         if (promptBox.activeSelf != visible) promptBox.SetActive(visible);
     }
 
     private void AlHablarNpc(string quien, string frase)
     {
-        MostrarSubtitulo(string.IsNullOrEmpty(quien) ? frase : $"<b>{quien}:</b>  {frase}", 6f);
+        // El nombre sale de golpe y la frase se va escribiendo, al ritmo de la voz.
+        if (string.IsNullOrEmpty(quien)) MostrarSubtitulo(frase, 6f, 0);
+        else MostrarSubtitulo($"<b>{quien}:</b>  {frase}", 6f, quien.Length + 3);
     }
 
     public void MostrarSubtitulo(string texto, float segundos)
     {
+        MostrarSubtitulo(texto, segundos, -1);
+    }
+
+    /// <summary>
+    /// 'letrasDeGolpe' = cuántas letras se muestran desde el principio; el resto
+    /// se va escribiendo. Con -1 sale todo de una vez.
+    /// </summary>
+    public void MostrarSubtitulo(string texto, float segundos, int letrasDeGolpe)
+    {
         if (subtitleBox == null || txtSubtitle == null) return;
         txtSubtitle.text = texto;
         subtitleBox.SetActive(true);
+
+        if (letrasDeGolpe < 0)
+        {
+            escribiendo = false;
+            txtSubtitle.maxVisibleCharacters = 99999;
+        }
+        else
+        {
+            // Sin etiquetas: lo que cuenta maxVisibleCharacters son letras visibles.
+            letrasTotales = Mathf.Max(1, texto.Length);
+            letrasVisibles = letrasDeGolpe;
+            escribiendo = true;
+            txtSubtitle.maxVisibleCharacters = letrasDeGolpe;
+            segundos += letrasTotales / LetrasPorSegundo;
+        }
+
         ocultarSubtituloEn = Time.unscaledTime + Mathf.Max(1f, segundos);
     }
 

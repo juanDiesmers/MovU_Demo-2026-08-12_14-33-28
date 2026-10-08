@@ -25,6 +25,7 @@
 # ============================================================================
 
 import argparse
+import json
 import os
 import sys
 
@@ -39,6 +40,35 @@ import reconstruir_planta as R   # noqa: E402  (comparte la rasterizacion)
 ENTRADA = os.path.join(RAIZ, "Assets", "MovU", "Models",
                        "Meshy_AI_Plano_de_evacuación_0831203851_generate.obj")
 SALIDA = os.path.join(RAIZ, "Assets", "MovU", "Models", "RellenoCorona.obj")
+CONTENIDO = os.path.join(RAIZ, "Assets", "MovU", "Resources", "MovU", "contenido_piso9.json")
+
+
+def huecos_de_escalera(ruta_json):
+    """Rectangulos (u0, u1, v0, v1) de la planta donde NO debe haber relleno.
+
+    La escalera del modelo mide mas que el umbral de muro, asi que el relleno la
+    tomaba por un muro bajo y la subia hasta el techo: los peldanos quedaban
+    metidos dentro de un bloque macizo. Las medidas salen del bloque "escalera"
+    del JSON de contenido, que es de donde las lee tambien el juego
+    (StairsManager), para que no haya dos sitios que mantener.
+    """
+    if not ruta_json or not os.path.exists(ruta_json):
+        return []
+    with open(ruta_json, encoding="utf-8") as f:
+        esc = json.load(f).get("escalera") or {}
+    if not esc.get("usar"):
+        return []
+    t, r = esc.get("tramo") or {}, esc.get("rellano") or {}
+    try:
+        return [
+            # El tramo visible y el oculto, del pie al rellano.
+            (float(esc["ocultoU0"]), float(t["u1"]), float(t["v0"]), float(r["v0"])),
+            # El rellano entero.
+            (float(r["u0"]), float(r["u1"]), float(r["v0"]), float(r["v1"])),
+        ]
+    except (KeyError, TypeError, ValueError):
+        print("  (el bloque 'escalera' del JSON esta incompleto: no se abre el hueco)")
+        return []
 
 
 def main():
@@ -66,6 +96,11 @@ def main():
     ap.add_argument("--sin-techo", action="store_true",
                     help="No generar la losa de techo (deja el piso a cielo abierto).")
     ap.add_argument("--tile", type=float, default=1.20)
+    ap.add_argument("--contenido", default=CONTENIDO,
+                    help="JSON de contenido del piso: de su bloque 'escalera' sale "
+                         "el hueco que se deja sin relleno.")
+    ap.add_argument("--sin-hueco-de-escalera", action="store_true",
+                    help="Rellenar tambien encima de la escalera (como antes).")
     args = ap.parse_args()
 
     E, C = args.escala, args.celda
@@ -100,6 +135,29 @@ def main():
     techo = args.altura_muro
 
     faltan = muro_s & (corona < techo - 0.01)
+
+    # ---- Hueco de la escalera -------------------------------------------
+    # (u, v) son las mismas coordenadas normalizadas del JSON: u a lo ancho y v
+    # a lo largo de la planta TAL COMO QUEDA EN UNITY. El importador de OBJ
+    # invierte X y la rotacion de -90 grados lleva -Y del modelo a +Z del mundo,
+    # asi que los dos ejes van al reves respecto al modelo.
+    huecos = [] if args.sin_hueco_de_escalera else huecos_de_escalera(args.contenido)
+    fuera = None
+    if huecos:
+        lx0, lx1 = float(V[:, 0].min()), float(V[:, 0].max())
+        ly0, ly1 = float(V[:, 1].min()), float(V[:, 1].max())
+        cx = xmin + (np.arange(nx2) + 0.5) * paso_s          # centro de cada celda
+        cy = ymin + (np.arange(ny2) + 0.5) * paso_s
+        u = (lx1 - cx) / (lx1 - lx0)
+        v = (ly1 - cy) / (ly1 - ly0)
+        fuera = np.ones_like(faltan)
+        for (u0, u1, v0, v1) in huecos:
+            en_u = (u >= min(u0, u1)) & (u <= max(u0, u1))
+            en_v = (v >= min(v0, v1)) & (v <= max(v0, v1))
+            fuera &= ~np.outer(en_u, en_v)
+        quitadas = int((faltan & ~fuera).sum())
+        faltan &= fuera
+        print(f"  hueco de la escalera: {quitadas:,} celdas sin relleno")
     print(f"  rejilla {nx2} x {ny2} a {Cs*100:.0f} cm")
     print(f"  celdas de muro: {muro_s.sum():,}")
     print(f"  celdas que no llegan a {techo:.2f} m: {faltan.sum():,} "
@@ -159,6 +217,10 @@ def main():
     if not args.sin_techo:
         huella = R.submuestrear(
             R.apertura(R.cierre(ocupado, max(3, int(round(0.60 / C)) | 1)), 3), f)
+        # La caja de la escalera lleva su propio techo, mas alto (lo pone el
+        # juego): aqui la losa se deja abierta.
+        if fuera is not None:
+            huella = huella & fuera[:huella.shape[0], :huella.shape[1]]
         rects_techo = R.rectangulos(huella)
         for (x0, y0, x1, y1) in rects_techo:
             A, B, Cc, D = X(x0), X(x1), Y(y0), Y(y1)

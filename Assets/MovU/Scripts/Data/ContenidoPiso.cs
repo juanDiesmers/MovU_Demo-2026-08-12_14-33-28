@@ -32,6 +32,12 @@ public class ContenidoPiso
     public List<NpcDef> npcs = new List<NpcDef>();
     public MultitudDef multitud = new MultitudDef();
     public List<PuntoUV> recorridos = new List<PuntoUV>();
+
+    // --- Ambientacion, inventario y escalera (octubre de 2026) -----------
+    public List<ObjetoDef> objetos = new List<ObjetoDef>();
+    public List<PuertaDef> puertas = new List<PuertaDef>();
+    public List<MuebleDef> mobiliario = new List<MuebleDef>();
+    public EscaleraDef escalera = new EscaleraDef();
 }
 
 [Serializable]
@@ -46,6 +52,20 @@ public class AjustesDeContenido
     public bool npcDanIndicaciones = true;
     [Tooltip("Numero que ve el jugador para el piso mas bajo del modelo (9 = 'Piso 9').")]
     public int numeroDelPrimerPiso = 1;
+
+    [Tooltip("Cielo raso con reticula y lamparas. Sin esto queda la losa lisa del relleno.")]
+    public bool techo = true;
+    [Tooltip("Puertas en los vanos. Cerradas tapan la vista al interior de los salones: " +
+             "apagalas si la prueba necesita los vanos abiertos.")]
+    public bool puertas = true;
+    [Tooltip("Mostradores y demas mobiliario del JSON.")]
+    public bool mobiliario = true;
+    [Tooltip("Pasos, voces, puertas y avisos sonoros.")]
+    public bool sonido = true;
+    [Tooltip("Volumen general de 0 a 1.")]
+    public float volumen = 0.8f;
+    [Tooltip("Inventario del jugador (tecla I).")]
+    public bool inventario = true;
 }
 
 [Serializable]
@@ -109,6 +129,92 @@ public class MisionDef
     public string partida = "";
     [Tooltip("Modo de guia con el que arranca: Off, Direct o NavMesh. Vacio = no cambiarlo.")]
     public string guia = "";
+    [Tooltip("id del objeto que el jugador recibe al completar la mision. Vacio = ninguno.")]
+    public string entrega = "";
+    [Tooltip("Lo que se le dice al jugador al recibir el objeto.")]
+    public string mensajeDeEntrega = "";
+}
+
+/// <summary>Un objeto del inventario (el carne, el portatil prestado...).</summary>
+[Serializable]
+public class ObjetoDef
+{
+    public string id = "";
+    public string nombre = "";
+    [Tooltip("Admite {participante}: se cambia por el identificador de la sesion.")]
+    public string descripcion = "";
+    [Tooltip("Dos o tres letras que se dibujan en la casilla (no hay iconos).")]
+    public string sigla = "";
+    [Tooltip("Color de la casilla en hexadecimal, sin '#'. Por ejemplo 1F4E9A.")]
+    public string color = "5A6B7C";
+    [Tooltip("El jugador lo trae desde el principio.")]
+    public bool inicial = false;
+}
+
+/// <summary>
+/// Una puerta de dos hojas en un vano. (u, v) es el centro del vano; 'yaw' es
+/// hacia donde mira la normal de la puerta (90 = el vano corre a lo largo de Z).
+/// </summary>
+[Serializable]
+public class PuertaDef
+{
+    public string id = "";
+    [Tooltip("id del POI al que da paso. Su rotulo se cuelga del dintel. Vacio = ninguno.")]
+    public string poi = "";
+    [Tooltip("0 = en todos los pisos (son copias del mismo). 1..N = solo en ese.")]
+    public int piso = 0;
+    public float u = 0.5f;
+    public float v = 0.5f;
+    public float yaw = 90f;
+    [Tooltip("Ancho libre del vano en metros.")]
+    public float ancho = 2.4f;
+    [Tooltip("'salon', 'dti' o 'emergencia': cambia el color de las hojas.")]
+    public string estilo = "salon";
+}
+
+[Serializable]
+public class MuebleDef
+{
+    [Tooltip("'mostrador' (con portatiles) es el unico tipo por ahora.")]
+    public string tipo = "mostrador";
+    public int piso = 1;
+    public float u = 0.5f;
+    public float v = 0.5f;
+    public float yaw = 0f;
+}
+
+[Serializable]
+public class RectUV
+{
+    public float u0, u1, v0, v1;
+}
+
+/// <summary>
+/// La escalera del modelo, hecha funcional. Es una escalera en U:
+///   - 'tramo': el tramo visible, que sube desde el suelo (vPie) hasta la altura
+///     del rellano (vCima) avanzando en +v.
+///   - 'rellano': el descanso a media altura.
+///   - El segundo tramo (del rellano al piso de arriba) queda oculto tras dos
+///     tabiques con puerta: la del rellano ("subir") y la del hall ("bajar").
+/// Las alturas van en metros y dependen de la escala vertical del edificio: si
+/// cambia, hay que volver a medir con 'MovU > Contenido > Sondear la escalera'.
+/// </summary>
+[Serializable]
+public class EscaleraDef
+{
+    public bool usar = false;
+    public float alturaDelRellano = 3.55f;
+    [Tooltip("Altura libre sobre el rellano. El rellano queda a media altura entre dos " +
+             "pisos, mas arriba que el techo normal le dejaria: la caja de la escalera " +
+             "lleva su propio techo, mas alto.")]
+    public float alturaLibreSobreElRellano = 2.85f;
+    public int peldanos = 18;
+    public RectUV tramo = new RectUV();
+    public RectUV rellano = new RectUV();
+    [Tooltip("u donde empieza el hueco del tramo oculto (los tabiques van de aqui a tramo.u0).")]
+    public float ocultoU0 = 0f;
+    [Tooltip("u del centro de las dos puertas de la escalera.")]
+    public float puertaU = 0f;
 }
 
 [Serializable]

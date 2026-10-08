@@ -252,11 +252,17 @@ public class FloorManager : MonoBehaviour
         RefrescarActivos();
         Physics.SyncTransforms();
 
-        float altoCapsula = controlador != null ? controlador.height : 1.8f;
+        // Altura de los PIES respecto al pivote del jugador. El personaje tiene el
+        // pivote en los pies (centro de la capsula a media altura), asi que vale 0;
+        // antes se sumaba media capsula de mas y el jugador caia un metro al salir
+        // del ascensor.
+        float piesSobrePivote = controlador != null
+            ? controlador.center.y - controlador.height * 0.5f
+            : 0f;
         Vector3 p = jugador.position;
         Vector3 destinoMundo = new Vector3(
             p.x,
-            AlturaDelSuelo(destino) + altoCapsula * 0.5f + 0.1f,
+            AlturaDelSuelo(destino) - piesSobrePivote + 0.08f,
             p.z);
 
         if (controlador != null)

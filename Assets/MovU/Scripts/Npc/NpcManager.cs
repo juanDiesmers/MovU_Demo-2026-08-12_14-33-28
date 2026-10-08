@@ -48,6 +48,9 @@ public class NpcManager : MonoBehaviour
 
     public int Cantidad => npcs.Count;
 
+    /// <summary>Todos los personajes (también los de pisos apagados). Lo usan las puertas.</summary>
+    public IReadOnlyList<NpcCharacter> Personajes => npcs;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -269,7 +272,7 @@ public class NpcManager : MonoBehaviour
             BuscarCandidato();
         }
 
-        if (candidato != null && Keyboard.current != null &&
+        if (candidato != null && !StairsManager.JugadorEnPuerta && Keyboard.current != null &&
             Keyboard.current.eKey.wasPressedThisFrame)
         {
             Hablar(candidato, ahora);
@@ -283,7 +286,9 @@ public class NpcManager : MonoBehaviour
 
         // Junto al ascensor la tecla E es del ascensor; y antes de empezar la
         // sesión no hay a quién preguntarle nada.
-        if (!ElevatorTrigger.JugadorEnAlgunaZona && !TestSession.EsperandoInicio)
+        // Lo mismo junto a una puerta de la escalera.
+        if (!ElevatorTrigger.JugadorEnAlgunaZona && !StairsManager.JugadorEnPuerta &&
+            !TestSession.EsperandoInicio)
         {
             Vector3 pos = jugador.position;
             Vector3 frente = jugador.forward;
@@ -310,6 +315,35 @@ public class NpcManager : MonoBehaviour
         if (mejor == candidato) return;
         candidato = mejor;
         OnAvisoCambiado?.Invoke(mejor != null ? $"E  —  Preguntar a {mejor.Nombre}" : "");
+    }
+
+    /// <summary>
+    /// Para las pruebas y el menú de depuración: le pregunta al NPC activo más
+    /// cercano al jugador, esté o no de frente. Devuelve false si no hay ninguno
+    /// a menos de 'alcance' metros.
+    /// </summary>
+    public bool PreguntarAlMasCercano(float alcance)
+    {
+        if (jugador == null)
+        {
+            GameObject go = GameObject.FindWithTag("Player");
+            if (go == null) return false;
+            jugador = go.transform;
+        }
+
+        NpcCharacter mejor = null;
+        float mejorDistancia = alcance * alcance;
+        for (int i = 0; i < npcs.Count; i++)
+        {
+            NpcCharacter n = npcs[i];
+            if (n == null || !n.gameObject.activeInHierarchy) continue;
+            float d2 = (n.transform.position - jugador.position).sqrMagnitude;
+            if (d2 < mejorDistancia) { mejorDistancia = d2; mejor = n; }
+        }
+        if (mejor == null) return false;
+
+        Hablar(mejor, Time.time);
+        return true;
     }
 
     private void Hablar(NpcCharacter npc, float ahora)

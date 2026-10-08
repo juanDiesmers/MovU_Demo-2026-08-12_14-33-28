@@ -10,7 +10,8 @@ using UnityEngine.InputSystem;
 // Posicionamiento ajustado a 0.8m para evitar recortes con paredes (Hallazgo #13).
 //
 // Pisos: si el objetivo está en OTRO piso, la flecha guía hasta el ascensor más
-// cercano del piso actual en vez de apuntar a través del techo. Al salir del
+// cercano del piso actual (o hasta la escalera, si por ahí es más corto) en vez
+// de apuntar a través del techo. Al salir del
 // ascensor en el piso correcto vuelve a apuntar al objetivo.
 //
 // Las rutas se piden a NavUtil, que muestrea desde los pies del jugador y no
@@ -295,8 +296,9 @@ public class GuidanceArrow : MonoBehaviour
         int pisoDelJugador = pisos.PisoSegunAltura(playerTransform.position.y + 0.5f);
         if (pisoDelObjetivo == pisoDelJugador) return destino;
 
-        ElevatorTrigger ascensor = ElevatorTrigger.MasCercano(pisoDelJugador, playerTransform.position);
-        return ascensor != null ? ascensor.PuntoDeAcceso : destino;
+        // El ascensor más cercano o la escalera: lo que dé la ruta más corta.
+        return NavUtil.EntradaParaCambiarDePiso(playerTransform.position, pisoDelJugador,
+                                                destino, pisoDelObjetivo);
     }
 
     private void CalculateTargetDirection()

@@ -11,7 +11,7 @@ using UnityEngine;
 //
 // Por qué no cápsulas y esferas de Unity: una cápsula tiene 832 triángulos y
 // una esfera 768. Veinte personajes así serían 32.000 triángulos, y el SRS deja
-// 100.000 por piso (RD-4) cuando la planta sola ya gasta 94.440. Con esta malla
+// 100.000 por piso (RD-4) cuando la planta sola ya gasta 93.628. Con esta malla
 // los mismos veinte cuestan menos de 2.000.
 //
 // Los materiales también se comparten: uno por color, con GPU instancing.

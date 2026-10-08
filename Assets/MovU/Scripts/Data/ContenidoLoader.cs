@@ -71,6 +71,12 @@ public static class ContenidoLoader
         if (datos.npcs == null) datos.npcs = new List<NpcDef>();
         if (datos.multitud == null) datos.multitud = new MultitudDef();
         if (datos.recorridos == null) datos.recorridos = new List<PuntoUV>();
+        if (datos.objetos == null) datos.objetos = new List<ObjetoDef>();
+        if (datos.puertas == null) datos.puertas = new List<PuertaDef>();
+        if (datos.mobiliario == null) datos.mobiliario = new List<MuebleDef>();
+        if (datos.escalera == null) datos.escalera = new EscaleraDef();
+        if (datos.escalera.tramo == null) datos.escalera.tramo = new RectUV();
+        if (datos.escalera.rellano == null) datos.escalera.rellano = new RectUV();
 
         Datos = datos;
         return datos;
@@ -88,6 +94,15 @@ public static class ContenidoLoader
 
         punto = plano.AMundo(u, v, pisos.AlturaDelSuelo(indice));
         return true;
+    }
+
+    /// <summary>
+    /// Igual que <see cref="AMundo"/> pero con el piso contando desde 0 y un plano
+    /// ya medido (para no medir la planta una vez por punto).
+    /// </summary>
+    public static Vector3 AMundo(PlanoDePlanta plano, FloorManager pisos, int indice, float u, float v)
+    {
+        return plano.AMundo(u, v, pisos.AlturaDelSuelo(indice));
     }
 
     /// <summary>Calcula el punto de aparición del JSON. No mueve a nadie.</summary>

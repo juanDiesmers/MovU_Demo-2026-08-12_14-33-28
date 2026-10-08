@@ -26,6 +26,19 @@ public class PoiSignage : MonoBehaviour
 
     private readonly List<PointOfInterest> pois = new List<PointOfInterest>();
     private readonly List<TextMeshPro> textos = new List<TextMeshPro>();
+
+    // Los rotulos de un espacio CON puerta no flotan girando: van colgados del
+    // dintel, del lado desde el que se esta mirando (si no, quedarian metidos
+    // dentro del muro que cierra el vano).
+    private struct Placa
+    {
+        public bool colgada;
+        public Vector3 centro;      // sobre el dintel
+        public Vector3 normal;
+    }
+    private readonly List<Placa> placas = new List<Placa>();
+    private const float AlturaEnElDintel = 2.78f;
+    private const float SeparacionDelDintel = 0.15f;
     private Transform camara;
     private float proximaRevision;
 
@@ -48,6 +61,8 @@ public class PoiSignage : MonoBehaviour
         }
         textos.Clear();
         pois.Clear();
+        placas.Clear();
+        DoorManager puertas = DoorManager.Instance;
 
         var lista = PointOfInterest.Todos;
         for (int i = 0; i < lista.Count; i++)
@@ -73,8 +88,19 @@ public class PoiSignage : MonoBehaviour
             t.rectTransform.sizeDelta = new Vector2(8f, 1.2f);
             t.enabled = false;
 
+            var placa = new Placa();
+            if (puertas != null &&
+                puertas.PlanoDe(poi.Id, poi.transform.position.y, out Vector3 centro, out Vector3 normal))
+            {
+                placa.colgada = true;
+                placa.centro = centro + Vector3.up * AlturaEnElDintel;
+                placa.normal = normal;
+                go.transform.position = placa.centro + normal * SeparacionDelDintel;
+            }
+
             pois.Add(poi);
             textos.Add(t);
+            placas.Add(placa);
         }
     }
 
@@ -109,6 +135,18 @@ public class PoiSignage : MonoBehaviour
         {
             TextMeshPro t = textos[i];
             if (t == null || !t.enabled) continue;
+
+            if (placas[i].colgada)
+            {
+                // Del lado del dintel desde el que mira el jugador, y de frente
+                // al vano (como una placa de verdad), no girando hacia la camara.
+                Placa p = placas[i];
+                float lado = Vector3.Dot(ojo - p.centro, p.normal) >= 0f ? 1f : -1f;
+                t.transform.SetPositionAndRotation(
+                    p.centro + p.normal * (lado * SeparacionDelDintel),
+                    Quaternion.LookRotation(-p.normal * lado, Vector3.up));
+                continue;
+            }
 
             // Gira solo sobre el eje vertical: se lee de frente sin inclinarse.
             Vector3 haciaElTexto = t.transform.position - ojo;

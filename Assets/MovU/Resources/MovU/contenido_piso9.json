@@ -6,7 +6,13 @@
     "rotulos": true,
     "distanciaRotulos": 16,
     "npcDanIndicaciones": true,
-    "numeroDelPrimerPiso": 9
+    "numeroDelPrimerPiso": 9,
+    "techo": true,
+    "puertas": true,
+    "mobiliario": true,
+    "sonido": true,
+    "volumen": 0.8,
+    "inventario": true
   },
   "aparicion": {
     "usar": true,
@@ -172,14 +178,18 @@
       "enunciado": "Tienes clase en un rato y necesitas un portátil. Ve a DTI y pide uno prestado.",
       "poi": "dti_prestamo",
       "partida": "aparicion",
-      "guia": ""
+      "guia": "",
+      "entrega": "portatil",
+      "mensajeDeEntrega": "Mostraste tu carné y DTI te prestó un portátil."
     },
     {
       "id": "M02",
       "enunciado": "Tu usuario institucional no te deja entrar. Busca a los ingenieros de soporte de DTI.",
       "poi": "dti_soporte",
       "partida": "",
-      "guia": ""
+      "guia": "",
+      "entrega": "comprobante",
+      "mensajeDeEntrega": "Los ingenieros revisaron tu caso y reactivaron tu usuario."
     }
   ],
   "npcs": [
@@ -356,5 +366,191 @@
       "u": 0.8054,
       "v": 0.6261
     }
-  ]
+  ],
+  "objetos": [
+    {
+      "id": "carne",
+      "nombre": "Carné estudiantil",
+      "descripcion": "Tu carné de la Javeriana (participante {participante}). En DTI lo piden para prestar equipos.",
+      "sigla": "ID",
+      "color": "1F4E9A",
+      "inicial": true
+    },
+    {
+      "id": "horario",
+      "nombre": "Horario de clases",
+      "descripcion": "Hoy tienes clase en el piso 9 y el taller se hace en computador.",
+      "sigla": "HOY",
+      "color": "8A6A2E",
+      "inicial": true
+    },
+    {
+      "id": "portatil",
+      "nombre": "Portátil prestado",
+      "descripcion": "Equipo de DTI. Se devuelve el mismo día en Préstamo de equipos.",
+      "sigla": "PC",
+      "color": "00798A",
+      "inicial": false
+    },
+    {
+      "id": "comprobante",
+      "nombre": "Comprobante de soporte",
+      "descripcion": "El caso que abrieron los ingenieros de DTI: tu usuario institucional ya funciona.",
+      "sigla": "OK",
+      "color": "3F8F52",
+      "inicial": false
+    }
+  ],
+  "puertas": [
+    {
+      "id": "p_dti_prestamo",
+      "poi": "dti_prestamo",
+      "piso": 0,
+      "u": 0.6366,
+      "v": 0.545,
+      "yaw": 104,
+      "ancho": 2.4,
+      "estilo": "dti"
+    },
+    {
+      "id": "p_dti_soporte",
+      "poi": "dti_soporte",
+      "piso": 0,
+      "u": 0.5285,
+      "v": 0.0836,
+      "yaw": 0,
+      "ancho": 2.45,
+      "estilo": "dti"
+    },
+    {
+      "id": "p_salon_a",
+      "poi": "salon_a",
+      "piso": 0,
+      "u": 0.4504,
+      "v": 0.1445,
+      "yaw": 90,
+      "ancho": 2.6,
+      "estilo": "salon"
+    },
+    {
+      "id": "p_salon_b",
+      "poi": "salon_b",
+      "piso": 0,
+      "u": 0.4211,
+      "v": 0.3227,
+      "yaw": 90,
+      "ancho": 2.6,
+      "estilo": "salon"
+    },
+    {
+      "id": "p_salon_c",
+      "poi": "salon_c",
+      "piso": 0,
+      "u": 0.4186,
+      "v": 0.3584,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p_salon_d",
+      "poi": "salon_d",
+      "piso": 0,
+      "u": 0.4224,
+      "v": 0.6088,
+      "yaw": 90,
+      "ancho": 2.7,
+      "estilo": "salon"
+    },
+    {
+      "id": "p_salon_e",
+      "poi": "salon_e",
+      "piso": 0,
+      "u": 0.4211,
+      "v": 0.6416,
+      "yaw": 90,
+      "ancho": 2.3,
+      "estilo": "salon"
+    },
+    {
+      "id": "p_salon_g",
+      "poi": "salon_g",
+      "piso": 0,
+      "u": 0.6476,
+      "v": 0.576,
+      "yaw": 90,
+      "ancho": 2.3,
+      "estilo": "salon"
+    },
+    {
+      "id": "p_salon_h",
+      "poi": "salon_h",
+      "piso": 0,
+      "u": 0.6285,
+      "v": 0.7654,
+      "yaw": 90,
+      "ancho": 2.5,
+      "estilo": "salon"
+    },
+    {
+      "id": "p_escalera",
+      "poi": "escalera_emergencia",
+      "piso": 0,
+      "u": 0.7672,
+      "v": 0.1952,
+      "yaw": 90,
+      "ancho": 2.2,
+      "estilo": "emergencia"
+    }
+  ],
+  "mobiliario": [
+    {
+      "tipo": "mostrador",
+      "piso": 1,
+      "u": 0.7382,
+      "v": 0.5224,
+      "yaw": 301
+    },
+    {
+      "tipo": "mostrador",
+      "piso": 1,
+      "u": 0.827,
+      "v": 0.4754,
+      "yaw": 300
+    },
+    {
+      "tipo": "mostrador",
+      "piso": 1,
+      "u": 0.6015,
+      "v": 0.055,
+      "yaw": 317
+    },
+    {
+      "tipo": "mostrador",
+      "piso": 1,
+      "u": 0.7545,
+      "v": 0.0521,
+      "yaw": 0
+    }
+  ],
+  "escalera": {
+    "usar": true,
+    "alturaDelRellano": 3.55,
+    "alturaLibreSobreElRellano": 2.85,
+    "peldanos": 18,
+    "tramo": {
+      "u0": 0.9015,
+      "u1": 0.972,
+      "v0": 0.2233,
+      "v1": 0.2955
+    },
+    "rellano": {
+      "u0": 0.799,
+      "u1": 0.972,
+      "v0": 0.3185,
+      "v1": 0.3363
+    },
+    "ocultoU0": 0.8219,
+    "puertaU": 0.8537
+  }
 }

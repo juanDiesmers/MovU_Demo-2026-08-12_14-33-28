@@ -8,8 +8,9 @@ using UnityEngine.SceneManagement;
 // Al cargar una escena que tenga un FloorManager (es decir, el edificio) y que
 // NO tenga ya un MissionManager, monta todo lo que hace falta para jugar:
 //
-//   contenido del JSON (POIs, punto de aparición)  ->  NavMesh  ->  gestores
-//   (misiones, juego, NPC, rótulos)  ->  flecha de guía  ->  HUD  ->  sesión
+//   contenido del JSON (POIs, punto de aparición)  ->  NavMesh  ->  sonido  ->
+//   ambientación (techo, lámparas, puertas, escalera)  ->  gestores (misiones,
+//   juego, NPC, inventario, rótulos)  ->  flecha de guía  ->  HUD  ->  sesión
 //
 // Así la escena del edificio solo guarda geometría, jugador y ascensores; nada
 // de esto hay que armarlo a mano ni se pierde al reconstruir el edificio.
@@ -101,6 +102,28 @@ public static class MovUBootstrap
         // --- NavMesh ----------------------------------------------------
         AsegurarNavMesh(raiz);
 
+        // --- Sonido -----------------------------------------------------
+        var sonido = raiz.AddComponent<AudioManager>();
+        sonido.Configurar(datos.ajustes);
+        if (jugador.GetComponent<PlayerFootsteps>() == null)
+        {
+            jugador.gameObject.AddComponent<PlayerFootsteps>();
+        }
+
+        // --- Ambientación -----------------------------------------------
+        // Después del NavMesh a propósito: nada de esto debe entrar en él. Las
+        // puertas no tienen collider y la escalera queda fuera de la malla
+        // horneada; la ruta óptima la cuenta aparte (NavUtil.RutaPorEscalera).
+        FormasMovU.ReiniciarCuenta();
+        float techo = AmbientacionBuilder.AlturaDelTecho(pisos);
+        AmbientacionBuilder.Construir(datos, pisos, jugador, techo);
+
+        var puertas = raiz.AddComponent<DoorManager>();
+        if (datos.ajustes.puertas) puertas.Construir(datos, pisos, techo);
+
+        var escalera = raiz.AddComponent<StairsManager>();
+        escalera.Construir(datos, pisos, jugador, techo);
+
         // --- Gestores ---------------------------------------------------
         var misiones = raiz.AddComponent<MissionManager>();
         misiones.ConfigurarCatalogo(datos.misiones);
@@ -120,8 +143,12 @@ public static class MovUBootstrap
         flecha.transform.SetParent(raiz.transform, false);
         flecha.AddComponent<GuidanceArrow>();
 
+        var inventario = raiz.AddComponent<InventoryManager>();
+        inventario.Configurar(datos);
+
         HUDController hud = HudBuilder.Construir();
         hud.transform.SetParent(raiz.transform, false);
+        if (datos.ajustes.inventario) InventoryUI.Construir(hud.transform, inventario);
 
         var sesion = raiz.AddComponent<TestSession>();
         sesion.Configurar(datos.ajustes.pedirParticipante);
@@ -129,6 +156,12 @@ public static class MovUBootstrap
         Debug.Log($"[MovU] Juego montado sobre '{datos.nombre}': {PointOfInterest.Todos.Count} POIs " +
                   $"({pois} del JSON), {datos.misiones.Count} misiones, {npcs.Cantidad} NPC. " +
                   (NavUtil.HayNavMesh ? "NavMesh listo." : "SIN NavMesh."));
+
+        int piso = ContenidoLoader.HayAparicion ? ContenidoLoader.PisoDeAparicion : 0;
+        Debug.Log($"[MovU] Ambientación: {puertas.Cantidad} puertas en total, techo a {techo:F2} m, " +
+                  $"escalera {(escalera.Disponible ? "funcional" : "sin construir")}, " +
+                  $"{inventario.Objetos.Count} objetos en el inventario. " +
+                  $"Triángulos añadidos en el piso de aparición: {FormasMovU.TriangulosEn(piso):N0}.");
     }
 
     /// <summary>

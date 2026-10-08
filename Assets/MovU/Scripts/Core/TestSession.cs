@@ -63,6 +63,19 @@ public class TestSession : MonoBehaviour
         empezar = !pedir;      // sin panel: arranca en el primer Update
     }
 
+    /// <summary>
+    /// Empieza la sesión sin pasar por el panel: para las pruebas automáticas y
+    /// el menú de depuración. 'condicionDeGuia': 0 libre, 1 sin guía, 2 directa,
+    /// 3 por ruta.
+    /// </summary>
+    public void Empezar(string participante, int condicionDeGuia)
+    {
+        if (!EsperandoInicio) return;
+        texto = participante ?? "";
+        condicion = Mathf.Clamp(condicionDeGuia, 0, Condiciones.Length - 1);
+        empezar = true;
+    }
+
     private void OnDestroy()
     {
         EsperandoInicio = false;

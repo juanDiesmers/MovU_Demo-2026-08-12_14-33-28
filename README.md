@@ -11,7 +11,7 @@ Ese registro es la evidencia experimental de la tesis.
 
 ---
 
-## 1. Estado actual (8 de octubre de 2026)
+## 1. Estado actual (8 de octubre de 2026, tarde)
 
 | Parte | Estado |
 |---|---|
@@ -19,30 +19,36 @@ Ese registro es la evidencia experimental de la tesis.
 | Personaje en 1ª / 3ª persona (`CameraRig`) | ✅ |
 | Planta caminable a partir del modelo de Meshy | ✅ |
 | Shader estilizado low-poly sin UVs | ✅ |
-| Edificio de 3 pisos + ascensor + carga por piso | ⚠️ Compila; **falta abrirlo en Unity y correr `MovU > Preparar todo`** |
-| POIs del piso 9 como datos (`contenido_piso9.json`) | ⚠️ Escrito y compilado; sin probar en Unity |
-| Dos misiones encadenadas sobre los POIs de DTI | ⚠️ Escrito y compilado; sin probar en Unity |
-| NPC (personal de DTI, profesores, vigilante, aseo, estudiantes, visitantes) | ⚠️ Escrito y compilado; sin probar en Unity |
-| NavMesh de los tres pisos, horneado desde un menú | ⚠️ Escrito y compilado; sin probar en Unity |
-| Flecha de guía entre pisos (lleva al ascensor) | ⚠️ Escrito y compilado; sin probar en Unity |
-| Métricas por misión: participante, cambios de piso, pisos equivocados, consultas a NPC | ⚠️ Escrito y compilado; sin probar en Unity |
-| Pruebas automáticas (Test Runner, modo edición) | ⚠️ Escritas y compiladas; sin correr en Unity |
+| Edificio de 3 pisos + ascensor + carga por piso | ✅ `Edificio.unity` existe y se juega |
+| POIs del piso 9 como datos (`contenido_piso9.json`) | ✅ Jugado en Unity |
+| Dos misiones encadenadas sobre los POIs de DTI | ✅ Jugadas de principio a fin (a mano y con la caminata automática) |
+| NPC (personal de DTI, profesores, vigilante, aseo, estudiantes, visitantes) | ✅ En escena; dan indicaciones |
+| NavMesh de los tres pisos, horneado desde un menú | ✅ Horneado (`Scenes/Edificio_NavMesh.asset`) |
+| Flecha de guía entre pisos (lleva al ascensor o a la escalera) | ⚠️ El cálculo de a dónde manda está revisado; falta verla en pantalla en una misión entre pisos |
+| Métricas por misión: participante, cambios de piso, pisos equivocados, consultas a NPC | ✅ El CSV se escribe en cada misión |
+| Pruebas automáticas (Test Runner, modo edición) | ✅ 21 de 21 pasan |
+| Cielo raso con retícula y lámparas | ✅ Visto en Play |
+| Puertas de dos hojas en los 10 vanos del piso (se abren solas) | ✅ Vistas en Play; la distancia medida no cambia (desvío 1,00x en la ruta óptima) |
+| Escalera funcional: tramo caminable + puertas que suben y bajan de piso | ✅ Subida y bajada a pie y cruzada en los dos sentidos; **falta probarla con teclado** |
+| Inventario (carné, horario, lo que entregan las misiones) | ✅ Visto en Play |
+| Sonido (pasos, voces de NPC, puertas, avisos, ambiente) | ⚠️ Suena según el código y los archivos están bien formados, pero **nadie los ha escuchado todavía** |
 | Occlusion Culling horneado | ❌ Pendiente (ya hay menú: `MovU > Rendimiento`) |
 | Menú principal, opciones, pantalla de carga, guardado de progreso | ❌ Pendiente |
 | Escala definitiva del edificio | ⚠️ Por decidir (hoy 56x horizontal / 45x vertical) |
 
-**"Compila" quiere decir esto y nada más:** el 8 de octubre todo `Assets/MovU` se compiló
-fuera de Unity con el compilador de C# contra las DLL de Unity 6000.3.21f1 de este equipo
-(`UnityEngine`, `UnityEditor`, Input System, AI Navigation, TextMeshPro, URP), en las tres
-configuraciones (ejecutable, editor y scripts de `Editor/`), sin errores. Eso descarta los
-errores de sintaxis y de API, que era el riesgo R10. **No** dice que el juego se comporte
-bien: nadie ha dado Play todavía. Lo primero al abrir el proyecto sigue siendo probar.
+**Qué quiere decir "probado" aquí.** El 8 de octubre el edificio se jugó en Unity
+6000.3.21f1: dos corridas a mano por la mañana y, por la tarde, varias con la *caminata
+automática* (`MovU > Depuracion en Play`), que mueve al personaje con su propio
+`CharacterController` a 3 m/s por la ruta del NavMesh. Eso prueba colisiones, puertas,
+llegada, inventario y métricas, sin errores ni avisos en consola. **No** prueba lo que
+depende de una persona: cómo se siente con teclado y ratón, y cómo suena.
 
-En este equipo la última vez que se abrió Unity fue el 11 de septiembre; el edificio de ese
-día quedó en `Assets/meshi.unity` y `Assets/MovU/Scenes/Edificio.unity` todavía no existe.
-La crea `MovU > Preparar todo`.
+Las corridas automáticas dejan filas en `movu_metrics_v2.csv` con el participante `auto`
+(filtrarlas antes de analizar). Los récords ("Mejor tiempo") no los tocan: se restauran al
+salir de Play.
 
-Último commit: `Readme` (23 de septiembre). Lo del 8 de octubre está sin commitear.
+Último commit: `Actualizacion Hitos`. La ambientación, la escalera, el sonido y el
+inventario del 8 de octubre por la tarde están **sin commitear**.
 
 ### Decisiones ya tomadas (no volver a discutirlas sin motivo)
 
@@ -56,6 +62,13 @@ La crea `MovU > Preparar todo`.
 - **Cada piso es autónomo.** `FloorManager` apaga los pisos que nadie está viendo, así que un
   piso no puede depender de que el vecino esté cargado (por eso cada piso trae su propia losa
   de techo). Cualquier cosa que se añada después tiene que cumplir esta regla.
+- **Las puertas no tienen collider.** Se abren solas y no frenan a nadie, para que la
+  distancia y el tiempo del CSV sean los mismos con puertas que sin ellas y el NavMesh
+  horneado siga valiendo. Lo que sí cambian es lo que se *ve* (cerradas tapan el interior
+  de los salones); se apagan con `"puertas": false` en el JSON.
+- **La escalera es en U y solo medio piso se camina.** El tramo visible lleva al rellano; el
+  otro medio piso se cruza por una puerta con un fundido. No se puede caminar de verdad entre
+  pisos porque cada piso se apaga cuando no se usa. Ver la sección 5.
 - **La escena construida es la fuente de verdad**, no los menús. `Assets/MovU/Scenes/Edificio.unity`
   se versiona y se edita como cualquier escena; los menús quedan para *regenerar* la geometría
   cuando cambie el modelo o la escala. Ver la sección 4.
@@ -110,7 +123,8 @@ Otros scripts, solo si hacen falta:
 
 | Script | Qué produce | Cuándo |
 |---|---|---|
-| `Tools/tapar_corona.py` | `RellenoCorona.obj` — sube los muros cortos + losa de techo | Siempre que cambie la altura del edificio |
+| `Tools/tapar_corona.py` | `RellenoCorona.obj` — sube los muros cortos + losa de techo. Deja libre el hueco de la escalera, que lee del JSON de contenido | Siempre que cambie la altura del edificio **o las medidas de la escalera** |
+| `Tools/generar_sonidos.py` | Los 18 `.wav` de `Resources/MovU/Audio/` (síntesis; no hay nada que licenciar) | Para cambiar un sonido. O se reemplaza el `.wav` por una grabación con el mismo nombre |
 | `Tools/reconstruir_planta.py` | `PlantaMovU_Reconstruida.obj` — planta reconstruida a 8k triángulos | **Descartado** como mapa jugable; se conserva como evidencia |
 | `Tools/preparar_malla.py` | `PlanoMovU_Estilizado.obj` — el mismo modelo con UVs | Solo si se quieren texturas PBR reales |
 | `Tools/blender_pulir_plano.py` | `PlanoMovU_Pulido.obj` — normales hacia afuera + bisel | Solo si se quiere volver a back-face culling |
@@ -170,6 +184,12 @@ Menús adicionales:
   escena al JSON.
 - `MovU > Contenido > Crear POI aquí` — un POI a mano, en `Contenido/Piso_N`.
 - `MovU > Contenido > Llevar ascensor y aparición al sitio del JSON`.
+- `MovU > Contenido > Sondear la planta / las puertas / la escalera` — mide el modelo por
+  trazado de rayos y deja mapas de texto en `Temp/MovUSondeo/`. De ahí salieron el ancho de
+  cada vano y las medidas de la escalera; hay que repetirlo si cambia la escala.
+- `MovU > Depuracion en Play > …` — QA sin teclado: empezar la sesión, que el personaje
+  camine solo hasta el destino de la misión o por la escalera, cruzar las puertas, abrir el
+  inventario, preguntarle a un NPC, comparar la ruta por ascensor y por escalera.
 - `MovU > Edificio > Cargar tambien los pisos vecinos` — para depurar: mantiene 3 pisos activos.
 - `MovU > Estilizar entorno > Anadir suelo exterior` — plano de horizonte sin collider.
 - `MovU > Estilizar entorno > Alternar culling de caras` — `Off` / `Back`.
@@ -191,7 +211,8 @@ Si esos números se ven raros, la escala está mal antes de que el juego siquier
 | Ratón | Mirar |
 | `V` | Alternar primera / tercera persona |
 | `G` | Ciclar el modo de la flecha de guía (Off → Direct → NavMesh). No hace nada si el evaluador fijó el modo |
-| `E` | Junto al ascensor: abrir el panel. Frente a un NPC: pedirle indicaciones |
+| `E` | Junto al ascensor: abrir el panel. Frente a un NPC: pedirle indicaciones. Frente a una puerta de la escalera: subir o bajar un piso |
+| `I` o `Tab` | Abrir o cerrar el inventario (no pausa el juego) |
 | `Enter` / `Espacio` | Pasar a la siguiente misión (con el panel de resultados en pantalla) |
 | `1`…`9` | Elegir piso con el panel abierto |
 | `Esc` | Cerrar el panel · soltar/capturar el cursor |
@@ -315,7 +336,59 @@ entre los puntos de `recorridos`.
   puerta no cambie la distancia recorrida que se mide.
 - Todos comparten una malla de 91 triángulos generada por código (`NpcMeshFactory`). Los 18
   suman 1.638 triángulos; con cápsulas de Unity serían unos 29.000 y el piso se pasaría del
-  presupuesto del SRS (RD-4: 100.000, de los que la planta ya gasta 94.440).
+  presupuesto del SRS (RD-4: 100.000, de los que la planta ya gasta 93.628).
+
+### Puertas
+
+`"puertas"`: una por vano, con el centro (`u`, `v`), hacia dónde mira (`yaw`: 90 si el vano
+corre a lo largo de Z), el `ancho` libre en metros, el `poi` al que da paso y un `estilo`
+(`salon` madera, `dti` turquesa, `emergencia` rojo). `"piso": 0` la pone en los tres pisos.
+
+- Dos hojas batientes, marco y un dintel de muro hasta el techo (los vanos del modelo van
+  de piso a techo). 120 triángulos cada una.
+- Se abren a 2,6 m de quien llegue (el jugador o un NPC que camina), alejándose de él, y se
+  cierran solas. Sin collider: ver "Decisiones ya tomadas".
+- El rótulo del espacio pasa a colgar del dintel, del lado desde el que se mira.
+- Los anchos y centros se midieron con `MovU > Contenido > Sondear las puertas`.
+
+### Escalera
+
+`"escalera"`: las medidas del tramo visible, el rellano y las dos puertas. El modelo de Meshy
+ya traía la escalera en el espacio L, pero no servía: primer peldaño de medio metro, segundo
+tramo que arranca a un metro del suelo, y un rellano a media altura que no llevaba a nada.
+
+| Pieza | Qué es |
+|---|---|
+| Tramo visible | 18 escalones parejos de 20 cm encima de los del modelo, con una rampa de colisión invisible. Del suelo al rellano (3,55 m) |
+| Rellano | Losa pareja, con baranda donde hay vacío |
+| Puerta del rellano | `E` — **subir**: se sale por la puerta del hall del piso de arriba |
+| Puerta del hall | `E` — **bajar**: se sale por la puerta del rellano del piso de abajo, y de ahí se baja el tramo a pie |
+| Caja | Sobre la escalera el techo va más alto (el rellano queda a media altura entre pisos) |
+
+Subir un piso por la escalera suma 13,0 m caminados (tramo + rellano); el ascensor no suma
+nada. **La ruta óptima entre pisos es ahora la más corta de las dos**
+(`NavUtil.RutaEntrePisos`), y la flecha de guía manda al que convenga. Las dos misiones de
+hoy son en el mismo piso, así que sus rutas óptimas no cambiaron (46,8 m la M01).
+
+Las alturas de la escalera van en metros y dependen de la escala vertical: si cambia, hay que
+volver a medir (`Sondear la escalera`), corregir el JSON y correr `Tools/tapar_corona.py`.
+
+### Inventario
+
+`"objetos"`: el catálogo (`id`, `nombre`, `descripcion`, una `sigla` de 2–3 letras y un
+`color` para la casilla; no hay iconos). Los que traen `"inicial": true` se tienen desde el
+principio: el carné y el horario. `"misiones[].entrega"` es el objeto que se recibe al
+completar la misión (el portátil en M01, el comprobante de soporte en M02), con el texto de
+`mensajeDeEntrega`. Repetir una misión con `R` devuelve lo que entregaba.
+
+No toca las métricas: tener o no un objeto no cambia cuándo se completa una misión.
+
+### Sonido
+
+`AudioManager` no recibe órdenes: escucha los eventos de los demás gestores. Pasos por
+distancia recorrida (más agudos en la escalera), una "voz" de sílabas al ritmo del subtítulo
+con un tono propio por personaje, puertas atenuadas con la distancia, avisos de misión, el
+timbre del ascensor y un fondo de edificio en bucle. Se apaga con `"sonido": false`.
 
 ### Otros ajustes del JSON
 
@@ -323,6 +396,11 @@ entre los puntos de `recorridos`.
 |---|---|
 | `ajustes.rotulos` | Rótulos con el nombre de cada espacio sobre su puerta. `false` para medir sin señalización |
 | `ajustes.numeroDelPrimerPiso` | `9`: el piso de abajo del modelo se le muestra al jugador como "Piso 9" |
+| `ajustes.techo` | Cielo raso con retícula y lámparas. `false` deja la losa lisa del relleno |
+| `ajustes.puertas` | `false` deja los vanos abiertos, como estaban |
+| `ajustes.mobiliario` | Los mostradores de `"mobiliario"` (hoy, cuatro en los dos espacios de DTI) |
+| `ajustes.sonido`, `ajustes.volumen` | Sonido encendido y volumen general de 0 a 1 |
+| `ajustes.inventario` | `false` quita la barra y el panel |
 | `aparicion` | Dónde aparece el jugador (hoy, frente al ascensor del hall) |
 | `ascensor` | Dónde va el ascensor. Lo lee `MovU > Preparar todo`; en una escena ya armada, `MovU > Contenido > Llevar ascensor y aparición al sitio del JSON` |
 | `misiones[].partida` | `"aparicion"`, el id de un POI, o vacío para empezar donde esté el jugador |
@@ -347,9 +425,13 @@ Assets/MovU/
     Guidance/  GuidanceArrow, GuidanceMode
     Data/      MetricsLogger, RunMetrics, SaveSystem,
                ContenidoPiso + ContenidoLoader (el JSON del piso)
-    UI/        HUDController, HudBuilder (arma el HUD del edificio por código)
+    UI/        HUDController, HudBuilder (arma el HUD del edificio por código), InventoryUI
     Building/  FloorManager, ElevatorTrigger, ElevatorPanel, SolSinSombras,
-               GeneradoPorMovU (marcador de lo regenerable)
+               StairsManager (la escalera), GeneradoPorMovU (marcador de lo regenerable)
+    Ambiente/  AmbientacionBuilder (cielo raso, lámparas, mostradores), DoorManager,
+               FormasMovU (cajas y escalones por código, cuenta de triángulos)
+    Audio/     AudioManager, PlayerFootsteps
+    Inventory/ InventoryManager
     POI/       PointOfInterest (y su registro), PoiSignage (rótulos)
     Npc/       NpcManager, NpcCharacter, NpcMeshFactory
     Navigation/ NavUtil (rutas sin basura, rutas entre pisos)
@@ -360,8 +442,11 @@ Assets/MovU/
     BuildingSetup.cs        edificio de 3 pisos, ascensor, FloorManager
     MovUPipeline.cs         'Preparar todo', guardado de escena, diagnóstico
     MovUJuegoMenu.cs        NavMesh, vista previa del JSON, POIs, rendimiento
+    MovUSondeo.cs           mide la planta, las puertas y la escalera (Temp/MovUSondeo)
+    MovUDepuracion.cs       QA sin teclado: caminata automática, escalera, inventario
     Tests/MovUPruebas.cs    pruebas automáticas (Test Runner > EditMode)
-  Resources/MovU/contenido_piso9.json   POIs, misiones y NPC del piso
+  Resources/MovU/contenido_piso9.json   POIs, misiones, NPC, puertas, escalera y objetos
+  Resources/MovU/Audio/*.wav            efectos de sonido (generados)
   Shaders/StylizedEnvironment.shader    shader URP que no necesita UVs
   Models/    OBJ del plano y mallas generadas
   Materials/
@@ -458,8 +543,9 @@ problema se repite, persistir el `NavMeshData` como asset. En Unity 6.3 es
 **`NavMeshSurface`**, no el viejo "Navigation Static".
 
 **FPS bajos / el horneado de colisión tarda una eternidad.**
-Números de referencia por piso: 94.440 triángulos de render, 78.878 de colisión. Con los tres
-pisos cargados a la vez son 283.320. Si va lento: confirmar que `FloorManager` está dejando un
+Números de referencia por piso: 93.628 triángulos de la planta y su relleno, más 1.638 de los
+NPC y unos 2.100 de ambientación (puertas, escalera, techo, mostradores): **97.400 de los
+100.000 de RD-4**. De colisión, 78.878. Con los tres pisos cargados a la vez se triplica. Si va lento: confirmar que `FloorManager` está dejando un
 solo piso activo (`pisosVecinosCargados = 0`) y que el Occlusion Culling está horneado.
 
 **Doy Play en el edificio y no hay misiones ni HUD.**
@@ -486,6 +572,20 @@ La escena se armó antes de que el JSON dijera dónde va. Correr
 `MovU > Contenido > Llevar ascensor y aparición al sitio del JSON` y volver a hornear el
 NavMesh.
 
+**La escalera aparece metida dentro de un bloque macizo.**
+`RellenoCorona.obj` se generó sin el hueco: el relleno toma la escalera por un muro bajo y la
+sube hasta el techo. Correr `python3 Tools/tapar_corona.py` (lee las medidas de `"escalera"`
+del JSON) y dejar que Unity reimporte.
+
+**Una puerta no calza en su vano, o queda atravesada.**
+Las medidas son del modelo a la escala de hoy. `MovU > Contenido > Sondear las puertas` deja
+en `Temp/MovUSondeo/puertas.txt` un mapa de cada vano; corregir `u`, `v`, `yaw` y `ancho`.
+
+**No se oye nada.**
+`"sonido": true` en el JSON, y que existan los `.wav` en `Resources/MovU/Audio/`
+(`python3 Tools/generar_sonidos.py` los vuelve a crear). Están en Git LFS: sin `git lfs pull`
+llegan como punteros de texto y Unity no los importa como audio.
+
 **Los rótulos o el HUD no muestran texto.**
 Lo mismo que el HUD del demo: falta importar TextMeshPro Essential Resources.
 
@@ -505,28 +605,31 @@ limpieza). Los modelos crudos van en `_ModelosCrudos/`, que está en `.gitignore
 
 ## 8. Qué falta (en orden)
 
-1. **Abrir Unity y probar.** `MovU > Preparar todo` desde una escena vacía (no desde
-   `DemoMaze`), Play, y jugar las dos misiones. Todo lo del 8 de octubre compila pero no se ha
-   ejecutado nunca.
-2. **Correr las pruebas automáticas:** `Window > General > Test Runner > EditMode > Run All`.
-3. **Revisar en la vista de escena** que cada POI, el ascensor y la aparición caen donde deben
-   (`MovU > Contenido > Ver contenido del JSON en la escena`) y corregir el JSON.
-4. **Correr una vez** `MovU > Proyecto > Reserializar escenas y prefabs a texto` y commitear
+1. **Jugarlo con teclado y con audífonos.** La caminata automática no dice si la escalera se
+   siente bien al subirla a mano ni cómo suenan los pasos y las voces. Los sonidos son de
+   síntesis: los que no convenzan se reemplazan por grabaciones CC0 con el mismo nombre.
+2. **Decidir si las pruebas van con puertas cerradas.** Tapan la vista al interior de los
+   salones; es una variable del experimento y hay que dejarla fija y escrita.
+3. **Una misión entre pisos**, para ver en pantalla la flecha de guía llevando a la escalera
+   o al ascensor, y validar con el equipo que la ruta óptima sea "la más corta de las dos".
+4. **Commit de lo del 8 de octubre.** `RellenoCorona.obj` y los `.wav` van por Git LFS.
+5. **Correr una vez** `MovU > Proyecto > Reserializar escenas y prefabs a texto` y commitear
    el resultado, antes de que alguien más toque una escena.
-5. **Recorrido de campo del piso 9:** nombres reales de los salones A–E, G y H, y qué son los
-   espacios que quedaron sin identificar (el K del mapa, la zona de baños).
-6. **Decidir la escala definitiva** del edificio, ya con el techo puesto. Los POIs van en
-   `u, v`, así que no hay que recolocarlos.
-7. **Rendimiento:** `MovU > Rendimiento > Quitar sombras del sol` y medir con el Profiler
-   antes y después; hornear el Occlusion Culling.
-8. **Lo que falta del núcleo (H4):** menú principal, opciones, pantalla de carga y guardado
-   de las misiones completadas.
-9. **Puertas y marcos** (kits CC0 de Kenney) una vez validado el material base.
-10. **Limpieza antes del próximo commit:**
+6. **Recorrido de campo del piso 9:** nombres reales de los salones A–E, G y H, y qué son los
+   espacios que quedaron sin identificar (el K del mapa, la zona de baños). También qué
+   puertas son de verdad dobles y cuáles no.
+7. **Decidir la escala definitiva** del edificio. Los POIs y las puertas van en `u, v`, pero
+   los anchos de puerta y las alturas de la escalera van en metros: hay que volver a medir.
+8. **Rendimiento:** `MovU > Rendimiento > Quitar sombras del sol` y medir con el Profiler
+   antes y después; hornear el Occlusion Culling. Quedan unos 2.600 triángulos de margen.
+9. **Lo que falta del núcleo (H4):** menú principal, opciones (el volumen ya es un ajuste),
+   pantalla de carga y guardado de las misiones completadas.
+10. **Mobiliario** (kits CC0 de Kenney), si alcanza el presupuesto de triángulos. Sin
+    collider, o volviendo a hornear el NavMesh.
+11. **Limpieza antes del próximo commit:**
    - `Assets/MovU/Models/PlanoMovU_Estilizado.obj` (9,5 MB) y `PlantaMovU_Reconstruida.obj`
-     (1,3 MB): `Assets/meshi.unity` todavía referencia uno de los dos. Cuando exista
-     `Edificio.unity` y `meshi.unity` ya no haga falta, se pueden sacar los tres.
-     `MovU > Rendimiento > Informe de presupuesto` lista los modelos que la escena abierta no usa.
+     (1,3 MB) ya no los usa la escena. `MovU > Rendimiento > Informe de presupuesto` lista
+     los modelos que la escena abierta no usa.
    - `_Previews/` y `planta_reconstruida.png` en la raíz — son diagnósticos.
 
 Nota: el SSAO **ya está activo** en `Assets/Settings/PC_Renderer.asset`; no hay que activarlo.
