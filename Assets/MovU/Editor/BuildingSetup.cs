@@ -20,7 +20,11 @@ using UnityEngine.Rendering;
 // planta mide el doble y las alturas siguen siendo humanas, que es lo que un
 // juego de orientacion necesita. Ambas escalas estan abajo como constantes.
 //
-// Es idempotente: vuelve a construir el edificio desde cero cada vez.
+// Es idempotente: vuelve a construir el edificio desde cero cada vez, pero
+// SOLO borra lo que lleva el marcador GeneradoPorMovU. Lo que el equipo ponga
+// a mano en la raiz 'Contenido' (puertas, POIs, objetivos de mision) sobrevive
+// a cualquier reconstruccion: Contenido/Piso_N se enciende y se apaga junto
+// con su piso, sin ser hijo de la geometria que se regenera.
 // ============================================================================
 
 public static class BuildingSetup
@@ -39,42 +43,61 @@ public static class BuildingSetup
     private const string RutaMatAscensor = "Assets/MovU/Materials/Mat_Ascensor.mat";
 
     private const string NombreEdificio = "Edificio";
+    private const string NombreContenido = "Contenido";
+    private const string Herramienta = "BuildingSetup";
     private const float PasoDeRejilla = 0.5f;
+
+    private static readonly Color EmisionTecho = new Color(0.40f, 0.40f, 0.38f);
+
+    /// <summary>Vertices a partir de los cuales una malla suelta se considera
+    /// geometria de entorno y no un objeto de contenido.</summary>
+    private const int VerticesMallaGrande = 5000;
 
     // ------------------------------------------------------------------
     [MenuItem("MovU/Edificio/Construir edificio de 3 pisos", priority = 10)]
     public static void Construir()
+    {
+        ConstruirInterno(true);
+    }
+
+    /// <summary>
+    /// El trabajo de verdad. Devuelve false si no se pudo construir, para que
+    /// 'MovU > Preparar todo' sepa que no tiene sentido seguir con el paso
+    /// siguiente. Con interactivo = false no abre dialogos: escribe en consola.
+    /// </summary>
+    internal static bool ConstruirInterno(bool interactivo)
     {
         GameObject modeloAsset = CargarModeloMeshy();
         GameObject rellenoAsset = AssetDatabase.LoadAssetAtPath<GameObject>(RutaRelleno);
 
         if (modeloAsset == null)
         {
-            Dialogo("No encuentro el modelo de Meshy en " + CarpetaModelos + ".");
-            return;
+            Aviso(interactivo, "No encuentro el modelo de Meshy en " + CarpetaModelos + ".");
+            return false;
         }
         if (rellenoAsset == null)
         {
-            Dialogo("Falta " + RutaRelleno + ".\n\nGeneralo con:\n" +
-                    "    python3 Tools/tapar_corona.py\n\n" +
-                    "Sin el relleno, al apilar los pisos se ve el de arriba por " +
-                    "encima de los muros que quedaron cortos.");
-            return;
+            Aviso(interactivo, "Falta " + RutaRelleno + ".\n\nGeneralo con:\n" +
+                  "    python3 Tools/tapar_corona.py\n\n" +
+                  "Sin el relleno, al apilar los pisos se ve el de arriba por " +
+                  "encima de los muros que quedaron cortos.");
+            return false;
         }
 
         Transform jugador = BuscarJugador();
         if (jugador == null)
         {
-            Dialogo("No hay un Player en la escena.\n\n" +
-                    "Corre primero 'MovU > Preparar plano Meshy jugable' para que " +
-                    "lo construya, y vuelve a este menu.");
-            return;
+            Aviso(interactivo, "No hay un Player en la escena.\n\n" +
+                  "Corre primero 'MovU > Preparar plano Meshy jugable' para que " +
+                  "lo construya, y vuelve a este menu.");
+            return false;
         }
 
-        LimpiarEscena();
+        if (!LimpiarEscena(interactivo)) return false;
 
         var edificio = new GameObject(NombreEdificio);
         Undo.RegisterCreatedObjectUndo(edificio, "Construir edificio");
+        GeneradoPorMovU.Marcar(edificio, Herramienta);
 
         Material material = CargarMaterialEntorno();
 
@@ -95,8 +118,8 @@ public static class BuildingSetup
         List<Vector3> abiertos = PuntosMasAbiertos(caja, 8);
         if (abiertos.Count == 0)
         {
-            Dialogo("No encontre ninguna zona abierta donde quepa el personaje.");
-            return;
+            Aviso(interactivo, "No encontre ninguna zona abierta donde quepa el personaje.");
+            return false;
         }
 
         Vector3 sitioAscensor = abiertos[0];
@@ -105,6 +128,47 @@ public static class BuildingSetup
         {
             float d = Vector3.Distance(p, sitioAscensor);
             if (d > 2.5f && d < 9f) { aparicion = p; break; }
+        }
+
+        // Lo anterior es el respaldo: "la zona más despejada", que fue lo que
+        // dejó el ascensor dentro de un salón. Si contenido_piso9.json dice
+        // dónde van de verdad el ascensor y la aparición, mandan esos puntos.
+        float yawAscensor = 0f;
+        float yawAparicion = 0f;
+        float sueloPiso1 = piso1.position.y + alturaLosa;
+        ContenidoPiso contenidoJson = ContenidoLoader.Leer();
+        PlanoDePlanta plano = PlanoDePlanta.Medir(piso1);
+        if (contenidoJson != null && plano.valido)
+        {
+            if (contenidoJson.ascensor != null && contenidoJson.ascensor.usar)
+            {
+                Vector3 p = plano.AMundo(contenidoJson.ascensor.u, contenidoJson.ascensor.v, sueloPiso1);
+                if (CabeUnaPersona(p))
+                {
+                    sitioAscensor = p;
+                    yawAscensor = contenidoJson.ascensor.yaw;
+                }
+                else
+                {
+                    Debug.LogWarning("[Edificio] El sitio del ascensor del JSON cae dentro de un muro; " +
+                                     "uso la zona más despejada. Revisa 'ascensor' en contenido_piso9.json.");
+                }
+            }
+
+            if (contenidoJson.aparicion != null && contenidoJson.aparicion.usar)
+            {
+                Vector3 p = plano.AMundo(contenidoJson.aparicion.u, contenidoJson.aparicion.v, sueloPiso1);
+                if (CabeUnaPersona(p))
+                {
+                    aparicion = p;
+                    yawAparicion = contenidoJson.aparicion.yaw;
+                }
+                else
+                {
+                    Debug.LogWarning("[Edificio] El punto de aparición del JSON cae dentro de un muro; " +
+                                     "uso una zona despejada. Revisa 'aparicion' en contenido_piso9.json.");
+                }
+            }
         }
 
         // --- Pisos restantes -------------------------------------------
@@ -126,42 +190,31 @@ public static class BuildingSetup
         {
             float y = pisos[i].position.y + alturaLosa;
             CrearAscensor(pisos[i], new Vector3(sitioAscensor.x, y, sitioAscensor.z),
-                          i, matAscensor);
+                          i, matAscensor, yawAscensor);
         }
 
         // --- Jugador ----------------------------------------------------
         ColocarJugador(jugador, new Vector3(aparicion.x,
                                             piso1.position.y + alturaLosa,
-                                            aparicion.z));
+                                            aparicion.z), yawAparicion);
+
+        // --- Contenido puesto a mano ------------------------------------
+        // Vive FUERA del edificio a proposito: asi sobrevive a la proxima
+        // reconstruccion. El FloorManager lo enciende junto con su piso.
+        List<Transform> contenido = AsegurarContenido(pisos.Count);
 
         // --- Gestor de pisos --------------------------------------------
         var gestor = edificio.AddComponent<FloorManager>();
-        gestor.Configurar(pisos, alturaLosa, jugador, 0);
+        gestor.Configurar(pisos, alturaLosa, jugador, 0, contenido);
         EditorUtility.SetDirty(gestor);
 
         // --- Material: la altura se mide dentro de cada piso -------------
-        if (material != null && material.HasProperty("_FloorSpacing"))
-        {
-            material.SetFloat("_FloorLevel", piso1.position.y + alturaLosa);
-            material.SetFloat("_FloorSpacing", separacion);
-
-            // Con la losa de techo puesta, el sol ya no entra: el interior se
-            // apagaria. El techo emite un poco y hace de luminaria, que es
-            // mucho mas barato que sembrar luces reales por todo el piso.
-            if (material.HasProperty("_CeilingEmission"))
-            {
-                material.SetColor("_CeilingEmission", new Color(0.40f, 0.40f, 0.38f));
-            }
-
-            // El degradado del muro tiene que abarcar el muro entero. Con un
-            // valor fijo de 3 m y el techo a 5,6 m, los dos metros de arriba
-            // quedaban de un solo color plano.
-            if (material.HasProperty("_WallGradientHeight"))
-            {
-                material.SetFloat("_WallGradientHeight", separacion - alturaLosa);
-            }
-            EditorUtility.SetDirty(material);
-        }
+        // OJO: 'alturaLosa' va medida desde el pivote del piso, que no es su base
+        // (el pivote queda donde estaba el origen del modelo, unos metros más
+        // arriba). El degradado del muro necesita la altura real de la losa
+        // sobre la base; con el otro valor salía un degradado de más de 8 m.
+        AjustarMaterial(material, piso1.position.y + alturaLosa, separacion,
+                        (piso1.position.y + alturaLosa) - caja.min.y);
 
         AjustarLuzInterior();
 
@@ -174,6 +227,7 @@ public static class BuildingSetup
                   $"{sitioAscensor}, aparicion en {aparicion}. " +
                   "Falta hornear el Occlusion Culling: " +
                   "Window > Rendering > Occlusion Culling > Bake.");
+        return true;
     }
 
     // ------------------------------------------------------------------
@@ -385,12 +439,20 @@ public static class BuildingSetup
     // ------------------------------------------------------------------
     // Ascensor
     // ------------------------------------------------------------------
+    /// <summary>True si en ese punto del suelo cabe la cápsula del jugador.</summary>
+    private static bool CabeUnaPersona(Vector3 suelo)
+    {
+        Physics.SyncTransforms();
+        return !Physics.CheckCapsule(suelo + Vector3.up * 0.40f, suelo + Vector3.up * 1.65f,
+                                     0.32f, ~0, QueryTriggerInteraction.Ignore);
+    }
+
     private static void CrearAscensor(Transform piso, Vector3 posicion, int indice,
-                                      Material material)
+                                      Material material, float yaw)
     {
         var raiz = new GameObject($"Ascensor_Piso{indice + 1}");
         raiz.transform.SetParent(piso, true);
-        raiz.transform.position = posicion;
+        raiz.transform.SetPositionAndRotation(posicion, Quaternion.Euler(0f, yaw, 0f));
 
         var cuerpo = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cuerpo.name = "Cubo";
@@ -464,39 +526,205 @@ public static class BuildingSetup
         return pc != null ? pc.transform : null;
     }
 
-    private static void ColocarJugador(Transform jugador, Vector3 suelo)
+    private static void ColocarJugador(Transform jugador, Vector3 suelo, float yaw)
     {
         var cc = jugador.GetComponent<CharacterController>();
         float alto = cc != null ? cc.height : 1.8f;
 
         if (cc != null) cc.enabled = false;
         jugador.position = suelo + Vector3.up * (alto * 0.5f + 0.1f);
-        jugador.rotation = Quaternion.identity;
+        jugador.rotation = Quaternion.Euler(0f, yaw, 0f);
         if (cc != null) cc.enabled = true;
     }
 
-    private static void LimpiarEscena()
+    /// <summary>
+    /// Borra lo que generaron los menus de MovU, y NADA mas.
+    ///
+    /// La version anterior borraba "toda malla de mas de 5.000 vertices que no
+    /// fuera del edificio", y eso se llevaba por delante cualquier cosa que el
+    /// equipo hubiera puesto a mano. Ahora la regla es explicita: se borra lo
+    /// que lleva GeneradoPorMovU. Lo que no lo lleva se reporta y se pregunta,
+    /// nunca se destruye en silencio.
+    ///
+    /// Devuelve false si el usuario cancela la operacion.
+    /// </summary>
+    private static bool LimpiarEscena(bool interactivo)
     {
-        var previo = GameObject.Find(NombreEdificio);
-        if (previo != null) Undo.DestroyObjectImmediate(previo);
-
-        // Modelos sueltos de intentos anteriores: cualquier malla grande que no
-        // sea hijo del edificio.
-        foreach (var mf in Object.FindObjectsByType<MeshFilter>(
+        // 1. Lo marcado: es nuestro, se borra sin preguntar.
+        foreach (var marca in Object.FindObjectsByType<GeneradoPorMovU>(
                      FindObjectsInactive.Include, FindObjectsSortMode.None))
         {
-            // El bucle destruye objetos mientras recorre una copia de la lista:
-            // hay que descartar los que ya no existen antes de tocarlos.
-            if (mf == null) continue;
-            if (mf.sharedMesh == null || mf.sharedMesh.vertexCount < 5000) continue;
-            Transform raiz = mf.transform;
-            while (raiz.parent != null) raiz = raiz.parent;
-            if (raiz.name == NombreEdificio) continue;
-            Undo.DestroyObjectImmediate(raiz.gameObject);
+            // Al destruir un padre marcado, sus hijos marcados quedan nulos.
+            if (marca == null) continue;
+            Undo.DestroyObjectImmediate(marca.gameObject);
         }
 
         var cubo = GameObject.Find("Meter_Cube");
         if (cubo != null) Undo.DestroyObjectImmediate(cubo);
+
+        // 2. Geometria grande sin marcar: escenas armadas antes de que
+        //    existiera el marcador. Puede ser basura de un intento anterior o
+        //    puede ser trabajo de alguien. No se adivina: se pregunta.
+        List<GameObject> sueltos = GeometriaSueltaSinMarcar();
+        if (sueltos.Count == 0) return true;
+
+        var nombres = new List<string>();
+        foreach (GameObject go in sueltos) nombres.Add(go.name);
+        string lista = string.Join("\n  - ", nombres);
+
+        if (!interactivo)
+        {
+            Debug.LogWarning("[Edificio] Hay geometria grande sin marcar en la escena; " +
+                             "la dejo como esta para no borrar trabajo de nadie:\n  - " +
+                             lista + "\n\nSi es basura de un intento anterior, borrala a " +
+                             "mano o corre el menu del edificio por separado.");
+            return true;
+        }
+
+        int respuesta = EditorUtility.DisplayDialogComplex(
+            "MovU",
+            "Encontre geometria grande en la escena que NO la generaron los menus " +
+            "de MovU:\n\n  - " + lista + "\n\n" +
+            "Si son sobras de un intento anterior, lo limpio. Si es trabajo de " +
+            "ustedes, lo dejo donde esta (y entonces convendria moverlo a la raiz " +
+            "'Contenido', que nunca se toca).",
+            "Borrarlos",
+            "Cancelar",
+            "Conservarlos");
+
+        if (respuesta == 1) return false;                 // Cancelar
+        if (respuesta == 2)                               // Conservarlos
+        {
+            Debug.LogWarning("[Edificio] Conservo la geometria sin marcar. Si queda " +
+                             "encima del edificio nuevo, muevela o borrala a mano.");
+            return true;
+        }
+
+        foreach (GameObject go in sueltos)
+        {
+            if (go != null) Undo.DestroyObjectImmediate(go);
+        }
+        return true;
+    }
+
+    /// <summary>
+    /// Raices con mallas grandes que ni llevan el marcador ni cuelgan de
+    /// 'Contenido'. Es decir: candidatas a ser sobras, pero sin certeza.
+    /// </summary>
+    private static List<GameObject> GeometriaSueltaSinMarcar()
+    {
+        var salida = new List<GameObject>();
+
+        foreach (var mf in Object.FindObjectsByType<MeshFilter>(
+                     FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            if (mf == null || mf.sharedMesh == null) continue;
+            if (mf.sharedMesh.vertexCount < VerticesMallaGrande) continue;
+
+            Transform raiz = mf.transform;
+            while (raiz.parent != null) raiz = raiz.parent;
+
+            if (raiz.name == NombreContenido) continue;
+            if (GeneradoPorMovU.EstaMarcado(raiz.gameObject)) continue;
+            if (salida.Contains(raiz.gameObject)) continue;
+
+            salida.Add(raiz.gameObject);
+        }
+        return salida;
+    }
+
+    /// <summary>
+    /// La raiz 'Contenido' y un hijo por piso. Es la zona segura: BuildingSetup
+    /// no la borra nunca, y el FloorManager enciende Contenido/Piso_N junto con
+    /// su piso, asi que lo que se ponga ahi respeta la carga por piso.
+    /// </summary>
+    private static List<Transform> AsegurarContenido(int cantidadPisos)
+    {
+        GameObject raiz = GameObject.Find(NombreContenido);
+        if (raiz == null)
+        {
+            raiz = new GameObject(NombreContenido);
+            Undo.RegisterCreatedObjectUndo(raiz, "Crear contenido");
+        }
+
+        // Por si alguien la marco por error: el marcador la condenaria a
+        // borrarse en la siguiente reconstruccion.
+        var marcaSobrante = raiz.GetComponent<GeneradoPorMovU>();
+        if (marcaSobrante != null) Undo.DestroyObjectImmediate(marcaSobrante);
+
+        var salida = new List<Transform>();
+        for (int i = 0; i < cantidadPisos; i++)
+        {
+            string nombre = $"Piso_{i + 1}";
+            Transform hijo = raiz.transform.Find(nombre);
+            if (hijo == null)
+            {
+                var go = new GameObject(nombre);
+                go.transform.SetParent(raiz.transform, false);
+                Undo.RegisterCreatedObjectUndo(go, "Crear contenido");
+                hijo = go.transform;
+            }
+            hijo.gameObject.SetActive(true);
+            salida.Add(hijo);
+        }
+        return salida;
+    }
+
+    /// <summary>
+    /// Los valores del material que dependen de como quedo el edificio. Estan
+    /// aparte porque EnvironmentStyler tiene que poder reaplicarlos: si se
+    /// estiliza despues de construir, el preset pisa _FloorLevel y el zocalo
+    /// queda bien en el piso 1 y mal en el 2 y el 3.
+    /// </summary>
+    internal static void AjustarMaterial(Material material, float nivelDelPiso,
+                                         float separacion, float alturaLosa)
+    {
+        if (material == null) return;
+
+        bool apilado = separacion > 0.01f;
+
+        if (material.HasProperty("_FloorLevel"))
+            material.SetFloat("_FloorLevel", nivelDelPiso);
+
+        if (material.HasProperty("_FloorSpacing"))
+            material.SetFloat("_FloorSpacing", apilado ? separacion : 0f);
+
+        // Con la losa de techo puesta, el sol ya no entra: el interior se
+        // apagaria. El techo emite un poco y hace de luminaria, que es mucho
+        // mas barato que sembrar luces reales por todo el piso.
+        if (material.HasProperty("_CeilingEmission"))
+            material.SetColor("_CeilingEmission", apilado ? EmisionTecho : Color.black);
+
+        // El degradado del muro tiene que abarcar el muro entero. Con un valor
+        // fijo de 3 m y el techo a 5,6 m, los dos metros de arriba quedaban de
+        // un solo color plano.
+        if (apilado && material.HasProperty("_WallGradientHeight"))
+            material.SetFloat("_WallGradientHeight", Mathf.Max(0.5f, separacion - alturaLosa));
+
+        EditorUtility.SetDirty(material);
+    }
+
+    /// <summary>
+    /// Reaplica lo anterior leyendo el edificio que ya esta en la escena.
+    /// Devuelve false si no hay edificio (y entonces no hay nada que ajustar).
+    /// </summary>
+    internal static bool AjustarMaterialSegunEscena(Material material)
+    {
+        if (material == null) return false;
+
+        var gestor = Object.FindFirstObjectByType<FloorManager>(FindObjectsInactive.Include);
+        if (gestor == null || gestor.CantidadDePisos == 0) return false;
+
+        // Altura de la losa sobre la BASE del piso (ver la nota en ConstruirInterno).
+        float sueloPiso1 = gestor.AlturaDelSuelo(0);
+        Transform piso1 = gestor.Piso(0);
+        float baseDelPiso = piso1 != null ? LimitesDe(piso1).min.y : sueloPiso1;
+
+        AjustarMaterial(material,
+                        sueloPiso1,
+                        gestor.SeparacionEntrePisos,
+                        Mathf.Max(0f, sueloPiso1 - baseDelPiso));
+        return true;
     }
 
     private static void MarcarEstatico(GameObject edificio)
@@ -518,7 +746,7 @@ public static class BuildingSetup
     /// Sube la luz ambiental. Con un piso a cielo abierto la direccional hacia
     /// casi todo el trabajo; encerrado, el ambiente es lo unico que queda.
     /// </summary>
-    private static void AjustarLuzInterior()
+    internal static void AjustarLuzInterior()
     {
         RenderSettings.ambientMode = AmbientMode.Trilight;
         RenderSettings.ambientSkyColor = new Color(0.46f, 0.48f, 0.52f);
@@ -536,5 +764,13 @@ public static class BuildingSetup
     private static void Dialogo(string mensaje)
     {
         EditorUtility.DisplayDialog("MovU", mensaje, "Entendido");
+    }
+
+    /// <summary>Dialogo cuando lo corre una persona; consola cuando lo corre
+    /// otro menu encadenado (los dialogos en cadena son insoportables).</summary>
+    private static void Aviso(bool interactivo, string mensaje)
+    {
+        if (interactivo) Dialogo(mensaje);
+        else Debug.LogError("[Edificio] " + mensaje);
     }
 }

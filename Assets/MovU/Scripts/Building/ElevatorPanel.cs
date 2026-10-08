@@ -162,7 +162,8 @@ public class ElevatorPanel : MonoBehaviour
 
             var texto = NuevoTexto("Texto", go.transform, 26f, Color.white,
                                    TextAlignmentOptions.Center);
-            texto.text = actual ? $"Piso {i + 1}   (aqui estas)" : $"Piso {i + 1}";
+            int numero = FloorManager.NumeroVisible(i);
+            texto.text = actual ? $"Piso {numero}   (aqui estas)" : $"Piso {numero}";
             Estirar(texto.rectTransform);
 
             var boton = go.AddComponent<Button>();
@@ -242,18 +243,12 @@ public class ElevatorPanel : MonoBehaviour
         }
 
         // Atajos 1..9: no dependen del EventSystem ni del raton.
-        var teclas = new[]
-        {
-            Keyboard.current.digit1Key, Keyboard.current.digit2Key,
-            Keyboard.current.digit3Key, Keyboard.current.digit4Key,
-            Keyboard.current.digit5Key, Keyboard.current.digit6Key,
-            Keyboard.current.digit7Key, Keyboard.current.digit8Key,
-            Keyboard.current.digit9Key,
-        };
-        int tope = Mathf.Min(pisos.CantidadDePisos, teclas.Length);
+        // Se consultan por indice (Key.Digit1 + i) para no crear un arreglo
+        // nuevo en cada frame mientras el panel esta abierto.
+        int tope = Mathf.Min(pisos.CantidadDePisos, 9);
         for (int i = 0; i < tope; i++)
         {
-            if (teclas[i].wasPressedThisFrame)
+            if (Keyboard.current[Key.Digit1 + i].wasPressedThisFrame)
             {
                 Elegir(i);
                 return;

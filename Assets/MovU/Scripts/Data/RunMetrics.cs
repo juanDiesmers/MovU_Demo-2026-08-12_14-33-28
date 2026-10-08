@@ -42,6 +42,27 @@ public class RunMetrics
 
     public string timestamp;
 
+    // ------------------------------------------------------------------
+    // Contexto de misión y de sesión (modo catálogo, escena Edificio).
+    // No van en el constructor para no romper las llamadas del demo: se
+    // rellenan con un inicializador de objeto. En el demo quedan en sus
+    // valores por defecto.
+    // ------------------------------------------------------------------
+    public string scene = "";           // escena en la que se jugó
+    public string participantId = "";   // para cruzar el CSV con las encuestas SUS
+    public string missionId = "";
+    public int missionIndex = 0;        // contando desde 1; 0 = demo
+    public string poiId = "";
+    public int startFloor = 0;          // contando desde 1; 0 = no aplica
+    public int targetFloor = 0;
+    public int floorChanges = 0;        // veces que cambió de piso
+    public int wrongFloorVisits = 0;    // llegadas a un piso que no era el del destino
+    public float captureRadius = 0f;    // radio de la zona de llegada, en metros
+    public int npcConsults = 0;         // veces que pidió indicaciones a un NPC
+    public bool guidanceLocked = false; // true = el evaluador fijó el modo de guía
+    public bool routeUsesElevator = false;
+    public float minFps = 0f;           // peor segundo de la misión (SRS RD-1)
+
     public RunMetrics(float totalTime, float totalDistance, float optimalDistance,
                       string finalGuidanceMode, int modeChangeCount, int uniqueCellsVisited,
                       int seed, int mazeWidth, int mazeHeight, float braidPercent,

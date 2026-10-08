@@ -47,7 +47,10 @@ public class CameraRig : MonoBehaviour
 
     private void Update()
     {
-        if (allowToggleKey && Keyboard.current != null && Keyboard.current.vKey.wasPressedThisFrame)
+        // Mientras el evaluador escribe el identificador del participante, una
+        // 'v' en el texto no debe cambiar la cámara.
+        if (allowToggleKey && !TestSession.EsperandoInicio &&
+            Keyboard.current != null && Keyboard.current.vKey.wasPressedThisFrame)
         {
             viewMode = viewMode == ViewMode.FirstPerson ? ViewMode.ThirdPerson : ViewMode.FirstPerson;
             ApplyViewMode();

@@ -26,6 +26,29 @@ public static class SaveSystem
         return false;
     }
 
+    // ------------------------------------------------------------------
+    // Récord por misión (escena Edificio). La clave es el id de la misión.
+    // ------------------------------------------------------------------
+    public static bool TrySaveBestTime(string missionId, float timeSec)
+    {
+        if (string.IsNullOrEmpty(missionId)) return false;
+
+        float currentBest = LoadBestTime(missionId);
+        if (timeSec < currentBest)
+        {
+            PlayerPrefs.SetFloat($"{BestTimeBaseKey}_M_{missionId}", timeSec);
+            PlayerPrefs.Save();
+            return true;
+        }
+        return false;
+    }
+
+    public static float LoadBestTime(string missionId)
+    {
+        if (string.IsNullOrEmpty(missionId)) return 9999f;
+        return PlayerPrefs.GetFloat($"{BestTimeBaseKey}_M_{missionId}", 9999f);
+    }
+
     /// <summary>
     /// Carga el mejor tiempo guardado para la semilla dada.
     /// </summary>

@@ -21,6 +21,13 @@ using UnityEngine.Rendering.Universal;
 //   5. Apaga cámaras sueltas de la escena y deja una sola iluminación.
 //
 // Es idempotente: se puede volver a ejecutar y reemplaza al personaje anterior.
+// Si el modelo no está en la escena lo instancia desde Assets/MovU/Models, así
+// que el flujo completo se puede rehacer desde una escena vacía.
+//
+// OJO: este menú trabaja sobre la planta SUELTA, antes de apilar los pisos. Con
+// el edificio ya construido no tiene sentido (encontraría el edificio entero y
+// le aplicaría la rotación y la escala de una sola planta), así que lo detecta
+// y pregunta antes de tocar nada.
 // ============================================================================
 
 public static class MeshiWalkableSetup
@@ -39,20 +46,41 @@ public static class MeshiWalkableSetup
     [MenuItem("MovU/Preparar plano Meshy jugable")]
     public static void Setup()
     {
+        SetupInterno(true);
+    }
+
+    /// <summary>
+    /// Devuelve false si no se pudo dejar la planta lista, para que
+    /// 'MovU > Preparar todo' pare en vez de seguir con el paso siguiente.
+    /// </summary>
+    internal static bool SetupInterno(bool interactivo)
+    {
         var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+
+        if (!ResolverEdificioExistente(interactivo)) return false;
 
         Transform modelRoot = FindModelRoot(scene);
         if (modelRoot == null)
         {
-            EditorUtility.DisplayDialog(
-                "MovU",
-                "No encontré el modelo de Meshy en la escena abierta.\n\n" +
-                "Abre la escena que contiene el plano y vuelve a ejecutar este menú.",
-                "Entendido");
-            return;
+            modelRoot = InstanciarModeloDesdeAssets();
+            if (modelRoot == null)
+            {
+                Aviso(interactivo,
+                    "No encontré el modelo de Meshy ni en la escena ni en " +
+                    "Assets/MovU/Models.\n\n" +
+                    "Comprueba que el .obj esté ahí (si viene de git, que " +
+                    "'git lfs pull' haya traído el archivo de verdad y no el puntero).");
+                return false;
+            }
+            Debug.Log($"[MeshiSetup] El modelo no estaba en la escena: instancié " +
+                      $"'{modelRoot.name}' desde Assets/MovU/Models.");
         }
 
         Debug.Log($"[MeshiSetup] Modelo encontrado: '{modelRoot.name}'.");
+
+        // La planta suelta es geometria generada por los menus: marcarla deja
+        // que el menu del edificio la reemplace sin tener que preguntar.
+        GeneradoPorMovU.Marcar(modelRoot.gameObject, "MeshiWalkableSetup");
 
         NormalizeTransform(modelRoot);
         EnsureCollider(modelRoot);
@@ -74,13 +102,11 @@ public static class MeshiWalkableSetup
 
         if (!FindSpawnPoint(bounds, playerHeight, playerRadius, out Vector3 spawn, out float floorY))
         {
-            EditorUtility.DisplayDialog(
-                "MovU",
+            Aviso(interactivo,
                 "El modelo no tiene ninguna zona abierta suficientemente amplia para que " +
                 "quepa el personaje.\n\nProbablemente haga falta subir la escala " +
-                $"(ahora está en {ScaleFactor}x).",
-                "Entendido");
-            return;
+                $"(ahora está en {ScaleFactor}x).");
+            return false;
         }
 
         Debug.Log($"[MeshiSetup] Piso detectado en y = {floorY:F2} m. Aparición en {spawn}.");
@@ -94,6 +120,87 @@ public static class MeshiWalkableSetup
 
         Debug.Log("[MeshiSetup] Listo. Dale Play: WASD para moverte, mouse para mirar, " +
                   "V alterna primera/tercera persona, Esc libera el cursor.");
+        return true;
+    }
+
+    // -----------------------------------------------------------------------
+    // Guardas y ayudas
+    // -----------------------------------------------------------------------
+
+    /// <summary>
+    /// Con un edificio de varios pisos en la escena, FindModelRoot devolvería
+    /// el edificio entero y NormalizeTransform lo dejaría hecho un desastre.
+    /// Aquí se corta: o se borra el edificio y se empieza de nuevo, o no se hace
+    /// nada. Devuelve false si hay que abortar.
+    /// </summary>
+    private static bool ResolverEdificioExistente(bool interactivo)
+    {
+        var gestor = Object.FindFirstObjectByType<FloorManager>(FindObjectsInactive.Include);
+        if (gestor == null) return true;
+
+        if (!interactivo)
+        {
+            // En cadena ('Preparar todo') se rehace todo a proposito.
+            BorrarEdificio();
+            return true;
+        }
+
+        bool borrar = EditorUtility.DisplayDialog(
+            "MovU",
+            "En esta escena ya hay un edificio de " + gestor.CantidadDePisos +
+            " pisos construido.\n\n" +
+            "Este menú prepara la planta SUELTA, que es el paso anterior. Para " +
+            "volver a ese punto hay que quitar el edificio primero.\n\n" +
+            "Lo que esté en la raíz 'Contenido' no se toca.",
+            "Quitar el edificio y preparar la planta",
+            "Cancelar");
+
+        if (!borrar) return false;
+
+        BorrarEdificio();
+        return true;
+    }
+
+    private static void BorrarEdificio()
+    {
+        foreach (var marca in Object.FindObjectsByType<GeneradoPorMovU>(
+                     FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            if (marca == null) continue;
+            Undo.DestroyObjectImmediate(marca.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Instancia el OBJ del plano desde Assets/MovU/Models. Se busca por GUID y
+    /// no por ruta literal porque el nombre del archivo lleva tilde.
+    /// </summary>
+    private static Transform InstanciarModeloDesdeAssets()
+    {
+        foreach (string guid in AssetDatabase.FindAssets("t:Model", new[] { "Assets/MovU/Models" }))
+        {
+            string ruta = AssetDatabase.GUIDToAssetPath(guid);
+            if (!ruta.Contains("Meshy") || !ruta.EndsWith(".obj")) continue;
+
+            var asset = AssetDatabase.LoadAssetAtPath<GameObject>(ruta);
+            if (asset == null) continue;
+
+            var go = (GameObject)PrefabUtility.InstantiatePrefab(asset);
+            go.name = "PlanoMeshy";
+            Undo.RegisterCreatedObjectUndo(go, "Instanciar plano");
+
+            // Marcado: es geometria generada por los menus, asi que el menu del
+            // edificio puede reemplazarla sin preguntar.
+            GeneradoPorMovU.Marcar(go, "MeshiWalkableSetup");
+            return go.transform;
+        }
+        return null;
+    }
+
+    private static void Aviso(bool interactivo, string mensaje)
+    {
+        if (interactivo) EditorUtility.DisplayDialog("MovU", mensaje, "Entendido");
+        else Debug.LogError("[MeshiSetup] " + mensaje);
     }
 
     // -----------------------------------------------------------------------

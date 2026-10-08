@@ -116,57 +116,88 @@ public static class EnvironmentStyler
     // Menús
     // ------------------------------------------------------------------
     [MenuItem("MovU/Estilizar entorno/Limpio (low-poly)", priority = 20)]
-    public static void ApplyLimpio() => Apply(Limpio());
+    public static void ApplyLimpio() => Apply(Limpio(), true);
 
     [MenuItem("MovU/Estilizar entorno/Institucional", priority = 21)]
-    public static void ApplyInstitucional() => Apply(Institucional());
+    public static void ApplyInstitucional() => Apply(Institucional(), true);
 
     [MenuItem("MovU/Estilizar entorno/Maqueta arquitectonica", priority = 22)]
-    public static void ApplyMaqueta() => Apply(Maqueta());
+    public static void ApplyMaqueta() => Apply(Maqueta(), true);
+
+    /// <summary>Punto de entrada para 'MovU > Preparar todo'.</summary>
+    internal static bool AplicarLimpio(bool interactivo) => Apply(Limpio(), interactivo);
 
     // ------------------------------------------------------------------
     // Flujo principal
     // ------------------------------------------------------------------
-    private static void Apply(Preset p)
+    private static bool Apply(Preset p, bool interactivo)
     {
         Shader shader = Shader.Find(ShaderName);
         if (shader == null)
         {
-            EditorUtility.DisplayDialog(
-                "MovU",
+            Aviso(interactivo,
                 "No encuentro el shader '" + ShaderName + "'.\n\n" +
                 "Debería estar en Assets/MovU/Shaders/StylizedEnvironment.shader. " +
                 "Si el archivo está pero Unity no lo ve, revisa la consola: probablemente " +
-                "tenga un error de compilación.",
-                "Entendido");
-            return;
+                "tenga un error de compilación.");
+            return false;
         }
 
         Transform modelRoot = FindModelRoot();
         if (modelRoot == null)
         {
-            EditorUtility.DisplayDialog(
-                "MovU",
+            Aviso(interactivo,
                 "No encontré el modelo del entorno en la escena abierta.\n\n" +
                 "Abre la escena con el plano (o corre primero " +
-                "'MovU > Preparar plano Meshy jugable') y vuelve a intentarlo.",
-                "Entendido");
-            return;
+                "'MovU > Preparar plano Meshy jugable') y vuelve a intentarlo.");
+            return false;
         }
 
-        float floorY = DetectFloorLevel(modelRoot);
+        // Si el edificio ya está construido, el nivel del piso NO se puede
+        // detectar por rayos: caen sobre la losa de techo del último piso y el
+        // zócalo quedaría a seis metros del suelo. El FloorManager sabe la
+        // altura real, así que se le pregunta a él.
+        FloorManager edificio = Object.FindFirstObjectByType<FloorManager>(
+            FindObjectsInactive.Include);
+        bool hayEdificio = edificio != null && edificio.CantidadDePisos > 0;
+
+        float floorY = hayEdificio ? edificio.AlturaDelSuelo(0) : DetectFloorLevel(modelRoot);
 
         Material mat = BuildMaterial(shader, p, floorY);
-        AssignMaterial(modelRoot, mat);
+
+        // Con varios pisos hay que pintar todos, no sólo el que tenga más
+        // vértices: el resto se quedaría con el material anterior.
+        if (hayEdificio) AssignMaterial(edificio.transform, mat);
+        else AssignMaterial(modelRoot, mat);
+
         HardenNormals(modelRoot);
         SetupLighting(p);
+
+        // El preset acaba de pisar _FloorLevel y _WallGradientHeight con los
+        // valores de un solo piso a cielo abierto. Con el edificio construido
+        // hay que devolverles los suyos, junto con la iluminación de interior.
+        if (hayEdificio)
+        {
+            BuildingSetup.AjustarMaterialSegunEscena(mat);
+            BuildingSetup.AjustarLuzInterior();
+            Debug.Log("[EnvStyler] Hay un edificio de " + edificio.CantidadDePisos +
+                      " pisos: reapliqué la separación entre pisos, la emisión del " +
+                      "techo y la luz de interior después del preset.");
+        }
 
         EditorSceneManager.MarkSceneDirty(modelRoot.gameObject.scene);
         AssetDatabase.SaveAssets();
 
-        Debug.Log($"[EnvStyler] Preset '{p.name}' aplicado sobre '{modelRoot.name}'. " +
-                  $"Nivel de piso detectado en y = {floorY:F2} m. " +
-                  $"Material: {MaterialPath}");
+        Debug.Log($"[EnvStyler] Preset '{p.name}' aplicado sobre " +
+                  (hayEdificio ? "el edificio completo" : $"'{modelRoot.name}'") + ". " +
+                  $"Nivel de piso en y = {floorY:F2} m. Material: {MaterialPath}");
+        return true;
+    }
+
+    private static void Aviso(bool interactivo, string mensaje)
+    {
+        if (interactivo) EditorUtility.DisplayDialog("MovU", mensaje, "Entendido");
+        else Debug.LogError("[EnvStyler] " + mensaje);
     }
 
     // ------------------------------------------------------------------
@@ -498,9 +529,26 @@ public static class EnvironmentStyler
     // ------------------------------------------------------------------
     private const string ModeloReconstruido = "Assets/MovU/Models/PlantaMovU_Reconstruida.obj";
 
-    [MenuItem("MovU/Estilizar entorno/Cambiar al modelo reconstruido", priority = 60)]
+    [MenuItem("MovU/Estilizar entorno/Cambiar al modelo reconstruido (descartado)", priority = 60)]
     public static void SwapToRebuilt()
     {
+        // El 9 de septiembre se decidió quedarse con el modelo ORIGINAL de
+        // Meshy. Este menú se conserva porque la reconstrucción es evidencia
+        // del trabajo de grado, pero usarla hoy deja la escena inconsistente
+        // con el edificio de tres pisos, así que avisa antes.
+        if (Object.FindFirstObjectByType<FloorManager>(FindObjectsInactive.Include) != null)
+        {
+            bool seguir = EditorUtility.DisplayDialog(
+                "MovU",
+                "Hay un edificio de varios pisos construido sobre el modelo ORIGINAL " +
+                "de Meshy, que es el que se decidió usar.\n\n" +
+                "Cambiar al modelo reconstruido deja la escena a medias: tendrías que " +
+                "volver a correr 'MovU > Preparar todo' después.\n\n¿Seguir igual?",
+                "Seguir",
+                "Cancelar");
+            if (!seguir) return;
+        }
+
         var nuevo = AssetDatabase.LoadAssetAtPath<GameObject>(ModeloReconstruido);
         if (nuevo == null)
         {

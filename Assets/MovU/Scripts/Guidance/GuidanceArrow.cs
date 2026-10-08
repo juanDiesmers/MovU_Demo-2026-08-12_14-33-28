@@ -8,6 +8,13 @@ using UnityEngine.InputSystem;
 // Registra tiempo y distancia acumulados bajo cada modo (Hallazgo #8).
 // Utiliza un material estático cacheado (Hallazgo #17).
 // Posicionamiento ajustado a 0.8m para evitar recortes con paredes (Hallazgo #13).
+//
+// Pisos: si el objetivo está en OTRO piso, la flecha guía hasta el ascensor más
+// cercano del piso actual en vez de apuntar a través del techo. Al salir del
+// ascensor en el piso correcto vuelve a apuntar al objetivo.
+//
+// Las rutas se piden a NavUtil, que muestrea desde los pies del jugador y no
+// crea un arreglo de esquinas nuevo en cada consulta.
 // ============================================================================
 
 public class GuidanceArrow : MonoBehaviour
@@ -30,9 +37,17 @@ public class GuidanceArrow : MonoBehaviour
     private Mesh arrowMesh;
 
     private Vector3 targetDirection = Vector3.forward;
-    private NavMeshPath navMeshPath;
     private float lastRepathTime = 0f;
     private Vector3 lastPlayerPosition;
+
+    private MissionManager misiones;
+    private bool modoBloqueado;
+
+    /// <summary>True cuando el evaluador fijó el modo y la tecla G no hace nada.</summary>
+    public bool ModoBloqueado => modoBloqueado;
+
+    /// <summary>Cambió el modo de guía (por la tecla G, por una misión o por el evaluador).</summary>
+    public event System.Action<GuidanceMode> OnModeChanged;
 
     // Cache estático de material (Hallazgo #17)
     private static Material cachedArrowMaterial;
@@ -51,12 +66,13 @@ public class GuidanceArrow : MonoBehaviour
 
     private void Awake()
     {
-        navMeshPath = new NavMeshPath();
         BuildProceduralArrowMesh();
     }
 
     private void OnDestroy()
     {
+        if (misiones != null) misiones.OnMissionStarted -= AlEmpezarMision;
+
         // Hallazgo #17b: el Mesh procedural es un objeto de Unity que no lo recoge
         // el GC de C#. Sin esto se filtra una malla por cada recarga de escena ([R]).
         if (arrowMesh != null)
@@ -93,7 +109,55 @@ public class GuidanceArrow : MonoBehaviour
             objectiveTarget = MissionManager.Instance.ActiveObjective.target;
         }
 
+        misiones = MissionManager.Instance;
+        if (misiones != null) misiones.OnMissionStarted += AlEmpezarMision;
+
         UpdateModeState();
+    }
+
+    /// <summary>Cada misión trae su objetivo y empieza con las medidas en cero.</summary>
+    private void AlEmpezarMision(MisionEnCurso mision)
+    {
+        objectiveTarget = (mision != null && mision.destino != null) ? mision.destino.transform : null;
+        ResetStats();
+
+        if (!modoBloqueado && mision != null && mision.def != null &&
+            !string.IsNullOrEmpty(mision.def.guia) &&
+            System.Enum.TryParse(mision.def.guia, true, out GuidanceMode pedido))
+        {
+            SetMode(pedido, false);
+        }
+
+        lastRepathTime = -999f;     // recalcular la ruta en el próximo frame
+    }
+
+    /// <summary>Pone en cero el tiempo, la distancia y los cambios de modo acumulados.</summary>
+    public void ResetStats()
+    {
+        TimeInOff = TimeInDirect = TimeInNavMesh = 0f;
+        DistInOff = DistInDirect = DistInNavMesh = 0f;
+        ModeChangeCount = 0;
+
+        if (playerTransform != null)
+        {
+            lastPlayerPosition = playerTransform.position;
+            lastPlayerPosition.y = 0f;
+        }
+    }
+
+    /// <summary>Fija un modo concreto. 'contar' = false cuando no lo eligió el jugador.</summary>
+    public void SetMode(GuidanceMode modo, bool contar)
+    {
+        if (currentMode == modo) return;
+        currentMode = modo;
+        if (contar) ModeChangeCount++;
+        UpdateModeState();
+    }
+
+    /// <summary>Con el modo bloqueado la tecla G no hace nada (condición experimental fija).</summary>
+    public void BloquearModo(bool bloquear)
+    {
+        modoBloqueado = bloquear;
     }
 
     private void Update()
@@ -125,6 +189,7 @@ public class GuidanceArrow : MonoBehaviour
 
     private void HandleInput()
     {
+        if (modoBloqueado || TestSession.EsperandoInicio) return;
         if (Keyboard.current != null && Keyboard.current.gKey.wasPressedThisFrame)
         {
             CycleMode();
@@ -211,6 +276,27 @@ public class GuidanceArrow : MonoBehaviour
         {
             HUDController.Instance.SetGuidanceModeText(modeName);
         }
+
+        OnModeChanged?.Invoke(currentMode);
+    }
+
+    /// <summary>
+    /// A dónde hay que guiar AHORA. Normalmente es el objetivo; si el objetivo
+    /// está en otro piso, es el ascensor más cercano de este piso.
+    /// </summary>
+    private Vector3 ObjetivoEfectivo()
+    {
+        Vector3 destino = objectiveTarget.position;
+
+        FloorManager pisos = FloorManager.Instance;
+        if (pisos == null || pisos.CantidadDePisos < 2 || playerTransform == null) return destino;
+
+        int pisoDelObjetivo = pisos.PisoSegunAltura(destino.y + 0.5f);
+        int pisoDelJugador = pisos.PisoSegunAltura(playerTransform.position.y + 0.5f);
+        if (pisoDelObjetivo == pisoDelJugador) return destino;
+
+        ElevatorTrigger ascensor = ElevatorTrigger.MasCercano(pisoDelJugador, playerTransform.position);
+        return ascensor != null ? ascensor.PuntoDeAcceso : destino;
     }
 
     private void CalculateTargetDirection()
@@ -219,7 +305,7 @@ public class GuidanceArrow : MonoBehaviour
 
         if (currentMode == GuidanceMode.Direct)
         {
-            Vector3 dir = (objectiveTarget.position - transform.position);
+            Vector3 dir = (ObjetivoEfectivo() - transform.position);
             dir.y = 0;
             targetDirection = dir.normalized;
         }
@@ -237,44 +323,37 @@ public class GuidanceArrow : MonoBehaviour
     {
         if (objectiveTarget == null || playerCamera == null) return;
 
-        Vector3 startPos = playerCamera.position;
-        Vector3 goalPos = objectiveTarget.position;
+        // Desde los PIES del jugador y no desde la cámara: con pisos apilados la
+        // cámara queda más cerca de la corona de un muro que del suelo.
+        Vector3 startPos = playerTransform != null
+            ? playerTransform.position
+            : playerCamera.position + Vector3.down * 1.65f;
+        Vector3 goalPos = ObjetivoEfectivo();
 
-        if (NavMesh.SamplePosition(startPos, out NavMeshHit startHit, 5.0f, NavMesh.AllAreas) &&
-            NavMesh.SamplePosition(goalPos, out NavMeshHit goalHit, 5.0f, NavMesh.AllAreas))
+        if (NavUtil.SiguienteTramo(startPos, goalPos, out Vector3 targetCorner))
         {
-            if (NavMesh.CalculatePath(startHit.position, goalHit.position, NavMesh.AllAreas, navMeshPath) &&
-                navMeshPath.status == NavMeshPathStatus.PathComplete && navMeshPath.corners.Length > 1)
+            Vector3 dir = (targetCorner - transform.position);
+            dir.y = 0;
+            targetDirection = dir.normalized;
+
+            // Solo en el editor: en el ejecutable Debug.DrawLine no se ve y
+            // recorrer las esquinas sería trabajo tirado.
+            if (drawDebugPath && Application.isEditor)
             {
-                int targetCornerIndex = 1;
-                if (navMeshPath.corners.Length > 2)
+                Vector3[] corners = NavUtil.Esquinas;
+                int n = NavUtil.CantidadDeEsquinas;
+                for (int i = 0; i < n - 1; i++)
                 {
-                    float distToNextCorner = Vector3.Distance(transform.position, navMeshPath.corners[1]);
-                    if (distToNextCorner < 1.5f)
-                    {
-                        targetCornerIndex = 2; // Look-ahead smoothing
-                    }
-                }
-
-                Vector3 targetCorner = navMeshPath.corners[targetCornerIndex];
-                Vector3 dir = (targetCorner - transform.position);
-                dir.y = 0;
-                targetDirection = dir.normalized;
-
-                if (drawDebugPath)
-                {
-                    for (int i = 0; i < navMeshPath.corners.Length - 1; i++)
-                    {
-                        Debug.DrawLine(navMeshPath.corners[i], navMeshPath.corners[i + 1], Color.cyan, repathInterval);
-                    }
+                    Debug.DrawLine(corners[i], corners[i + 1], Color.cyan, repathInterval);
                 }
             }
-            else
-            {
-                Vector3 dir = (goalPos - transform.position);
-                dir.y = 0;
-                targetDirection = dir.normalized;
-            }
+        }
+        else
+        {
+            // Sin ruta por el NavMesh: al menos apuntar en línea recta.
+            Vector3 dir = (goalPos - transform.position);
+            dir.y = 0;
+            targetDirection = dir.normalized;
         }
     }
 

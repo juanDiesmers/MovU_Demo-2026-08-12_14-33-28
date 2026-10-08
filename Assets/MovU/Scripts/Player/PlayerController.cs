@@ -100,6 +100,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Mueve al jugador de golpe (inicio de misión, punto de aparición).
+    /// Con el CharacterController activo no se puede escribir la posición: el
+    /// componente la reescribe en su propio Update, así que se apaga un instante.
+    /// </summary>
+    public void Teletransportar(Vector3 pies, float yaw)
+    {
+        if (characterController == null) characterController = GetComponent<CharacterController>();
+
+        bool estabaActivo = characterController != null && characterController.enabled;
+        if (estabaActivo) characterController.enabled = false;
+
+        // 5 cm por encima del suelo: evita nacer empotrado en la losa.
+        transform.SetPositionAndRotation(pies + Vector3.up * 0.05f, Quaternion.Euler(0f, yaw, 0f));
+        verticalVelocity = Vector3.zero;
+
+        if (estabaActivo) characterController.enabled = true;
+    }
+
+    public bool InputEnabled => isInputEnabled;
+
     public void LockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;

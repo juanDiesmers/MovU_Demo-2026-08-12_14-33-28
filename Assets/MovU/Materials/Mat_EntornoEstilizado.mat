@@ -25,28 +25,28 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _AOHeight: 0.6
-    - _AOStrength: 0.5
-    - _BaseboardHeight: 0.18
+    - _AOHeight: 0.55
+    - _AOStrength: 0.45
+    - _BaseboardHeight: 0.16
     - _Cull: 0
-    - _FloorLevel: 0.81951
+    - _FloorLevel: 0.81847596
     - _FloorSpacing: 6.4938436
-    - _GroutWidth: 0.028
+    - _GroutWidth: 0.035
     - _Metallic: 0
-    - _PanelStrength: 0.35
-    - _PanelWidth: 3
+    - _PanelStrength: 0.5
+    - _PanelWidth: 2.4
     - _Sharpness: 8
-    - _Smoothness: 0.22
-    - _TileSize: 0.9
-    - _WallGradientHeight: 8.47739
+    - _Smoothness: 0.15
+    - _TileSize: 1.2
+    - _WallGradientHeight: 5.6753674
     m_Colors:
-    - _BaseboardColor: {r: 0.38, g: 0.3, b: 0.24, a: 1}
-    - _CeilingColor: {r: 0.95, g: 0.94, b: 0.92, a: 1}
+    - _BaseboardColor: {r: 0.28, g: 0.31, b: 0.36, a: 1}
+    - _CeilingColor: {r: 0.93, g: 0.93, b: 0.95, a: 1}
     - _CeilingEmission: {r: 0.4, g: 0.4, b: 0.38, a: 1}
-    - _FloorColor: {r: 0.72, g: 0.69, b: 0.63, a: 1}
-    - _FloorColorAlt: {r: 0.67, g: 0.64, b: 0.58, a: 1}
-    - _GroutColor: {r: 0.5, g: 0.47, b: 0.43, a: 1}
-    - _WallColor: {r: 0.9, g: 0.87, b: 0.8, a: 1}
-    - _WallTopColor: {r: 0.97, g: 0.95, b: 0.9, a: 1}
+    - _FloorColor: {r: 0.66, g: 0.68, b: 0.71, a: 1}
+    - _FloorColorAlt: {r: 0.6, g: 0.62, b: 0.66, a: 1}
+    - _GroutColor: {r: 0.44, g: 0.46, b: 0.5, a: 1}
+    - _WallColor: {r: 0.87, g: 0.87, b: 0.84, a: 1}
+    - _WallTopColor: {r: 0.96, g: 0.96, b: 0.94, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
