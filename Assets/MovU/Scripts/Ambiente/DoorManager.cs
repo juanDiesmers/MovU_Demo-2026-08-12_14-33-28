@@ -105,7 +105,8 @@ public class DoorManager : MonoBehaviour
             {
                 PuertaDef def = datos.puertas[p];
                 if (def == null || def.ancho < 0.6f) continue;
-                if (def.piso != 0 && def.piso != i + 1) continue;
+                // piso 0 = todos los pisos con la planta del 9 (no el 3, que es otra planta).
+                if (def.piso == 0 ? !pisos.EsPlantaBase(i) : def.piso != i + 1) continue;
 
                 if (grupo == null) grupo = ContenidoLoader.Grupo(pisos.ContenidoDelPiso(i), NombreDelGrupo);
                 if (grupo == null) break;

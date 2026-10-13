@@ -44,7 +44,9 @@ public static class AmbientacionBuilder
             ? pisos.SeparacionEntrePisos - 0.75f
             : AlturaPorDefecto;
 
-        Transform piso = pisos.Piso(0);
+        // Se mide en un piso con la planta del 9: el piso 3 tiene su propia geometría.
+        int indiceBase = pisos.IndiceBase;
+        Transform piso = pisos.Piso(indiceBase);
         if (piso == null) return porSeparacion;
 
         float cima = float.MinValue;
@@ -67,7 +69,7 @@ public static class AmbientacionBuilder
             }
         }
 
-        float altura = cima - pisos.AlturaDelSuelo(0);
+        float altura = cima - pisos.AlturaDelSuelo(indiceBase);
         // Un valor disparatado quiere decir que la medida no sirvió.
         if (altura < 2.4f || altura > porSeparacion + 0.5f) return Mathf.Min(porSeparacion, AlturaPorDefecto);
         return altura - 0.02f;       // un pelo por debajo de la corona: la tapa y no parpadea contra ella
@@ -92,7 +94,8 @@ public static class AmbientacionBuilder
 
             float suelo = pisos.AlturaDelSuelo(i);
 
-            if (datos.ajustes.techo)
+            // El cielo raso y las lámparas son los de la planta del piso 9.
+            if (datos.ajustes.techo && pisos.EsPlantaBase(i))
             {
                 if (cieloRaso == null)
                 {

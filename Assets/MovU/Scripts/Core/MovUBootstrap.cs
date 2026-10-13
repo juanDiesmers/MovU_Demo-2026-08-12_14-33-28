@@ -76,6 +76,8 @@ public static class MovUBootstrap
 
         var raiz = new GameObject(NombreDeLaRaiz);
         FloorManager.NumeroDelPrimerPiso = Mathf.Max(1, datos.ajustes.numeroDelPrimerPiso);
+        FloorManager.NumerosVisibles.Clear();
+        if (datos.ajustes.numerosDePiso != null) FloorManager.NumerosVisibles.AddRange(datos.ajustes.numerosDePiso);
 
         // --- Jugador ----------------------------------------------------
         PlayerController jugador = Object.FindFirstObjectByType<PlayerController>();

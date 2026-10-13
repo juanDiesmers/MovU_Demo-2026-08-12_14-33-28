@@ -53,7 +53,7 @@ public class RunMetrics
     public string missionId = "";
     public int missionIndex = 0;        // contando desde 1; 0 = demo
     public string poiId = "";
-    public int startFloor = 0;          // contando desde 1; 0 = no aplica
+    public int startFloor = 0;          // número visible del piso (3, 9, 10); 0 = no aplica
     public int targetFloor = 0;
     public int floorChanges = 0;        // veces que cambió de piso
     public int wrongFloorVisits = 0;    // llegadas a un piso que no era el del destino

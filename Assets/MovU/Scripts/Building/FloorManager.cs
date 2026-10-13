@@ -35,6 +35,11 @@ public class FloorManager : MonoBehaviour
     [Tooltip("0 = solo el piso actual. 1 = tambien el de arriba y el de abajo.")]
     [SerializeField] private int pisosVecinosCargados = 0;
 
+    [Header("Planta de cada piso")]
+    [Tooltip("Qué planta usa cada piso, de abajo hacia arriba: 'piso9' (el modelo de Meshy " +
+             "y todo el contenido del JSON) o 'piso3' (la planta propia del piso 3).")]
+    [SerializeField] private List<string> plantas = new List<string>();
+
     [Header("Contenido por piso (Contenido/Piso_N)")]
     [Tooltip("Lo que el equipo pone a mano en cada piso: puertas, POIs, " +
              "objetivos. Se enciende y se apaga junto con su piso.")]
@@ -67,9 +72,16 @@ public class FloorManager : MonoBehaviour
     /// </summary>
     public static int NumeroDelPrimerPiso { get; set; } = 1;
 
+    /// <summary>
+    /// Número visible de cada piso, de abajo hacia arriba (ajustes.numerosDePiso
+    /// del JSON: 3, 9 y 10). Si está vacío se cuenta desde NumeroDelPrimerPiso.
+    /// </summary>
+    public static readonly List<int> NumerosVisibles = new List<int>();
+
     /// <summary>El número que ve el jugador para el piso 'indice' (contando desde 0).</summary>
     public static int NumeroVisible(int indice)
     {
+        if (indice >= 0 && indice < NumerosVisibles.Count) return NumerosVisibles[indice];
         return NumeroDelPrimerPiso + indice;
     }
 
@@ -77,6 +89,44 @@ public class FloorManager : MonoBehaviour
     private static void ReiniciarEstaticos()
     {
         NumeroDelPrimerPiso = 1;
+        NumerosVisibles.Clear();
+    }
+
+    /// <summary>La planta del modelo de Meshy, a la que se refiere todo el contenido del JSON.</summary>
+    public const string PlantaBase = "piso9";
+
+    /// <summary>Planta del piso indicado; sin dato, la del piso 9.</summary>
+    public string PlantaDe(int indice)
+    {
+        return (indice >= 0 && indice < plantas.Count && !string.IsNullOrEmpty(plantas[indice]))
+            ? plantas[indice]
+            : PlantaBase;
+    }
+
+    /// <summary>True si el piso usa la planta del piso 9 (copias incluidas).</summary>
+    public bool EsPlantaBase(int indice) => PlantaDe(indice) == PlantaBase;
+
+    /// <summary>El primer piso con la planta del piso 9: contra él se mide todo.</summary>
+    public int IndiceBase
+    {
+        get
+        {
+            for (int i = 0; i < pisos.Count; i++) if (EsPlantaBase(i)) return i;
+            return 0;
+        }
+    }
+
+    /// <summary>
+    /// True si la escalera lleva de un piso al otro: tienen que ser vecinos en la
+    /// pila, los dos con la planta del piso 9 (la escalera es la de esa planta) y
+    /// con números seguidos. Del 9 no se baja al 3 por la escalera.
+    /// </summary>
+    public bool EscaleraConecta(int desde, int hasta)
+    {
+        if (Mathf.Abs(desde - hasta) != 1) return false;
+        if (desde < 0 || hasta < 0 || desde >= pisos.Count || hasta >= pisos.Count) return false;
+        if (!EsPlantaBase(desde) || !EsPlantaBase(hasta)) return false;
+        return Mathf.Abs(NumeroVisible(hasta) - NumeroVisible(desde)) == 1;
     }
 
     /// <summary>Raiz de la geometria del piso indicado (contando desde 0).</summary>
@@ -147,6 +197,14 @@ public class FloorManager : MonoBehaviour
                            Transform elJugador, int vecinos)
     {
         Configurar(lista, alturaLosa, elJugador, vecinos, null);
+    }
+
+    public void Configurar(List<Transform> lista, float alturaLosa,
+                           Transform elJugador, int vecinos,
+                           List<Transform> contenido, List<string> plantasPorPiso)
+    {
+        Configurar(lista, alturaLosa, elJugador, vecinos, contenido);
+        plantas = plantasPorPiso != null ? new List<string>(plantasPorPiso) : new List<string>();
     }
 
     public void Configurar(List<Transform> lista, float alturaLosa,

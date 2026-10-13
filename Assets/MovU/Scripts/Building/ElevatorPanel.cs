@@ -163,7 +163,8 @@ public class ElevatorPanel : MonoBehaviour
             var texto = NuevoTexto("Texto", go.transform, 26f, Color.white,
                                    TextAlignmentOptions.Center);
             int numero = FloorManager.NumeroVisible(i);
-            texto.text = actual ? $"Piso {numero}   (aqui estas)" : $"Piso {numero}";
+            // El atajo es la tecla de la posición (1, 2, 3...), no el número del piso.
+            texto.text = actual ? $"[{i + 1}]  Piso {numero}   (aqui estas)" : $"[{i + 1}]  Piso {numero}";
             Estirar(texto.rectTransform);
 
             var boton = go.AddComponent<Button>();

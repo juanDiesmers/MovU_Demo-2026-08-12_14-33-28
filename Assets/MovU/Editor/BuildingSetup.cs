@@ -172,16 +172,46 @@ public static class BuildingSetup
         }
 
         // --- Pisos restantes -------------------------------------------
-        var pisos = new List<Transform> { piso1 };
-        for (int i = 1; i < CantidadDePisos; i++)
+        // Con la planta del piso 3 (Models/Piso3/planta_piso3.json, de
+        // Tools/piso3_planta.py) la pila queda: piso 3 abajo, con su planta
+        // propia; el piso 9 (el modelo de Meshy, donde aparece el jugador) y una
+        // copia del 9 encima. Sin esa planta, tres copias del 9 como antes.
+        var pisos = new List<Transform>();
+        var plantas = new List<string>();
+        if (Piso3Builder.HayPlanta && plano.valido)
         {
-            Transform piso = ConstruirPiso(edificio.transform, i, modeloAsset,
+            float alturaLibre = caja.max.y - (piso1.position.y + alturaLosa) - 0.02f;
+            Transform p3 = Piso3Builder.Construir(edificio.transform, "Piso_3",
+                                                  piso1.position - new Vector3(0f, separacion, 0f),
+                                                  alturaLosa, plano, alturaLibre);
+            if (p3 != null)
+            {
+                GeneradoPorMovU.Marcar(p3.gameObject, Herramienta);
+                pisos.Add(p3);
+                plantas.Add(Piso3Builder.Planta);
+            }
+        }
+        pisos.Add(piso1);
+        plantas.Add(FloorManager.PlantaBase);
+
+        int copias = CantidadDePisos - pisos.Count;
+        for (int c = 1; c <= copias; c++)
+        {
+            Transform piso = ConstruirPiso(edificio.transform, c, modeloAsset,
                                            rellenoAsset, material);
-            // Hereda el centrado en XZ del piso 1: si no, cada piso queda
+            // Hereda el centrado en XZ del piso 9: si no, cada piso queda
             // desplazado respecto al de abajo y el ascensor no coincide.
             piso.localPosition = piso1.localPosition
-                                 + new Vector3(0f, i * separacion, 0f);
+                                 + new Vector3(0f, c * separacion, 0f);
             pisos.Add(piso);
+            plantas.Add(FloorManager.PlantaBase);
+        }
+
+        // Piso_1 es el de abajo, igual que Contenido/Piso_N.
+        for (int i = 0; i < pisos.Count; i++)
+        {
+            pisos[i].name = $"Piso_{i + 1}";
+            pisos[i].SetSiblingIndex(i);
         }
 
         // --- Ascensores, uno por piso, en el mismo XZ -------------------
@@ -205,7 +235,7 @@ public static class BuildingSetup
 
         // --- Gestor de pisos --------------------------------------------
         var gestor = edificio.AddComponent<FloorManager>();
-        gestor.Configurar(pisos, alturaLosa, jugador, 0, contenido);
+        gestor.Configurar(pisos, alturaLosa, jugador, 0, contenido, plantas);
         EditorUtility.SetDirty(gestor);
 
         // --- Material: la altura se mide dentro de cada piso -------------
@@ -223,7 +253,7 @@ public static class BuildingSetup
         EditorSceneManager.MarkSceneDirty(edificio.scene);
         AssetDatabase.SaveAssets();
 
-        Debug.Log($"[Edificio] Listo: {CantidadDePisos} pisos, ascensor en " +
+        Debug.Log($"[Edificio] Listo: {pisos.Count} pisos ({string.Join(", ", plantas)}), ascensor en " +
                   $"{sitioAscensor}, aparicion en {aparicion}. " +
                   "Falta hornear el Occlusion Culling: " +
                   "Window > Rendering > Occlusion Culling > Bake.");
@@ -443,8 +473,15 @@ public static class BuildingSetup
     private static bool CabeUnaPersona(Vector3 suelo)
     {
         Physics.SyncTransforms();
-        return !Physics.CheckCapsule(suelo + Vector3.up * 0.40f, suelo + Vector3.up * 1.65f,
-                                     0.32f, ~0, QueryTriggerInteraction.Ignore);
+        // El jugador que ya está en la escena no cuenta como muro: suele estar
+        // justo en el punto de aparición de la construcción anterior.
+        var choques = Physics.OverlapCapsule(suelo + Vector3.up * 0.40f, suelo + Vector3.up * 1.65f,
+                                             0.32f, ~0, QueryTriggerInteraction.Ignore);
+        foreach (var c in choques)
+        {
+            if (c != null && c.GetComponentInParent<PlayerController>() == null) return false;
+        }
+        return true;
     }
 
     private static void CrearAscensor(Transform piso, Vector3 posicion, int indice,
@@ -716,8 +753,9 @@ public static class BuildingSetup
         if (gestor == null || gestor.CantidadDePisos == 0) return false;
 
         // Altura de la losa sobre la BASE del piso (ver la nota en ConstruirInterno).
-        float sueloPiso1 = gestor.AlturaDelSuelo(0);
-        Transform piso1 = gestor.Piso(0);
+        // Se mide en el piso 9 (el primero con su planta), no en el 3.
+        float sueloPiso1 = gestor.AlturaDelSuelo(gestor.IndiceBase);
+        Transform piso1 = gestor.Piso(gestor.IndiceBase);
         float baseDelPiso = piso1 != null ? LimitesDe(piso1).min.y : sueloPiso1;
 
         AjustarMaterial(material,

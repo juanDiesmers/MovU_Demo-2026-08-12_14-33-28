@@ -248,8 +248,9 @@ public class GameManager : MonoBehaviour
             runMetrics.missionId = mision.def != null ? mision.def.id : "";
             runMetrics.missionIndex = mision.indice + 1;
             runMetrics.poiId = mision.destino != null ? mision.destino.Id : "";
-            runMetrics.startFloor = mision.pisoDeInicio + 1;
-            runMetrics.targetFloor = mision.pisoDeDestino + 1;
+            // Número que ve el jugador (3, 9, 10): no cambia si se agrega un piso a la pila.
+            runMetrics.startFloor = FloorManager.NumeroVisible(mision.pisoDeInicio);
+            runMetrics.targetFloor = FloorManager.NumeroVisible(mision.pisoDeDestino);
             runMetrics.floorChanges = mision.cambiosDePiso;
             runMetrics.wrongFloorVisits = mision.pisosEquivocados;
             runMetrics.captureRadius = mision.radioDeLlegada;

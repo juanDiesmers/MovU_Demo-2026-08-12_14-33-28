@@ -284,6 +284,9 @@ public class StairsManager : MonoBehaviour
 
         for (int i = 0; i < pisos.CantidadDePisos; i++)
         {
+            // La escalera es la de la planta del piso 9: el piso 3 tiene las suyas.
+            if (!pisos.EsPlantaBase(i)) continue;
+
             Transform grupo = ContenidoLoader.Grupo(pisos.ContenidoDelPiso(i), NombreDelGrupo);
             if (grupo == null) continue;
 
@@ -343,8 +346,8 @@ public class StairsManager : MonoBehaviour
                             new Vector3(0.10f, 1.10f, rz1 - rz0), muro, i, true);
 
             // --- Las dos puertas --------------------------------------------
-            bool haySubida = i < pisos.CantidadDePisos - 1;
-            bool hayBajada = i > 0;
+            bool haySubida = pisos.EscaleraConecta(i, i + 1);
+            bool hayBajada = pisos.EscaleraConecta(i, i - 1);
 
             CrearPuerta(grupo, "Puerta_bajar", new Vector3(xPuerta, suelo, zHall - 0.06f), 180f,
                         hayBajada ? $"BAJAR · Piso {FloorManager.NumeroVisible(i - 1)}" : "SIN SALIDA",
@@ -524,7 +527,7 @@ public class StairsManager : MonoBehaviour
         if (!lista || EnTransicion || puertaActual == 0) return false;
 
         int destino = pisos.PisoActual + puertaActual;
-        if (destino < 0 || destino >= pisos.CantidadDePisos)
+        if (!pisos.EscaleraConecta(pisos.PisoActual, destino))
         {
             OnPuertaCerrada?.Invoke();
             return false;
@@ -546,8 +549,8 @@ public class StairsManager : MonoBehaviour
         if (puerta == 0) return "";
 
         int destino = pisos.PisoActual + puerta;
-        if (destino < 0) return "Esta puerta no lleva a ningún piso";
         if (destino >= pisos.CantidadDePisos) return "La azotea está cerrada";
+        if (!pisos.EscaleraConecta(pisos.PisoActual, destino)) return "Esta puerta no lleva a ningún piso";
 
         return puerta > 0
             ? $"E  —  Subir al piso {FloorManager.NumeroVisible(destino)}"
@@ -605,7 +608,7 @@ public class StairsManager : MonoBehaviour
     {
         if (!lista) return false;
         int destino = pisos.PisoActual + (subiendo ? 1 : -1);
-        if (destino < 0 || destino >= pisos.CantidadDePisos) return false;
+        if (!pisos.EscaleraConecta(pisos.PisoActual, destino)) return false;
 
         EnTransicion = true;
         Llevar(subiendo, destino);

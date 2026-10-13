@@ -52,6 +52,8 @@ public class AjustesDeContenido
     public bool npcDanIndicaciones = true;
     [Tooltip("Numero que ve el jugador para el piso mas bajo del modelo (9 = 'Piso 9').")]
     public int numeroDelPrimerPiso = 1;
+    /// <summary>Número visible de cada piso, de abajo hacia arriba (p. ej. 3, 9, 10).</summary>
+    public List<int> numerosDePiso = new List<int>();
 
     [Tooltip("Cielo raso con reticula y lamparas. Sin esto queda la losa lisa del relleno.")]
     public bool techo = true;

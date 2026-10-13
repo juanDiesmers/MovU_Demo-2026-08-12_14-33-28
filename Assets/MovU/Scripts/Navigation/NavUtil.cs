@@ -170,6 +170,17 @@ public static class NavUtil
         bool sube = pisoHasta > pisoDesde;
         int saltos = Mathf.Abs(pisoHasta - pisoDesde);
 
+        // Cada tramo tiene que existir: del 9 no se baja al 3 por la escalera.
+        FloorManager pisos = FloorManager.Instance;
+        if (pisos != null)
+        {
+            int paso = sube ? 1 : -1;
+            for (int p = pisoDesde; p != pisoHasta; p += paso)
+            {
+                if (!pisos.EscaleraConecta(p, p + paso)) return false;
+            }
+        }
+
         Vector3 entrada = sube ? escalera.PieDelTramo(pisoDesde) : escalera.FrenteDelHall(pisoDesde);
         Vector3 salida = sube ? escalera.FrenteDelHall(pisoHasta) : escalera.PieDelTramo(pisoHasta);
 

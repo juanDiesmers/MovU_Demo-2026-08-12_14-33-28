@@ -1,0 +1,1072 @@
+{
+ "version": 1,
+ "fuente": "Foto del plano de evacuación del piso 3, rectificada contra el contorno del piso 9",
+ "ancho": 39.3,
+ "largo": 106.6,
+ "alturaTecho": 5.6,
+ "suelo": [
+  {
+   "v": 1.0,
+   "u": 1.6
+  },
+  {
+   "v": 89.8,
+   "u": 1.6
+  },
+  {
+   "v": 104.0,
+   "u": 37.2
+  },
+  {
+   "v": 1.0,
+   "u": 37.2
+  }
+ ],
+ "muros": [
+  {
+   "a": [
+    1.0,
+    1.6
+   ],
+   "b": [
+    89.8,
+    1.6
+   ],
+   "tipo": "fachada",
+   "g": 0.35,
+   "nombre": "Fachada norte"
+  },
+  {
+   "a": [
+    1.0,
+    1.6
+   ],
+   "b": [
+    1.0,
+    27.1
+   ],
+   "tipo": "fachada",
+   "g": 0.35,
+   "nombre": "Fachada del extremo"
+  },
+  {
+   "a": [
+    89.8,
+    1.6
+   ],
+   "b": [
+    104.0,
+    37.2
+   ],
+   "tipo": "fachada",
+   "g": 0.35,
+   "nombre": "Fachada inclinada"
+  },
+  {
+   "a": [
+    12.5,
+    37.2
+   ],
+   "b": [
+    84.5,
+    37.2
+   ],
+   "tipo": "fachada",
+   "g": 0.35,
+   "nombre": "Fachada sur"
+  },
+  {
+   "a": [
+    91.3,
+    37.2
+   ],
+   "b": [
+    104.0,
+    37.2
+   ],
+   "tipo": "vidrio",
+   "g": 0.2,
+   "nombre": "Cierre del lobby"
+  },
+  {
+   "a": [
+    1.0,
+    16.2
+   ],
+   "b": [
+    6.9,
+    16.2
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Higiene"
+  },
+  {
+   "a": [
+    12.6,
+    16.2
+   ],
+   "b": [
+    27.3,
+    16.2
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Taller"
+  },
+  {
+   "a": [
+    34.4,
+    16.2
+   ],
+   "b": [
+    45.5,
+    16.2
+   ],
+   "tipo": "vitrina",
+   "g": 0.3,
+   "nombre": "Frente Sala A"
+  },
+  {
+   "a": [
+    45.7,
+    1.6
+   ],
+   "b": [
+    45.7,
+    16.2
+   ],
+   "tipo": "concreto",
+   "g": 0.4,
+   "nombre": "Muro Sala A | Sala B"
+  },
+  {
+   "a": [
+    45.9,
+    16.2
+   ],
+   "b": [
+    60.0,
+    16.2
+   ],
+   "tipo": "vitrina",
+   "g": 0.3,
+   "nombre": "Frente Sala B"
+  },
+  {
+   "a": [
+    67.0,
+    16.2
+   ],
+   "b": [
+    77.6,
+    16.2
+   ],
+   "tipo": "vitrina",
+   "g": 0.3,
+   "nombre": "Frente Sala C"
+  },
+  {
+   "a": [
+    77.8,
+    1.6
+   ],
+   "b": [
+    77.8,
+    16.2
+   ],
+   "tipo": "concreto",
+   "g": 0.4,
+   "nombre": "Muro Sala C | Seguridad"
+  },
+  {
+   "a": [
+    78.0,
+    11.2
+   ],
+   "b": [
+    78.4,
+    11.2
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Cuarto de seguridad"
+  },
+  {
+   "a": [
+    80.0,
+    11.2
+   ],
+   "b": [
+    80.9,
+    11.2
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Cuarto de seguridad"
+  },
+  {
+   "a": [
+    80.9,
+    1.6
+   ],
+   "b": [
+    80.9,
+    11.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Muro Seguridad | Escalera"
+  },
+  {
+   "a": [
+    80.9,
+    16.2
+   ],
+   "b": [
+    91.0,
+    16.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Caja de la escalera principal"
+  },
+  {
+   "a": [
+    93.0,
+    16.2
+   ],
+   "b": [
+    95.62359550561797,
+    16.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Caja de la escalera principal"
+  },
+  {
+   "a": [
+    15.6,
+    21.2
+   ],
+   "b": [
+    16.6,
+    21.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Frente Cuarto eléctrico"
+  },
+  {
+   "a": [
+    18.2,
+    21.2
+   ],
+   "b": [
+    20.3,
+    21.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Frente Cuarto eléctrico"
+  },
+  {
+   "a": [
+    20.3,
+    21.2
+   ],
+   "b": [
+    21.4,
+    21.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Frente Cuarto de cableado"
+  },
+  {
+   "a": [
+    22.9,
+    21.2
+   ],
+   "b": [
+    25.0,
+    21.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Frente Cuarto de cableado"
+  },
+  {
+   "a": [
+    25.0,
+    21.2
+   ],
+   "b": [
+    26.6,
+    21.2
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Baño accesible"
+  },
+  {
+   "a": [
+    29.2,
+    21.2
+   ],
+   "b": [
+    29.8,
+    21.2
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Baño accesible"
+  },
+  {
+   "a": [
+    15.6,
+    21.2
+   ],
+   "b": [
+    15.6,
+    30.4
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Muro de cuartos técnicos"
+  },
+  {
+   "a": [
+    20.3,
+    21.2
+   ],
+   "b": [
+    20.3,
+    30.4
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Muro de cuartos técnicos"
+  },
+  {
+   "a": [
+    25.0,
+    21.2
+   ],
+   "b": [
+    25.0,
+    30.4
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Muro de cuartos técnicos"
+  },
+  {
+   "a": [
+    15.6,
+    30.4
+   ],
+   "b": [
+    29.8,
+    30.4
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Fondo de cuartos técnicos"
+  },
+  {
+   "a": [
+    29.8,
+    30.4
+   ],
+   "b": [
+    29.8,
+    37.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Muro escalera | vestíbulo"
+  },
+  {
+   "a": [
+    32.9,
+    21.2
+   ],
+   "b": [
+    42.2,
+    21.2
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Baño mujeres"
+  },
+  {
+   "a": [
+    32.9,
+    21.2
+   ],
+   "b": [
+    32.9,
+    28.0
+   ],
+   "tipo": "concreto",
+   "g": 0.25,
+   "nombre": "Vestíbulo de baños"
+  },
+  {
+   "a": [
+    32.9,
+    30.2
+   ],
+   "b": [
+    32.9,
+    37.2
+   ],
+   "tipo": "concreto",
+   "g": 0.25,
+   "nombre": "Vestíbulo de baños"
+  },
+  {
+   "a": [
+    35.3,
+    28.0
+   ],
+   "b": [
+    42.2,
+    28.0
+   ],
+   "tipo": "concreto",
+   "g": 0.25,
+   "nombre": "Baño mujeres"
+  },
+  {
+   "a": [
+    35.3,
+    30.2
+   ],
+   "b": [
+    42.2,
+    30.2
+   ],
+   "tipo": "concreto",
+   "g": 0.25,
+   "nombre": "Baño hombres"
+  },
+  {
+   "a": [
+    42.2,
+    21.2
+   ],
+   "b": [
+    42.2,
+    37.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Muro Baños | Oficinas"
+  },
+  {
+   "a": [
+    42.2,
+    21.2
+   ],
+   "b": [
+    56.8,
+    21.2
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Oficinas"
+  },
+  {
+   "a": [
+    60.2,
+    21.2
+   ],
+   "b": [
+    60.2,
+    37.2
+   ],
+   "tipo": "madera",
+   "g": 0.2,
+   "nombre": "Muro Oficinas | Simulación"
+  },
+  {
+   "a": [
+    63.5,
+    21.2
+   ],
+   "b": [
+    84.5,
+    21.2
+   ],
+   "tipo": "vitrina",
+   "g": 0.3,
+   "nombre": "Frente Simulación"
+  },
+  {
+   "a": [
+    84.5,
+    21.2
+   ],
+   "b": [
+    84.5,
+    37.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Muro Simulación | Ascensores"
+  }
+ ],
+ "bloques": [
+  {
+   "v0": 9.6,
+   "v1": 12.6,
+   "u0": 1.6,
+   "u1": 16.2,
+   "tipo": "concreto",
+   "nombre": "Ducto entre Higiene y Taller",
+   "alto": 5.6
+  },
+  {
+   "v0": 30.4,
+   "v1": 31.2,
+   "u0": 1.6,
+   "u1": 16.2,
+   "tipo": "concreto",
+   "nombre": "Muro Taller | Sala A",
+   "alto": 5.6
+  },
+  {
+   "v0": 63.0,
+   "v1": 63.9,
+   "u0": 1.6,
+   "u1": 16.2,
+   "tipo": "concreto",
+   "nombre": "Muro Sala B | Sala C",
+   "alto": 5.6
+  },
+  {
+   "v0": 1.0,
+   "v1": 11.6,
+   "u0": 27.1,
+   "u1": 37.2,
+   "tipo": "concreto",
+   "nombre": "Vacío de doble altura",
+   "alto": 5.6
+  },
+  {
+   "v0": 11.6,
+   "v1": 12.5,
+   "u0": 21.2,
+   "u1": 37.2,
+   "tipo": "concreto",
+   "nombre": "Muro de la escalera de emergencia",
+   "alto": 5.6
+  },
+  {
+   "v0": 29.8,
+   "v1": 30.9,
+   "u0": 21.2,
+   "u1": 30.4,
+   "tipo": "concreto",
+   "nombre": "Muro Baño accesible | Baños",
+   "alto": 5.6
+  },
+  {
+   "v0": 84.5,
+   "v1": 91.3,
+   "u0": 21.2,
+   "u1": 37.2,
+   "tipo": "concreto",
+   "nombre": "Núcleo de ascensores",
+   "alto": 5.6
+  }
+ ],
+ "escaleras": [
+  {
+   "nombre": "Escalera principal",
+   "estilo": "roja",
+   "tramos": [
+    {
+     "v0": 85.0,
+     "v1": 89.6,
+     "u0": 11.9,
+     "u1": 15.0,
+     "sube": "+v",
+     "h0": 0.0,
+     "h1": 1.75,
+     "n": 9
+    },
+    {
+     "v0": 89.6,
+     "v1": 91.0,
+     "u0": 4.6,
+     "u1": 15.0,
+     "sube": "",
+     "h0": 1.75,
+     "h1": 1.75,
+     "n": 0
+    },
+    {
+     "v0": 81.9,
+     "v1": 84.6,
+     "u0": 4.6,
+     "u1": 11.9,
+     "sube": "-u",
+     "h0": 0.0,
+     "h1": 1.75,
+     "n": 9
+    },
+    {
+     "v0": 81.9,
+     "v1": 91.0,
+     "u0": 2.0,
+     "u1": 4.6,
+     "sube": "",
+     "h0": 1.75,
+     "h1": 1.75,
+     "n": 0
+    }
+   ],
+   "nucleo": {
+    "v0": 84.6,
+    "v1": 89.6,
+    "u0": 4.6,
+    "u1": 11.9
+   },
+   "barreras": [
+    {
+     "a": [
+      84.85,
+      11.9
+     ],
+     "b": [
+      84.85,
+      15.0
+     ]
+    },
+    {
+     "a": [
+      81.9,
+      12.15
+     ],
+     "b": [
+      84.6,
+      12.15
+     ]
+    }
+   ]
+  },
+  {
+   "nombre": "Escalera de emergencia",
+   "estilo": "gris",
+   "tramos": [
+    {
+     "v0": 15.9,
+     "v1": 27.4,
+     "u0": 33.9,
+     "u1": 37.0,
+     "sube": "+v",
+     "h0": 0.0,
+     "h1": 1.75,
+     "n": 11
+    },
+    {
+     "v0": 27.4,
+     "v1": 29.6,
+     "u0": 30.6,
+     "u1": 37.0,
+     "sube": "",
+     "h0": 1.75,
+     "h1": 1.75,
+     "n": 0
+    },
+    {
+     "v0": 15.9,
+     "v1": 27.4,
+     "u0": 30.6,
+     "u1": 33.7,
+     "sube": "-v",
+     "h0": 1.75,
+     "h1": 3.5,
+     "n": 11
+    }
+   ],
+   "nucleo": {
+    "v0": 15.9,
+    "v1": 27.4,
+    "u0": 33.7,
+    "u1": 33.9
+   },
+   "barreras": [
+    {
+     "a": [
+      15.65,
+      33.9
+     ],
+     "b": [
+      15.65,
+      37.0
+     ]
+    }
+   ]
+  }
+ ],
+ "ascensores": [
+  {
+   "v": 91.3,
+   "u": 24.25,
+   "ancho": 2.6
+  },
+  {
+   "v": 91.3,
+   "u": 29.25,
+   "ancho": 2.6
+  },
+  {
+   "v": 91.3,
+   "u": 34.25,
+   "ancho": 2.6
+  }
+ ],
+ "torniquetes": [
+  {
+   "v": 93.0,
+   "u": 36.4
+  },
+  {
+   "v": 94.6,
+   "u": 36.4
+  },
+  {
+   "v": 96.2,
+   "u": 36.4
+  }
+ ],
+ "bandejas": [
+  {
+   "a": [
+    2.0,
+    17.8
+   ],
+   "b": [
+    91.0,
+    17.8
+   ],
+   "y": 4.9,
+   "ancho": 0.6
+  },
+  {
+   "a": [
+    2.0,
+    19.7
+   ],
+   "b": [
+    91.0,
+    19.7
+   ],
+   "y": 5.05,
+   "ancho": 0.35
+  }
+ ],
+ "luces": [
+  {
+   "a": [
+    2.0,
+    16.65
+   ],
+   "b": [
+    80.0,
+    16.65
+   ],
+   "y": 5.5
+  },
+  {
+   "a": [
+    2.0,
+    20.75
+   ],
+   "b": [
+    84.0,
+    20.75
+   ],
+   "y": 5.5
+  },
+  {
+   "a": [
+    2.3,
+    9
+   ],
+   "b": [
+    8.6,
+    9
+   ],
+   "y": 5.5
+  },
+  {
+   "a": [
+    13.600000000000001,
+    9
+   ],
+   "b": [
+    29.4,
+    9
+   ],
+   "y": 5.5
+  },
+  {
+   "a": [
+    32.199999999999996,
+    9
+   ],
+   "b": [
+    44.5,
+    9
+   ],
+   "y": 5.5
+  },
+  {
+   "a": [
+    46.9,
+    9
+   ],
+   "b": [
+    62.0,
+    9
+   ],
+   "y": 5.5
+  },
+  {
+   "a": [
+    64.89999999999999,
+    9
+   ],
+   "b": [
+    76.60000000000001,
+    9
+   ],
+   "y": 5.5
+  },
+  {
+   "a": [
+    43.3,
+    29
+   ],
+   "b": [
+    59.1,
+    29
+   ],
+   "y": 5.5
+  },
+  {
+   "a": [
+    61.3,
+    29
+   ],
+   "b": [
+    83.4,
+    29
+   ],
+   "y": 5.5
+  }
+ ],
+ "lamparas": [
+  {
+   "v": 5,
+   "u": 18.7,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 13,
+   "u": 18.7,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 21,
+   "u": 18.7,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 29,
+   "u": 18.7,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 37,
+   "u": 18.7,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 45,
+   "u": 18.7,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 53,
+   "u": 18.7,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 61,
+   "u": 18.7,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 69,
+   "u": 18.7,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 77,
+   "u": 18.7,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 85,
+   "u": 18.7,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 96.0,
+   "u": 26.0,
+   "y": 4.8,
+   "rango": 14.0,
+   "intensidad": 1.8
+  },
+  {
+   "v": 99.0,
+   "u": 33.0,
+   "y": 4.8,
+   "rango": 12.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 92.0,
+   "u": 18.5,
+   "y": 4.8,
+   "rango": 12.0,
+   "intensidad": 1.5
+  },
+  {
+   "v": 5.3,
+   "u": 8.9,
+   "y": 4.6,
+   "rango": 12.0,
+   "intensidad": 1.3
+  },
+  {
+   "v": 17.049999999999997,
+   "u": 8.9,
+   "y": 4.6,
+   "rango": 12.0,
+   "intensidad": 1.3
+  },
+  {
+   "v": 25.949999999999996,
+   "u": 8.9,
+   "y": 4.6,
+   "rango": 12.0,
+   "intensidad": 1.3
+  },
+  {
+   "v": 38.35,
+   "u": 8.9,
+   "y": 4.6,
+   "rango": 12.0,
+   "intensidad": 1.3
+  },
+  {
+   "v": 50.175,
+   "u": 8.9,
+   "y": 4.6,
+   "rango": 12.0,
+   "intensidad": 1.3
+  },
+  {
+   "v": 58.725,
+   "u": 8.9,
+   "y": 4.6,
+   "rango": 12.0,
+   "intensidad": 1.3
+  },
+  {
+   "v": 70.75,
+   "u": 8.9,
+   "y": 4.6,
+   "rango": 12.0,
+   "intensidad": 1.3
+  },
+  {
+   "v": 46.7,
+   "u": 29.200000000000003,
+   "y": 4.6,
+   "rango": 12.0,
+   "intensidad": 1.3
+  },
+  {
+   "v": 55.7,
+   "u": 29.200000000000003,
+   "y": 4.6,
+   "rango": 12.0,
+   "intensidad": 1.3
+  },
+  {
+   "v": 66.275,
+   "u": 29.200000000000003,
+   "y": 4.6,
+   "rango": 12.0,
+   "intensidad": 1.3
+  },
+  {
+   "v": 78.425,
+   "u": 29.200000000000003,
+   "y": 4.6,
+   "rango": 12.0,
+   "intensidad": 1.3
+  },
+  {
+   "v": 85.95,
+   "u": 8.9,
+   "y": 4.6,
+   "rango": 12.0,
+   "intensidad": 1.3
+  },
+  {
+   "v": 17.1,
+   "u": 29.200000000000003,
+   "y": 4.6,
+   "rango": 12.0,
+   "intensidad": 1.3
+  },
+  {
+   "v": 26.299999999999997,
+   "u": 29.200000000000003,
+   "y": 4.6,
+   "rango": 12.0,
+   "intensidad": 1.3
+  }
+ ]
+}
