@@ -112,7 +112,11 @@ public class DoorManager : MonoBehaviour
                 if (grupo == null) break;
 
                 Vector3 centro = ContenidoLoader.AMundo(plano, pisos, i, def.u, def.v);
-                puertas.Add(Crear(grupo, def, i, centro, alturaDelTecho, muro));
+                // En los pisos armados desde su planta, el dintel es de la madera de los portales.
+                Material dintel = FormasMovU.DelPiso(pisos.Piso(i), "Madera") ?? muro;
+                // El dintel llega al techo de SU piso (el 13 tiene doble altura).
+                float techoDelPiso = FormasMovU.AlturaLibre(pisos.Piso(i), pisos.AlturaDelSuelo(i), alturaDelTecho);
+                puertas.Add(Crear(grupo, def, i, centro, techoDelPiso, dintel));
             }
         }
     }
@@ -213,7 +217,7 @@ public class DoorManager : MonoBehaviour
                 marco = new Color32(60, 60, 62, 255);
                 break;
             default:
-                hoja = new Color32(158, 112, 72, 255);       // madera
+                hoja = new Color32(104, 60, 40, 255);        // madera oscura, como las del pasillo
                 marco = new Color32(74, 62, 54, 255);
                 break;
         }

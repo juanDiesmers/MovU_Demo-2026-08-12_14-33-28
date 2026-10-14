@@ -52,7 +52,35 @@ inventario del 8 de octubre por la tarde están **sin commitear**.
 
 ### Decisiones ya tomadas (no volver a discutirlas sin motivo)
 
-- **El mapa jugable es el modelo ORIGINAL de Meshy**, no el reconstruido. Se conserva su
+- **(14 oct 2026) El piso 9 ya no usa el modelo de Meshy.** Se trazó su planta desde el
+  letrero de la planta (códigos P9-xx), el plano de evacuación y las fotos y el video del
+  recorrido: `Tools/piso9_planta.py` → `Assets/MovU/Models/Piso9/planta_piso9.json`, y la arma
+  `Editor/PlantaBuilder.cs` (el mismo constructor del piso 3). Mismo marco de coordenadas que
+  tenía el modelo (lo guarda `marco` en el JSON), así que el contenido, la escalera y las
+  métricas siguen cayendo en su sitio. 10.198 triángulos por piso (antes 93.628). Lo de abajo
+  sobre Meshy queda como historia y como respaldo si falta esa planta.
+- **(14 oct 2026) Pila de pisos 3 · 9 · 13.** El piso 13 reemplaza la copia del 9 (el antiguo
+  "piso 10"): `Tools/piso13_planta.py` → `Assets/MovU/Models/Piso13/planta_piso13.json`, armado
+  por `PlantaBuilder` con el mismo núcleo del 9 y sus propios laboratorios (Virtualización,
+  Bioingeniería con Tejidos adentro, Robótica Autónoma, Robótica y Educación, Nanolab /
+  Plasmónica y dos oficinas de Investigadores). Doble altura (techo a 8,4 m): cabe porque es el
+  último de la pila. Al 13 se llega en ascensor; la escalera del 9 ya no sube (dice "CERRADO ·
+  USA EL ASCENSOR") y la del 13 solo se ve.
+- **(14 oct 2026, más tarde) Edificio del 3 al 13.** Entre medio van pisos GENÉRICOS (4 a 8 y
+  10 a 12): el núcleo del 9 con todas las puertas cerradas salvo la de la escalera
+  (`Tools/piso_generico_planta.py` → `Models/PisoGenerico/planta_generico.json`,
+  `Editor/PisoGenericoBuilder.cs`). La escalera de emergencia funcional une del 4 al 13
+  (`FloorManager.TieneEscalera`); el 3 queda solo por ascensor porque su escalera está en otro
+  sitio. El contenido del 9 es el piso 7 de la pila y el del 13 el 11. Cuando haya plano de un
+  piso genérico, se le hace su planta como al 13.
+- **(14 oct 2026) La escalera principal (la roja del lobby) también es funcional**, como la de
+  emergencia: tramo visible de 16 peldaños hacia la fachada, rellano junto a las ventanas y
+  puertas "SUBIR" (en el rellano) y "BAJAR" (abajo) que cruzan al piso vecino con fundido.
+  Aspecto de la foto: peldaños grises, parapeto macizo rojo con pasamanos, cortina de cables de
+  acero hasta el techo, muro mostaza y concreto. Se define en `escaleraPrincipal` del JSON de
+  contenido; la columna del tramo oculto y los macizos los ponen las plantas (9, 13 y genérica).
+  Las rutas óptimas (`NavUtil`) siguen considerando solo el ascensor y la escalera de emergencia.
+- *(Antes)* **El mapa jugable es el modelo ORIGINAL de Meshy**, no el reconstruido. Se conserva su
   geometría orgánica a la altura de los ojos; los muros cortos se tapan por encima con una
   malla aparte (`RellenoCorona.obj`).
 - **Escala no uniforme a propósito:** 56x en horizontal, 45x en vertical. Escalar todo a 56x
@@ -304,11 +332,18 @@ punto: poner un objeto vacío ahí, seleccionarlo y
 
 | POI | Qué es | De dónde sale |
 |---|---|---|
-| `dti_prestamo` | DTI, préstamo de equipos de cómputo (el espacio F del mapa) | Identificado por el equipo |
-| `dti_soporte` | DTI, ingenieros de soporte (el espacio J) | Identificado por el equipo |
-| `ascensores` | Hall del extremo | Identificado por el equipo |
-| `escalera_emergencia` | Espacio L | Identificado por el equipo |
-| `salon_a` … `salon_h` | Los otros siete salones | **Nombre provisional**: falta el recorrido de campo |
+| `dti_prestamo` | P9-02 · Oficina Gestión Técnica 2: DTI, préstamo de equipos | Equipo + letrero de la planta |
+| `dti_soporte` | P9-03 · Oficina Gestión Técnica 3: DTI, ingenieros de soporte | Equipo + letrero de la planta |
+| `p9_04_coworking` | P9-04 · Coworking 1 | Letrero y plano de evacuación (14 oct) |
+| `p9_05_aula2` | P9-05 · Aula de Cómputo 2 | ídem |
+| `p9_6a_aula3a`, `p9_6b_aula3b`, `p9_6c_aula3c` | P9-6A/6B/6C · Aulas de Cómputo 3A, 3B, 3C | ídem |
+| `p9_1b_aula1b`, `p9_1a_aula1a` | P9-1B/1A · Aulas de Cómputo 1B, 1A | ídem |
+| `banos`, `bano_accesible` | Baños (H y M) y baño accesible con ducha | Plano de evacuación |
+| `escalera_emergencia` | La escalera de emergencia (la que se usa para ir al 10) | Equipo |
+| `escalera_principal` | Escalera principal junto al lobby (cerrada en el juego) | Plano de evacuación |
+| `ascensores` | Lobby de ascensores | Equipo |
+
+Sin POI pero con puerta: Cuarto eléctrico, Cuarto de cableado y Cuarto de seguridad.
 
 Los dos de DTI son los espacios clave del piso y son el destino de las dos misiones:
 

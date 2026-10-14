@@ -377,6 +377,53 @@ public static class FormasMovU
     /// El material de los muros del edificio (el shader estilizado). Lo que se
     /// vista con él queda como parte de la obra: mismo degradado, mismo zócalo.
     /// </summary>
+    /// <summary>
+    /// El material de la pieza 'clave' (Madera, Concreto, Rojo...) de un piso armado
+    /// desde su planta en JSON (PlantaBuilder deja un hijo por material bajo
+    /// 'Geometria'). Null si el piso no tiene esa pieza: el llamador usa el suyo.
+    /// </summary>
+    public static Material DelPiso(Transform piso, string clave)
+    {
+        if (piso == null) return null;
+        Transform geo = piso.Find("Geometria");
+        if (geo == null) return null;
+        Transform pieza = geo.Find(clave);
+        var dibujo = pieza != null ? pieza.GetComponent<MeshRenderer>() : null;
+        return dibujo != null ? dibujo.sharedMaterial : null;
+    }
+
+    /// <summary>
+    /// Altura libre de un piso armado desde su planta (de su suelo a lo más alto de su
+    /// geometría): el piso 13 tiene doble altura. Si el piso no es de esos, 'porDefecto'.
+    /// </summary>
+    public static float AlturaLibre(Transform piso, float suelo, float porDefecto)
+    {
+        Transform geo = piso != null ? piso.Find("Geometria") : null;
+        if (geo == null) return porDefecto;
+        float cima = float.MinValue;
+        foreach (MeshFilter mf in geo.GetComponentsInChildren<MeshFilter>(true))
+        {
+            if (mf.sharedMesh == null || mf.GetComponent<MeshRenderer>() == null) continue;
+            if (mf.name.StartsWith("Letrero_")) continue;
+            Bounds b = mf.sharedMesh.bounds;
+            Matrix4x4 m = mf.transform.localToWorldMatrix;
+            for (int e = 0; e < 8; e++)
+            {
+                Vector3 esquina = b.center + Vector3.Scale(b.extents, new Vector3(
+                    (e & 1) == 0 ? -1f : 1f, (e & 2) == 0 ? -1f : 1f, (e & 4) == 0 ? -1f : 1f));
+                cima = Mathf.Max(cima, m.MultiplyPoint3x4(esquina).y);
+            }
+        }
+        float altura = cima - suelo;
+        return altura > 2.4f ? altura - 0.02f : porDefecto;
+    }
+
+    /// <summary>True si el piso se armó desde una planta en JSON (trae su propio techo y luces).</summary>
+    public static bool TienePlantaPropia(Transform piso)
+    {
+        return piso != null && piso.Find("Geometria") != null;
+    }
+
     public static Material DelEdificio(FloorManager pisos)
     {
         if (pisos != null)

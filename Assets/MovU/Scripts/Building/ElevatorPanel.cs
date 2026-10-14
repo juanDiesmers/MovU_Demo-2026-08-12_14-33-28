@@ -134,11 +134,15 @@ public class ElevatorPanel : MonoBehaviour
         botones.Clear();
 
         int n = pisos.CantidadDePisos;
-        const float alto = 58f;
+        // Con muchos pisos (el edificio va del 3 al 13) se ponen en dos columnas,
+        // como la botonera de un ascensor, para que el panel quepa en pantalla.
+        int columnas = n > 6 ? 2 : 1;
+        int filas = (n + columnas - 1) / columnas;
+        float alto = columnas > 1 ? 52f : 58f;
         const float sep = 12f;
 
         var rt = panel.GetComponent<RectTransform>();
-        rt.sizeDelta = new Vector2(460f, 110f + n * (alto + sep) + 40f);
+        rt.sizeDelta = new Vector2(columnas > 1 ? 560f : 460f, 110f + filas * (alto + sep) + 40f);
 
         for (int i = 0; i < n; i++)
         {
@@ -151,20 +155,22 @@ public class ElevatorPanel : MonoBehaviour
                                : new Color(0.18f, 0.19f, 0.22f, 1f);
 
             var brt = go.GetComponent<RectTransform>();
-            brt.anchorMin = new Vector2(0f, 1f);
-            brt.anchorMax = new Vector2(1f, 1f);
+            int columna = i % columnas;
+            brt.anchorMin = new Vector2(columna / (float)columnas, 1f);
+            brt.anchorMax = new Vector2((columna + 1) / (float)columnas, 1f);
             brt.pivot = new Vector2(0.5f, 1f);
-            brt.sizeDelta = new Vector2(-60f, alto);
+            brt.sizeDelta = new Vector2(columnas > 1 ? -36f : -60f, alto);
             // Se listan de arriba hacia abajo, pero el piso 1 es el de abajo:
             // se invierte el orden para que el panel se lea como un ascensor.
-            int fila = n - 1 - i;
+            int fila = filas - 1 - i / columnas;
             brt.anchoredPosition = new Vector2(0f, -(84f + fila * (alto + sep)));
 
-            var texto = NuevoTexto("Texto", go.transform, 26f, Color.white,
+            var texto = NuevoTexto("Texto", go.transform, columnas > 1 ? 22f : 26f, Color.white,
                                    TextAlignmentOptions.Center);
             int numero = FloorManager.NumeroVisible(i);
-            // El atajo es la tecla de la posición (1, 2, 3...), no el número del piso.
-            texto.text = actual ? $"[{i + 1}]  Piso {numero}   (aqui estas)" : $"[{i + 1}]  Piso {numero}";
+            // El atajo es la tecla de la posición (1 a 9), no el número del piso.
+            string atajo = i < 9 ? $"[{i + 1}]  " : "";
+            texto.text = actual ? $"{atajo}Piso {numero}  (aquí)" : $"{atajo}Piso {numero}";
             Estirar(texto.rectTransform);
 
             var boton = go.AddComponent<Button>();

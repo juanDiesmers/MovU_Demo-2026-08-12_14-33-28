@@ -36,8 +36,8 @@ public class FloorManager : MonoBehaviour
     [SerializeField] private int pisosVecinosCargados = 0;
 
     [Header("Planta de cada piso")]
-    [Tooltip("Qué planta usa cada piso, de abajo hacia arriba: 'piso9' (el modelo de Meshy " +
-             "y todo el contenido del JSON) o 'piso3' (la planta propia del piso 3).")]
+    [Tooltip("Qué planta usa cada piso, de abajo hacia arriba: 'piso9' (la planta del piso 9, " +
+             "a la que se refiere todo el contenido del JSON) o 'piso3' (la planta propia del piso 3).")]
     [SerializeField] private List<string> plantas = new List<string>();
 
     [Header("Contenido por piso (Contenido/Piso_N)")]
@@ -92,7 +92,7 @@ public class FloorManager : MonoBehaviour
         NumerosVisibles.Clear();
     }
 
-    /// <summary>La planta del modelo de Meshy, a la que se refiere todo el contenido del JSON.</summary>
+    /// <summary>La planta del piso 9 (Models/Piso9/planta_piso9.json; antes el modelo de Meshy), a la que se refiere todo el contenido del JSON.</summary>
     public const string PlantaBase = "piso9";
 
     /// <summary>Planta del piso indicado; sin dato, la del piso 9.</summary>
@@ -106,6 +106,19 @@ public class FloorManager : MonoBehaviour
     /// <summary>True si el piso usa la planta del piso 9 (copias incluidas).</summary>
     public bool EsPlantaBase(int indice) => PlantaDe(indice) == PlantaBase;
 
+    /// <summary>Planta de los pisos genéricos (4 a 8 y 10 a 12): el núcleo del 9 con los salones cerrados.</summary>
+    public const string PlantaGenerica = "generico";
+
+    /// <summary>
+    /// Plantas que llevan la escalera de emergencia funcional (StairsManager), en el
+    /// mismo sitio: la del 9, la genérica y la del 13. La del 3 tiene la suya en otro
+    /// sitio y solo se ve.
+    /// </summary>
+    public static readonly HashSet<string> PlantasConEscalera = new HashSet<string> { PlantaBase, PlantaGenerica, "piso13" };
+
+    /// <summary>True si en este piso está la escalera funcional.</summary>
+    public bool TieneEscalera(int indice) => PlantasConEscalera.Contains(PlantaDe(indice));
+
     /// <summary>El primer piso con la planta del piso 9: contra él se mide todo.</summary>
     public int IndiceBase
     {
@@ -118,14 +131,14 @@ public class FloorManager : MonoBehaviour
 
     /// <summary>
     /// True si la escalera lleva de un piso al otro: tienen que ser vecinos en la
-    /// pila, los dos con la planta del piso 9 (la escalera es la de esa planta) y
-    /// con números seguidos. Del 9 no se baja al 3 por la escalera.
+    /// pila, los dos con la escalera funcional (pisos 4 a 13) y con números
+    /// seguidos. Del 4 no se baja al 3 por la escalera.
     /// </summary>
     public bool EscaleraConecta(int desde, int hasta)
     {
         if (Mathf.Abs(desde - hasta) != 1) return false;
         if (desde < 0 || hasta < 0 || desde >= pisos.Count || hasta >= pisos.Count) return false;
-        if (!EsPlantaBase(desde) || !EsPlantaBase(hasta)) return false;
+        if (!TieneEscalera(desde) || !TieneEscalera(hasta)) return false;
         return Mathf.Abs(NumeroVisible(hasta) - NumeroVisible(desde)) == 1;
     }
 

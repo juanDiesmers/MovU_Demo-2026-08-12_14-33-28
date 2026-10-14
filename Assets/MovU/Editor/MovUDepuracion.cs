@@ -168,6 +168,24 @@ public static class MovUDepuracion
         Empezar("subir el tramo", puntos);
     }
 
+    [MenuItem(Menu + "5b Subir a pie el tramo de la escalera principal")]
+    private static void SubirLaPrincipal()
+    {
+        if (!EnPlay()) return;
+        StairsManager escalera = StairsManager.Instance;
+        ContenidoPiso d = ContenidoLoader.Datos;
+        if (escalera == null || !escalera.HayPrincipal || d == null) return;
+        int piso = FloorManager.Instance.PisoActual;
+        EscaleraPrincipalDef e = d.escaleraPrincipal;
+        var puntos = new List<Vector3>
+        {
+            escalera.Principal(piso, 0f, -0.8f, 0f),                         // al pie
+            escalera.Principal(piso, 0f, e.largo + 0.8f, e.alturaDelRellano), // cima, ya en el rellano
+            escalera.FrenteDelRellanoPrincipal(piso),
+        };
+        Empezar("subir la escalera principal", puntos);
+    }
+
     [MenuItem(Menu + "6 Bajar el tramo a pie")]
     private static void BajarElTramo()
     {

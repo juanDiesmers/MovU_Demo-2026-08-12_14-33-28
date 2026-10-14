@@ -1,0 +1,2202 @@
+{
+ "version": 2,
+ "fuente": "Núcleo del piso 9 (planta_piso9.json) con los salones cerrados",
+ "ancho": 39.3,
+ "largo": 106.6,
+ "alturaTecho": 5.6,
+ "suelo": [
+  {
+   "v": 1.1,
+   "u": 1.3
+  },
+  {
+   "v": 89.68033707865169,
+   "u": 1.3
+  },
+  {
+   "v": 104.39887640449439,
+   "u": 38.2
+  },
+  {
+   "v": 1.1,
+   "u": 38.2
+  }
+ ],
+ "pisos": [
+  {
+   "tipo": "Terrazo",
+   "h": 0.008,
+   "pts": [
+    {
+     "v": 93.0,
+     "u": 19.0
+    },
+    {
+     "v": 96.74,
+     "u": 19.0
+    },
+    {
+     "v": 104.399,
+     "u": 38.2
+    },
+    {
+     "v": 93.0,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "BandaGris",
+   "h": 0.014,
+   "pts": [
+    {
+     "v": 93.12,
+     "u": 23.6
+    },
+    {
+     "v": 96.2,
+     "u": 23.6
+    },
+    {
+     "v": 96.2,
+     "u": 38.2
+    },
+    {
+     "v": 93.12,
+     "u": 38.2
+    }
+   ]
+  }
+ ],
+ "techos": [
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 1.1,
+     "u": 31.401
+    },
+    {
+     "v": 1.1,
+     "u": 1.3
+    },
+    {
+     "v": 23.804,
+     "u": 1.3
+    },
+    {
+     "v": 23.804,
+     "u": 31.401
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 1.1,
+     "u": 32.301
+    },
+    {
+     "v": 1.1,
+     "u": 31.401
+    },
+    {
+     "v": 23.804,
+     "u": 31.401
+    },
+    {
+     "v": 23.804,
+     "u": 32.301
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 1.1,
+     "u": 38.2
+    },
+    {
+     "v": 1.1,
+     "u": 32.301
+    },
+    {
+     "v": 23.804,
+     "u": 32.301
+    },
+    {
+     "v": 23.804,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 23.804,
+     "u": 31.401
+    },
+    {
+     "v": 23.804,
+     "u": 1.3
+    },
+    {
+     "v": 33.952,
+     "u": 1.3
+    },
+    {
+     "v": 33.952,
+     "u": 31.401
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 33.952,
+     "u": 32.301
+    },
+    {
+     "v": 23.804,
+     "u": 32.301
+    },
+    {
+     "v": 23.804,
+     "u": 31.401
+    },
+    {
+     "v": 33.952,
+     "u": 31.401
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 33.952,
+     "u": 31.401
+    },
+    {
+     "v": 33.952,
+     "u": 1.3
+    },
+    {
+     "v": 35.85,
+     "u": 1.3
+    },
+    {
+     "v": 35.85,
+     "u": 31.401
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 35.85,
+     "u": 31.401
+    },
+    {
+     "v": 35.85,
+     "u": 1.3
+    },
+    {
+     "v": 89.68,
+     "u": 1.3
+    },
+    {
+     "v": 101.687,
+     "u": 31.401
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 102.046,
+     "u": 32.301
+    },
+    {
+     "v": 35.85,
+     "u": 32.301
+    },
+    {
+     "v": 35.85,
+     "u": 31.401
+    },
+    {
+     "v": 101.687,
+     "u": 31.401
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 104.399,
+     "u": 38.2
+    },
+    {
+     "v": 35.85,
+     "u": 38.2
+    },
+    {
+     "v": 35.85,
+     "u": 32.301
+    },
+    {
+     "v": 102.046,
+     "u": 32.301
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-03 Oficina Gestión Técnica 3",
+   "pts": [
+    {
+     "v": 1.1,
+     "u": 17.7
+    },
+    {
+     "v": 8.9,
+     "u": 17.7
+    },
+    {
+     "v": 8.9,
+     "u": 38.2
+    },
+    {
+     "v": 1.1,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-04 Coworking 1",
+   "pts": [
+    {
+     "v": 1.1,
+     "u": 1.3
+    },
+    {
+     "v": 17.6,
+     "u": 1.3
+    },
+    {
+     "v": 17.6,
+     "u": 17.7
+    },
+    {
+     "v": 1.1,
+     "u": 17.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-05 Aula de Cómputo 2",
+   "pts": [
+    {
+     "v": 19.3,
+     "u": 1.3
+    },
+    {
+     "v": 33.0,
+     "u": 1.3
+    },
+    {
+     "v": 33.0,
+     "u": 18.7
+    },
+    {
+     "v": 19.3,
+     "u": 18.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-05 Aula de Cómputo 2",
+   "pts": [
+    {
+     "v": 33.0,
+     "u": 1.3
+    },
+    {
+     "v": 36.15,
+     "u": 1.3
+    },
+    {
+     "v": 36.15,
+     "u": 16.5
+    },
+    {
+     "v": 33.0,
+     "u": 16.5
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-6A Aula de Cómputo 3A",
+   "pts": [
+    {
+     "v": 36.15,
+     "u": 1.3
+    },
+    {
+     "v": 41.2,
+     "u": 1.3
+    },
+    {
+     "v": 41.2,
+     "u": 16.5
+    },
+    {
+     "v": 36.15,
+     "u": 16.5
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-6A Aula de Cómputo 3A",
+   "pts": [
+    {
+     "v": 41.2,
+     "u": 1.3
+    },
+    {
+     "v": 49.5,
+     "u": 1.3
+    },
+    {
+     "v": 49.5,
+     "u": 18.7
+    },
+    {
+     "v": 41.2,
+     "u": 18.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-6B Aula de Cómputo 3B",
+   "pts": [
+    {
+     "v": 50.3,
+     "u": 1.3
+    },
+    {
+     "v": 63.4,
+     "u": 1.3
+    },
+    {
+     "v": 63.4,
+     "u": 18.7
+    },
+    {
+     "v": 50.3,
+     "u": 18.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-6B Aula de Cómputo 3B",
+   "pts": [
+    {
+     "v": 63.4,
+     "u": 1.3
+    },
+    {
+     "v": 66.65,
+     "u": 1.3
+    },
+    {
+     "v": 66.65,
+     "u": 16.6
+    },
+    {
+     "v": 63.4,
+     "u": 16.6
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-6C Aula de Cómputo 3C",
+   "pts": [
+    {
+     "v": 66.65,
+     "u": 1.3
+    },
+    {
+     "v": 69.8,
+     "u": 1.3
+    },
+    {
+     "v": 69.8,
+     "u": 16.6
+    },
+    {
+     "v": 66.65,
+     "u": 16.6
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-6C Aula de Cómputo 3C",
+   "pts": [
+    {
+     "v": 69.8,
+     "u": 1.3
+    },
+    {
+     "v": 80.0,
+     "u": 1.3
+    },
+    {
+     "v": 80.0,
+     "u": 18.7
+    },
+    {
+     "v": 69.8,
+     "u": 18.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Cuarto de seguridad",
+   "pts": [
+    {
+     "v": 80.8,
+     "u": 14.6
+    },
+    {
+     "v": 83.0,
+     "u": 14.6
+    },
+    {
+     "v": 83.0,
+     "u": 18.7
+    },
+    {
+     "v": 80.8,
+     "u": 18.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Cuarto eléctrico",
+   "pts": [
+    {
+     "v": 22.5,
+     "u": 23.6
+    },
+    {
+     "v": 27.8,
+     "u": 23.6
+    },
+    {
+     "v": 27.8,
+     "u": 30.2
+    },
+    {
+     "v": 22.5,
+     "u": 30.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Cuarto de cableado",
+   "pts": [
+    {
+     "v": 27.8,
+     "u": 23.6
+    },
+    {
+     "v": 30.6,
+     "u": 23.6
+    },
+    {
+     "v": 30.6,
+     "u": 30.2
+    },
+    {
+     "v": 27.8,
+     "u": 30.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Baño accesible",
+   "pts": [
+    {
+     "v": 30.6,
+     "u": 23.6
+    },
+    {
+     "v": 36.3,
+     "u": 23.6
+    },
+    {
+     "v": 36.3,
+     "u": 30.2
+    },
+    {
+     "v": 30.6,
+     "u": 30.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Baños",
+   "pts": [
+    {
+     "v": 36.3,
+     "u": 23.6
+    },
+    {
+     "v": 46.3,
+     "u": 23.6
+    },
+    {
+     "v": 46.3,
+     "u": 38.2
+    },
+    {
+     "v": 36.3,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-02 Oficina Gestión Técnica 2",
+   "pts": [
+    {
+     "v": 46.3,
+     "u": 23.6
+    },
+    {
+     "v": 55.0,
+     "u": 23.6
+    },
+    {
+     "v": 55.0,
+     "u": 38.2
+    },
+    {
+     "v": 46.3,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-02 Oficina Gestión Técnica 2",
+   "pts": [
+    {
+     "v": 55.0,
+     "u": 25.0
+    },
+    {
+     "v": 60.0,
+     "u": 25.0
+    },
+    {
+     "v": 60.0,
+     "u": 38.2
+    },
+    {
+     "v": 55.0,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-1B Aula de Cómputo 1B",
+   "pts": [
+    {
+     "v": 60.0,
+     "u": 25.45
+    },
+    {
+     "v": 62.7,
+     "u": 25.45
+    },
+    {
+     "v": 62.7,
+     "u": 38.2
+    },
+    {
+     "v": 60.0,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-1B Aula de Cómputo 1B",
+   "pts": [
+    {
+     "v": 62.7,
+     "u": 23.6
+    },
+    {
+     "v": 73.7,
+     "u": 23.6
+    },
+    {
+     "v": 73.7,
+     "u": 38.2
+    },
+    {
+     "v": 62.7,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-1A Aula de Cómputo 1A",
+   "pts": [
+    {
+     "v": 73.7,
+     "u": 23.6
+    },
+    {
+     "v": 80.0,
+     "u": 23.6
+    },
+    {
+     "v": 80.0,
+     "u": 38.2
+    },
+    {
+     "v": 73.7,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-1A Aula de Cómputo 1A",
+   "pts": [
+    {
+     "v": 80.0,
+     "u": 24.7
+    },
+    {
+     "v": 83.2,
+     "u": 24.7
+    },
+    {
+     "v": 83.2,
+     "u": 38.2
+    },
+    {
+     "v": 80.0,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "P9-1A Aula de Cómputo 1A",
+   "pts": [
+    {
+     "v": 83.2,
+     "u": 23.6
+    },
+    {
+     "v": 86.2,
+     "u": 23.6
+    },
+    {
+     "v": 86.2,
+     "u": 38.2
+    },
+    {
+     "v": 83.2,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 4.2,
+   "nombre": "Lobby de ascensores",
+   "pts": [
+    {
+     "v": 93.0,
+     "u": 19.0
+    },
+    {
+     "v": 96.74,
+     "u": 19.0
+    },
+    {
+     "v": 104.399,
+     "u": 38.2
+    },
+    {
+     "v": 93.0,
+     "u": 38.2
+    }
+   ]
+  }
+ ],
+ "muros": [
+  {
+   "a": [
+    1.1,
+    1.3
+   ],
+   "b": [
+    89.68,
+    1.3
+   ],
+   "tipo": "fachada",
+   "g": 0.35,
+   "nombre": "Fachada norte"
+  },
+  {
+   "a": [
+    1.1,
+    1.3
+   ],
+   "b": [
+    1.1,
+    38.2
+   ],
+   "tipo": "fachada",
+   "g": 0.35,
+   "nombre": "Fachada del extremo"
+  },
+  {
+   "a": [
+    89.68,
+    1.3
+   ],
+   "b": [
+    104.399,
+    38.2
+   ],
+   "tipo": "fachada",
+   "g": 0.35,
+   "nombre": "Fachada inclinada",
+   "lamas": true
+  },
+  {
+   "a": [
+    1.1,
+    38.2
+   ],
+   "b": [
+    104.399,
+    38.2
+   ],
+   "tipo": "fachada",
+   "g": 0.35,
+   "nombre": "Fachada sur"
+  },
+  {
+   "a": [
+    1.1,
+    17.7
+   ],
+   "b": [
+    8.9,
+    17.7
+   ],
+   "tipo": "blanco",
+   "g": 0.3,
+   "nombre": "Muro P9-03 | P9-04"
+  },
+  {
+   "a": [
+    8.9,
+    17.7
+   ],
+   "b": [
+    10.4,
+    17.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente P9-04 Coworking 1"
+  },
+  {
+   "a": [
+    10.4,
+    17.7
+   ],
+   "b": [
+    13.6,
+    17.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente P9-04 Coworking 1"
+  },
+  {
+   "a": [
+    13.6,
+    17.7
+   ],
+   "b": [
+    14.1,
+    17.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente P9-04 Coworking 1"
+  },
+  {
+   "a": [
+    16.7,
+    17.7
+   ],
+   "b": [
+    17.6,
+    17.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente P9-04 Coworking 1"
+  },
+  {
+   "a": [
+    19.3,
+    18.7
+   ],
+   "b": [
+    32.2,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente P9-05 Aula de Cómputo 2"
+  },
+  {
+   "a": [
+    33.0,
+    16.5
+   ],
+   "b": [
+    33.1,
+    16.5
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Nicho P9-05 | P9-6A"
+  },
+  {
+   "a": [
+    35.7,
+    16.5
+   ],
+   "b": [
+    37.01,
+    16.5
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Nicho P9-05 | P9-6A"
+  },
+  {
+   "a": [
+    36.15,
+    1.3
+   ],
+   "b": [
+    36.15,
+    16.5
+   ],
+   "tipo": "blanco",
+   "g": 0.3,
+   "nombre": "Muro P9-05 | P9-6A"
+  },
+  {
+   "a": [
+    41.2,
+    18.7
+   ],
+   "b": [
+    49.5,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente P9-6A Aula de Cómputo 3A"
+  },
+  {
+   "a": [
+    50.3,
+    18.7
+   ],
+   "b": [
+    61.8,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente P9-6B Aula de Cómputo 3B"
+  },
+  {
+   "a": [
+    63.4,
+    16.6
+   ],
+   "b": [
+    63.55,
+    16.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Nicho P9-6B | P9-6C"
+  },
+  {
+   "a": [
+    66.25,
+    16.6
+   ],
+   "b": [
+    67.25,
+    16.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Nicho P9-6B | P9-6C"
+  },
+  {
+   "a": [
+    69.55,
+    16.6
+   ],
+   "b": [
+    69.8,
+    16.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Nicho P9-6B | P9-6C"
+  },
+  {
+   "a": [
+    66.65,
+    1.3
+   ],
+   "b": [
+    66.65,
+    16.6
+   ],
+   "tipo": "blanco",
+   "g": 0.3,
+   "nombre": "Muro P9-6B | P9-6C"
+  },
+  {
+   "a": [
+    71.2,
+    18.7
+   ],
+   "b": [
+    80.0,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente P9-6C Aula de Cómputo 3C"
+  },
+  {
+   "a": [
+    80.8,
+    14.6
+   ],
+   "b": [
+    83.0,
+    14.6
+   ],
+   "tipo": "concreto",
+   "g": 0.25,
+   "nombre": "Fondo del cuarto de seguridad"
+  },
+  {
+   "a": [
+    80.8,
+    18.7
+   ],
+   "b": [
+    81.2,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Cuarto de seguridad"
+  },
+  {
+   "a": [
+    82.6,
+    18.7
+   ],
+   "b": [
+    83.0,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Cuarto de seguridad"
+  },
+  {
+   "a": [
+    83.0,
+    1.3
+   ],
+   "b": [
+    83.0,
+    19.0
+   ],
+   "tipo": "mostaza",
+   "g": 0.3,
+   "nombre": "Caja de la escalera principal (norte, muro mostaza)"
+  },
+  {
+   "a": [
+    89.0,
+    15.5
+   ],
+   "b": [
+    95.344,
+    15.5
+   ],
+   "tipo": "concreto",
+   "g": 0.25,
+   "nombre": "Cierre junto a la escalera principal"
+  },
+  {
+   "a": [
+    83.0,
+    19.0
+   ],
+   "b": [
+    84.0,
+    19.0
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Caja de la escalera principal"
+  },
+  {
+   "a": [
+    86.0,
+    19.0
+   ],
+   "b": [
+    92.6,
+    19.0
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Caja de la escalera principal"
+  },
+  {
+   "a": [
+    92.6,
+    19.0
+   ],
+   "b": [
+    96.74,
+    19.0
+   ],
+   "tipo": "vidrio",
+   "g": 0.2,
+   "nombre": "Vidrio de la escalera hacia el lobby",
+   "lamas": true
+  },
+  {
+   "a": [
+    8.9,
+    17.7
+   ],
+   "b": [
+    8.9,
+    19.55
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente P9-03"
+  },
+  {
+   "a": [
+    8.9,
+    22.0
+   ],
+   "b": [
+    8.9,
+    28.3
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente P9-03 Oficina Gestión Técnica 3"
+  },
+  {
+   "a": [
+    17.2,
+    23.6
+   ],
+   "b": [
+    22.5,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Muro de lockers"
+  },
+  {
+   "a": [
+    22.5,
+    23.6
+   ],
+   "b": [
+    24.4,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente de cuartos técnicos"
+  },
+  {
+   "a": [
+    25.9,
+    23.6
+   ],
+   "b": [
+    28.5,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente de cuartos técnicos"
+  },
+  {
+   "a": [
+    29.9,
+    23.6
+   ],
+   "b": [
+    31.65,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente de cuartos técnicos"
+  },
+  {
+   "a": [
+    33.65,
+    23.6
+   ],
+   "b": [
+    36.3,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente de cuartos técnicos"
+  },
+  {
+   "a": [
+    22.5,
+    23.6
+   ],
+   "b": [
+    22.5,
+    30.2
+   ],
+   "tipo": "concreto",
+   "g": 0.25,
+   "nombre": "Muro de cuartos técnicos"
+  },
+  {
+   "a": [
+    27.8,
+    23.6
+   ],
+   "b": [
+    27.8,
+    30.2
+   ],
+   "tipo": "concreto",
+   "g": 0.25,
+   "nombre": "Muro de cuartos técnicos"
+  },
+  {
+   "a": [
+    30.6,
+    23.6
+   ],
+   "b": [
+    30.6,
+    30.2
+   ],
+   "tipo": "concreto",
+   "g": 0.25,
+   "nombre": "Muro de cuartos técnicos"
+  },
+  {
+   "a": [
+    21.91,
+    30.2
+   ],
+   "b": [
+    36.3,
+    30.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Fondo de cuartos | escalera"
+  },
+  {
+   "a": [
+    23.9,
+    30.2
+   ],
+   "b": [
+    23.9,
+    32.3
+   ],
+   "tipo": "concreto",
+   "g": 0.2,
+   "nombre": "Cierre sobre el tramo oculto"
+  },
+  {
+   "a": [
+    36.3,
+    23.6
+   ],
+   "b": [
+    36.3,
+    38.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Muro escalera | baños"
+  },
+  {
+   "a": [
+    36.3,
+    23.6
+   ],
+   "b": [
+    36.8,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Baños"
+  },
+  {
+   "a": [
+    38.6,
+    23.6
+   ],
+   "b": [
+    46.3,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Baños"
+  },
+  {
+   "a": [
+    38.8,
+    23.6
+   ],
+   "b": [
+    38.8,
+    25.5
+   ],
+   "tipo": "blanco",
+   "g": 0.2,
+   "nombre": "Vestíbulo de baños"
+  },
+  {
+   "a": [
+    38.8,
+    27.3
+   ],
+   "b": [
+    38.8,
+    32.0
+   ],
+   "tipo": "blanco",
+   "g": 0.2,
+   "nombre": "Vestíbulo de baños"
+  },
+  {
+   "a": [
+    38.8,
+    33.8
+   ],
+   "b": [
+    38.8,
+    38.2
+   ],
+   "tipo": "blanco",
+   "g": 0.2,
+   "nombre": "Vestíbulo de baños"
+  },
+  {
+   "a": [
+    38.8,
+    30.8
+   ],
+   "b": [
+    46.3,
+    30.8
+   ],
+   "tipo": "blanco",
+   "g": 0.2,
+   "nombre": "Baño mujeres | Baño hombres"
+  },
+  {
+   "a": [
+    46.3,
+    23.6
+   ],
+   "b": [
+    46.3,
+    38.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Muro Baños | P9-02"
+  },
+  {
+   "a": [
+    46.3,
+    23.6
+   ],
+   "b": [
+    55.0,
+    23.6
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente P9-02 Oficina Gestión Técnica 2"
+  },
+  {
+   "a": [
+    56.7,
+    25.0
+   ],
+   "b": [
+    56.95,
+    25.0
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Nicho P9-02"
+  },
+  {
+   "a": [
+    59.35,
+    25.0
+   ],
+   "b": [
+    60.0,
+    25.0
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Nicho P9-02"
+  },
+  {
+   "a": [
+    60.0,
+    25.0
+   ],
+   "b": [
+    60.0,
+    38.2
+   ],
+   "tipo": "blanco",
+   "g": 0.3,
+   "nombre": "Muro P9-02 | P9-1B"
+  },
+  {
+   "a": [
+    60.0,
+    25.45
+   ],
+   "b": [
+    60.25,
+    25.45
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Nicho P9-1B"
+  },
+  {
+   "a": [
+    62.55,
+    25.45
+   ],
+   "b": [
+    62.7,
+    25.45
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Nicho P9-1B"
+  },
+  {
+   "a": [
+    64.2,
+    23.6
+   ],
+   "b": [
+    73.7,
+    23.6
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente P9-1B Aula de Cómputo 1B"
+  },
+  {
+   "a": [
+    73.7,
+    23.6
+   ],
+   "b": [
+    73.7,
+    38.2
+   ],
+   "tipo": "blanco",
+   "g": 0.3,
+   "nombre": "Muro P9-1B | P9-1A"
+  },
+  {
+   "a": [
+    73.7,
+    23.6
+   ],
+   "b": [
+    78.5,
+    23.6
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente P9-1A Aula de Cómputo 1A"
+  },
+  {
+   "a": [
+    80.0,
+    24.7
+   ],
+   "b": [
+    80.35,
+    24.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Nicho P9-1A"
+  },
+  {
+   "a": [
+    82.85,
+    24.7
+   ],
+   "b": [
+    83.2,
+    24.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Nicho P9-1A"
+  },
+  {
+   "a": [
+    83.2,
+    23.6
+   ],
+   "b": [
+    83.2,
+    24.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Nicho P9-1A"
+  },
+  {
+   "a": [
+    83.2,
+    23.6
+   ],
+   "b": [
+    86.2,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente P9-1A"
+  },
+  {
+   "a": [
+    93.0,
+    23.6
+   ],
+   "b": [
+    93.0,
+    38.2
+   ],
+   "tipo": "granito",
+   "g": 0.12,
+   "nombre": "Granito del lobby"
+  }
+ ],
+ "bloques": [
+  {
+   "v0": 17.6,
+   "v1": 19.3,
+   "u0": 1.3,
+   "u1": 18.7,
+   "tipo": "concreto",
+   "nombre": "Ducto P9-04 | P9-05",
+   "alto": 5.6
+  },
+  {
+   "v0": 32.2,
+   "v1": 33.0,
+   "u0": 16.5,
+   "u1": 18.7,
+   "tipo": "madera",
+   "nombre": "Portal P9-05",
+   "alto": 5.6
+  },
+  {
+   "v0": 39.41,
+   "v1": 41.2,
+   "u0": 16.5,
+   "u1": 18.7,
+   "tipo": "madera",
+   "nombre": "Portal P9-6A",
+   "alto": 5.6
+  },
+  {
+   "v0": 49.5,
+   "v1": 50.3,
+   "u0": 1.3,
+   "u1": 18.7,
+   "tipo": "concreto",
+   "nombre": "Muro P9-6A | P9-6B",
+   "alto": 5.6
+  },
+  {
+   "v0": 61.8,
+   "v1": 63.4,
+   "u0": 16.6,
+   "u1": 18.7,
+   "tipo": "madera",
+   "nombre": "Portal P9-6B",
+   "alto": 5.6
+  },
+  {
+   "v0": 69.8,
+   "v1": 71.2,
+   "u0": 16.6,
+   "u1": 18.7,
+   "tipo": "madera",
+   "nombre": "Portal P9-6C",
+   "alto": 5.6
+  },
+  {
+   "v0": 80.0,
+   "v1": 80.8,
+   "u0": 1.3,
+   "u1": 18.7,
+   "tipo": "concreto",
+   "nombre": "Muro P9-6C | Seguridad",
+   "alto": 5.6
+  },
+  {
+   "v0": 80.8,
+   "v1": 83.0,
+   "u0": 1.3,
+   "u1": 14.6,
+   "tipo": "concreto",
+   "nombre": "Ducto junto al cuarto de seguridad",
+   "alto": 5.6
+  },
+  {
+   "v0": 86.55,
+   "v1": 89.0,
+   "u0": 8.0,
+   "u1": 15.5,
+   "tipo": "concreto",
+   "nombre": "Columna del tramo oculto (escalera principal)",
+   "alto": 5.6
+  },
+  {
+   "v0": 83.15,
+   "v1": 89.0,
+   "u0": 1.45,
+   "u1": 8.0,
+   "tipo": "concreto",
+   "nombre": "Macizo bajo el rellano (escalera principal)",
+   "alto": 3.0
+  },
+  {
+   "v0": 8.9,
+   "v1": 19.7,
+   "u0": 28.3,
+   "u1": 38.2,
+   "tipo": "negro_brillante",
+   "nombre": "Ducto (caja negra)",
+   "alto": 5.6
+  },
+  {
+   "v0": 23.95,
+   "v1": 35.8,
+   "u0": 30.35,
+   "u1": 35.0,
+   "tipo": "concreto",
+   "nombre": "Macizo bajo el tramo oculto",
+   "alto": 3.3
+  },
+  {
+   "v0": 31.6,
+   "v1": 35.8,
+   "u0": 35.0,
+   "u1": 38.05,
+   "tipo": "concreto",
+   "nombre": "Macizo bajo el rellano",
+   "alto": 3.3
+  },
+  {
+   "v0": 55.0,
+   "v1": 56.7,
+   "u0": 23.6,
+   "u1": 25.0,
+   "tipo": "madera",
+   "nombre": "Portal P9-02",
+   "alto": 5.6
+  },
+  {
+   "v0": 62.7,
+   "v1": 64.2,
+   "u0": 23.6,
+   "u1": 25.45,
+   "tipo": "madera",
+   "nombre": "Portal P9-1B",
+   "alto": 5.6
+  },
+  {
+   "v0": 78.5,
+   "v1": 80.0,
+   "u0": 23.6,
+   "u1": 24.7,
+   "tipo": "madera",
+   "nombre": "Portal P9-1A",
+   "alto": 5.6
+  },
+  {
+   "v0": 86.2,
+   "v1": 93.0,
+   "u0": 23.6,
+   "u1": 38.2,
+   "tipo": "concreto",
+   "nombre": "Núcleo de ascensores",
+   "alto": 5.6
+  }
+ ],
+ "escaleras": [],
+ "ascensores": [
+  {
+   "v": 93.07,
+   "u": 26.6,
+   "ancho": 2.4
+  },
+  {
+   "v": 93.07,
+   "u": 31.0,
+   "ancho": 2.4
+  },
+  {
+   "v": 93.07,
+   "u": 35.4,
+   "ancho": 2.4
+  }
+ ],
+ "torniquetes": [],
+ "bandejas": [
+  {
+   "a": [
+    9.4,
+    20.25
+   ],
+   "b": [
+    92.5,
+    20.25
+   ],
+   "y": 4.9,
+   "ancho": 0.6
+  },
+  {
+   "a": [
+    9.4,
+    22.15
+   ],
+   "b": [
+    92.5,
+    22.15
+   ],
+   "y": 5.05,
+   "ancho": 0.35
+  }
+ ],
+ "muebles": [],
+ "rotulos": [
+  {
+   "texto": "{n}",
+   "v": 93.08,
+   "u": 33.2,
+   "h": 2.3,
+   "mira": "+v",
+   "tam": 9.0,
+   "color": "8C7444"
+  }
+ ],
+ "luces": [
+  {
+   "a": [
+    9.4,
+    19.25
+   ],
+   "b": [
+    92.0,
+    19.25
+   ],
+   "y": 5.5
+  },
+  {
+   "a": [
+    9.4,
+    23.05
+   ],
+   "b": [
+    86.0,
+    23.05
+   ],
+   "y": 5.5
+  },
+  {
+   "a": [
+    9.4,
+    25.5
+   ],
+   "b": [
+    17.0,
+    25.5
+   ],
+   "y": 5.5
+  },
+  {
+   "a": [
+    94.85,
+    25.0
+   ],
+   "b": [
+    95.15,
+    25.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    94.85,
+    29.0
+   ],
+   "b": [
+    95.15,
+    29.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    94.85,
+    33.0
+   ],
+   "b": [
+    95.15,
+    33.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    94.85,
+    37.0
+   ],
+   "b": [
+    95.15,
+    37.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    97.35,
+    25.0
+   ],
+   "b": [
+    97.65,
+    25.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    97.35,
+    29.0
+   ],
+   "b": [
+    97.65,
+    29.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    97.35,
+    33.0
+   ],
+   "b": [
+    97.65,
+    33.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    97.35,
+    37.0
+   ],
+   "b": [
+    97.65,
+    37.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    99.85,
+    33.0
+   ],
+   "b": [
+    100.15,
+    33.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    99.85,
+    37.0
+   ],
+   "b": [
+    100.15,
+    37.0
+   ],
+   "y": 4.19
+  }
+ ],
+ "lamparas": [
+  {
+   "v": 11,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 19,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 27,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 35,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 43,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 51,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 59,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 67,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 75,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 83,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 91,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 13.0,
+   "u": 25.5,
+   "y": 4.8,
+   "rango": 11.0,
+   "intensidad": 1.3
+  },
+  {
+   "v": 21.0,
+   "u": 27.0,
+   "y": 4.8,
+   "rango": 9.0,
+   "intensidad": 1.2
+  },
+  {
+   "v": 21.8,
+   "u": 34.0,
+   "y": 4.8,
+   "rango": 9.0,
+   "intensidad": 1.2
+  },
+  {
+   "v": 96.0,
+   "u": 27.0,
+   "y": 3.9,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 99.5,
+   "u": 33.5,
+   "y": 3.9,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 95.5,
+   "u": 21.0,
+   "y": 3.9,
+   "rango": 13.0,
+   "intensidad": 1.6
+  }
+ ],
+ "puertasCerradas": [
+  {
+   "v": 58.15,
+   "u": 24.999,
+   "ancho": 2.4,
+   "eje": "v",
+   "mira": "-u",
+   "texto": "CERRADO"
+  },
+  {
+   "v": 8.901,
+   "u": 20.774,
+   "ancho": 2.45,
+   "eje": "u",
+   "mira": "+v",
+   "texto": "CERRADO"
+  },
+  {
+   "v": 15.404,
+   "u": 17.701,
+   "ancho": 2.6,
+   "eje": "v",
+   "mira": "+u",
+   "texto": "CERRADO"
+  },
+  {
+   "v": 34.4,
+   "u": 16.498,
+   "ancho": 2.6,
+   "eje": "v",
+   "mira": "+u",
+   "texto": "CERRADO"
+  },
+  {
+   "v": 38.205,
+   "u": 16.498,
+   "ancho": 2.4,
+   "eje": "v",
+   "mira": "+u",
+   "texto": "CERRADO"
+  },
+  {
+   "v": 64.898,
+   "u": 16.6,
+   "ancho": 2.7,
+   "eje": "v",
+   "mira": "+u",
+   "texto": "CERRADO"
+  },
+  {
+   "v": 68.405,
+   "u": 16.6,
+   "ancho": 2.3,
+   "eje": "v",
+   "mira": "+u",
+   "texto": "CERRADO"
+  },
+  {
+   "v": 61.402,
+   "u": 25.451,
+   "ancho": 2.3,
+   "eje": "v",
+   "mira": "-u",
+   "texto": "CERRADO"
+  },
+  {
+   "v": 81.602,
+   "u": 24.7,
+   "ancho": 2.5,
+   "eje": "v",
+   "mira": "-u",
+   "texto": "CERRADO"
+  },
+  {
+   "v": 81.901,
+   "u": 18.699,
+   "ancho": 1.4,
+   "eje": "v",
+   "mira": "+u",
+   "texto": "CERRADO"
+  },
+  {
+   "v": 25.147,
+   "u": 23.6,
+   "ancho": 1.5,
+   "eje": "v",
+   "mira": "-u",
+   "texto": "CERRADO"
+  },
+  {
+   "v": 29.198,
+   "u": 23.6,
+   "ancho": 1.4,
+   "eje": "v",
+   "mira": "-u",
+   "texto": "CERRADO"
+  },
+  {
+   "v": 32.652,
+   "u": 23.6,
+   "ancho": 2.0,
+   "eje": "v",
+   "mira": "-u",
+   "texto": "CERRADO"
+  },
+  {
+   "v": 37.704,
+   "u": 23.6,
+   "ancho": 1.8,
+   "eje": "v",
+   "mira": "-u",
+   "texto": "CERRADO"
+  }
+ ]
+}

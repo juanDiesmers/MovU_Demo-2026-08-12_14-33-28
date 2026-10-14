@@ -56,9 +56,16 @@ public class StairsManager : MonoBehaviour
     /// </summary>
     public static int Triangulos(int peldanos)
     {
-        return peldanos * 2 + (peldanos - 1) * 2 + (6 + 2 + 2 * 4) * FormasMovU.TriangulosDeCaja +
-               2 * FormasMovU.TriangulosDePlaca + 6 * FormasMovU.TriangulosDeCaja;      // la caja
+        return peldanos * 2 + (peldanos - 1) * 2 + (6 + 2 + 2 * 4 + 2) * FormasMovU.TriangulosDeCaja +
+               2 * FormasMovU.TriangulosDePlaca + 6 * FormasMovU.TriangulosDeCaja +     // la caja
+               TriangulosDeLaPrincipal;
     }
+
+    /// <summary>
+    /// La escalera principal (16 peldaños): escalones, 8 cajas de parapetos, zanca,
+    /// pasamanos y rellano, 2 puertas de 4 cajas y unos 37 cables de 8 triángulos.
+    /// </summary>
+    public const int TriangulosDeLaPrincipal = 16 * 2 + 15 * 2 + (8 + 2 * 4) * FormasMovU.TriangulosDeCaja + 37 * 8;
 
     private const float AlcanceDePuerta = 1.9f;
     private const float AltoDePuerta = 2.1f;
@@ -94,6 +101,12 @@ public class StairsManager : MonoBehaviour
     private Image velo;
     private string avisoActual = "";
     private int puertaActual;             // 0 ninguna, +1 la del rellano (subir), -1 la del hall (bajar)
+    private int escaleraActual;           // 0 la de emergencia, 1 la principal
+
+    // Escalera principal (la roja del lobby): marco local que mira hacia donde se sube.
+    private EscaleraPrincipalDef principal;
+    private bool principalLista;
+    private Vector3 pPie, pAdelante, pDerecha;   // XZ de mundo; la Y se pone por piso
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ReiniciarEstaticos()
@@ -148,6 +161,24 @@ public class StairsManager : MonoBehaviour
     {
         return new Vector3(xPuerta, pisos.AlturaDelSuelo(piso) + alturaRellano, zRellano + 0.95f);
     }
+
+    /// <summary>Un punto del marco de la escalera principal (x a la derecha, z hacia arriba del tramo), en el piso indicado.</summary>
+    public Vector3 Principal(int piso, float x, float z, float h)
+    {
+        Vector3 p = pPie + pDerecha * x + pAdelante * z;
+        p.y = pisos.AlturaDelSuelo(piso) + h;
+        return p;
+    }
+
+    /// <summary>Frente a la puerta de abajo de la escalera principal (la del hall).</summary>
+    public Vector3 FrenteDelHallPrincipal(int piso) => Principal(piso, principal.columnaX, -0.95f, 0f);
+
+    /// <summary>Frente a la puerta del rellano de la escalera principal.</summary>
+    public Vector3 FrenteDelRellanoPrincipal(int piso) =>
+        Principal(piso, principal.columnaX, principal.largo + 0.95f, principal.alturaDelRellano);
+
+    /// <summary>True si la escalera principal también es funcional en este juego.</summary>
+    public bool HayPrincipal => principalLista;
 
     /// <summary>True si esos pies están sobre el tramo o el rellano (fuera del NavMesh).</summary>
     public bool EstaEnLaEscalera(Vector3 pies, int piso)
@@ -284,76 +315,104 @@ public class StairsManager : MonoBehaviour
 
         for (int i = 0; i < pisos.CantidadDePisos; i++)
         {
-            // La escalera es la de la planta del piso 9: el piso 3 tiene las suyas.
-            if (!pisos.EsPlantaBase(i)) continue;
+            // La escalera va en los pisos con la planta del 9, la genérica o la del 13 (el 3 tiene las suyas).
+            if (!pisos.TieneEscalera(i)) continue;
 
             Transform grupo = ContenidoLoader.Grupo(pisos.ContenidoDelPiso(i), NombreDelGrupo);
             if (grupo == null) continue;
 
             float suelo = pisos.AlturaDelSuelo(i);
-            float altoLibre = alturaDelTecho;       // del suelo al cielo raso del piso
+            // Del suelo al techo de ESTE piso: el 13 tiene doble altura y su techo ya
+            // queda por encima de la caja, que entonces no hace falta.
+            float altoLibre = FormasMovU.AlturaLibre(pisos.Piso(i), suelo, alturaDelTecho);
+            float cajaDelPiso = Mathf.Max(alturaDeLaCaja, altoLibre);
 
-            CrearCaja(grupo, huecos, suelo, alturaDelTecho, alturaDeLaCaja, tapa, triangulosDeLaTapa, muro, i);
+            // Con la planta del 9 en JSON la escalera se viste como la de verdad: muros de
+            // concreto, peldaños grises y zancas y barandas de acero rojo.
+            Transform piso = pisos.Piso(i);
+            Material muroP = FormasMovU.DelPiso(piso, "Concreto") ?? muro;
+            Material peldano = FormasMovU.DelPiso(piso, "Escalon") ?? muro;
+            Material acero = FormasMovU.DelPiso(piso, "Rojo");
+
+            if (altoLibre < alturaDeLaCaja - 0.05f)
+                CrearCaja(grupo, huecos, suelo, altoLibre, alturaDeLaCaja, tapa, triangulosDeLaTapa, muroP, i);
 
             // --- Tramo visible: escalones + rampa de colisión ---------------
             var tramo = new GameObject("Tramo");
             tramo.transform.SetParent(grupo, false);
             tramo.transform.position = new Vector3(x0, suelo, zPie);
             tramo.AddComponent<MeshFilter>().sharedMesh = escalones;
-            FormasMovU.Vestir(tramo.AddComponent<MeshRenderer>(), muro);
+            FormasMovU.Vestir(tramo.AddComponent<MeshRenderer>(), peldano);
             FormasMovU.Contar(i, triangulosDeEscalones);
 
             CrearRampa(grupo, (x0 + x1) * 0.5f, x1 - x0 + 0.5f, suelo, zPie - 0.2f, zCima, alturaRellano);
 
             // Zancas: el zócalo inclinado a cada lado. Además de rematar el tramo,
             // tapan las puntas de los escalones del modelo que asoman junto al muro.
-            Material zocalo = FormasMovU.Color(new Color32(72, 80, 92, 255));
+            Material zocalo = acero ?? FormasMovU.Color(new Color32(72, 80, 92, 255));
             CrearZanca(grupo, "Zanca_izq", x0 + 0.09f, suelo, zPie, zCima, alturaRellano, zocalo, i);
+            if (acero != null)
+            {
+                // Parapeto macizo rojo con pasamanos, como el de la foto de la escalera.
+                float pl = zCima - zPie;
+                float pa = Mathf.Atan2(alturaRellano, pl) * Mathf.Rad2Deg;
+                float plargo = Mathf.Sqrt(pl * pl + alturaRellano * alturaRellano);
+                GameObject par = FormasMovU.Caja(grupo, "Parapeto",
+                    new Vector3(x0 + 0.06f, suelo + alturaRellano * 0.5f + 0.55f, (zPie + zCima) * 0.5f),
+                    new Vector3(0.06f, 1.1f, plargo), acero, i);
+                par.transform.rotation = Quaternion.Euler(-pa, 0f, 0f);
+                GameObject pas = FormasMovU.Caja(grupo, "Pasamanos",
+                    new Vector3(x0 + 0.06f, suelo + alturaRellano * 0.5f + 1.12f, (zPie + zCima) * 0.5f),
+                    new Vector3(0.1f, 0.08f, plargo), acero, i);
+                pas.transform.rotation = Quaternion.Euler(-pa, 0f, 0f);
+            }
             CrearZanca(grupo, "Zanca_der", x1 - 0.09f, suelo, zPie, zCima, alturaRellano, zocalo, i);
 
             // --- Rellano: la losa y su prolongación sobre la cima del tramo --
             const float canto = 0.22f;
-            Losa(grupo, "Rellano", rx0, rx1, rz0, rz1, suelo + alturaRellano, canto, muro, i);
+            Losa(grupo, "Rellano", rx0, rx1, rz0, rz1, suelo + alturaRellano, canto, peldano, i);
             if (rz0 - zCima > 0.05f)
             {
-                Losa(grupo, "Rellano_cima", x0 - 0.4f, x1, zCima, rz0, suelo + alturaRellano, canto, muro, i);
+                Losa(grupo, "Rellano_cima", x0 - 0.4f, x1, zCima, rz0, suelo + alturaRellano, canto, peldano, i);
             }
 
             // --- Machón: el muro macizo entre los dos tramos, hasta el techo de
             // la caja. Tapa el muro divisor del modelo (irregular) y el tramo oculto.
-            float altoZanca = alturaDeLaCaja;
+            float altoZanca = cajaDelPiso;
             FormasMovU.Caja(grupo, "Machon",
                             new Vector3(x0 - 0.2f, suelo + altoZanca * 0.5f, (zPie + rz0) * 0.5f),
-                            new Vector3(0.42f, altoZanca, rz0 - zPie), muro, i, true);
+                            new Vector3(0.42f, altoZanca, rz0 - zPie), muroP, i, true);
 
             // --- Tabiques del tramo oculto ----------------------------------
             // En el hall, de suelo a techo.
             FormasMovU.Caja(grupo, "Tabique_hall",
                             new Vector3((xOculto + x0) * 0.5f, suelo + altoLibre * 0.5f, zHall + 0.02f),
-                            new Vector3(x0 - xOculto, altoLibre, 0.14f), muro, i, true);
+                            new Vector3(x0 - xOculto, altoLibre, 0.14f), muroP, i, true);
             // En el rellano, del rellano al techo de la caja, y cerrando también el borde abierto.
-            float altoArriba = alturaDeLaCaja - alturaRellano;
+            float altoArriba = cajaDelPiso - alturaRellano;
             if (altoArriba > 0.2f)
             {
                 FormasMovU.Caja(grupo, "Tabique_rellano",
                                 new Vector3((rx0 + x0) * 0.5f, suelo + alturaRellano + altoArriba * 0.5f, zRellano - 0.02f),
-                                new Vector3(x0 - rx0, altoArriba, 0.14f), muro, i, true);
+                                new Vector3(x0 - rx0, altoArriba, 0.14f), muroP, i, true);
             }
 
             // --- Baranda del borde abierto del rellano ----------------------
             FormasMovU.Caja(grupo, "Baranda",
                             new Vector3(rx0 + 0.05f, suelo + alturaRellano + 0.55f, (rz0 + rz1) * 0.5f),
-                            new Vector3(0.10f, 1.10f, rz1 - rz0), muro, i, true);
+                            new Vector3(0.10f, 1.10f, rz1 - rz0), acero ?? muro, i, true);
 
             // --- Las dos puertas --------------------------------------------
             bool haySubida = pisos.EscaleraConecta(i, i + 1);
             bool hayBajada = pisos.EscaleraConecta(i, i - 1);
 
             CrearPuerta(grupo, "Puerta_bajar", new Vector3(xPuerta, suelo, zHall - 0.06f), 180f,
-                        hayBajada ? $"BAJAR · Piso {FloorManager.NumeroVisible(i - 1)}" : "SIN SALIDA",
+                        hayBajada ? $"BAJAR · Piso {FloorManager.NumeroVisible(i - 1)}"
+                                  : (i > 0 ? "CERRADO · USA EL ASCENSOR" : "SIN SALIDA"),
                         hayBajada, i);
             CrearPuerta(grupo, "Puerta_subir", new Vector3(xPuerta, suelo + alturaRellano, zRellano + 0.06f), 0f,
-                        haySubida ? $"SUBIR · Piso {FloorManager.NumeroVisible(i + 1)}" : "AZOTEA · CERRADO",
+                        haySubida ? $"SUBIR · Piso {FloorManager.NumeroVisible(i + 1)}"
+                                  : (i + 1 < pisos.CantidadDePisos ? "CERRADO · USA EL ASCENSOR" : "AZOTEA · CERRADO"),
                         haySubida, i);
 
             // Número de piso bien visible al pie de la escalera.
@@ -362,12 +421,178 @@ public class StairsManager : MonoBehaviour
                     new Color(0.10f, 0.12f, 0.16f));
         }
 
+        ConstruirPrincipal(datos != null ? datos.escaleraPrincipal : null, plano, muro, alturaDelTecho);
+
         CrearVelo();
         lista = true;
 
         Debug.Log($"[Escalera] Construida en {pisos.CantidadDePisos} pisos: {peldanos} peldaños de " +
                   $"{alturaRellano / peldanos * 100f:F0} cm hasta el rellano a {alturaRellano:F2} m. " +
                   $"Recorrido {largoDelRecorrido:F1} m por piso.");
+    }
+
+    // ------------------------------------------------------------------
+    // Escalera principal (la roja del lobby, como en la foto del 14 oct 2026)
+    // ------------------------------------------------------------------
+    /// <summary>
+    /// Arma la escalera principal en cada piso con escalera funcional: peldaños
+    /// grises, parapeto macizo rojo con pasamanos, cortina de cables de acero del
+    /// suelo al techo, muro mostaza, rellano junto a las ventanas y las dos puertas
+    /// (la del rellano sube, la de abajo baja), con la misma lógica que la de emergencia.
+    /// La columna del tramo oculto y los macizos los pone la planta de cada piso.
+    /// </summary>
+    private void ConstruirPrincipal(EscaleraPrincipalDef def, PlanoDePlanta plano, Material muro, float alturaDelTecho)
+    {
+        principal = def;
+        principalLista = false;
+        if (def == null || !def.usar || def.largo < 2f || def.ancho < 0.8f) return;
+
+        Vector3 pie = plano.AMundo(def.pieU, def.pieV, 0f);
+        Quaternion giro = Quaternion.Euler(0f, def.rumbo, 0f);
+        pPie = new Vector3(pie.x, 0f, pie.z);
+        pAdelante = giro * Vector3.forward;
+        pDerecha = giro * Vector3.right;
+
+        float alto = def.alturaDelRellano;
+        int peldanos = Mathf.Clamp(def.peldanos, 6, 40);
+        Mesh escalones = FormasMovU.Escalones(peldanos, def.ancho, def.largo, alto, out int triEscalones);
+        float angulo = Mathf.Atan2(alto, def.largo) * Mathf.Rad2Deg;
+        float largoInclinado = Mathf.Sqrt(def.largo * def.largo + alto * alto);
+        Quaternion inclinado = Quaternion.Euler(-angulo, 0f, 0f);
+        var mallasDeCables = new Dictionary<int, Mesh>();
+
+        Material rojoPorDefecto = FormasMovU.Color(new Color32(112, 26, 32, 255));
+        Material cable = FormasMovU.Color(new Color32(176, 180, 186, 255));
+        int construidos = 0;
+
+        for (int i = 0; i < pisos.CantidadDePisos; i++)
+        {
+            if (!pisos.TieneEscalera(i)) continue;
+            Transform grupo = ContenidoLoader.Grupo(pisos.ContenidoDelPiso(i), "Escalera principal (JSON)");
+            if (grupo == null) continue;
+
+            Transform piso = pisos.Piso(i);
+            float suelo = pisos.AlturaDelSuelo(i);
+            float techo = FormasMovU.AlturaLibre(piso, suelo, alturaDelTecho);
+            Material peldano = FormasMovU.DelPiso(piso, "Escalon") ?? muro;
+            Material rojo = FormasMovU.DelPiso(piso, "Rojo") ?? rojoPorDefecto;
+
+            var marco = new GameObject("Marco");
+            marco.transform.SetParent(grupo, false);
+            marco.transform.SetPositionAndRotation(new Vector3(pPie.x, suelo, pPie.z), giro);
+            Transform m = marco.transform;
+
+            // --- Tramo y rampa de colisión ----------------------------------
+            var tramo = new GameObject("Tramo");
+            tramo.transform.SetParent(m, false);
+            tramo.transform.localPosition = new Vector3(-def.ancho * 0.5f, 0f, 0f);
+            tramo.AddComponent<MeshFilter>().sharedMesh = escalones;
+            FormasMovU.Vestir(tramo.AddComponent<MeshRenderer>(), peldano);
+            FormasMovU.Contar(i, triEscalones);
+
+            var rampa = new GameObject("Rampa (colisión)");
+            rampa.transform.SetParent(m, false);
+            rampa.transform.localRotation = inclinado;
+            float largoRampa = Mathf.Sqrt((def.largo + 0.2f) * (def.largo + 0.2f) + alto * alto);
+            rampa.transform.localPosition = new Vector3(0f, alto * 0.5f, (def.largo - 0.2f) * 0.5f)
+                                            - (inclinado * Vector3.up) * 0.15f;
+            rampa.AddComponent<BoxCollider>().size = new Vector3(def.ancho + 0.3f, 0.3f, largoRampa);
+
+            // --- Parapeto macizo rojo del lado del vacío, con su pasamanos ---
+            var medio = new Vector3(0f, alto * 0.5f, def.largo * 0.5f);
+            Inclinada(m, "Parapeto", medio + new Vector3(def.ancho * 0.5f + 0.04f, 0.25f, 0f),
+                      new Vector3(0.07f, 1.5f, largoInclinado + 0.2f), inclinado, rojo, i);
+            Inclinada(m, "Pasamanos", medio + new Vector3(def.ancho * 0.5f + 0.04f, 1.03f, 0f),
+                      new Vector3(0.1f, 0.08f, largoInclinado + 0.2f), inclinado, rojo, i);
+            // Del lado del muro: zanca roja y pasamanos sobre ménsulas.
+            Inclinada(m, "Zanca", medio + new Vector3(-def.ancho * 0.5f - 0.05f, 0.1f, 0f),
+                      new Vector3(0.1f, 0.5f, largoInclinado + 0.2f), inclinado, rojo, i);
+            Inclinada(m, "Pasamanos_muro", medio + new Vector3(-def.ancho * 0.5f + 0.1f, 0.92f, 0f),
+                      new Vector3(0.06f, 0.06f, largoInclinado), inclinado, rojo, i);
+
+            // --- Rellano: losa roja de canto, piso gris encima, y su parapeto --
+            float x0 = -def.ancho * 0.5f, x1 = def.columnaX + def.anchoColumna * 0.5f;
+            float z0 = def.largo, z1 = def.largo + def.fondoDelRellano;
+            FormasMovU.Caja(m, "Rellano", new Vector3((x0 + x1) * 0.5f, alto - 0.13f, (z0 + z1) * 0.5f),
+                            new Vector3(x1 - x0, 0.26f, z1 - z0), rojo, i, true);
+            FormasMovU.Caja(m, "Rellano_piso", new Vector3((x0 + x1) * 0.5f, alto + 0.006f, (z0 + z1) * 0.5f),
+                            new Vector3(x1 - x0 - 0.02f, 0.012f, z1 - z0 - 0.02f), peldano, i);
+            FormasMovU.Caja(m, "Parapeto_rellano", new Vector3(x1 - 0.04f, alto + 0.55f, (z0 + z1) * 0.5f),
+                            new Vector3(0.07f, 1.1f, z1 - z0), rojo, i, true);
+            FormasMovU.Caja(m, "Pasamanos_rellano", new Vector3(x1 - 0.04f, alto + 1.12f, (z0 + z1) * 0.5f),
+                            new Vector3(0.1f, 0.08f, z1 - z0), rojo, i);
+
+            // --- Cortina de cables de acero, del suelo al techo de ESTE piso ----
+            int clave = Mathf.RoundToInt(techo * 100f);
+            if (!mallasDeCables.TryGetValue(clave, out Mesh cables))
+            {
+                cables = MallaDeCables(def.largo, techo - 0.05f, 0.2f, out int tc);
+                mallasDeCables[clave] = cables;
+            }
+            var cortina = new GameObject("Cables");
+            cortina.transform.SetParent(m, false);
+            cortina.transform.localPosition = new Vector3(def.cablesX, 0f, 0f);
+            cortina.AddComponent<MeshFilter>().sharedMesh = cables;
+            FormasMovU.Vestir(cortina.AddComponent<MeshRenderer>(), cable);
+            FormasMovU.Contar(i, cables.triangles.Length / 3);
+
+            // --- Puertas: la de abajo baja, la del rellano sube --------------
+            bool haySubida = pisos.EscaleraConecta(i, i + 1);
+            bool hayBajada = pisos.EscaleraConecta(i, i - 1);
+            CrearPuerta(grupo, "Puerta_bajar_principal", Principal(i, def.columnaX, -0.06f, 0f), def.rumbo + 180f,
+                        hayBajada ? $"BAJAR · Piso {FloorManager.NumeroVisible(i - 1)}"
+                                  : (i > 0 ? "CERRADO · USA EL ASCENSOR" : "SIN SALIDA"), hayBajada, i);
+            CrearPuerta(grupo, "Puerta_subir_principal", Principal(i, def.columnaX, def.largo + 0.06f, alto), def.rumbo,
+                        haySubida ? $"SUBIR · Piso {FloorManager.NumeroVisible(i + 1)}"
+                                  : (i + 1 < pisos.CantidadDePisos ? "CERRADO · USA EL ASCENSOR" : "AZOTEA · CERRADO"),
+                        haySubida, i);
+            Letrero(grupo, "Letrero_piso_principal", $"PISO {FloorManager.NumeroVisible(i)}",
+                    Principal(i, def.columnaX, -0.07f, 3.05f), def.rumbo + 180f, 3.6f, new Color(0.10f, 0.12f, 0.16f));
+            construidos++;
+        }
+
+        principalLista = construidos > 0;
+        if (principalLista)
+            Debug.Log($"[Escalera] Principal construida en {construidos} pisos: {peldanos} peldaños de " +
+                      $"{alto / peldanos * 100f:F0} cm hasta el rellano a {alto:F2} m.");
+    }
+
+    /// <summary>Una caja girada como el tramo, en el marco de la escalera.</summary>
+    private static void Inclinada(Transform marco, string nombre, Vector3 centro, Vector3 tamano,
+                                  Quaternion giro, Material material, int piso)
+    {
+        GameObject go = FormasMovU.Caja(marco, nombre, centro, tamano, material, piso);
+        go.transform.localRotation = giro;
+    }
+
+    /// <summary>Cables verticales cada 'paso' metros a lo largo de 'largo', del suelo a 'alto', en una malla.</summary>
+    private static Mesh MallaDeCables(float largo, float alto, float paso, out int triangulos)
+    {
+        var v = new List<Vector3>();
+        var t = new List<int>();
+        int n = Mathf.Max(1, Mathf.FloorToInt(largo / paso));
+        const float g = 0.008f;
+        for (int k = 0; k < n; k++)
+        {
+            float z = (k + 0.5f) * largo / n;
+            // Dos caras cruzadas por cable: se ve desde cualquier lado con 4 triángulos.
+            for (int c = 0; c < 2; c++)
+            {
+                Vector3 d = c == 0 ? new Vector3(g, 0f, 0f) : new Vector3(0f, 0f, g);
+                int b = v.Count;
+                v.Add(new Vector3(0f, 0f, z) - d); v.Add(new Vector3(0f, 0f, z) + d);
+                v.Add(new Vector3(0f, alto, z) + d); v.Add(new Vector3(0f, alto, z) - d);
+                t.Add(b); t.Add(b + 1); t.Add(b + 2); t.Add(b); t.Add(b + 2); t.Add(b + 3);
+                t.Add(b); t.Add(b + 2); t.Add(b + 1); t.Add(b); t.Add(b + 3); t.Add(b + 2);
+            }
+        }
+        var malla = new Mesh { name = "MovU_Cables" };
+        malla.SetVertices(v);
+        malla.SetTriangles(t, 0);
+        malla.RecalculateNormals();
+        malla.RecalculateBounds();
+        triangulos = t.Count / 3;
+        return malla;
     }
 
     /// <summary>
@@ -501,8 +726,13 @@ public class StairsManager : MonoBehaviour
             int piso = pisos.PisoActual;
             Vector3 p = jugadorT.position;
 
-            if (ALaMano(p, FrenteDelRellano(piso))) puerta = +1;
-            else if (ALaMano(p, FrenteDelHall(piso))) puerta = -1;
+            if (ALaMano(p, FrenteDelRellano(piso))) { puerta = +1; escaleraActual = 0; }
+            else if (ALaMano(p, FrenteDelHall(piso))) { puerta = -1; escaleraActual = 0; }
+            else if (principalLista && pisos.TieneEscalera(piso))
+            {
+                if (ALaMano(p, FrenteDelRellanoPrincipal(piso))) { puerta = +1; escaleraActual = 1; }
+                else if (ALaMano(p, FrenteDelHallPrincipal(piso))) { puerta = -1; escaleraActual = 1; }
+            }
         }
 
         if (puerta != puertaActual)
@@ -591,6 +821,13 @@ public class StairsManager : MonoBehaviour
         Vector3 pies = subiendo ? FrenteDelHall(destino) : FrenteDelRellano(destino);
         // Al bajar se queda mirando hacia la cabeza del tramo visible, que es por donde sigue.
         float yaw = subiendo ? 250f : 100f;
+        if (escaleraActual == 1 && principalLista)
+        {
+            pies = subiendo ? FrenteDelHallPrincipal(destino) : FrenteDelRellanoPrincipal(destino);
+            // Subiendo se sale de espaldas a la puerta, girado hacia la salida al pasillo;
+            // bajando, de cara a la cabeza del tramo.
+            yaw = subiendo ? principal.rumbo + 180f + principal.giroAlLlegar : principal.rumbo - 107f;
+        }
 
         // Primero el piso (hay que encenderlo antes de soltar al jugador encima) y
         // luego el punto exacto.
@@ -611,6 +848,7 @@ public class StairsManager : MonoBehaviour
         if (!pisos.EscaleraConecta(pisos.PisoActual, destino)) return false;
 
         EnTransicion = true;
+        escaleraActual = 0;
         Llevar(subiendo, destino);
         OnTramoRecorrido?.Invoke(subiendo, destino);
         EnTransicion = false;

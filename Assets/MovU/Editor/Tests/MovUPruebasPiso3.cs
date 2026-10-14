@@ -22,11 +22,11 @@ public class MovUPruebasPiso3
     }
 
     [Test]
-    public void Pisos_LosNumerosVisiblesSonTresNueveYDiez()
+    public void Pisos_LaPilaVaDelTresAlTrece()
     {
         ContenidoPiso d = Contenido();
-        CollectionAssert.AreEqual(new List<int> { 3, 9, 10 }, d.ajustes.numerosDePiso,
-            "La pila es piso 3 (abajo), piso 9 y la copia del 9.");
+        CollectionAssert.AreEqual(new List<int> { 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }, d.ajustes.numerosDePiso,
+            "La pila va del piso 3 al 13: el 3, el 9 y el 13 con su planta y los demás genéricos (14 oct 2026).");
     }
 
     [Test]
@@ -40,7 +40,7 @@ public class MovUPruebasPiso3
             Assert.That(npc.piso, Is.InRange(1, n), $"NPC '{npc.id}' en un piso que no existe.");
         foreach (PuertaDef pu in d.puertas)
             Assert.That(pu.piso, Is.InRange(0, n), $"Puerta '{pu.id}' en un piso que no existe.");
-        Assert.AreEqual(2, d.aparicion.piso, "El jugador aparece en el piso 9, el segundo de la pila.");
+        Assert.AreEqual(7, d.aparicion.piso, "El jugador aparece en el piso 9, el séptimo de la pila (3 a 13).");
     }
 
     [Test]

@@ -29,7 +29,7 @@ Material:
     - _AOStrength: 0.45
     - _BaseboardHeight: 0.16
     - _Cull: 0
-    - _FloorLevel: 0.8184792
+    - _FloorLevel: 0.50900435
     - _FloorSpacing: 6.4938436
     - _GroutWidth: 0.035
     - _Metallic: 0
@@ -38,7 +38,7 @@ Material:
     - _Sharpness: 8
     - _Smoothness: 0.15
     - _TileSize: 1.2
-    - _WallGradientHeight: 5.6753645
+    - _WallGradientHeight: 3
     m_Colors:
     - _BaseboardColor: {r: 0.28, g: 0.31, b: 0.36, a: 1}
     - _CeilingColor: {r: 0.93, g: 0.93, b: 0.95, a: 1}

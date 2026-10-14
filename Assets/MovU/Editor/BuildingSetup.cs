@@ -9,6 +9,11 @@ using UnityEngine.Rendering;
 // ============================================================================
 // Menu:  MovU > Edificio > Construir edificio de 3 pisos
 //
+// Desde el 14 de octubre de 2026 el piso 9 tiene su planta propia
+// (Models/Piso9/planta_piso9.json, de Tools/piso9_planta.py) y el edificio se
+// arma sin el modelo de Meshy: ver ConstruirDesdePlantas. Lo que sigue describe
+// el camino anterior, que queda como respaldo si falta esa planta.
+//
 // Se conserva el modelo original de Meshy. Como su extrusion deja las coronas
 // de los muros a alturas distintas (de 1,4 a 3,4 m), cada piso lleva ademas la
 // malla RellenoCorona, que sube los muros hasta una altura pareja. Sin ella se
@@ -34,7 +39,11 @@ public static class BuildingSetup
     private const float EscalaHorizontal = 56f;   // 2x respecto a los 28x previos
     private const float EscalaVertical = 45f;     // muros mas altos: techo a ~5,6 m
 
-    private const int CantidadDePisos = 3;
+    private const int CantidadDePisos = 3;           // solo el camino viejo, con Meshy
+
+    // Pila del camino nuevo, desde las plantas en JSON: del piso 3 al 13.
+    private const int PisoMasBajo = 3;
+    private const int PisoMasAlto = 13;
     private const float MargenEntrePisos = 0.06f;
 
     private const string CarpetaModelos = "Assets/MovU/Models";
@@ -67,6 +76,11 @@ public static class BuildingSetup
     /// </summary>
     internal static bool ConstruirInterno(bool interactivo)
     {
+        // Con la planta del piso 9 trazada (Tools/piso9_planta.py) ya no se carga
+        // el modelo de Meshy: los tres pisos salen de sus plantas en JSON.
+        PlantaBuilder.Marco marco = Piso9Builder.HayPlanta ? Piso9Builder.Marco : null;
+        if (marco != null) return ConstruirDesdePlantas(interactivo, marco);
+
         GameObject modeloAsset = CargarModeloMeshy();
         GameObject rellenoAsset = AssetDatabase.LoadAssetAtPath<GameObject>(RutaRelleno);
 
@@ -257,6 +271,144 @@ public static class BuildingSetup
                   $"{sitioAscensor}, aparicion en {aparicion}. " +
                   "Falta hornear el Occlusion Culling: " +
                   "Window > Rendering > Occlusion Culling > Bake.");
+        return true;
+    }
+
+    // ------------------------------------------------------------------
+    // Edificio desde las plantas en JSON (sin Meshy)
+    // ------------------------------------------------------------------
+    /// <summary>
+    /// Pila de pisos: el 3 con su planta, el 9 con la suya (donde aparece el
+    /// jugador) y el 13 con la suya (desde el 14 oct 2026; antes, el 10 como copia del 9). Todo se coloca con el 'marco' que
+    /// guarda planta_piso9.json: el mismo sitio, la misma losa y la misma
+    /// separación que tenía el piso 9 con el modelo de Meshy.
+    /// </summary>
+    private static bool ConstruirDesdePlantas(bool interactivo, PlantaBuilder.Marco marco)
+    {
+        Transform jugador = BuscarJugador();
+        if (jugador == null)
+        {
+            Aviso(interactivo, "No hay un Player en la escena.\n\n" +
+                  "Corre primero 'MovU > Preparar plano Meshy jugable' para que " +
+                  "lo construya, y vuelve a este menu.");
+            return false;
+        }
+
+        if (!LimpiarEscena(interactivo)) return false;
+
+        var edificio = new GameObject(NombreEdificio);
+        Undo.RegisterCreatedObjectUndo(edificio, "Construir edificio");
+        GeneradoPorMovU.Marcar(edificio, Herramienta);
+
+        PlanoDePlanta plano = marco.Plano;
+        Vector3 pivote9 = marco.Pivote;
+        float alturaLosa = marco.alturaLosa;
+        float separacion = marco.separacion;
+        var arriba = new Vector3(0f, separacion, 0f);
+
+        // Pila del 3 al 13 (14 oct 2026): el 3, el 9 y el 13 con sus plantas; los demás,
+        // genéricos (núcleo del 9 con los salones cerrados) para que la escalera de
+        // emergencia una el edificio piso por piso. El 9 queda donde siempre (el
+        // 'marco'), así que el contenido y el NavMesh del 9 no se mueven.
+        var pisos = new List<Transform>();
+        var plantas = new List<string>();
+        for (int numero = PisoMasBajo; numero <= PisoMasAlto; numero++)
+        {
+            Vector3 pivote = pivote9 + arriba * (numero - 9);
+            Transform piso = null;
+            string planta = FloorManager.PlantaGenerica;
+
+            if (numero == 9)
+            {
+                piso = Piso9Builder.Construir(edificio.transform, "Piso_9", 9, pivote, alturaLosa, plano, 0f);
+                planta = FloorManager.PlantaBase;
+                if (piso == null)
+                {
+                    Aviso(interactivo, "No se pudo leer " + Piso9Builder.Config.rutaPlanta + ".");
+                    return false;
+                }
+            }
+            else if (numero == 3 && Piso3Builder.HayPlanta)
+            {
+                piso = Piso3Builder.Construir(edificio.transform, "Piso_3", pivote, alturaLosa, plano, 0f);
+                planta = Piso3Builder.Planta;
+            }
+            else if (numero == 13 && Piso13Builder.HayPlanta)
+            {
+                piso = Piso13Builder.Construir(edificio.transform, "Piso_13", pivote, alturaLosa, plano);
+                planta = Piso13Builder.Planta;
+            }
+
+            // Sin planta propia: genérico (o, si falta hasta esa planta, una copia del 9).
+            if (piso == null && PisoGenericoBuilder.HayPlanta)
+            {
+                piso = PisoGenericoBuilder.Construir(edificio.transform, numero, pivote, alturaLosa, plano);
+                planta = FloorManager.PlantaGenerica;
+            }
+            if (piso == null)
+            {
+                piso = Piso9Builder.Construir(edificio.transform, $"Piso_{numero}", numero, pivote, alturaLosa, plano, 0f);
+                planta = FloorManager.PlantaBase;
+            }
+            if (piso == null) continue;
+            pisos.Add(piso);
+            plantas.Add(planta);
+        }
+
+        foreach (Transform p in pisos) GeneradoPorMovU.Marcar(p.gameObject, Herramienta);
+        for (int i = 0; i < pisos.Count; i++)
+        {
+            pisos[i].name = $"Piso_{i + 1}";
+            pisos[i].SetSiblingIndex(i);
+        }
+        Physics.SyncTransforms();
+
+        // --- Aparición y ascensor: los del JSON de contenido --------------
+        float sueloPiso9 = pivote9.y + alturaLosa;
+        Vector3 sitioAscensor = plano.AMundo(0.9275f, 0.9155f, sueloPiso9);
+        Vector3 aparicion = plano.AMundo(0.8181f, 0.9127f, sueloPiso9);
+        float yawAscensor = 270f, yawAparicion = 270f;
+        ContenidoPiso contenidoJson = ContenidoLoader.Leer();
+        if (contenidoJson != null)
+        {
+            if (contenidoJson.ascensor != null && contenidoJson.ascensor.usar)
+            {
+                Vector3 p = plano.AMundo(contenidoJson.ascensor.u, contenidoJson.ascensor.v, sueloPiso9);
+                if (CabeUnaPersona(p)) { sitioAscensor = p; yawAscensor = contenidoJson.ascensor.yaw; }
+                else Debug.LogWarning("[Edificio] El sitio del ascensor del JSON cae dentro de un muro; " +
+                                      "uso el de siempre. Revisa 'ascensor' en contenido_piso9.json.");
+            }
+            if (contenidoJson.aparicion != null && contenidoJson.aparicion.usar)
+            {
+                Vector3 p = plano.AMundo(contenidoJson.aparicion.u, contenidoJson.aparicion.v, sueloPiso9);
+                if (CabeUnaPersona(p)) { aparicion = p; yawAparicion = contenidoJson.aparicion.yaw; }
+                else Debug.LogWarning("[Edificio] El punto de aparición del JSON cae dentro de un muro; " +
+                                      "uso el de siempre. Revisa 'aparicion' en contenido_piso9.json.");
+            }
+        }
+
+        Material matAscensor = CrearMaterialAscensor();
+        for (int i = 0; i < pisos.Count; i++)
+        {
+            float y = pisos[i].position.y + alturaLosa;
+            CrearAscensor(pisos[i], new Vector3(sitioAscensor.x, y, sitioAscensor.z), i, matAscensor, yawAscensor);
+        }
+
+        ColocarJugador(jugador, aparicion, yawAparicion);
+
+        List<Transform> contenido = AsegurarContenido(pisos.Count);
+        var gestor = edificio.AddComponent<FloorManager>();
+        gestor.Configurar(pisos, alturaLosa, jugador, 0, contenido, plantas);
+        EditorUtility.SetDirty(gestor);
+
+        AjustarLuzInterior();
+        MarcarEstatico(edificio);
+        Physics.SyncTransforms();
+        EditorSceneManager.MarkSceneDirty(edificio.scene);
+        AssetDatabase.SaveAssets();
+
+        Debug.Log($"[Edificio] Listo sin Meshy: {pisos.Count} pisos ({string.Join(", ", plantas)}), " +
+                  $"ascensor en {sitioAscensor}, aparicion en {aparicion}.");
         return true;
     }
 

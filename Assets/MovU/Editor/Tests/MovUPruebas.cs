@@ -19,10 +19,12 @@ public class MovUPruebas
     private const string RutaJson = "Assets/MovU/Resources/MovU/contenido_piso9.json";
 
     /// <summary>
-    /// Triángulos de un piso: planta de Meshy (78.878) + relleno de corona (14.750).
-    /// El relleno eran 15.562 hasta que se le abrió el hueco de la escalera.
+    /// Triángulos de un piso con la planta del 9: 10.198 desde que se arma desde
+    /// Models/Piso9/planta_piso9.json (14 oct 2026; muros, salones amoblados,
+    /// escalera principal y lobby). Con el modelo de Meshy eran 93.628 (planta
+    /// 78.878 + relleno de corona 14.750).
     /// </summary>
-    private const int TriangulosDeUnPiso = 93628;
+    private const int TriangulosDeUnPiso = 10198;
     private const int PresupuestoRD4 = 100000;
 
     private static ContenidoPiso Leer()

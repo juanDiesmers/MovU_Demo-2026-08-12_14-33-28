@@ -95,7 +95,8 @@ public static class AmbientacionBuilder
             float suelo = pisos.AlturaDelSuelo(i);
 
             // El cielo raso y las lámparas son los de la planta del piso 9.
-            if (datos.ajustes.techo && pisos.EsPlantaBase(i))
+            // (el piso 9 armado desde su planta en JSON ya trae techo, cielos rasos y luces).
+            if (datos.ajustes.techo && pisos.EsPlantaBase(i) && !FormasMovU.TienePlantaPropia(pisos.Piso(i)))
             {
                 if (cieloRaso == null)
                 {

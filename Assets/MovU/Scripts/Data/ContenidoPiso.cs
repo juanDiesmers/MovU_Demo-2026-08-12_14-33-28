@@ -38,6 +38,7 @@ public class ContenidoPiso
     public List<PuertaDef> puertas = new List<PuertaDef>();
     public List<MuebleDef> mobiliario = new List<MuebleDef>();
     public EscaleraDef escalera = new EscaleraDef();
+    public EscaleraPrincipalDef escaleraPrincipal = new EscaleraPrincipalDef();
 }
 
 [Serializable]
@@ -217,6 +218,35 @@ public class EscaleraDef
     public float ocultoU0 = 0f;
     [Tooltip("u del centro de las dos puertas de la escalera.")]
     public float puertaU = 0f;
+}
+
+/// <summary>
+/// La escalera principal (la roja junto al lobby), funcional como la de emergencia:
+/// un tramo visible del suelo al rellano y, desde el rellano, una puerta que sube al
+/// piso de arriba. Se describe en metros desde el pie del tramo, en un marco que
+/// mira hacia donde se sube ('rumbo'): x a la derecha, z hacia arriba del tramo.
+/// </summary>
+[Serializable]
+public class EscaleraPrincipalDef
+{
+    public bool usar = false;
+    [Tooltip("Centro del borde de abajo del tramo, en u, v de la planta.")]
+    public float pieU, pieV;
+    [Tooltip("Hacia dónde se sube, en grados de mundo (270 = hacia -X, hacia la fachada).")]
+    public float rumbo = 270f;
+    public float ancho = 2.8f;
+    public float largo = 7.5f;
+    public float alturaDelRellano = 3.25f;
+    public int peldanos = 16;
+    [Tooltip("Metros de rellano más allá de la cima del tramo.")]
+    public float fondoDelRellano = 6.5f;
+    [Tooltip("Centro (x local) de la columna del tramo oculto, donde van las dos puertas.")]
+    public float columnaX = 3.0f;
+    public float anchoColumna = 2.4f;
+    [Tooltip("x local de la cortina de cables, entre el tramo y la columna.")]
+    public float cablesX = 1.6f;
+    [Tooltip("Grados que se gira el jugador al llegar subiendo, para quedar mirando la salida al pasillo.")]
+    public float giroAlLlegar = 45f;
 }
 
 [Serializable]
