@@ -35,7 +35,7 @@
     "yaw": 270
   },
   "ascensor": {
-    "usar": true,
+    "usar": false,
     "u": 0.9275,
     "v": 0.9155,
     "yaw": 270
@@ -573,6 +573,1280 @@
       "radio": 1.5,
       "importante": false,
       "rotulo": true
+    },
+    {
+      "id": "p4_pruebas_de_seguridad",
+      "nombre": "Pruebas de Seguridad",
+      "categoria": "Laboratorio",
+      "piso": 2,
+      "u": 0.5382,
+      "v": 0.0633,
+      "rotuloU": 0.5288,
+      "rotuloV": 0.0835,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p4_banos",
+      "nombre": "Baños",
+      "categoria": "Bano",
+      "piso": 2,
+      "u": 0.6361,
+      "v": 0.3537,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.3537,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p4_escalera_emergencia",
+      "nombre": "Escalera de emergencia",
+      "categoria": "Escalera",
+      "piso": 2,
+      "u": 0.8308,
+      "v": 0.1955,
+      "rotuloU": 0.7684,
+      "rotuloV": 0.1952,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p4_escalera_principal",
+      "nombre": "Escalera principal",
+      "categoria": "Escalera",
+      "piso": 2,
+      "u": 0.4427,
+      "v": 0.7974,
+      "rotuloU": 0.4835,
+      "rotuloV": 0.7974,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p4_ascensores",
+      "nombre": "Ascensores",
+      "categoria": "Ascensor",
+      "piso": 2,
+      "u": 0.8715,
+      "v": 0.9156,
+      "rotuloU": 0.0,
+      "rotuloV": 0.0,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p4_laboratorio_de_radio_frecuencia",
+      "nombre": "Laboratorio de Radio Frecuencia",
+      "categoria": "Laboratorio",
+      "piso": 2,
+      "u": 0.4097,
+      "v": 0.1445,
+      "rotuloU": 0.4504,
+      "rotuloV": 0.1445,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p4_simulacion_trabajo_oficinas",
+      "nombre": "Simulación Trabajo Oficinas",
+      "categoria": "ZonaDeDescanso",
+      "piso": 2,
+      "u": 0.4351,
+      "v": 0.2045,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.2045,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p4_simulacion_tareas_industriales_modulo_a",
+      "nombre": "Simulación Tareas Industriales (Módulo A)",
+      "categoria": "Laboratorio",
+      "piso": 2,
+      "u": 0.4351,
+      "v": 0.2852,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.2852,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p4_simulacion_tareas_industriales_modulo_b",
+      "nombre": "Simulación Tareas Industriales (Módulo B)",
+      "categoria": "Laboratorio",
+      "piso": 2,
+      "u": 0.4351,
+      "v": 0.5366,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.5366,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p4_almacen_de_equipos_tareas_funcionales",
+      "nombre": "Almacén de Equipos Tareas Funcionales",
+      "categoria": "Otro",
+      "piso": 2,
+      "u": 0.6412,
+      "v": 0.5141,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.5141,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p4_pruebas_funcionales",
+      "nombre": "Pruebas Funcionales",
+      "categoria": "Laboratorio",
+      "piso": 2,
+      "u": 0.6412,
+      "v": 0.5741,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.5741,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p4_consultorio",
+      "nombre": "Consultorio",
+      "categoria": "Oficina",
+      "piso": 2,
+      "u": 0.6412,
+      "v": 0.788,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.788,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p5_direccion_laboratorio_ingenieria_civil",
+      "nombre": "Dirección Laboratorio Ingeniería Civil",
+      "categoria": "Oficina",
+      "piso": 3,
+      "u": 0.5382,
+      "v": 0.0633,
+      "rotuloU": 0.5288,
+      "rotuloV": 0.0835,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p5_banos",
+      "nombre": "Baños",
+      "categoria": "Bano",
+      "piso": 3,
+      "u": 0.6361,
+      "v": 0.3537,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.3537,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p5_bano_accesible",
+      "nombre": "Baño accesible",
+      "categoria": "Bano",
+      "piso": 3,
+      "u": 0.6438,
+      "v": 0.3063,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.3063,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p5_escalera_emergencia",
+      "nombre": "Escalera de emergencia",
+      "categoria": "Escalera",
+      "piso": 3,
+      "u": 0.8308,
+      "v": 0.1955,
+      "rotuloU": 0.7684,
+      "rotuloV": 0.1952,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p5_escalera_principal",
+      "nombre": "Escalera principal",
+      "categoria": "Escalera",
+      "piso": 3,
+      "u": 0.4427,
+      "v": 0.7974,
+      "rotuloU": 0.4835,
+      "rotuloV": 0.7974,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p5_ascensores",
+      "nombre": "Ascensores",
+      "categoria": "Ascensor",
+      "piso": 3,
+      "u": 0.8715,
+      "v": 0.9156,
+      "rotuloU": 0.0,
+      "rotuloV": 0.0,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p5_simulacion_corporativa",
+      "nombre": "Simulación Corporativa",
+      "categoria": "Salon",
+      "piso": 3,
+      "u": 0.6412,
+      "v": 0.4934,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.4934,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p5_observacion",
+      "nombre": "Observación",
+      "categoria": "Oficina",
+      "piso": 3,
+      "u": 0.6412,
+      "v": 0.5291,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.5291,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p5_trabajo_colaborativo",
+      "nombre": "Trabajo Colaborativo",
+      "categoria": "ZonaDeDescanso",
+      "piso": 3,
+      "u": 0.6412,
+      "v": 0.606,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.606,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p6_laboratorio_de_rocas",
+      "nombre": "Laboratorio de Rocas",
+      "categoria": "Laboratorio",
+      "piso": 4,
+      "u": 0.5382,
+      "v": 0.0633,
+      "rotuloU": 0.5288,
+      "rotuloV": 0.0835,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p6_banos",
+      "nombre": "Baños",
+      "categoria": "Bano",
+      "piso": 4,
+      "u": 0.6361,
+      "v": 0.3537,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.3537,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p6_escalera_emergencia",
+      "nombre": "Escalera de emergencia",
+      "categoria": "Escalera",
+      "piso": 4,
+      "u": 0.8308,
+      "v": 0.1955,
+      "rotuloU": 0.7684,
+      "rotuloV": 0.1952,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p6_escalera_principal",
+      "nombre": "Escalera principal",
+      "categoria": "Escalera",
+      "piso": 4,
+      "u": 0.4427,
+      "v": 0.7974,
+      "rotuloU": 0.4835,
+      "rotuloV": 0.7974,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p6_ascensores",
+      "nombre": "Ascensores",
+      "categoria": "Ascensor",
+      "piso": 4,
+      "u": 0.8715,
+      "v": 0.9156,
+      "rotuloU": 0.0,
+      "rotuloV": 0.0,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p6_ensayos_dinamicos_mezclas_asfalticas",
+      "nombre": "Ensayos Dinámicos Mezclas Asfálticas",
+      "categoria": "Laboratorio",
+      "piso": 4,
+      "u": 0.4097,
+      "v": 0.1445,
+      "rotuloU": 0.4504,
+      "rotuloV": 0.1445,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p6_reologia_de_asfaltos",
+      "nombre": "Reología de Asfaltos",
+      "categoria": "Laboratorio",
+      "piso": 4,
+      "u": 0.4351,
+      "v": 0.2345,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.2345,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p6_fatiga_en_mezclas",
+      "nombre": "Fatiga en Mezclas",
+      "categoria": "Laboratorio",
+      "piso": 4,
+      "u": 0.4351,
+      "v": 0.2833,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.2833,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p6_envejecimiento_de_asfaltos",
+      "nombre": "Envejecimiento de Asfaltos",
+      "categoria": "Laboratorio",
+      "piso": 4,
+      "u": 0.4351,
+      "v": 0.4465,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.4465,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p6_quimica_de_asfaltos",
+      "nombre": "Química de Asfaltos",
+      "categoria": "Laboratorio",
+      "piso": 4,
+      "u": 0.4351,
+      "v": 0.4972,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.4972,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p6_caracterizacion_de_asfaltos",
+      "nombre": "Caracterización de Asfaltos",
+      "categoria": "Laboratorio",
+      "piso": 4,
+      "u": 0.4351,
+      "v": 0.7261,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.7261,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p6_docencia_geotecnia",
+      "nombre": "Docencia Geotecnia",
+      "categoria": "Salon",
+      "piso": 4,
+      "u": 0.6412,
+      "v": 0.5657,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.5657,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p6_investigacion_geotecnia",
+      "nombre": "Investigación Geotecnia",
+      "categoria": "Laboratorio",
+      "piso": 4,
+      "u": 0.6412,
+      "v": 0.6069,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.6069,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_calidad_de_aguas_almacen",
+      "nombre": "Calidad de Aguas Almacén",
+      "categoria": "Otro",
+      "piso": 5,
+      "u": 0.5382,
+      "v": 0.0633,
+      "rotuloU": 0.5288,
+      "rotuloV": 0.0835,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_banos",
+      "nombre": "Baños",
+      "categoria": "Bano",
+      "piso": 5,
+      "u": 0.6361,
+      "v": 0.3537,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.3537,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_bano_accesible",
+      "nombre": "Baño accesible",
+      "categoria": "Bano",
+      "piso": 5,
+      "u": 0.6438,
+      "v": 0.3063,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.3063,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_escalera_emergencia",
+      "nombre": "Escalera de emergencia",
+      "categoria": "Escalera",
+      "piso": 5,
+      "u": 0.8308,
+      "v": 0.1955,
+      "rotuloU": 0.7684,
+      "rotuloV": 0.1952,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_escalera_principal",
+      "nombre": "Escalera principal",
+      "categoria": "Escalera",
+      "piso": 5,
+      "u": 0.4427,
+      "v": 0.7974,
+      "rotuloU": 0.4835,
+      "rotuloV": 0.7974,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_ascensores",
+      "nombre": "Ascensores",
+      "categoria": "Ascensor",
+      "piso": 5,
+      "u": 0.8715,
+      "v": 0.9156,
+      "rotuloU": 0.0,
+      "rotuloV": 0.0,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_docencia_calidad_de_aguas",
+      "nombre": "Docencia Calidad de Aguas",
+      "categoria": "Laboratorio",
+      "piso": 5,
+      "u": 0.4097,
+      "v": 0.1445,
+      "rotuloU": 0.4504,
+      "rotuloV": 0.1445,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_icp",
+      "nombre": "ICP",
+      "categoria": "Laboratorio",
+      "piso": 5,
+      "u": 0.4351,
+      "v": 0.2303,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.2303,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_balanzas",
+      "nombre": "Balanzas",
+      "categoria": "Laboratorio",
+      "piso": 5,
+      "u": 0.4351,
+      "v": 0.2791,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.2791,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_cuarto_analisis_de_carbono_total",
+      "nombre": "Cuarto Análisis de Carbono Total",
+      "categoria": "Laboratorio",
+      "piso": 5,
+      "u": 0.4351,
+      "v": 0.3279,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.3279,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_cromatografia_de_gases",
+      "nombre": "Cromatografía de Gases",
+      "categoria": "Laboratorio",
+      "piso": 5,
+      "u": 0.4351,
+      "v": 0.3917,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.3917,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_absorcion_atomica",
+      "nombre": "Absorción Atómica",
+      "categoria": "Laboratorio",
+      "piso": 5,
+      "u": 0.4351,
+      "v": 0.4611,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.4611,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_microbiologia",
+      "nombre": "Microbiología",
+      "categoria": "Laboratorio",
+      "piso": 5,
+      "u": 0.4351,
+      "v": 0.5253,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.5253,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_hornos",
+      "nombre": "Hornos",
+      "categoria": "Laboratorio",
+      "piso": 5,
+      "u": 0.4351,
+      "v": 0.6041,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.6041,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_bioreactor",
+      "nombre": "Bioreactor",
+      "categoria": "Laboratorio",
+      "piso": 5,
+      "u": 0.4351,
+      "v": 0.6853,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.6853,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_aguas_naturales",
+      "nombre": "Laboratorio Calidad de Agua (Aguas Naturales)",
+      "categoria": "Laboratorio",
+      "piso": 5,
+      "u": 0.2799,
+      "v": 0.1904,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.1904,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_aguas_residuales",
+      "nombre": "Laboratorio Calidad de Agua (Aguas Residuales)",
+      "categoria": "Laboratorio",
+      "piso": 5,
+      "u": 0.2799,
+      "v": 0.7331,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.7331,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_calidad_de_agua",
+      "nombre": "Laboratorio Calidad de Agua",
+      "categoria": "Laboratorio",
+      "piso": 5,
+      "u": 0.2723,
+      "v": 0.3424,
+      "rotuloU": 0.2723,
+      "rotuloV": 0.3311,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_workspace_modulo_b",
+      "nombre": "Workspace (Módulo B)",
+      "categoria": "ZonaDeDescanso",
+      "piso": 5,
+      "u": 0.6412,
+      "v": 0.591,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.591,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p7_workspace_modulo_a",
+      "nombre": "Workspace (Módulo A)",
+      "categoria": "ZonaDeDescanso",
+      "piso": 5,
+      "u": 0.6412,
+      "v": 0.6285,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.6285,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p8_gestion_laboratorio_ingenieria_civil",
+      "nombre": "Gestión Laboratorio Ingeniería Civil",
+      "categoria": "Oficina",
+      "piso": 6,
+      "u": 0.5382,
+      "v": 0.0633,
+      "rotuloU": 0.5288,
+      "rotuloV": 0.0835,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p8_banos",
+      "nombre": "Baños",
+      "categoria": "Bano",
+      "piso": 6,
+      "u": 0.6361,
+      "v": 0.3537,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.3537,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p8_escalera_emergencia",
+      "nombre": "Escalera de emergencia",
+      "categoria": "Escalera",
+      "piso": 6,
+      "u": 0.8308,
+      "v": 0.1955,
+      "rotuloU": 0.7684,
+      "rotuloV": 0.1952,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p8_escalera_principal",
+      "nombre": "Escalera principal",
+      "categoria": "Escalera",
+      "piso": 6,
+      "u": 0.4427,
+      "v": 0.7974,
+      "rotuloU": 0.4835,
+      "rotuloV": 0.7974,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p8_ascensores",
+      "nombre": "Ascensores",
+      "categoria": "Ascensor",
+      "piso": 6,
+      "u": 0.8715,
+      "v": 0.9156,
+      "rotuloU": 0.0,
+      "rotuloV": 0.0,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p8_programacion",
+      "nombre": "Programación",
+      "categoria": "Salon",
+      "piso": 6,
+      "u": 0.4097,
+      "v": 0.1445,
+      "rotuloU": 0.4504,
+      "rotuloV": 0.1445,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p8_arquitectura_empresarial",
+      "nombre": "Arquitectura Empresarial",
+      "categoria": "Salon",
+      "piso": 6,
+      "u": 0.4351,
+      "v": 0.3096,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.3096,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p8_sistemas_heterogeneos",
+      "nombre": "Sistemas Heterogéneos",
+      "categoria": "Salon",
+      "piso": 6,
+      "u": 0.4351,
+      "v": 0.3471,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.3471,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p8_laboratorio_sistemas_distributivos",
+      "nombre": "Laboratorio Sistemas Distributivos",
+      "categoria": "Salon",
+      "piso": 6,
+      "u": 0.4351,
+      "v": 0.5957,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.5957,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p8_laboratorio_alan_turing",
+      "nombre": "Laboratorio Alan Turing",
+      "categoria": "Salon",
+      "piso": 6,
+      "u": 0.4351,
+      "v": 0.6332,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.6332,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p8_manufactura_y_mediciones",
+      "nombre": "Manufactura y Mediciones Especializadas Electrónicas",
+      "categoria": "Laboratorio",
+      "piso": 6,
+      "u": 0.6412,
+      "v": 0.4972,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.4972,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p8_investigacion_en_redes",
+      "nombre": "Investigación en Redes",
+      "categoria": "Laboratorio",
+      "piso": 6,
+      "u": 0.6412,
+      "v": 0.5347,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.5347,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p8_investigacion_en_redes_idi",
+      "nombre": "Investigación en Redes (I+D+I)",
+      "categoria": "Laboratorio",
+      "piso": 6,
+      "u": 0.6412,
+      "v": 0.7655,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.7655,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p10_direccion_general_de_laboratorios",
+      "nombre": "Dirección General de Laboratorios",
+      "categoria": "Oficina",
+      "piso": 8,
+      "u": 0.5382,
+      "v": 0.0633,
+      "rotuloU": 0.5288,
+      "rotuloV": 0.0835,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p10_banos",
+      "nombre": "Baños",
+      "categoria": "Bano",
+      "piso": 8,
+      "u": 0.6361,
+      "v": 0.3537,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.3537,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p10_escalera_emergencia",
+      "nombre": "Escalera de emergencia",
+      "categoria": "Escalera",
+      "piso": 8,
+      "u": 0.8308,
+      "v": 0.1955,
+      "rotuloU": 0.7684,
+      "rotuloV": 0.1952,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p10_escalera_principal",
+      "nombre": "Escalera principal",
+      "categoria": "Escalera",
+      "piso": 8,
+      "u": 0.4427,
+      "v": 0.7974,
+      "rotuloU": 0.4835,
+      "rotuloV": 0.7974,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p10_ascensores",
+      "nombre": "Ascensores",
+      "categoria": "Ascensor",
+      "piso": 8,
+      "u": 0.8715,
+      "v": 0.9156,
+      "rotuloU": 0.0,
+      "rotuloV": 0.0,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p10_coworking_2",
+      "nombre": "Coworking 2",
+      "categoria": "ZonaDeDescanso",
+      "piso": 8,
+      "u": 0.4097,
+      "v": 0.1445,
+      "rotuloU": 0.4504,
+      "rotuloV": 0.1445,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p10_aula_de_computo_7",
+      "nombre": "Aula de Cómputo 7",
+      "categoria": "Salon",
+      "piso": 8,
+      "u": 0.4351,
+      "v": 0.3049,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.3049,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p10_aula_de_computo_6",
+      "nombre": "Aula de Cómputo 6",
+      "categoria": "Salon",
+      "piso": 8,
+      "u": 0.4351,
+      "v": 0.3424,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.3424,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p10_aula_de_computo_5",
+      "nombre": "Aula de Cómputo 5",
+      "categoria": "Salon",
+      "piso": 8,
+      "u": 0.4351,
+      "v": 0.5957,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.5957,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p10_aula_de_computo_4",
+      "nombre": "Aula de Cómputo 4",
+      "categoria": "Salon",
+      "piso": 8,
+      "u": 0.4351,
+      "v": 0.6332,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.6332,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p10_workspace_2a",
+      "nombre": "Workspace 2A",
+      "categoria": "ZonaDeDescanso",
+      "piso": 8,
+      "u": 0.6412,
+      "v": 0.591,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.591,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p10_workspace_2b",
+      "nombre": "Workspace 2B",
+      "categoria": "ZonaDeDescanso",
+      "piso": 8,
+      "u": 0.6412,
+      "v": 0.6285,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.6285,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p11_sala_de_reuniones",
+      "nombre": "Sala de Reuniones",
+      "categoria": "Oficina",
+      "piso": 9,
+      "u": 0.5382,
+      "v": 0.0633,
+      "rotuloU": 0.5288,
+      "rotuloV": 0.0835,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p11_banos",
+      "nombre": "Baños",
+      "categoria": "Bano",
+      "piso": 9,
+      "u": 0.6361,
+      "v": 0.3537,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.3537,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p11_bano_accesible",
+      "nombre": "Baño accesible",
+      "categoria": "Bano",
+      "piso": 9,
+      "u": 0.6438,
+      "v": 0.3063,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.3063,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p11_escalera_emergencia",
+      "nombre": "Escalera de emergencia",
+      "categoria": "Escalera",
+      "piso": 9,
+      "u": 0.8308,
+      "v": 0.1955,
+      "rotuloU": 0.7684,
+      "rotuloV": 0.1952,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p11_escalera_principal",
+      "nombre": "Escalera principal",
+      "categoria": "Escalera",
+      "piso": 9,
+      "u": 0.4427,
+      "v": 0.7974,
+      "rotuloU": 0.4835,
+      "rotuloV": 0.7974,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p11_ascensores",
+      "nombre": "Ascensores",
+      "categoria": "Ascensor",
+      "piso": 9,
+      "u": 0.8715,
+      "v": 0.9156,
+      "rotuloU": 0.0,
+      "rotuloV": 0.0,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p11_laboratorio_de_geoinformatica",
+      "nombre": "Laboratorio de Geoinformática",
+      "categoria": "Salon",
+      "piso": 9,
+      "u": 0.4351,
+      "v": 0.6332,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.6332,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p11_laboratorio_de_control_automatico",
+      "nombre": "Laboratorio de Control Automático",
+      "categoria": "Laboratorio",
+      "piso": 9,
+      "u": 0.6412,
+      "v": 0.591,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.591,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p11_conversion_de_energia",
+      "nombre": "Conversión de Energía",
+      "categoria": "Laboratorio",
+      "piso": 9,
+      "u": 0.6412,
+      "v": 0.6285,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.6285,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p11_free_plaza",
+      "nombre": "Free Plaza",
+      "categoria": "ZonaDeDescanso",
+      "piso": 9,
+      "u": 0.3817,
+      "v": 0.3565,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.3565,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p12_director_general_de_laboratorio",
+      "nombre": "Director General de Laboratorio",
+      "categoria": "Oficina",
+      "piso": 10,
+      "u": 0.5382,
+      "v": 0.0633,
+      "rotuloU": 0.5288,
+      "rotuloV": 0.0835,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p12_banos",
+      "nombre": "Baños",
+      "categoria": "Bano",
+      "piso": 10,
+      "u": 0.6361,
+      "v": 0.3537,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.3537,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p12_escalera_emergencia",
+      "nombre": "Escalera de emergencia",
+      "categoria": "Escalera",
+      "piso": 10,
+      "u": 0.8308,
+      "v": 0.1955,
+      "rotuloU": 0.7684,
+      "rotuloV": 0.1952,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p12_escalera_principal",
+      "nombre": "Escalera principal",
+      "categoria": "Escalera",
+      "piso": 10,
+      "u": 0.4427,
+      "v": 0.7974,
+      "rotuloU": 0.4835,
+      "rotuloV": 0.7974,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p12_ascensores",
+      "nombre": "Ascensores",
+      "categoria": "Ascensor",
+      "piso": 10,
+      "u": 0.8715,
+      "v": 0.9156,
+      "rotuloU": 0.0,
+      "rotuloV": 0.0,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p12_oficina_gestion_tecnica_4",
+      "nombre": "Oficina Gestión Técnica 4",
+      "categoria": "Oficina",
+      "piso": 10,
+      "u": 0.4097,
+      "v": 0.1445,
+      "rotuloU": 0.4504,
+      "rotuloV": 0.1445,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p12_almacen_de_instrumentacion_electronica",
+      "nombre": "Almacén de Instrumentación Electrónica",
+      "categoria": "Otro",
+      "piso": 10,
+      "u": 0.4351,
+      "v": 0.2008,
+      "rotuloU": 0.4758,
+      "rotuloV": 0.2008,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p12_workspace_3b",
+      "nombre": "Workspace 3B",
+      "categoria": "ZonaDeDescanso",
+      "piso": 10,
+      "u": 0.6412,
+      "v": 0.6004,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.6004,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
+    },
+    {
+      "id": "p12_workspace_3a",
+      "nombre": "Workspace 3A",
+      "categoria": "ZonaDeDescanso",
+      "piso": 10,
+      "u": 0.6412,
+      "v": 0.6379,
+      "rotuloU": 0.6005,
+      "rotuloV": 0.6379,
+      "radio": 1.5,
+      "importante": false,
+      "rotulo": true
     }
   ],
   "misiones": [
@@ -583,7 +1857,8 @@
       "partida": "aparicion",
       "guia": "",
       "entrega": "portatil",
-      "mensajeDeEntrega": "Mostraste tu carné y DTI te prestó un portátil."
+      "mensajeDeEntrega": "Mostraste tu carné y DTI te prestó un portátil.",
+      "deja": ""
     },
     {
       "id": "M02",
@@ -592,7 +1867,118 @@
       "partida": "",
       "guia": "",
       "entrega": "comprobante",
-      "mensajeDeEntrega": "Los ingenieros revisaron tu caso y reactivaron tu usuario."
+      "mensajeDeEntrega": "Los ingenieros revisaron tu caso y reactivaron tu usuario.",
+      "deja": ""
+    },
+    {
+      "id": "M03",
+      "enunciado": "Ya tienes portátil y usuario. Tu clase es en el Laboratorio Alan Turing, un piso más abajo.",
+      "poi": "p8_laboratorio_alan_turing",
+      "partida": "",
+      "guia": "",
+      "entrega": "taller",
+      "mensajeDeEntrega": "El profesor repartió el enunciado del taller.",
+      "deja": ""
+    },
+    {
+      "id": "M04",
+      "enunciado": "El taller pide un multímetro. Préstalo en el Almacén de Instrumentación Electrónica del piso 12.",
+      "poi": "p12_almacen_de_instrumentacion_electronica",
+      "partida": "",
+      "guia": "",
+      "entrega": "multimetro",
+      "mensajeDeEntrega": "En el almacén te prestaron un multímetro.",
+      "deja": ""
+    },
+    {
+      "id": "M05",
+      "enunciado": "Tu grupo te espera en la Free Plaza del piso 11 para hacer las mediciones.",
+      "poi": "p11_free_plaza",
+      "partida": "",
+      "guia": "",
+      "entrega": "informe",
+      "mensajeDeEntrega": "Hicieron las mediciones y el grupo firmó el informe.",
+      "deja": "taller"
+    },
+    {
+      "id": "M06",
+      "enunciado": "Entrega el informe en la Dirección General de Laboratorios, un piso más abajo.",
+      "poi": "p10_direccion_general_de_laboratorios",
+      "partida": "",
+      "guia": "",
+      "entrega": "",
+      "mensajeDeEntrega": "Recibieron tu informe.",
+      "deja": "informe"
+    },
+    {
+      "id": "M07",
+      "enunciado": "El profesor de robótica necesita un multímetro para su clase. Llévale el tuyo a Robótica Autónoma, en el piso 13.",
+      "poi": "p13_robotica_autonoma",
+      "partida": "",
+      "guia": "",
+      "entrega": "",
+      "mensajeDeEntrega": "El profesor se queda con el multímetro: él lo devuelve al almacén.",
+      "deja": "multimetro"
+    },
+    {
+      "id": "M08",
+      "enunciado": "Tienes práctica de aguas en el piso 7: es en el Laboratorio Calidad de Agua (Aguas Residuales).",
+      "poi": "p7_aguas_residuales",
+      "partida": "",
+      "guia": "",
+      "entrega": "",
+      "mensajeDeEntrega": "",
+      "deja": ""
+    },
+    {
+      "id": "M09",
+      "enunciado": "Un compañero de Civil te invitó a la charla de bienvenida en Docencia Geotecnia, un piso más abajo.",
+      "poi": "p6_docencia_geotecnia",
+      "partida": "",
+      "guia": "",
+      "entrega": "",
+      "mensajeDeEntrega": "",
+      "deja": ""
+    },
+    {
+      "id": "M10",
+      "enunciado": "Una visitante en silla de ruedas busca un baño accesible. En el piso 6 no hay: acompáñala al del piso 5.",
+      "poi": "p5_bano_accesible",
+      "partida": "",
+      "guia": "",
+      "entrega": "",
+      "mensajeDeEntrega": "",
+      "deja": ""
+    },
+    {
+      "id": "M11",
+      "enunciado": "Te cortaste con una hoja durante la charla. En el piso 4 hay un Consultorio, junto a los ascensores.",
+      "poi": "p4_consultorio",
+      "partida": "",
+      "guia": "",
+      "entrega": "",
+      "mensajeDeEntrega": "",
+      "deja": ""
+    },
+    {
+      "id": "M12",
+      "enunciado": "Antes de irte, pasa por el Taller de Metalmecánica del piso 3 a ver los proyectos del semestre.",
+      "poi": "p3_taller",
+      "partida": "",
+      "guia": "",
+      "entrega": "",
+      "mensajeDeEntrega": "",
+      "deja": ""
+    },
+    {
+      "id": "M13",
+      "enunciado": "Se acabó el día: devuelve el portátil en DTI Préstamo de equipos, en el piso 9.",
+      "poi": "dti_prestamo",
+      "partida": "",
+      "guia": "",
+      "entrega": "",
+      "mensajeDeEntrega": "Devolviste el portátil. ¡Terminaste tu primer día en el edificio!",
+      "deja": "portatil"
     }
   ],
   "npcs": [
@@ -798,7 +2184,7 @@
       "conducta": "quieto",
       "frases": [
         "Bienvenido al piso 13.",
-        "Para bajar usa el ascensor: la escalera de emergencia está cerrada."
+        "Para bajar puedes usar el ascensor o la escalera de emergencia, al fondo del pasillo."
       ]
     },
     {
@@ -811,13 +2197,428 @@
       "yaw": 0,
       "conducta": "deambula",
       "frases": []
+    },
+    {
+      "id": "g4_vigilante",
+      "rol": "Vigilante",
+      "nombre": "Vigilante",
+      "piso": 2,
+      "u": 0.6209,
+      "v": 0.9146,
+      "yaw": 200,
+      "conducta": "quieto",
+      "frases": [
+        "Bienvenido al piso 4.",
+        "Los ascensores están aquí mismo. La escalera de emergencia queda al fondo del pasillo, detrás de los lockers."
+      ]
+    },
+    {
+      "id": "g4_aseo",
+      "rol": "Aseo",
+      "nombre": "Personal de aseo",
+      "piso": 2,
+      "u": 0.5382,
+      "v": 0.469,
+      "yaw": 0,
+      "conducta": "deambula",
+      "frases": []
+    },
+    {
+      "id": "g4_secretaria",
+      "rol": "Administrativo",
+      "nombre": "Secretaría",
+      "piso": 2,
+      "u": 0.5089,
+      "v": 0.0516,
+      "yaw": 0,
+      "conducta": "quieto",
+      "frases": [
+        "Esta es Pruebas de Seguridad.",
+        "Si buscas un laboratorio, los rótulos están sobre cada puerta."
+      ]
+    },
+    {
+      "id": "g4_profesor",
+      "rol": "Profesor",
+      "nombre": "Profesor",
+      "piso": 2,
+      "u": 0.4046,
+      "v": 0.2852,
+      "yaw": 90,
+      "conducta": "quieto",
+      "frases": [
+        "Bienvenido a Simulación Tareas Industriales (Módulo A).",
+        "En este piso también está Pruebas de Seguridad."
+      ]
+    },
+    {
+      "id": "g5_vigilante",
+      "rol": "Vigilante",
+      "nombre": "Vigilante",
+      "piso": 3,
+      "u": 0.6209,
+      "v": 0.9146,
+      "yaw": 200,
+      "conducta": "quieto",
+      "frases": [
+        "Bienvenido al piso 5.",
+        "Los ascensores están aquí mismo. La escalera de emergencia queda al fondo del pasillo, detrás de los lockers."
+      ]
+    },
+    {
+      "id": "g5_aseo",
+      "rol": "Aseo",
+      "nombre": "Personal de aseo",
+      "piso": 3,
+      "u": 0.5382,
+      "v": 0.469,
+      "yaw": 0,
+      "conducta": "deambula",
+      "frases": []
+    },
+    {
+      "id": "g5_secretaria",
+      "rol": "Administrativo",
+      "nombre": "Secretaría",
+      "piso": 3,
+      "u": 0.5089,
+      "v": 0.0516,
+      "yaw": 0,
+      "conducta": "quieto",
+      "frases": [
+        "Esta es Dirección Laboratorio Ingeniería Civil.",
+        "Si buscas un laboratorio, los rótulos están sobre cada puerta."
+      ]
+    },
+    {
+      "id": "g5_profesor",
+      "rol": "Profesor",
+      "nombre": "Profesor",
+      "piso": 3,
+      "u": 0.6717,
+      "v": 0.4934,
+      "yaw": 270,
+      "conducta": "quieto",
+      "frases": [
+        "Bienvenido a Simulación Corporativa."
+      ]
+    },
+    {
+      "id": "g6_vigilante",
+      "rol": "Vigilante",
+      "nombre": "Vigilante",
+      "piso": 4,
+      "u": 0.6209,
+      "v": 0.9146,
+      "yaw": 200,
+      "conducta": "quieto",
+      "frases": [
+        "Bienvenido al piso 6.",
+        "Los ascensores están aquí mismo. La escalera de emergencia queda al fondo del pasillo, detrás de los lockers."
+      ]
+    },
+    {
+      "id": "g6_aseo",
+      "rol": "Aseo",
+      "nombre": "Personal de aseo",
+      "piso": 4,
+      "u": 0.5382,
+      "v": 0.469,
+      "yaw": 0,
+      "conducta": "deambula",
+      "frases": []
+    },
+    {
+      "id": "g6_secretaria",
+      "rol": "Administrativo",
+      "nombre": "Secretaría",
+      "piso": 4,
+      "u": 0.5089,
+      "v": 0.0516,
+      "yaw": 0,
+      "conducta": "quieto",
+      "frases": [
+        "Esta es Laboratorio de Rocas.",
+        "Si buscas un laboratorio, los rótulos están sobre cada puerta."
+      ]
+    },
+    {
+      "id": "g6_profesor",
+      "rol": "Profesor",
+      "nombre": "Profesor",
+      "piso": 4,
+      "u": 0.4046,
+      "v": 0.2345,
+      "yaw": 90,
+      "conducta": "quieto",
+      "frases": [
+        "Bienvenido a Reología de Asfaltos.",
+        "En este piso también está Laboratorio de Rocas."
+      ]
+    },
+    {
+      "id": "g7_vigilante",
+      "rol": "Vigilante",
+      "nombre": "Vigilante",
+      "piso": 5,
+      "u": 0.6209,
+      "v": 0.9146,
+      "yaw": 200,
+      "conducta": "quieto",
+      "frases": [
+        "Bienvenido al piso 7.",
+        "Los ascensores están aquí mismo. La escalera de emergencia queda al fondo del pasillo, detrás de los lockers."
+      ]
+    },
+    {
+      "id": "g7_aseo",
+      "rol": "Aseo",
+      "nombre": "Personal de aseo",
+      "piso": 5,
+      "u": 0.5382,
+      "v": 0.469,
+      "yaw": 0,
+      "conducta": "deambula",
+      "frases": []
+    },
+    {
+      "id": "g7_secretaria",
+      "rol": "Administrativo",
+      "nombre": "Secretaría",
+      "piso": 5,
+      "u": 0.5089,
+      "v": 0.0516,
+      "yaw": 0,
+      "conducta": "quieto",
+      "frases": [
+        "Esta es Calidad de Aguas Almacén.",
+        "Si buscas un laboratorio, los rótulos están sobre cada puerta."
+      ]
+    },
+    {
+      "id": "g7_profesor",
+      "rol": "Profesor",
+      "nombre": "Profesor",
+      "piso": 5,
+      "u": 0.4046,
+      "v": 0.2303,
+      "yaw": 90,
+      "conducta": "quieto",
+      "frases": [
+        "Bienvenido a ICP.",
+        "En este piso también está Docencia Calidad de Aguas."
+      ]
+    },
+    {
+      "id": "g8_vigilante",
+      "rol": "Vigilante",
+      "nombre": "Vigilante",
+      "piso": 6,
+      "u": 0.6209,
+      "v": 0.9146,
+      "yaw": 200,
+      "conducta": "quieto",
+      "frases": [
+        "Bienvenido al piso 8.",
+        "Los ascensores están aquí mismo. La escalera de emergencia queda al fondo del pasillo, detrás de los lockers."
+      ]
+    },
+    {
+      "id": "g8_aseo",
+      "rol": "Aseo",
+      "nombre": "Personal de aseo",
+      "piso": 6,
+      "u": 0.5382,
+      "v": 0.469,
+      "yaw": 0,
+      "conducta": "deambula",
+      "frases": []
+    },
+    {
+      "id": "g8_secretaria",
+      "rol": "Administrativo",
+      "nombre": "Secretaría",
+      "piso": 6,
+      "u": 0.5089,
+      "v": 0.0516,
+      "yaw": 0,
+      "conducta": "quieto",
+      "frases": [
+        "Esta es Gestión Laboratorio Ingeniería Civil.",
+        "Si buscas un laboratorio, los rótulos están sobre cada puerta."
+      ]
+    },
+    {
+      "id": "g8_profesor",
+      "rol": "Profesor",
+      "nombre": "Profesor",
+      "piso": 6,
+      "u": 0.4046,
+      "v": 0.3096,
+      "yaw": 90,
+      "conducta": "quieto",
+      "frases": [
+        "Bienvenido a Arquitectura Empresarial.",
+        "En este piso también está Programación."
+      ]
+    },
+    {
+      "id": "g10_vigilante",
+      "rol": "Vigilante",
+      "nombre": "Vigilante",
+      "piso": 8,
+      "u": 0.6209,
+      "v": 0.9146,
+      "yaw": 200,
+      "conducta": "quieto",
+      "frases": [
+        "Bienvenido al piso 10.",
+        "Los ascensores están aquí mismo. La escalera de emergencia queda al fondo del pasillo, detrás de los lockers."
+      ]
+    },
+    {
+      "id": "g10_aseo",
+      "rol": "Aseo",
+      "nombre": "Personal de aseo",
+      "piso": 8,
+      "u": 0.5382,
+      "v": 0.469,
+      "yaw": 0,
+      "conducta": "deambula",
+      "frases": []
+    },
+    {
+      "id": "g10_secretaria",
+      "rol": "Administrativo",
+      "nombre": "Secretaría",
+      "piso": 8,
+      "u": 0.5089,
+      "v": 0.0516,
+      "yaw": 0,
+      "conducta": "quieto",
+      "frases": [
+        "Esta es Dirección General de Laboratorios.",
+        "Si buscas un laboratorio, los rótulos están sobre cada puerta."
+      ]
+    },
+    {
+      "id": "g10_profesor",
+      "rol": "Profesor",
+      "nombre": "Profesor",
+      "piso": 8,
+      "u": 0.4046,
+      "v": 0.3049,
+      "yaw": 90,
+      "conducta": "quieto",
+      "frases": [
+        "Bienvenido a Aula de Cómputo 7.",
+        "En este piso también está Aula de Cómputo 6."
+      ]
+    },
+    {
+      "id": "g11_vigilante",
+      "rol": "Vigilante",
+      "nombre": "Vigilante",
+      "piso": 9,
+      "u": 0.6209,
+      "v": 0.9146,
+      "yaw": 200,
+      "conducta": "quieto",
+      "frases": [
+        "Bienvenido al piso 11.",
+        "Los ascensores están aquí mismo. La escalera de emergencia queda al fondo del pasillo, detrás de los lockers."
+      ]
+    },
+    {
+      "id": "g11_aseo",
+      "rol": "Aseo",
+      "nombre": "Personal de aseo",
+      "piso": 9,
+      "u": 0.5382,
+      "v": 0.469,
+      "yaw": 0,
+      "conducta": "deambula",
+      "frases": []
+    },
+    {
+      "id": "g11_secretaria",
+      "rol": "Administrativo",
+      "nombre": "Secretaría",
+      "piso": 9,
+      "u": 0.5089,
+      "v": 0.0516,
+      "yaw": 0,
+      "conducta": "quieto",
+      "frases": [
+        "Esta es Sala de Reuniones.",
+        "Si buscas un laboratorio, los rótulos están sobre cada puerta."
+      ]
+    },
+    {
+      "id": "g11_profesor",
+      "rol": "Profesor",
+      "nombre": "Profesor",
+      "piso": 9,
+      "u": 0.4046,
+      "v": 0.6332,
+      "yaw": 90,
+      "conducta": "quieto",
+      "frases": [
+        "Bienvenido a Laboratorio de Geoinformática.",
+        "En este piso también está Laboratorio de Control Automático."
+      ]
+    },
+    {
+      "id": "g12_vigilante",
+      "rol": "Vigilante",
+      "nombre": "Vigilante",
+      "piso": 10,
+      "u": 0.6209,
+      "v": 0.9146,
+      "yaw": 200,
+      "conducta": "quieto",
+      "frases": [
+        "Bienvenido al piso 12.",
+        "Los ascensores están aquí mismo. La escalera de emergencia queda al fondo del pasillo, detrás de los lockers."
+      ]
+    },
+    {
+      "id": "g12_aseo",
+      "rol": "Aseo",
+      "nombre": "Personal de aseo",
+      "piso": 10,
+      "u": 0.5382,
+      "v": 0.469,
+      "yaw": 0,
+      "conducta": "deambula",
+      "frases": []
+    },
+    {
+      "id": "g12_secretaria",
+      "rol": "Administrativo",
+      "nombre": "Secretaría",
+      "piso": 10,
+      "u": 0.5089,
+      "v": 0.0516,
+      "yaw": 0,
+      "conducta": "quieto",
+      "frases": [
+        "Esta es Director General de Laboratorio.",
+        "Si buscas un laboratorio, los rótulos están sobre cada puerta."
+      ]
     }
   ],
   "multitud": {
     "semilla": 9,
     "piso": 7,
     "estudiantes": 8,
-    "visitantes": 2
+    "visitantes": 2,
+    "parejas": [
+      {
+        "u": 0.6005,
+        "v": 0.1201
+      }
+    ]
   },
   "recorridos": [
     {
@@ -897,7 +2698,7 @@
     {
       "id": "horario",
       "nombre": "Horario de clases",
-      "descripcion": "Hoy tienes clase en el piso 9 y el taller se hace en computador.",
+      "descripcion": "Hoy: clase en el Laboratorio Alan Turing (piso 8) y práctica de aguas (piso 7). DTI queda en el piso 9.",
       "sigla": "HOY",
       "color": "8A6A2E",
       "inicial": true
@@ -916,6 +2717,30 @@
       "descripcion": "El caso que abrieron los ingenieros de DTI: tu usuario institucional ya funciona.",
       "sigla": "OK",
       "color": "3F8F52",
+      "inicial": false
+    },
+    {
+      "id": "taller",
+      "nombre": "Enunciado del taller",
+      "descripcion": "Medir un circuito con multímetro, en grupo. El informe se entrega en la Dirección General de Laboratorios (piso 10).",
+      "sigla": "TL",
+      "color": "6B4FA0",
+      "inicial": false
+    },
+    {
+      "id": "multimetro",
+      "nombre": "Multímetro",
+      "descripcion": "Préstamo del Almacén de Instrumentación Electrónica (piso 12).",
+      "sigla": "V",
+      "color": "B5562C",
+      "inicial": false
+    },
+    {
+      "id": "informe",
+      "nombre": "Informe del taller",
+      "descripcion": "Firmado por tu grupo. Va para la Dirección General de Laboratorios (piso 10).",
+      "sigla": "INF",
+      "color": "4F6D2E",
       "inicial": false
     }
   ],
@@ -1349,6 +3174,1226 @@
       "yaw": 90,
       "ancho": 1.8,
       "estilo": "salon"
+    },
+    {
+      "id": "p4_pruebas_de_seguridad",
+      "poi": "p4_pruebas_de_seguridad",
+      "piso": 2,
+      "u": 0.5285,
+      "v": 0.0835,
+      "yaw": 0,
+      "ancho": 2.45,
+      "estilo": "salon"
+    },
+    {
+      "id": "p4_escalera",
+      "poi": "p4_escalera_emergencia",
+      "piso": 2,
+      "u": 0.7684,
+      "v": 0.1952,
+      "yaw": 90,
+      "ancho": 2.2,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p4_escalera_principal",
+      "poi": "p4_escalera_principal",
+      "piso": 2,
+      "u": 0.4835,
+      "v": 0.7974,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p4_seguridad",
+      "poi": "",
+      "piso": 2,
+      "u": 0.4758,
+      "v": 0.7683,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p4_electrico",
+      "poi": "",
+      "piso": 2,
+      "u": 0.6005,
+      "v": 0.2359,
+      "yaw": 90,
+      "ancho": 1.5,
+      "estilo": "salon"
+    },
+    {
+      "id": "p4_cableado",
+      "poi": "",
+      "piso": 2,
+      "u": 0.6005,
+      "v": 0.2739,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p4_aseo",
+      "poi": "",
+      "piso": 2,
+      "u": 0.6005,
+      "v": 0.3063,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "salon"
+    },
+    {
+      "id": "p4_banos",
+      "poi": "p4_banos",
+      "piso": 2,
+      "u": 0.6005,
+      "v": 0.3537,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p4_laboratorio_de_radio_frecuencia",
+      "poi": "p4_laboratorio_de_radio_frecuencia",
+      "piso": 2,
+      "u": 0.4504,
+      "v": 0.1445,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p4_simulacion_trabajo_oficinas",
+      "poi": "p4_simulacion_trabajo_oficinas",
+      "piso": 2,
+      "u": 0.4758,
+      "v": 0.2045,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p4_simulacion_tareas_industriales_modulo_a",
+      "poi": "p4_simulacion_tareas_industriales_modulo_a",
+      "piso": 2,
+      "u": 0.4758,
+      "v": 0.2852,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p4_simulacion_tareas_industriales_modulo_a_2",
+      "poi": "",
+      "piso": 2,
+      "u": 0.4758,
+      "v": 0.4859,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p4_simulacion_tareas_industriales_modulo_b",
+      "poi": "p4_simulacion_tareas_industriales_modulo_b",
+      "piso": 2,
+      "u": 0.4758,
+      "v": 0.5366,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p4_simulacion_tareas_industriales_modulo_b_2",
+      "poi": "",
+      "piso": 2,
+      "u": 0.4758,
+      "v": 0.7261,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p4_almacen_de_equipos_tareas_funcionales",
+      "poi": "p4_almacen_de_equipos_tareas_funcionales",
+      "piso": 2,
+      "u": 0.6005,
+      "v": 0.5141,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p4_pruebas_funcionales",
+      "poi": "p4_pruebas_funcionales",
+      "piso": 2,
+      "u": 0.6005,
+      "v": 0.5741,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p4_pruebas_funcionales_2",
+      "poi": "",
+      "piso": 2,
+      "u": 0.6005,
+      "v": 0.7373,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p4_consultorio",
+      "poi": "p4_consultorio",
+      "piso": 2,
+      "u": 0.6005,
+      "v": 0.788,
+      "yaw": 90,
+      "ancho": 1.6,
+      "estilo": "salon"
+    },
+    {
+      "id": "p5_direccion_laboratorio_ingenieria_civil",
+      "poi": "p5_direccion_laboratorio_ingenieria_civil",
+      "piso": 3,
+      "u": 0.5285,
+      "v": 0.0835,
+      "yaw": 0,
+      "ancho": 2.45,
+      "estilo": "salon"
+    },
+    {
+      "id": "p5_escalera",
+      "poi": "p5_escalera_emergencia",
+      "piso": 3,
+      "u": 0.7684,
+      "v": 0.1952,
+      "yaw": 90,
+      "ancho": 2.2,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p5_escalera_principal",
+      "poi": "p5_escalera_principal",
+      "piso": 3,
+      "u": 0.4835,
+      "v": 0.7974,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p5_seguridad",
+      "poi": "",
+      "piso": 3,
+      "u": 0.4758,
+      "v": 0.7683,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p5_electrico",
+      "poi": "",
+      "piso": 3,
+      "u": 0.6005,
+      "v": 0.2359,
+      "yaw": 90,
+      "ancho": 1.5,
+      "estilo": "salon"
+    },
+    {
+      "id": "p5_cableado",
+      "poi": "",
+      "piso": 3,
+      "u": 0.6005,
+      "v": 0.2739,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p5_bano_accesible",
+      "poi": "p5_bano_accesible",
+      "piso": 3,
+      "u": 0.6005,
+      "v": 0.3063,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "salon"
+    },
+    {
+      "id": "p5_banos",
+      "poi": "p5_banos",
+      "piso": 3,
+      "u": 0.6005,
+      "v": 0.3537,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p5_simulacion_corporativa",
+      "poi": "p5_simulacion_corporativa",
+      "piso": 3,
+      "u": 0.6005,
+      "v": 0.4934,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p5_observacion",
+      "poi": "p5_observacion",
+      "piso": 3,
+      "u": 0.6005,
+      "v": 0.5291,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p5_trabajo_colaborativo",
+      "poi": "p5_trabajo_colaborativo",
+      "piso": 3,
+      "u": 0.6005,
+      "v": 0.606,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p5_trabajo_colaborativo_2",
+      "poi": "",
+      "piso": 3,
+      "u": 0.6005,
+      "v": 0.7561,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p6_laboratorio_de_rocas",
+      "poi": "p6_laboratorio_de_rocas",
+      "piso": 4,
+      "u": 0.5285,
+      "v": 0.0835,
+      "yaw": 0,
+      "ancho": 2.45,
+      "estilo": "salon"
+    },
+    {
+      "id": "p6_escalera",
+      "poi": "p6_escalera_emergencia",
+      "piso": 4,
+      "u": 0.7684,
+      "v": 0.1952,
+      "yaw": 90,
+      "ancho": 2.2,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p6_escalera_principal",
+      "poi": "p6_escalera_principal",
+      "piso": 4,
+      "u": 0.4835,
+      "v": 0.7974,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p6_seguridad",
+      "poi": "",
+      "piso": 4,
+      "u": 0.4758,
+      "v": 0.7683,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p6_electrico",
+      "poi": "",
+      "piso": 4,
+      "u": 0.6005,
+      "v": 0.2359,
+      "yaw": 90,
+      "ancho": 1.5,
+      "estilo": "salon"
+    },
+    {
+      "id": "p6_cableado",
+      "poi": "",
+      "piso": 4,
+      "u": 0.6005,
+      "v": 0.2739,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p6_aseo",
+      "poi": "",
+      "piso": 4,
+      "u": 0.6005,
+      "v": 0.3063,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "salon"
+    },
+    {
+      "id": "p6_banos",
+      "poi": "p6_banos",
+      "piso": 4,
+      "u": 0.6005,
+      "v": 0.3537,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p6_ensayos_dinamicos_mezclas_asfalticas",
+      "poi": "p6_ensayos_dinamicos_mezclas_asfalticas",
+      "piso": 4,
+      "u": 0.4504,
+      "v": 0.1445,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p6_reologia_de_asfaltos",
+      "poi": "p6_reologia_de_asfaltos",
+      "piso": 4,
+      "u": 0.4758,
+      "v": 0.2345,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p6_fatiga_en_mezclas",
+      "poi": "p6_fatiga_en_mezclas",
+      "piso": 4,
+      "u": 0.4758,
+      "v": 0.2833,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p6_envejecimiento_de_asfaltos",
+      "poi": "p6_envejecimiento_de_asfaltos",
+      "piso": 4,
+      "u": 0.4758,
+      "v": 0.4465,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p6_quimica_de_asfaltos",
+      "poi": "p6_quimica_de_asfaltos",
+      "piso": 4,
+      "u": 0.4758,
+      "v": 0.4972,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p6_caracterizacion_de_asfaltos",
+      "poi": "p6_caracterizacion_de_asfaltos",
+      "piso": 4,
+      "u": 0.4758,
+      "v": 0.7261,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p6_docencia_geotecnia",
+      "poi": "p6_docencia_geotecnia",
+      "piso": 4,
+      "u": 0.6005,
+      "v": 0.5657,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p6_investigacion_geotecnia",
+      "poi": "p6_investigacion_geotecnia",
+      "piso": 4,
+      "u": 0.6005,
+      "v": 0.6069,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_calidad_de_aguas_almacen",
+      "poi": "p7_calidad_de_aguas_almacen",
+      "piso": 5,
+      "u": 0.5285,
+      "v": 0.0835,
+      "yaw": 0,
+      "ancho": 2.45,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_escalera",
+      "poi": "p7_escalera_emergencia",
+      "piso": 5,
+      "u": 0.7684,
+      "v": 0.1952,
+      "yaw": 90,
+      "ancho": 2.2,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p7_escalera_principal",
+      "poi": "p7_escalera_principal",
+      "piso": 5,
+      "u": 0.4835,
+      "v": 0.7974,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p7_seguridad",
+      "poi": "",
+      "piso": 5,
+      "u": 0.4758,
+      "v": 0.7683,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_electrico",
+      "poi": "",
+      "piso": 5,
+      "u": 0.6005,
+      "v": 0.2359,
+      "yaw": 90,
+      "ancho": 1.5,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_cableado",
+      "poi": "",
+      "piso": 5,
+      "u": 0.6005,
+      "v": 0.2739,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_bano_accesible",
+      "poi": "p7_bano_accesible",
+      "piso": 5,
+      "u": 0.6005,
+      "v": 0.3063,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_banos",
+      "poi": "p7_banos",
+      "piso": 5,
+      "u": 0.6005,
+      "v": 0.3537,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_docencia_calidad_de_aguas",
+      "poi": "p7_docencia_calidad_de_aguas",
+      "piso": 5,
+      "u": 0.4504,
+      "v": 0.1445,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_icp",
+      "poi": "p7_icp",
+      "piso": 5,
+      "u": 0.4758,
+      "v": 0.2303,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_balanzas",
+      "poi": "p7_balanzas",
+      "piso": 5,
+      "u": 0.4758,
+      "v": 0.2791,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_cuarto_analisis_de_carbono_total",
+      "poi": "p7_cuarto_analisis_de_carbono_total",
+      "piso": 5,
+      "u": 0.4758,
+      "v": 0.3279,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_cromatografia_de_gases",
+      "poi": "p7_cromatografia_de_gases",
+      "piso": 5,
+      "u": 0.4758,
+      "v": 0.3917,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_absorcion_atomica",
+      "poi": "p7_absorcion_atomica",
+      "piso": 5,
+      "u": 0.4758,
+      "v": 0.4611,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_microbiologia",
+      "poi": "p7_microbiologia",
+      "piso": 5,
+      "u": 0.4758,
+      "v": 0.5253,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_hornos",
+      "poi": "p7_hornos",
+      "piso": 5,
+      "u": 0.4758,
+      "v": 0.6041,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_bioreactor",
+      "poi": "p7_bioreactor",
+      "piso": 5,
+      "u": 0.4758,
+      "v": 0.6853,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_aguas_naturales",
+      "poi": "p7_aguas_naturales",
+      "piso": 5,
+      "u": 0.4758,
+      "v": 0.1904,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_aguas_residuales",
+      "poi": "p7_aguas_residuales",
+      "piso": 5,
+      "u": 0.4758,
+      "v": 0.7331,
+      "yaw": 90,
+      "ancho": 3.0,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_workspace_modulo_b",
+      "poi": "p7_workspace_modulo_b",
+      "piso": 5,
+      "u": 0.6005,
+      "v": 0.591,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p7_workspace_modulo_a",
+      "poi": "p7_workspace_modulo_a",
+      "piso": 5,
+      "u": 0.6005,
+      "v": 0.6285,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p8_gestion_laboratorio_ingenieria_civil",
+      "poi": "p8_gestion_laboratorio_ingenieria_civil",
+      "piso": 6,
+      "u": 0.5285,
+      "v": 0.0835,
+      "yaw": 0,
+      "ancho": 2.45,
+      "estilo": "salon"
+    },
+    {
+      "id": "p8_escalera",
+      "poi": "p8_escalera_emergencia",
+      "piso": 6,
+      "u": 0.7684,
+      "v": 0.1952,
+      "yaw": 90,
+      "ancho": 2.2,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p8_escalera_principal",
+      "poi": "p8_escalera_principal",
+      "piso": 6,
+      "u": 0.4835,
+      "v": 0.7974,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p8_seguridad",
+      "poi": "",
+      "piso": 6,
+      "u": 0.4758,
+      "v": 0.7683,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p8_electrico",
+      "poi": "",
+      "piso": 6,
+      "u": 0.6005,
+      "v": 0.2359,
+      "yaw": 90,
+      "ancho": 1.5,
+      "estilo": "salon"
+    },
+    {
+      "id": "p8_cableado",
+      "poi": "",
+      "piso": 6,
+      "u": 0.6005,
+      "v": 0.2739,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p8_aseo",
+      "poi": "",
+      "piso": 6,
+      "u": 0.6005,
+      "v": 0.3063,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "salon"
+    },
+    {
+      "id": "p8_banos",
+      "poi": "p8_banos",
+      "piso": 6,
+      "u": 0.6005,
+      "v": 0.3537,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p8_programacion",
+      "poi": "p8_programacion",
+      "piso": 6,
+      "u": 0.4504,
+      "v": 0.1445,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p8_arquitectura_empresarial",
+      "poi": "p8_arquitectura_empresarial",
+      "piso": 6,
+      "u": 0.4758,
+      "v": 0.3096,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p8_sistemas_heterogeneos",
+      "poi": "p8_sistemas_heterogeneos",
+      "piso": 6,
+      "u": 0.4758,
+      "v": 0.3471,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p8_laboratorio_sistemas_distributivos",
+      "poi": "p8_laboratorio_sistemas_distributivos",
+      "piso": 6,
+      "u": 0.4758,
+      "v": 0.5957,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p8_laboratorio_alan_turing",
+      "poi": "p8_laboratorio_alan_turing",
+      "piso": 6,
+      "u": 0.4758,
+      "v": 0.6332,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p8_manufactura_y_mediciones",
+      "poi": "p8_manufactura_y_mediciones",
+      "piso": 6,
+      "u": 0.6005,
+      "v": 0.4972,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p8_investigacion_en_redes",
+      "poi": "p8_investigacion_en_redes",
+      "piso": 6,
+      "u": 0.6005,
+      "v": 0.5347,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p8_investigacion_en_redes_idi",
+      "poi": "p8_investigacion_en_redes_idi",
+      "piso": 6,
+      "u": 0.6005,
+      "v": 0.7655,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p10_direccion_general_de_laboratorios",
+      "poi": "p10_direccion_general_de_laboratorios",
+      "piso": 8,
+      "u": 0.5285,
+      "v": 0.0835,
+      "yaw": 0,
+      "ancho": 2.45,
+      "estilo": "salon"
+    },
+    {
+      "id": "p10_escalera",
+      "poi": "p10_escalera_emergencia",
+      "piso": 8,
+      "u": 0.7684,
+      "v": 0.1952,
+      "yaw": 90,
+      "ancho": 2.2,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p10_escalera_principal",
+      "poi": "p10_escalera_principal",
+      "piso": 8,
+      "u": 0.4835,
+      "v": 0.7974,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p10_seguridad",
+      "poi": "",
+      "piso": 8,
+      "u": 0.4758,
+      "v": 0.7683,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p10_electrico",
+      "poi": "",
+      "piso": 8,
+      "u": 0.6005,
+      "v": 0.2359,
+      "yaw": 90,
+      "ancho": 1.5,
+      "estilo": "salon"
+    },
+    {
+      "id": "p10_cableado",
+      "poi": "",
+      "piso": 8,
+      "u": 0.6005,
+      "v": 0.2739,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p10_aseo",
+      "poi": "",
+      "piso": 8,
+      "u": 0.6005,
+      "v": 0.3063,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "salon"
+    },
+    {
+      "id": "p10_banos",
+      "poi": "p10_banos",
+      "piso": 8,
+      "u": 0.6005,
+      "v": 0.3537,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p10_coworking_2",
+      "poi": "p10_coworking_2",
+      "piso": 8,
+      "u": 0.4504,
+      "v": 0.1445,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p10_aula_de_computo_7",
+      "poi": "p10_aula_de_computo_7",
+      "piso": 8,
+      "u": 0.4758,
+      "v": 0.3049,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p10_aula_de_computo_6",
+      "poi": "p10_aula_de_computo_6",
+      "piso": 8,
+      "u": 0.4758,
+      "v": 0.3424,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p10_aula_de_computo_5",
+      "poi": "p10_aula_de_computo_5",
+      "piso": 8,
+      "u": 0.4758,
+      "v": 0.5957,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p10_aula_de_computo_4",
+      "poi": "p10_aula_de_computo_4",
+      "piso": 8,
+      "u": 0.4758,
+      "v": 0.6332,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p10_workspace_2a",
+      "poi": "p10_workspace_2a",
+      "piso": 8,
+      "u": 0.6005,
+      "v": 0.591,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p10_workspace_2b",
+      "poi": "p10_workspace_2b",
+      "piso": 8,
+      "u": 0.6005,
+      "v": 0.6285,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p11_sala_de_reuniones",
+      "poi": "p11_sala_de_reuniones",
+      "piso": 9,
+      "u": 0.5285,
+      "v": 0.0835,
+      "yaw": 0,
+      "ancho": 2.45,
+      "estilo": "salon"
+    },
+    {
+      "id": "p11_escalera",
+      "poi": "p11_escalera_emergencia",
+      "piso": 9,
+      "u": 0.7684,
+      "v": 0.1952,
+      "yaw": 90,
+      "ancho": 2.2,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p11_escalera_principal",
+      "poi": "p11_escalera_principal",
+      "piso": 9,
+      "u": 0.4835,
+      "v": 0.7974,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p11_seguridad",
+      "poi": "",
+      "piso": 9,
+      "u": 0.4758,
+      "v": 0.7683,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p11_electrico",
+      "poi": "",
+      "piso": 9,
+      "u": 0.6005,
+      "v": 0.2359,
+      "yaw": 90,
+      "ancho": 1.5,
+      "estilo": "salon"
+    },
+    {
+      "id": "p11_cableado",
+      "poi": "",
+      "piso": 9,
+      "u": 0.6005,
+      "v": 0.2739,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p11_bano_accesible",
+      "poi": "p11_bano_accesible",
+      "piso": 9,
+      "u": 0.6005,
+      "v": 0.3063,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "salon"
+    },
+    {
+      "id": "p11_banos",
+      "poi": "p11_banos",
+      "piso": 9,
+      "u": 0.6005,
+      "v": 0.3537,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p11_laboratorio_de_geoinformatica",
+      "poi": "p11_laboratorio_de_geoinformatica",
+      "piso": 9,
+      "u": 0.4758,
+      "v": 0.6332,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p11_laboratorio_de_control_automatico",
+      "poi": "p11_laboratorio_de_control_automatico",
+      "piso": 9,
+      "u": 0.6005,
+      "v": 0.591,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p11_conversion_de_energia",
+      "poi": "p11_conversion_de_energia",
+      "piso": 9,
+      "u": 0.6005,
+      "v": 0.6285,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p12_director_general_de_laboratorio",
+      "poi": "p12_director_general_de_laboratorio",
+      "piso": 10,
+      "u": 0.5285,
+      "v": 0.0835,
+      "yaw": 0,
+      "ancho": 2.45,
+      "estilo": "salon"
+    },
+    {
+      "id": "p12_escalera",
+      "poi": "p12_escalera_emergencia",
+      "piso": 10,
+      "u": 0.7684,
+      "v": 0.1952,
+      "yaw": 90,
+      "ancho": 2.2,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p12_escalera_principal",
+      "poi": "p12_escalera_principal",
+      "piso": 10,
+      "u": 0.4835,
+      "v": 0.7974,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "emergencia"
+    },
+    {
+      "id": "p12_seguridad",
+      "poi": "",
+      "piso": 10,
+      "u": 0.4758,
+      "v": 0.7683,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p12_electrico",
+      "poi": "",
+      "piso": 10,
+      "u": 0.6005,
+      "v": 0.2359,
+      "yaw": 90,
+      "ancho": 1.5,
+      "estilo": "salon"
+    },
+    {
+      "id": "p12_cableado",
+      "poi": "",
+      "piso": 10,
+      "u": 0.6005,
+      "v": 0.2739,
+      "yaw": 90,
+      "ancho": 1.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p12_aseo",
+      "poi": "",
+      "piso": 10,
+      "u": 0.6005,
+      "v": 0.3063,
+      "yaw": 90,
+      "ancho": 2.0,
+      "estilo": "salon"
+    },
+    {
+      "id": "p12_banos",
+      "poi": "p12_banos",
+      "piso": 10,
+      "u": 0.6005,
+      "v": 0.3537,
+      "yaw": 90,
+      "ancho": 1.8,
+      "estilo": "salon"
+    },
+    {
+      "id": "p12_oficina_gestion_tecnica_4",
+      "poi": "p12_oficina_gestion_tecnica_4",
+      "piso": 10,
+      "u": 0.4504,
+      "v": 0.1445,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p12_almacen_de_instrumentacion_electronica",
+      "poi": "p12_almacen_de_instrumentacion_electronica",
+      "piso": 10,
+      "u": 0.4758,
+      "v": 0.2008,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p12_almacen_de_instrumentacion_electronica_2",
+      "poi": "",
+      "piso": 10,
+      "u": 0.4758,
+      "v": 0.728,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p12_workspace_3b",
+      "poi": "p12_workspace_3b",
+      "piso": 10,
+      "u": 0.6005,
+      "v": 0.6004,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
+    },
+    {
+      "id": "p12_workspace_3a",
+      "poi": "p12_workspace_3a",
+      "piso": 10,
+      "u": 0.6005,
+      "v": 0.6379,
+      "yaw": 90,
+      "ancho": 2.4,
+      "estilo": "salon"
     }
   ],
   "mobiliario": [
@@ -1415,5 +4460,1035 @@
     "anchoColumna": 2.4,
     "cablesX": 1.6,
     "giroAlLlegar": 45
-  }
+  },
+  "multitudes": [
+    {
+      "semilla": 103,
+      "piso": 1,
+      "estudiantes": 5,
+      "visitantes": 2,
+      "recorrido": [
+        {
+          "u": 0.3053,
+          "v": 0.0516
+        },
+        {
+          "u": 0.3053,
+          "v": 0.2251
+        },
+        {
+          "u": 0.3053,
+          "v": 0.3471
+        },
+        {
+          "u": 0.3053,
+          "v": 0.5347
+        },
+        {
+          "u": 0.3053,
+          "v": 0.6567
+        },
+        {
+          "u": 0.1781,
+          "v": 0.7448
+        },
+        {
+          "u": 0.687,
+          "v": 0.4878
+        },
+        {
+          "u": 0.687,
+          "v": 0.6379
+        },
+        {
+          "u": 0.6361,
+          "v": 0.2992
+        },
+        {
+          "u": 0.6489,
+          "v": 0.2617
+        },
+        {
+          "u": 0.8651,
+          "v": 0.9146
+        }
+      ],
+      "parejas": [
+        {
+          "u": 0.8651,
+          "v": 0.9146
+        }
+      ]
+    },
+    {
+      "semilla": 104,
+      "piso": 2,
+      "estudiantes": 7,
+      "visitantes": 2,
+      "recorrido": [
+        {
+          "u": 0.5382,
+          "v": 0.1173
+        },
+        {
+          "u": 0.5382,
+          "v": 0.1876
+        },
+        {
+          "u": 0.5382,
+          "v": 0.2627
+        },
+        {
+          "u": 0.5382,
+          "v": 0.3377
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4128
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4878
+        },
+        {
+          "u": 0.5382,
+          "v": 0.5629
+        },
+        {
+          "u": 0.5382,
+          "v": 0.6379
+        },
+        {
+          "u": 0.5382,
+          "v": 0.7129
+        },
+        {
+          "u": 0.5382,
+          "v": 0.788
+        },
+        {
+          "u": 0.6107,
+          "v": 0.9099
+        },
+        {
+          "u": 0.7761,
+          "v": 0.924
+        },
+        {
+          "u": 0.8651,
+          "v": 0.9174
+        },
+        {
+          "u": 0.5382,
+          "v": 0.0633
+        },
+        {
+          "u": 0.6361,
+          "v": 0.3537
+        },
+        {
+          "u": 0.4097,
+          "v": 0.1445
+        },
+        {
+          "u": 0.4351,
+          "v": 0.2045
+        },
+        {
+          "u": 0.4351,
+          "v": 0.2852
+        },
+        {
+          "u": 0.4351,
+          "v": 0.5366
+        },
+        {
+          "u": 0.6412,
+          "v": 0.5141
+        },
+        {
+          "u": 0.6412,
+          "v": 0.5741
+        },
+        {
+          "u": 0.6412,
+          "v": 0.788
+        }
+      ],
+      "parejas": [
+        {
+          "u": 0.6005,
+          "v": 0.1201
+        },
+        {
+          "u": 0.7761,
+          "v": 0.9287
+        }
+      ]
+    },
+    {
+      "semilla": 105,
+      "piso": 3,
+      "estudiantes": 7,
+      "visitantes": 2,
+      "recorrido": [
+        {
+          "u": 0.5382,
+          "v": 0.1173
+        },
+        {
+          "u": 0.5382,
+          "v": 0.1876
+        },
+        {
+          "u": 0.5382,
+          "v": 0.2627
+        },
+        {
+          "u": 0.5382,
+          "v": 0.3377
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4128
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4878
+        },
+        {
+          "u": 0.5382,
+          "v": 0.5629
+        },
+        {
+          "u": 0.5382,
+          "v": 0.6379
+        },
+        {
+          "u": 0.5382,
+          "v": 0.7129
+        },
+        {
+          "u": 0.5382,
+          "v": 0.788
+        },
+        {
+          "u": 0.6107,
+          "v": 0.9099
+        },
+        {
+          "u": 0.7761,
+          "v": 0.924
+        },
+        {
+          "u": 0.8651,
+          "v": 0.9174
+        },
+        {
+          "u": 0.5382,
+          "v": 0.0633
+        },
+        {
+          "u": 0.6361,
+          "v": 0.3537
+        },
+        {
+          "u": 0.6438,
+          "v": 0.3063
+        },
+        {
+          "u": 0.6412,
+          "v": 0.4934
+        },
+        {
+          "u": 0.6412,
+          "v": 0.5291
+        },
+        {
+          "u": 0.6412,
+          "v": 0.606
+        }
+      ],
+      "parejas": [
+        {
+          "u": 0.6005,
+          "v": 0.1201
+        },
+        {
+          "u": 0.7761,
+          "v": 0.9287
+        }
+      ]
+    },
+    {
+      "semilla": 106,
+      "piso": 4,
+      "estudiantes": 7,
+      "visitantes": 2,
+      "recorrido": [
+        {
+          "u": 0.5382,
+          "v": 0.1173
+        },
+        {
+          "u": 0.5382,
+          "v": 0.1876
+        },
+        {
+          "u": 0.5382,
+          "v": 0.2627
+        },
+        {
+          "u": 0.5382,
+          "v": 0.3377
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4128
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4878
+        },
+        {
+          "u": 0.5382,
+          "v": 0.5629
+        },
+        {
+          "u": 0.5382,
+          "v": 0.6379
+        },
+        {
+          "u": 0.5382,
+          "v": 0.7129
+        },
+        {
+          "u": 0.5382,
+          "v": 0.788
+        },
+        {
+          "u": 0.6107,
+          "v": 0.9099
+        },
+        {
+          "u": 0.7761,
+          "v": 0.924
+        },
+        {
+          "u": 0.8651,
+          "v": 0.9174
+        },
+        {
+          "u": 0.5382,
+          "v": 0.0633
+        },
+        {
+          "u": 0.6361,
+          "v": 0.3537
+        },
+        {
+          "u": 0.4097,
+          "v": 0.1445
+        },
+        {
+          "u": 0.4351,
+          "v": 0.2345
+        },
+        {
+          "u": 0.4351,
+          "v": 0.2833
+        },
+        {
+          "u": 0.4351,
+          "v": 0.4465
+        },
+        {
+          "u": 0.4351,
+          "v": 0.4972
+        },
+        {
+          "u": 0.4351,
+          "v": 0.7261
+        },
+        {
+          "u": 0.6412,
+          "v": 0.5657
+        },
+        {
+          "u": 0.6412,
+          "v": 0.6069
+        }
+      ],
+      "parejas": [
+        {
+          "u": 0.6005,
+          "v": 0.1201
+        },
+        {
+          "u": 0.7761,
+          "v": 0.9287
+        }
+      ]
+    },
+    {
+      "semilla": 107,
+      "piso": 5,
+      "estudiantes": 7,
+      "visitantes": 2,
+      "recorrido": [
+        {
+          "u": 0.5382,
+          "v": 0.1173
+        },
+        {
+          "u": 0.5382,
+          "v": 0.1876
+        },
+        {
+          "u": 0.5382,
+          "v": 0.2627
+        },
+        {
+          "u": 0.5382,
+          "v": 0.3377
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4128
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4878
+        },
+        {
+          "u": 0.5382,
+          "v": 0.5629
+        },
+        {
+          "u": 0.5382,
+          "v": 0.6379
+        },
+        {
+          "u": 0.5382,
+          "v": 0.7129
+        },
+        {
+          "u": 0.5382,
+          "v": 0.788
+        },
+        {
+          "u": 0.6107,
+          "v": 0.9099
+        },
+        {
+          "u": 0.7761,
+          "v": 0.924
+        },
+        {
+          "u": 0.8651,
+          "v": 0.9174
+        },
+        {
+          "u": 0.5382,
+          "v": 0.0633
+        },
+        {
+          "u": 0.6361,
+          "v": 0.3537
+        },
+        {
+          "u": 0.6438,
+          "v": 0.3063
+        },
+        {
+          "u": 0.4097,
+          "v": 0.1445
+        },
+        {
+          "u": 0.4351,
+          "v": 0.2303
+        },
+        {
+          "u": 0.4351,
+          "v": 0.2791
+        },
+        {
+          "u": 0.4351,
+          "v": 0.3279
+        },
+        {
+          "u": 0.4351,
+          "v": 0.3917
+        },
+        {
+          "u": 0.4351,
+          "v": 0.4611
+        },
+        {
+          "u": 0.4351,
+          "v": 0.5253
+        },
+        {
+          "u": 0.4351,
+          "v": 0.6041
+        },
+        {
+          "u": 0.4351,
+          "v": 0.6853
+        },
+        {
+          "u": 0.2799,
+          "v": 0.1904
+        },
+        {
+          "u": 0.2799,
+          "v": 0.7331
+        },
+        {
+          "u": 0.2723,
+          "v": 0.3424
+        },
+        {
+          "u": 0.6412,
+          "v": 0.591
+        },
+        {
+          "u": 0.6412,
+          "v": 0.6285
+        }
+      ],
+      "parejas": [
+        {
+          "u": 0.6005,
+          "v": 0.1201
+        },
+        {
+          "u": 0.7761,
+          "v": 0.9287
+        }
+      ]
+    },
+    {
+      "semilla": 108,
+      "piso": 6,
+      "estudiantes": 7,
+      "visitantes": 2,
+      "recorrido": [
+        {
+          "u": 0.5382,
+          "v": 0.1173
+        },
+        {
+          "u": 0.5382,
+          "v": 0.1876
+        },
+        {
+          "u": 0.5382,
+          "v": 0.2627
+        },
+        {
+          "u": 0.5382,
+          "v": 0.3377
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4128
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4878
+        },
+        {
+          "u": 0.5382,
+          "v": 0.5629
+        },
+        {
+          "u": 0.5382,
+          "v": 0.6379
+        },
+        {
+          "u": 0.5382,
+          "v": 0.7129
+        },
+        {
+          "u": 0.5382,
+          "v": 0.788
+        },
+        {
+          "u": 0.6107,
+          "v": 0.9099
+        },
+        {
+          "u": 0.7761,
+          "v": 0.924
+        },
+        {
+          "u": 0.8651,
+          "v": 0.9174
+        },
+        {
+          "u": 0.5382,
+          "v": 0.0633
+        },
+        {
+          "u": 0.6361,
+          "v": 0.3537
+        },
+        {
+          "u": 0.4097,
+          "v": 0.1445
+        },
+        {
+          "u": 0.4351,
+          "v": 0.3096
+        },
+        {
+          "u": 0.4351,
+          "v": 0.3471
+        },
+        {
+          "u": 0.4351,
+          "v": 0.5957
+        },
+        {
+          "u": 0.4351,
+          "v": 0.6332
+        },
+        {
+          "u": 0.6412,
+          "v": 0.4972
+        },
+        {
+          "u": 0.6412,
+          "v": 0.5347
+        },
+        {
+          "u": 0.6412,
+          "v": 0.7655
+        }
+      ],
+      "parejas": [
+        {
+          "u": 0.6005,
+          "v": 0.1201
+        },
+        {
+          "u": 0.7761,
+          "v": 0.9287
+        }
+      ]
+    },
+    {
+      "semilla": 110,
+      "piso": 8,
+      "estudiantes": 7,
+      "visitantes": 2,
+      "recorrido": [
+        {
+          "u": 0.5382,
+          "v": 0.1173
+        },
+        {
+          "u": 0.5382,
+          "v": 0.1876
+        },
+        {
+          "u": 0.5382,
+          "v": 0.2627
+        },
+        {
+          "u": 0.5382,
+          "v": 0.3377
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4128
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4878
+        },
+        {
+          "u": 0.5382,
+          "v": 0.5629
+        },
+        {
+          "u": 0.5382,
+          "v": 0.6379
+        },
+        {
+          "u": 0.5382,
+          "v": 0.7129
+        },
+        {
+          "u": 0.5382,
+          "v": 0.788
+        },
+        {
+          "u": 0.6107,
+          "v": 0.9099
+        },
+        {
+          "u": 0.7761,
+          "v": 0.924
+        },
+        {
+          "u": 0.8651,
+          "v": 0.9174
+        },
+        {
+          "u": 0.5382,
+          "v": 0.0633
+        },
+        {
+          "u": 0.6361,
+          "v": 0.3537
+        },
+        {
+          "u": 0.4097,
+          "v": 0.1445
+        },
+        {
+          "u": 0.4351,
+          "v": 0.3049
+        },
+        {
+          "u": 0.4351,
+          "v": 0.3424
+        },
+        {
+          "u": 0.4351,
+          "v": 0.5957
+        },
+        {
+          "u": 0.4351,
+          "v": 0.6332
+        },
+        {
+          "u": 0.6412,
+          "v": 0.591
+        },
+        {
+          "u": 0.6412,
+          "v": 0.6285
+        }
+      ],
+      "parejas": [
+        {
+          "u": 0.6005,
+          "v": 0.1201
+        },
+        {
+          "u": 0.7761,
+          "v": 0.9287
+        }
+      ]
+    },
+    {
+      "semilla": 111,
+      "piso": 9,
+      "estudiantes": 7,
+      "visitantes": 2,
+      "recorrido": [
+        {
+          "u": 0.5382,
+          "v": 0.1173
+        },
+        {
+          "u": 0.5382,
+          "v": 0.1876
+        },
+        {
+          "u": 0.5382,
+          "v": 0.2627
+        },
+        {
+          "u": 0.5382,
+          "v": 0.3377
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4128
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4878
+        },
+        {
+          "u": 0.5382,
+          "v": 0.5629
+        },
+        {
+          "u": 0.5382,
+          "v": 0.6379
+        },
+        {
+          "u": 0.5382,
+          "v": 0.7129
+        },
+        {
+          "u": 0.5382,
+          "v": 0.788
+        },
+        {
+          "u": 0.6107,
+          "v": 0.9099
+        },
+        {
+          "u": 0.7761,
+          "v": 0.924
+        },
+        {
+          "u": 0.8651,
+          "v": 0.9174
+        },
+        {
+          "u": 0.5382,
+          "v": 0.0633
+        },
+        {
+          "u": 0.6361,
+          "v": 0.3537
+        },
+        {
+          "u": 0.6438,
+          "v": 0.3063
+        },
+        {
+          "u": 0.4351,
+          "v": 0.6332
+        },
+        {
+          "u": 0.6412,
+          "v": 0.591
+        },
+        {
+          "u": 0.6412,
+          "v": 0.6285
+        },
+        {
+          "u": 0.3817,
+          "v": 0.3565
+        }
+      ],
+      "parejas": [
+        {
+          "u": 0.6005,
+          "v": 0.1201
+        },
+        {
+          "u": 0.7761,
+          "v": 0.9287
+        },
+        {
+          "u": 0.3053,
+          "v": 0.2814
+        }
+      ]
+    },
+    {
+      "semilla": 112,
+      "piso": 10,
+      "estudiantes": 7,
+      "visitantes": 2,
+      "recorrido": [
+        {
+          "u": 0.5382,
+          "v": 0.1173
+        },
+        {
+          "u": 0.5382,
+          "v": 0.1876
+        },
+        {
+          "u": 0.5382,
+          "v": 0.2627
+        },
+        {
+          "u": 0.5382,
+          "v": 0.3377
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4128
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4878
+        },
+        {
+          "u": 0.5382,
+          "v": 0.5629
+        },
+        {
+          "u": 0.5382,
+          "v": 0.6379
+        },
+        {
+          "u": 0.5382,
+          "v": 0.7129
+        },
+        {
+          "u": 0.5382,
+          "v": 0.788
+        },
+        {
+          "u": 0.6107,
+          "v": 0.9099
+        },
+        {
+          "u": 0.7761,
+          "v": 0.924
+        },
+        {
+          "u": 0.8651,
+          "v": 0.9174
+        },
+        {
+          "u": 0.5382,
+          "v": 0.0633
+        },
+        {
+          "u": 0.6361,
+          "v": 0.3537
+        },
+        {
+          "u": 0.4097,
+          "v": 0.1445
+        },
+        {
+          "u": 0.4351,
+          "v": 0.2008
+        },
+        {
+          "u": 0.6412,
+          "v": 0.6004
+        },
+        {
+          "u": 0.6412,
+          "v": 0.6379
+        }
+      ],
+      "parejas": [
+        {
+          "u": 0.6005,
+          "v": 0.1201
+        },
+        {
+          "u": 0.7761,
+          "v": 0.9287
+        }
+      ]
+    },
+    {
+      "semilla": 113,
+      "piso": 11,
+      "estudiantes": 5,
+      "visitantes": 2,
+      "recorrido": [
+        {
+          "u": 0.5382,
+          "v": 0.1173
+        },
+        {
+          "u": 0.5382,
+          "v": 0.1876
+        },
+        {
+          "u": 0.5382,
+          "v": 0.2627
+        },
+        {
+          "u": 0.5382,
+          "v": 0.3377
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4128
+        },
+        {
+          "u": 0.5382,
+          "v": 0.4878
+        },
+        {
+          "u": 0.5382,
+          "v": 0.5629
+        },
+        {
+          "u": 0.5382,
+          "v": 0.6379
+        },
+        {
+          "u": 0.5382,
+          "v": 0.7129
+        },
+        {
+          "u": 0.5382,
+          "v": 0.788
+        },
+        {
+          "u": 0.6107,
+          "v": 0.9099
+        },
+        {
+          "u": 0.7761,
+          "v": 0.924
+        },
+        {
+          "u": 0.8651,
+          "v": 0.9174
+        },
+        {
+          "u": 0.4046,
+          "v": 0.1388
+        },
+        {
+          "u": 0.3868,
+          "v": 0.4503
+        },
+        {
+          "u": 0.2036,
+          "v": 0.3274
+        },
+        {
+          "u": 0.3893,
+          "v": 0.6379
+        },
+        {
+          "u": 0.3893,
+          "v": 0.6754
+        },
+        {
+          "u": 0.6819,
+          "v": 0.5807
+        },
+        {
+          "u": 0.5382,
+          "v": 0.0633
+        },
+        {
+          "u": 0.687,
+          "v": 0.5478
+        },
+        {
+          "u": 0.6361,
+          "v": 0.3537
+        },
+        {
+          "u": 0.6438,
+          "v": 0.3063
+        }
+      ],
+      "parejas": [
+        {
+          "u": 0.6005,
+          "v": 0.1201
+        },
+        {
+          "u": 0.7761,
+          "v": 0.9287
+        }
+      ]
+    }
+  ]
 }

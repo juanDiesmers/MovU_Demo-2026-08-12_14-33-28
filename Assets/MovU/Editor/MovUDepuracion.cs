@@ -21,6 +21,8 @@ public static class MovUDepuracion
 {
     private const string Menu = "MovU/Depuracion en Play/";
     private const float Velocidad = 3f;
+    private const float VelocidadDelRecorrido = 6f;
+    private static float velocidad = Velocidad;
 
     private static readonly List<Vector3> ruta = new List<Vector3>();
     private static int siguiente;
@@ -129,6 +131,125 @@ public static class MovUDepuracion
     {
         if (!EnPlay() || MissionManager.Instance == null) return;
         MissionManager.Instance.IniciarSiguiente();
+    }
+
+    // ------------------------------------------------------------------
+    // Recorrido automático de todas las misiones
+    // ------------------------------------------------------------------
+    // Juega el recorrido completo como lo haría alguien que conoce el edificio:
+    // camina por el NavMesh hasta el destino; si está en otro piso, camina
+    // hasta el ascensor, cambia de piso y sigue. Al final deja en la consola el
+    // tiempo y la ruta óptima de cada misión. Va a 6 m/s para no tardar.
+    private static bool atascado;
+    private static bool enElAscensor;
+    private static string misionDelIntento = "";
+    private static int intentos;
+    private static readonly System.Text.StringBuilder resumen = new System.Text.StringBuilder();
+
+    [MenuItem(Menu + "Recorrer todas las misiones (automatico)")]
+    private static void RecorrerTodas()
+    {
+        if (!EnPlay()) return;
+        if (MissionManager.Instance == null || FloorManager.Instance == null)
+        {
+            Debug.LogWarning("[Depuración] No hay misiones o edificio en esta escena.");
+            return;
+        }
+        Detener();
+        atascado = false; enElAscensor = false; misionDelIntento = ""; intentos = 0;
+        resumen.Clear();
+        velocidad = VelocidadDelRecorrido;
+        MissionManager.Instance.OnMissionCompleted -= AlCompletar;
+        MissionManager.Instance.OnMissionCompleted += AlCompletar;
+        if (MissionManager.Instance.Estado == MissionManager.EstadoDeMisiones.Esperando) EmpezarSesion();
+        EditorApplication.update -= Dirigir;
+        EditorApplication.update += Dirigir;
+        Debug.Log("[Depuración] Recorrido automático de todas las misiones: empieza.");
+    }
+
+    private static void AlCompletar(MisionEnCurso m)
+    {
+        resumen.AppendLine($"  {m.def.id}  piso {FloorManager.NumeroVisible(m.pisoDeInicio)} -> " +
+                           $"{FloorManager.NumeroVisible(m.pisoDeDestino)}  {m.destino.Nombre}: {m.tiempo:F1} s, " +
+                           $"óptima {m.rutaOptima:F1} m{(m.rutaConAscensor ? " (ascensor)" : "")}");
+    }
+
+    private static void TerminarRecorrido(string motivo)
+    {
+        EditorApplication.update -= Dirigir;
+        velocidad = Velocidad;
+        if (MissionManager.Instance != null) MissionManager.Instance.OnMissionCompleted -= AlCompletar;
+        Debug.Log($"[Depuración] Recorrido automático: {motivo}\n{resumen}");
+    }
+
+    private static void Dirigir()
+    {
+        if (!Application.isPlaying) { TerminarRecorrido("se salió de Play."); return; }
+        if (EditorApplication.isPaused || ruta.Count > 0) return;            // va caminando
+        if (atascado) { TerminarRecorrido("se trabó (mira el aviso de ATASCADO)."); return; }
+
+        MissionManager mm = MissionManager.Instance;
+        FloorManager pisos = FloorManager.Instance;
+        PlayerController jugador = Jugador();
+        if (mm == null || pisos == null || jugador == null) { TerminarRecorrido("falta el jugador o un gestor."); return; }
+
+        switch (mm.Estado)
+        {
+            case MissionManager.EstadoDeMisiones.Terminado:
+                TerminarRecorrido($"terminado, {mm.TotalDeMisiones} misiones.");
+                return;
+            case MissionManager.EstadoDeMisiones.EntreMisiones:
+                enElAscensor = false;
+                mm.IniciarSiguiente();
+                return;
+            case MissionManager.EstadoDeMisiones.EnCurso:
+                break;
+            default:
+                return;                                                       // la sesión todavía no empieza
+        }
+
+        MisionEnCurso m = mm.MisionActual;
+        if (m == null || m.destino == null) return;
+        if (misionDelIntento != m.def.id) { misionDelIntento = m.def.id; intentos = 0; }
+        if (++intentos > 4) { TerminarRecorrido($"no logró completar {m.def.id}."); return; }
+
+        int aqui = pisos.PisoActual;
+        Vector3 hasta;
+        string nombre;
+        if (m.pisoDeDestino != aqui)
+        {
+            if (enElAscensor)
+            {
+                // Como el panel del ascensor: se sale por la misma puerta del piso destino.
+                ElevatorTrigger salida = ElevatorTrigger.MasCercano(aqui, jugador.transform.position);
+                pisos.LlevarAlPiso(m.pisoDeDestino);
+                Vector3 llegada = ElevatorTrigger.Llegada(salida, m.pisoDeDestino, out float yaw);
+                jugador.Teletransportar(llegada + Vector3.up * 0.05f, yaw);
+                enElAscensor = false;
+                intentos--;
+                return;
+            }
+            ElevatorTrigger asc = ElevatorTrigger.MasCercano(aqui, jugador.transform.position);
+            if (asc == null) { TerminarRecorrido("no hay ascensor en este piso."); return; }
+            hasta = asc.PuntoDeAcceso;
+            nombre = $"{m.def.id}: al ascensor del piso {FloorManager.NumeroVisible(aqui)}";
+            enElAscensor = true;
+        }
+        else
+        {
+            hasta = m.destino.transform.position;
+            nombre = $"{m.def.id}: a {m.destino.Nombre}";
+        }
+
+        if (!NavUtil.Ruta(jugador.transform.position, hasta, out float largo))
+        {
+            TerminarRecorrido($"sin ruta por el NavMesh ({nombre}).");
+            return;
+        }
+        var puntos = new List<Vector3>();
+        for (int i = 1; i < NavUtil.CantidadDeEsquinas; i++) puntos.Add(NavUtil.Esquinas[i]);
+        if (puntos.Count == 0) puntos.Add(hasta);
+        Empezar($"{nombre} ({largo:F1} m)", puntos);
     }
 
     [MenuItem(Menu + "4 Ir al pie de la escalera")]
@@ -393,7 +514,7 @@ public static class MovUDepuracion
         Vector3 dir = d.normalized;
         jugador.transform.rotation = Quaternion.Slerp(jugador.transform.rotation,
                                                       Quaternion.LookRotation(dir, Vector3.up), 0.2f);
-        cc.Move(dir * (Velocidad * Time.deltaTime));
+        cc.Move(dir * (velocidad * Time.deltaTime));
 
         Vector3 nueva = jugador.transform.position;
         Vector3 paso = nueva - ultima;
@@ -401,13 +522,14 @@ public static class MovUDepuracion
         metros += paso.magnitude;
 
         // Si no avanza, se dice dónde se trabó en vez de quedarse empujando.
-        if (paso.magnitude < 0.2f * Velocidad * Time.deltaTime)
+        if (paso.magnitude < 0.2f * velocidad * Time.deltaTime)
         {
             if (atascadoDesde < 0f) atascadoDesde = Time.time;
             else if (Time.time - atascadoDesde > 2f)
             {
                 Debug.LogWarning($"[Depuración] ATASCADO ({nombreDeLaRuta}) en {nueva.ToString("F2")}, " +
                                  $"yendo al punto {siguiente + 1}/{ruta.Count} {objetivo.ToString("F2")}.");
+                atascado = true;
                 Detener();
             }
         }

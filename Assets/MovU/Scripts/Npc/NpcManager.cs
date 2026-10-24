@@ -99,47 +99,81 @@ public class NpcManager : MonoBehaviour
             string id = string.IsNullOrEmpty(def.id) ? $"npc_{i:00}" : def.id;
 
             Crear(pisos, def.piso, id, rol, def.nombre, deambula && hayNavMesh, def.frases,
-                  punto, def.yaw, Recorrido(datos, pisos, def.piso), 1000 + i);
+                  punto, def.yaw, RecorridoDelPiso(datos, pisos, def.piso), 1000 + i);
         }
 
-        // --- Multitud ---------------------------------------------------
-        MultitudDef m = datos.multitud;
-        if (m != null && (m.estudiantes > 0 || m.visitantes > 0))
+        // --- Multitudes: la del piso 9 y una por cada uno de los demás pisos --
+        var todas = new List<MultitudDef>();
+        if (datos.multitud != null) todas.Add(datos.multitud);
+        if (datos.multitudes != null) todas.AddRange(datos.multitudes);
+        foreach (MultitudDef m in todas)
         {
-            Vector3[] recorrido = Recorrido(datos, pisos, m.piso);
-            if (recorrido.Length == 0)
-            {
-                Debug.LogWarning("[NPC] La multitud necesita puntos en 'recorridos' del JSON.");
-            }
-            else
-            {
-                var azar = new System.Random(m.semilla);
-                int total = Mathf.Max(0, m.estudiantes) + Mathf.Max(0, m.visitantes);
-                for (int i = 0; i < total; i++)
-                {
-                    NpcRole rol = i < m.estudiantes ? NpcRole.Estudiante : NpcRole.Visitante;
-
-                    Vector3 punto = recorrido[azar.Next(recorrido.Length)];
-                    punto.x += (float)(azar.NextDouble() - 0.5) * 1.6f;
-                    punto.z += (float)(azar.NextDouble() - 0.5) * 1.6f;
-                    float yaw = (float)azar.NextDouble() * 360f;
-
-                    Crear(pisos, m.piso, $"{(rol == NpcRole.Estudiante ? "est" : "vis")}_{i:00}",
-                          rol, "", hayNavMesh, null, punto, yaw, recorrido, m.semilla * 31 + i);
-                }
-            }
+            if (m != null) PoblarMultitud(datos, pisos, m, hayNavMesh);
         }
 
-        Debug.Log($"[NPC] {npcs.Count} personajes creados " +
-                  $"({npcs.Count * NpcMeshFactory.Triangulos:N0} triángulos en total).");
+        Debug.Log($"[NPC] {npcs.Count} personajes creados en {todas.Count + 1} grupos " +
+                  $"(~{NpcFigura.TriangulosDeReferencia} triángulos cada uno; solo se dibujan los del piso activo).");
     }
 
-    private static Vector3[] Recorrido(ContenidoPiso datos, FloorManager pisos, int pisoDesdeUno)
+    private void PoblarMultitud(ContenidoPiso datos, FloorManager pisos, MultitudDef m, bool hayNavMesh)
     {
-        var puntos = new List<Vector3>(datos.recorridos.Count);
-        for (int i = 0; i < datos.recorridos.Count; i++)
+        if (m.estudiantes <= 0 && m.visitantes <= 0 && (m.parejas == null || m.parejas.Count == 0)) return;
+        Vector3[] recorrido = (m.recorrido != null && m.recorrido.Count > 0)
+            ? Recorrido(m.recorrido, pisos, m.piso)
+            : Recorrido(datos.recorridos, pisos, m.piso);
+        var azar = new System.Random(m.semilla);
+        string prefijo = $"p{m.piso}_";
+
+        if (recorrido.Length > 0)
         {
-            PuntoUV uv = datos.recorridos[i];
+            int total = Mathf.Max(0, m.estudiantes) + Mathf.Max(0, m.visitantes);
+            for (int i = 0; i < total; i++)
+            {
+                NpcRole rol = i < m.estudiantes ? NpcRole.Estudiante : NpcRole.Visitante;
+                Vector3 punto = recorrido[azar.Next(recorrido.Length)];
+                punto.x += (float)(azar.NextDouble() - 0.5) * 1.6f;
+                punto.z += (float)(azar.NextDouble() - 0.5) * 1.6f;
+                float yaw = (float)azar.NextDouble() * 360f;
+                Crear(pisos, m.piso, $"{prefijo}{(rol == NpcRole.Estudiante ? "est" : "vis")}_{i:00}",
+                      rol, "", hayNavMesh, null, punto, yaw, recorrido, m.semilla * 31 + i);
+            }
+        }
+        else if (m.estudiantes + m.visitantes > 0)
+        {
+            Debug.LogWarning($"[NPC] La multitud del piso {m.piso} no tiene recorrido.");
+        }
+
+        // Parejas que conversan: dos estudiantes quietos, frente a frente.
+        if (m.parejas == null) return;
+        for (int k = 0; k < m.parejas.Count; k++)
+        {
+            PuntoUV c = m.parejas[k];
+            if (c == null || !ContenidoLoader.AMundo(pisos, m.piso, c.u, c.v, out Vector3 centro)) continue;
+            float giro = (float)azar.NextDouble() * 180f;
+            Vector3 lado = Quaternion.Euler(0f, giro, 0f) * Vector3.right * 0.55f;
+            Crear(pisos, m.piso, $"{prefijo}charla_{k}a", NpcRole.Estudiante, "", false, null,
+                  centro - lado, giro + 90f, null, m.semilla * 57 + k * 2);
+            Crear(pisos, m.piso, $"{prefijo}charla_{k}b", NpcRole.Estudiante, "", false, null,
+                  centro + lado, giro - 90f, null, m.semilla * 57 + k * 2 + 1);
+        }
+    }
+
+    /// <summary>Por dónde caminan los NPC de un piso: el recorrido de su multitud o, si no hay, el general.</summary>
+    private static Vector3[] RecorridoDelPiso(ContenidoPiso datos, FloorManager pisos, int pisoDesdeUno)
+    {
+        if (datos.multitudes != null)
+            foreach (MultitudDef m in datos.multitudes)
+                if (m != null && m.piso == pisoDesdeUno && m.recorrido != null && m.recorrido.Count > 0)
+                    return Recorrido(m.recorrido, pisos, pisoDesdeUno);
+        return Recorrido(datos.recorridos, pisos, pisoDesdeUno);
+    }
+
+    private static Vector3[] Recorrido(List<PuntoUV> lista, FloorManager pisos, int pisoDesdeUno)
+    {
+        var puntos = new List<Vector3>(lista.Count);
+        for (int i = 0; i < lista.Count; i++)
+        {
+            PuntoUV uv = lista[i];
             if (uv != null && ContenidoLoader.AMundo(pisos, pisoDesdeUno, uv.u, uv.v, out Vector3 p))
             {
                 puntos.Add(p);
@@ -170,24 +204,8 @@ public class NpcManager : MonoBehaviour
         go.transform.SetParent(grupo, false);
         go.transform.SetPositionAndRotation(punto, Quaternion.Euler(0f, yaw, 0f));
 
-        var figura = new GameObject("Cuerpo");
-        figura.transform.SetParent(go.transform, false);
-        float talla = 0.92f + (float)azar.NextDouble() * 0.12f;      // de 1,66 a 1,87 m
-        figura.transform.localScale = new Vector3(talla, talla, talla);
-
-        figura.AddComponent<MeshFilter>().sharedMesh = NpcMeshFactory.Malla;
-        var dibujo = figura.AddComponent<MeshRenderer>();
-        var materiales = new Material[3];
-        materiales[NpcMeshFactory.SubmallaRopa] = NpcMeshFactory.Material(ColorDeRopa(rol, azar));
-        materiales[NpcMeshFactory.SubmallaPiel] = NpcMeshFactory.Material(Piel[azar.Next(Piel.Length)]);
-        materiales[NpcMeshFactory.SubmallaPantalon] = NpcMeshFactory.Material(Pantalon[azar.Next(Pantalon.Length)]);
-        dibujo.sharedMaterials = materiales;
-        // Bajo techo el sol no entra: una sombra en tiempo real por personaje
-        // sería un pase de dibujo más para algo que no se ve.
-        dibujo.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-        dibujo.receiveShadows = false;
-        dibujo.lightProbeUsage = UnityEngine.Rendering.LightProbeUsage.Off;
-        dibujo.reflectionProbeUsage = UnityEngine.Rendering.ReflectionProbeUsage.Off;
+        float talla = 0.93f + (float)azar.NextDouble() * 0.1f;      // de 1,67 a 1,85 m
+        NpcFigura figura = NpcFigura.Construir(go.transform, AparienciaDe(rol, azar), talla);
 
         NavMeshAgent agente = null;
         if (deambula)
@@ -195,7 +213,9 @@ public class NpcManager : MonoBehaviour
             agente = go.AddComponent<NavMeshAgent>();
             agente.radius = 0.25f;
             agente.height = 1.75f;
-            agente.speed = 1.0f + (float)azar.NextDouble() * 0.45f;
+            agente.speed = rol == NpcRole.Visitante
+                ? 0.65f + (float)azar.NextDouble() * 0.25f           // pasean, mirando
+                : 1.0f + (float)azar.NextDouble() * 0.45f;
             agente.angularSpeed = 260f;
             agente.acceleration = 6f;
             agente.stoppingDistance = 0.4f;
@@ -206,7 +226,7 @@ public class NpcManager : MonoBehaviour
 
         var npc = go.AddComponent<NpcCharacter>();
         npc.Configurar(id, rol, nombre, deambula ? NpcConducta.Deambula : NpcConducta.Quieto,
-                       frases, figura.transform, dibujo, agente, recorrido, semilla);
+                       frases, figura, agente, recorrido, semilla);
         npcs.Add(npc);
     }
 
@@ -230,18 +250,94 @@ public class NpcManager : MonoBehaviour
         new Color32(96, 140, 214, 255), new Color32(160, 110, 190, 255), new Color32(232, 232, 226, 255),
     };
 
-    private static Color32 ColorDeRopa(NpcRole rol, System.Random azar)
+    private static readonly Color32[] Pelo =
     {
+        new Color32(24, 20, 18, 255), new Color32(46, 32, 24, 255), new Color32(84, 56, 34, 255),
+        new Color32(132, 96, 58, 255), new Color32(30, 26, 24, 255),
+    };
+
+    private static readonly Color32[] Jean =
+    {
+        new Color32(52, 70, 104, 255), new Color32(38, 48, 72, 255), new Color32(30, 30, 34, 255),
+        new Color32(170, 150, 118, 255), new Color32(84, 88, 92, 255),
+    };
+
+    private static readonly Color32[] Mochila =
+    {
+        new Color32(26, 26, 30, 255), new Color32(40, 52, 86, 255), new Color32(120, 40, 42, 255),
+        new Color32(70, 86, 74, 255), new Color32(96, 96, 100, 255),
+    };
+
+    private static T Uno<T>(T[] lista, System.Random azar) => lista[azar.Next(lista.Length)];
+
+    /// <summary>Cómo se ve cada quien según su rol (con algo de azar, siempre igual para la misma semilla).</summary>
+    public static Apariencia AparienciaDe(NpcRole rol, System.Random azar)
+    {
+        var a = new Apariencia
+        {
+            ropa = Uno(RopaDeEstudiante, azar),
+            pantalon = Uno(Jean, azar),
+            piel = Uno(Piel, azar),
+            pelo = Uno(Pelo, azar),
+            zapatos = azar.NextDouble() < 0.5 ? new Color32(236, 236, 232, 255) : new Color32(34, 32, 32, 255),
+            accesorio = Uno(Mochila, azar),
+            peinado = (Peinado)azar.Next(4),
+            extra = AccesorioNpc.Ninguno,
+            complexion = (float)azar.NextDouble(),
+            mangaCorta = azar.NextDouble() < 0.4,
+        };
+
         switch (rol)
         {
-            case NpcRole.Profesor: return new Color32(70, 78, 96, 255);          // saco gris azulado
-            case NpcRole.SoporteDTI: return new Color32(0, 134, 150, 255);       // polo turquesa
-            case NpcRole.Administrativo: return new Color32(132, 52, 70, 255);   // vinotinto
-            case NpcRole.Vigilante: return new Color32(28, 36, 60, 255);         // uniforme oscuro
-            case NpcRole.Aseo: return new Color32(60, 130, 96, 255);             // uniforme verde
-            case NpcRole.Visitante: return new Color32(226, 140, 76, 255);       // naranja
-            default: return RopaDeEstudiante[azar.Next(RopaDeEstudiante.Length)];
+            case NpcRole.Estudiante:
+                if (azar.NextDouble() < 0.7) a.extra = AccesorioNpc.Mochila;
+                break;
+            case NpcRole.Profesor:
+                a.ropa = Uno(new[] { new Color32(70, 78, 96, 255), new Color32(92, 74, 58, 255), new Color32(58, 60, 64, 255) }, azar);
+                a.accesorio = Uno(new[] { new Color32(236, 236, 232, 255), new Color32(186, 206, 232, 255) }, azar);
+                a.pantalon = new Color32(44, 46, 54, 255);
+                a.zapatos = new Color32(58, 40, 30, 255);
+                a.extra = AccesorioNpc.Saco;
+                a.peinado = azar.NextDouble() < 0.5 ? Peinado.Corto : Peinado.Rapado;
+                if (azar.NextDouble() < 0.35) a.pelo = new Color32(150, 148, 144, 255);       // canas
+                break;
+            case NpcRole.SoporteDTI:
+                a.ropa = new Color32(0, 134, 150, 255);
+                a.accesorio = new Color32(30, 78, 154, 255);
+                a.extra = AccesorioNpc.Carne;
+                a.mangaCorta = true;
+                break;
+            case NpcRole.Administrativo:
+                a.ropa = Uno(new[] { new Color32(132, 52, 70, 255), new Color32(64, 92, 130, 255), new Color32(230, 226, 214, 255) }, azar);
+                a.accesorio = new Color32(30, 78, 154, 255);
+                a.pantalon = new Color32(44, 46, 54, 255);
+                a.extra = AccesorioNpc.Carne;
+                break;
+            case NpcRole.Vigilante:
+                a.ropa = new Color32(28, 36, 60, 255);
+                a.pantalon = new Color32(24, 28, 42, 255);
+                a.accesorio = new Color32(20, 24, 36, 255);
+                a.zapatos = new Color32(20, 20, 22, 255);
+                a.extra = AccesorioNpc.Gorra;
+                a.mangaCorta = false;
+                a.complexion = 0.7f + (float)azar.NextDouble() * 0.3f;
+                break;
+            case NpcRole.Aseo:
+                a.ropa = new Color32(60, 130, 96, 255);
+                a.pantalon = new Color32(48, 100, 76, 255);
+                a.accesorio = new Color32(120, 176, 140, 255);
+                a.extra = AccesorioNpc.Delantal;
+                a.peinado = azar.NextDouble() < 0.6 ? Peinado.Coleta : Peinado.Corto;
+                break;
+            case NpcRole.Visitante:
+                a.ropa = Uno(new[] { new Color32(226, 140, 76, 255), new Color32(206, 190, 150, 255),
+                                     new Color32(110, 150, 120, 255), new Color32(196, 92, 110, 255) }, azar);
+                a.accesorio = Uno(new[] { new Color32(80, 56, 40, 255), new Color32(30, 30, 30, 255) }, azar);
+                a.extra = AccesorioNpc.Bolso;
+                if (azar.NextDouble() < 0.3) a.pelo = new Color32(150, 148, 144, 255);
+                break;
         }
+        return a;
     }
 
     // ------------------------------------------------------------------
@@ -357,7 +453,14 @@ public class NpcManager : MonoBehaviour
         string frase;
         Vector3 mirarA = jugador.position;
 
-        if (mision != null && mision.destino != null && danIndicaciones)
+        if (mision != null && mision.destino != null && npc.Rol == NpcRole.Visitante)
+        {
+            // Los visitantes no saben dónde quedan las cosas: están conociendo el edificio.
+            // Se cuenta como consulta (el jugador sí preguntó), aunque no le sirva.
+            frase = npc.NoSeDondeQueda(mision.destino.Nombre);
+            misiones.RegistrarConsultaANpc();
+        }
+        else if (mision != null && mision.destino != null && danIndicaciones)
         {
             frase = Indicaciones(npc, mision, ref mirarA);
             misiones.RegistrarConsultaANpc();

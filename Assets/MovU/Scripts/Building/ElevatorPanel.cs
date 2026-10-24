@@ -234,7 +234,17 @@ public class ElevatorPanel : MonoBehaviour
 
     private void Elegir(int destino)
     {
-        if (pisos != null) pisos.LlevarAlPiso(destino);
+        ElevatorTrigger salida = ElevatorTrigger.EnUso;
+        if (pisos != null)
+        {
+            pisos.LlevarAlPiso(destino);
+            // Se sale por la misma puerta del piso de destino, mirando al lobby.
+            if (salida != null && salida.Puerta >= 0 && jugador != null)
+            {
+                Vector3 llegada = ElevatorTrigger.Llegada(salida, destino, out float yaw);
+                jugador.Teletransportar(llegada + Vector3.up * 0.05f, yaw);
+            }
+        }
         Cerrar();
     }
 

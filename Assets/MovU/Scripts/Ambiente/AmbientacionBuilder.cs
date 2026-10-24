@@ -255,7 +255,12 @@ public static class AmbientacionBuilder
 
             // El cubo del ascensor es el hermano 'Cubo' de la zona de disparo.
             Transform cubo = e.transform.parent != null ? e.transform.parent.Find("Cubo") : null;
-            if (cubo == null) continue;
+            if (cubo == null)
+            {
+                // Puerta de ascensor real del lobby: botonera de llamada y número de piso.
+                if (e.Puerta >= 0) VestirPuertaDeAscensor(e, grupo, pisos.AlturaDelSuelo(piso), piso, marco, boton);
+                continue;
+            }
 
             var raiz = new GameObject("Ascensor_marco");
             raiz.transform.SetParent(grupo, false);
@@ -303,6 +308,44 @@ public static class AmbientacionBuilder
         }
     }
 
+    /// <summary>
+    /// Botonera de llamada a la derecha de la puerta y el número del piso encima, como
+    /// en el lobby real. La zona del ascensor está 1,1 m delante de la puerta, mirando
+    /// hacia afuera.
+    /// </summary>
+    private static void VestirPuertaDeAscensor(ElevatorTrigger e, Transform grupo, float suelo, int piso,
+                                               Material marco, Material boton)
+    {
+        Transform z = e.transform;
+        Vector3 haciaAfuera = z.forward; haciaAfuera.y = 0f; haciaAfuera.Normalize();
+        Vector3 puerta = new Vector3(z.position.x, suelo, z.position.z) - haciaAfuera * 1.1f;
+
+        var raiz = new GameObject($"Ascensor_puerta{e.Puerta + 1}");
+        raiz.transform.SetParent(grupo, false);
+        raiz.transform.SetPositionAndRotation(puerta, Quaternion.LookRotation(haciaAfuera, Vector3.up));
+        Transform t = raiz.transform;
+
+        // Placa con los dos botones (subir y bajar), a la derecha de quien mira la puerta.
+        float lado = -1.55f;
+        FormasMovU.Caja(t, "Botonera", new Vector3(lado, 1.15f, 0.07f), new Vector3(0.16f, 0.34f, 0.03f), marco, piso);
+        FormasMovU.Caja(t, "Boton_sube", new Vector3(lado, 1.23f, 0.09f), new Vector3(0.07f, 0.07f, 0.02f), boton, piso);
+        FormasMovU.Caja(t, "Boton_baja", new Vector3(lado, 1.07f, 0.09f), new Vector3(0.07f, 0.07f, 0.02f), boton, piso);
+
+        // Indicador encima de la puerta.
+        var texto = new GameObject("Indicador");
+        texto.transform.SetParent(t, false);
+        texto.transform.localPosition = new Vector3(0f, 3.35f, 0.08f);
+        texto.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);     // TMP se lee mirando a su +Z
+        var tmp = texto.AddComponent<TextMeshPro>();
+        tmp.text = FloorManager.NumeroVisible(piso).ToString();
+        tmp.fontSize = 2.2f;
+        tmp.fontStyle = FontStyles.Bold;
+        tmp.alignment = TextAlignmentOptions.Center;
+        tmp.textWrappingMode = TextWrappingModes.NoWrap;
+        tmp.color = new Color(1f, 0.78f, 0.30f);
+        tmp.rectTransform.sizeDelta = new Vector2(1.2f, 0.5f);
+    }
+
     // ------------------------------------------------------------------
     // Jugador
     // ------------------------------------------------------------------
@@ -321,19 +364,31 @@ public static class AmbientacionBuilder
         var dibujo = cuerpo.GetComponent<MeshRenderer>();
         if (filtro == null || dibujo == null) return;
 
-        filtro.sharedMesh = NpcMeshFactory.Malla;
-        cuerpo.localPosition = Vector3.zero;          // la figura tiene los pies en y = 0
+        // La figura nueva (por partes, animada) cuelga del Body; el Body queda sin malla
+        // propia y CameraRig enciende o apaga todo lo que cuelga de él.
+        filtro.sharedMesh = null;
+        cuerpo.localPosition = Vector3.zero;
         cuerpo.localRotation = Quaternion.identity;
         cuerpo.localScale = Vector3.one;
-
         bool visible = dibujo.enabled;                // CameraRig lo oculta en primera persona
-        var materiales = new Material[3];
-        materiales[NpcMeshFactory.SubmallaRopa] = NpcMeshFactory.Material(new Color32(30, 78, 154, 255));     // azul Javeriana
-        materiales[NpcMeshFactory.SubmallaPiel] = NpcMeshFactory.Material(new Color32(214, 164, 124, 255));
-        materiales[NpcMeshFactory.SubmallaPantalon] = NpcMeshFactory.Material(new Color32(48, 58, 82, 255));
-        dibujo.sharedMaterials = materiales;
-        dibujo.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-        dibujo.enabled = visible;
+        var vieja = cuerpo.Find("Figura");
+        if (vieja != null) Object.Destroy(vieja.gameObject);
+        var a = new Apariencia
+        {
+            ropa = new Color32(30, 78, 154, 255),           // azul Javeriana
+            pantalon = new Color32(48, 58, 82, 255),
+            piel = new Color32(214, 164, 124, 255),
+            pelo = new Color32(38, 28, 22, 255),
+            zapatos = new Color32(236, 236, 232, 255),
+            accesorio = new Color32(26, 26, 30, 255),
+            peinado = Peinado.Corto,
+            extra = AccesorioNpc.Mochila,
+            complexion = 0.5f,
+            mangaCorta = true,
+        };
+        NpcFigura.Construir(cuerpo, a, 1f);
+        foreach (var r in cuerpo.GetComponentsInChildren<Renderer>(true)) r.enabled = visible;
+        if (jugador.GetComponent<FiguraDelJugador>() == null) jugador.gameObject.AddComponent<FiguraDelJugador>();
 
         // La cápsula traía su propio collider; el que cuenta es el CharacterController.
         var sobrante = cuerpo.GetComponent<Collider>();

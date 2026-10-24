@@ -44,8 +44,9 @@ public class NpcCharacter : MonoBehaviour
     [SerializeField] private List<string> frases = new List<string>();
 
     private NavMeshAgent agente;
-    private Transform cuerpo;
-    private Renderer dibujo;
+    private NpcFigura figura;
+    private float ultimoTick = -1f;
+    private float proximaMirada;
     private Vector3[] recorrido;
     private System.Random azar;
 
@@ -62,7 +63,7 @@ public class NpcCharacter : MonoBehaviour
 
     public void Configurar(string nuevoId, NpcRole nuevoRol, string nuevoNombre,
                            NpcConducta nuevaConducta, List<string> nuevasFrases,
-                           Transform figura, Renderer renderizador, NavMeshAgent agent,
+                           NpcFigura cuerpoAnimado, NavMeshAgent agent,
                            Vector3[] puntos, int semilla)
     {
         id = nuevoId;
@@ -70,8 +71,7 @@ public class NpcCharacter : MonoBehaviour
         nombre = nuevoNombre;
         conducta = nuevaConducta;
         frases = nuevasFrases ?? new List<string>();
-        cuerpo = figura;
-        dibujo = renderizador;
+        figura = cuerpoAnimado;
         agente = agent;
         recorrido = puntos;
         azar = new System.Random(semilla);
@@ -82,6 +82,25 @@ public class NpcCharacter : MonoBehaviour
     /// <summary>Lo llama el NpcManager una vez por frame, solo si el NPC está activo.</summary>
     public void Tick(float ahora)
     {
+        float dt = ultimoTick < 0f ? 0f : Mathf.Min(0.1f, ahora - ultimoTick);
+        ultimoTick = ahora;
+
+        // El cuerpo se anima solo si alguien lo está viendo.
+        if (figura != null && figura.Visible)
+        {
+            float vel = (agente != null && agente.isActiveAndEnabled) ? agente.velocity.magnitude : 0f;
+            if (vel < 0.1f && ahora >= proximaMirada && ahora >= hablandoHasta)
+            {
+                // Quieto, mira alrededor: los visitantes mucho (están conociendo el edificio).
+                bool curioso = rol == NpcRole.Visitante;
+                proximaMirada = ahora + (curioso ? 1.6f : 4f) + (float)azar.NextDouble() * 2.5f;
+                figura.MirarHacia(curioso ? (float)(azar.NextDouble() * 120.0 - 60.0)
+                                          : (float)(azar.NextDouble() * 40.0 - 20.0));
+            }
+            else if (vel >= 0.1f) figura.MirarHacia(0f);
+            figura.Animar(vel, ahora, dt);
+        }
+
         if (conducta != NpcConducta.Deambula || agente == null) return;
         if (!agente.isActiveAndEnabled || !agente.isOnNavMesh) return;
 
@@ -97,7 +116,10 @@ public class NpcCharacter : MonoBehaviour
         {
             if (esperarHasta < 0f)
             {
-                esperarHasta = ahora + 2f + (float)azar.NextDouble() * 7f;
+                // Los visitantes se detienen más: van mirando el edificio, no van a ningún lado.
+                esperarHasta = rol == NpcRole.Visitante
+                    ? ahora + 5f + (float)azar.NextDouble() * 9f
+                    : ahora + 2f + (float)azar.NextDouble() * 7f;
             }
             else if (ahora >= esperarHasta)
             {
@@ -106,13 +128,6 @@ public class NpcCharacter : MonoBehaviour
             }
         }
 
-        // Un balanceo mínimo al caminar, y solo si alguien lo está viendo.
-        if (cuerpo != null && dibujo != null && dibujo.isVisible)
-        {
-            bool camina = agente.velocity.sqrMagnitude > 0.04f;
-            float y = camina ? Mathf.Abs(Mathf.Sin(ahora * 7f + fase)) * 0.035f : 0f;
-            cuerpo.localPosition = new Vector3(0f, y, 0f);
-        }
     }
 
     private void ElegirDestino()
@@ -145,6 +160,21 @@ public class NpcCharacter : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(d, Vector3.up);
         }
+    }
+
+    /// <summary>
+    /// Lo que dice un visitante si le preguntan por un sitio: no lo sabe. Está
+    /// conociendo el edificio; manda a preguntarle a alguien de aquí.
+    /// </summary>
+    public string NoSeDondeQueda(string lugar)
+    {
+        string[] f =
+        {
+            $"¿{lugar}? Ni idea, yo también estoy de visita. Pregúntale a un estudiante o al vigilante.",
+            $"Uy, no sé dónde queda {lugar}. Es mi primera vez en el edificio.",
+            "No sabría decirte, solo vine a mirar. Alguien de aquí seguro sabe.",
+        };
+        return f[azar != null ? azar.Next(f.Length) : 0];
     }
 
     /// <summary>Una frase propia. Si el JSON no trae ninguna, una genérica de su rol.</summary>
@@ -191,7 +221,9 @@ public class NpcCharacter : MonoBehaviour
             case NpcRole.Aseo:
                 return new[] { "Cuidado, que el piso está recién trapeado.", "Buen día." };
             case NpcRole.Visitante:
-                return new[] { "Yo también ando perdido, es mi primera vez aquí.", "¿Sabes dónde queda la salida?" };
+                return new[] { "Vine a conocer el edificio. ¡Qué bonito es por dentro!",
+                               "Es mi primera vez aquí, solo estoy mirando.",
+                               "Mi hija estudia aquí y vine a conocer dónde pasa el día." };
             case NpcRole.Administrativo:
                 return new[] { "Buen día, ¿a quién buscas?", "Las oficinas atienden hasta las cinco." };
             default:

@@ -338,6 +338,12 @@ public static class BuildingSetup
                 piso = Piso13Builder.Construir(edificio.transform, "Piso_13", pivote, alturaLosa, plano);
                 planta = Piso13Builder.Planta;
             }
+            else if (PisosConPlanoBuilder.HayPlanta(numero))
+            {
+                // 4-8 y 10-12: plantas propias desde sus planos (Tools/pisos_planta.py).
+                piso = PisosConPlanoBuilder.Construir(edificio.transform, numero, pivote, alturaLosa, plano);
+                planta = PisosConPlanoBuilder.Planta(numero);
+            }
 
             // Sin planta propia: genérico (o, si falta hasta esa planta, una copia del 9).
             if (piso == null && PisoGenericoBuilder.HayPlanta)
@@ -387,12 +393,20 @@ public static class BuildingSetup
             }
         }
 
-        Material matAscensor = CrearMaterialAscensor();
+        // Ascensores: una zona delante de cada puerta de ascensor del lobby (las que
+        // dibuja cada planta). Solo si un piso no trae puertas se pone el cubo viejo.
+        Material matAscensor = null;
+        int puertas = 0;
         for (int i = 0; i < pisos.Count; i++)
         {
+            int enEstePiso = CrearAscensoresEnLasPuertas(pisos[i], i);
+            puertas += enEstePiso;
+            if (enEstePiso > 0) continue;
+            if (matAscensor == null) matAscensor = CrearMaterialAscensor();
             float y = pisos[i].position.y + alturaLosa;
             CrearAscensor(pisos[i], new Vector3(sitioAscensor.x, y, sitioAscensor.z), i, matAscensor, yawAscensor);
         }
+        Debug.Log($"[Edificio] {puertas} puertas de ascensor funcionales en {pisos.Count} pisos.");
 
         ColocarJugador(jugador, aparicion, yawAparicion);
 
@@ -634,6 +648,39 @@ public static class BuildingSetup
             if (c != null && c.GetComponentInParent<PlayerController>() == null) return false;
         }
         return true;
+    }
+
+    /// <summary>
+    /// Zona de disparo delante de cada puerta de ascensor que dejó marcada la planta
+    /// (PlantaBuilder.PrefijoPuertaDeAscensor). Devuelve cuántas puso.
+    /// </summary>
+    private static int CrearAscensoresEnLasPuertas(Transform piso, int indice)
+    {
+        var marcas = new List<Transform>();
+        foreach (Transform t in piso.GetComponentsInChildren<Transform>(true))
+            if (t.name.StartsWith(PlantaBuilder.PrefijoPuertaDeAscensor)) marcas.Add(t);
+        marcas.Sort((a, b) => string.CompareOrdinal(a.name, b.name));
+
+        foreach (Transform m in marcas)
+        {
+            int puerta = int.Parse(m.name.Substring(PlantaBuilder.PrefijoPuertaDeAscensor.Length));
+            float ancho = Mathf.Max(1.6f, m.localScale.x);
+            var raiz = new GameObject($"Ascensor_Piso{indice + 1}_Puerta{puerta + 1}");
+            raiz.transform.SetParent(piso, true);
+            // 1,4 m delante de la puerta: ahí se para quien espera el ascensor y ahí se sale.
+            raiz.transform.SetPositionAndRotation(m.position + m.forward * 1.4f, m.rotation);
+
+            var zona = new GameObject("Zona");
+            zona.transform.SetParent(raiz.transform, false);
+            zona.transform.localPosition = new Vector3(0f, 1.0f, -0.3f);
+            var caja = zona.AddComponent<BoxCollider>();
+            caja.isTrigger = true;
+            caja.size = new Vector3(ancho + 0.2f, 2.4f, 2.2f);
+            var disparador = zona.AddComponent<ElevatorTrigger>();
+            disparador.Configurar(null, puerta);
+            // La zona hereda la rotación: mirando hacia afuera de la puerta.
+        }
+        return marcas.Count;
     }
 
     private static void CrearAscensor(Transform piso, Vector3 posicion, int indice,

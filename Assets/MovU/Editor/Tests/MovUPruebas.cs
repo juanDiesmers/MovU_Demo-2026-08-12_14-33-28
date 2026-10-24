@@ -24,7 +24,7 @@ public class MovUPruebas
     /// escalera principal y lobby). Con el modelo de Meshy eran 93.628 (planta
     /// 78.878 + relleno de corona 14.750).
     /// </summary>
-    private const int TriangulosDeUnPiso = 10198;
+    private const int TriangulosDeUnPiso = 11706;   // el piso más pesado: el 8 (oct 2026)
     private const int PresupuestoRD4 = 100000;
 
     private static ContenidoPiso Leer()
@@ -218,18 +218,42 @@ public class MovUPruebas
     [Test]
     public void Npc_LaFiguraEsLiviana()
     {
-        Mesh malla = NpcMeshFactory.Malla;
-        Assert.AreEqual(3, malla.subMeshCount, "Ropa, piel y pantalón.");
-        Assert.LessOrEqual(NpcMeshFactory.Triangulos, 150, "La figura de un NPC debe ser de pocos triángulos.");
-        Assert.AreEqual(1.8f, malla.bounds.max.y, 0.01f, "Mide 1,80 m con los pies en y = 0.");
+        // La figura por partes (oct 2026): torso, cabeza, dos brazos y dos piernas.
+        int t = NpcFigura.TriangulosDeReferencia;
+        Assert.LessOrEqual(t, 700, $"La figura de un NPC tiene {t} triángulos: debe seguir siendo low-poly.");
+        var go = new GameObject("prueba");
+        try
+        {
+            NpcFigura f = NpcFigura.Construir(go.transform, NpcManager.AparienciaDe(NpcRole.Estudiante, new System.Random(1)), 1f);
+            var caja = new Bounds(go.transform.position, Vector3.zero);
+            foreach (var r in f.GetComponentsInChildren<MeshFilter>())
+                caja.Encapsulate(r.transform.TransformPoint(r.sharedMesh.bounds.max));
+            Assert.AreEqual(1.84f, caja.max.y, 0.08f, "Una persona de talla 1 mide unos 1,84 m con los pies en y = 0.");
+        }
+        finally { Object.DestroyImmediate(go); }
+    }
+
+    /// <summary>La gente del piso más poblado (los NPC fijos, su multitud y sus parejas).</summary>
+    private static int GenteDelPisoMasPoblado(ContenidoPiso d)
+    {
+        var porPiso = new Dictionary<int, int>();
+        void Sumar(int piso, int n) { porPiso.TryGetValue(piso, out int v); porPiso[piso] = v + n; }
+        foreach (NpcDef n in d.npcs) Sumar(n.piso, 1);
+        var multitudes = new List<MultitudDef> { d.multitud };
+        multitudes.AddRange(d.multitudes);
+        foreach (MultitudDef m in multitudes)
+            if (m != null) Sumar(m.piso, m.estudiantes + m.visitantes + 2 * (m.parejas != null ? m.parejas.Count : 0));
+        int mayor = 0;
+        foreach (int v in porPiso.Values) mayor = Mathf.Max(mayor, v);
+        return mayor;
     }
 
     [Test]
     public void Presupuesto_ElPisoConTodaSuGenteCabeEnRD4()
     {
         ContenidoPiso d = Leer();
-        int gente = d.npcs.Count + d.multitud.estudiantes + d.multitud.visitantes;
-        int total = TriangulosDeUnPiso + gente * NpcMeshFactory.Triangulos;
+        int gente = GenteDelPisoMasPoblado(d);
+        int total = TriangulosDeUnPiso + gente * NpcFigura.TriangulosDeReferencia;
 
         Assert.LessOrEqual(total, PresupuestoRD4,
             $"{gente} NPC llevan el piso a {total:N0} triángulos; el SRS deja {PresupuestoRD4:N0}.");
@@ -269,6 +293,45 @@ public class MovUPruebas
             Assert.IsNotNull(o, $"La misión {m.id} entrega '{m.entrega}', que no está en 'objetos'.");
             Assert.IsFalse(o.inicial, $"'{o.id}' se entrega en la misión {m.id}: no puede ser inicial.");
         }
+    }
+
+    [Test]
+    public void Inventario_LasMisionesSoloPidenLoQueElJugadorLleva()
+    {
+        // Se juega el recorrido en orden: lo que una misión pide dejar tiene que
+        // haberse recibido antes, y nunca se lleva más de lo que cabe en el HUD (6).
+        ContenidoPiso d = Leer();
+        var lleva = new List<string>();
+        foreach (ObjetoDef o in d.objetos) if (o.inicial) lleva.Add(o.id);
+        foreach (MisionDef m in d.misiones)
+        {
+            if (!string.IsNullOrEmpty(m.deja))
+            {
+                Assert.IsTrue(lleva.Remove(m.deja), $"La misión {m.id} pide dejar '{m.deja}', que el jugador no lleva.");
+            }
+            if (!string.IsNullOrEmpty(m.entrega))
+            {
+                Assert.IsFalse(lleva.Contains(m.entrega), $"La misión {m.id} entrega '{m.entrega}', que ya se tiene.");
+                lleva.Add(m.entrega);
+            }
+            Assert.LessOrEqual(lleva.Count, 6, $"Después de {m.id} el jugador lleva {lleva.Count} objetos: no caben.");
+        }
+    }
+
+    [Test]
+    public void Misiones_CadaPisoTieneAlMenosUna()
+    {
+        ContenidoPiso d = Leer();
+        var conMision = new HashSet<int>();
+        foreach (MisionDef m in d.misiones)
+        {
+            PoiDef p = d.pois.Find(x => x.id == m.poi);
+            if (p != null) conMision.Add(p.piso);
+        }
+        var faltan = new List<int>();
+        for (int i = 0; i < d.ajustes.numerosDePiso.Count; i++)
+            if (!conMision.Contains(i + 1)) faltan.Add(d.ajustes.numerosDePiso[i]);
+        Assert.IsEmpty(faltan, "Pisos sin ninguna misión: " + string.Join(", ", faltan));
     }
 
     [Test]
@@ -341,16 +404,16 @@ public class MovUPruebas
     {
         ContenidoPiso d = Leer();
 
-        int gente = d.npcs.Count + d.multitud.estudiantes + d.multitud.visitantes;
+        int gente = GenteDelPisoMasPoblado(d);
         int puertas = d.puertas.Count * DoorManager.TriangulosPorPuerta;
         int escalera = d.escalera.usar ? StairsManager.Triangulos(d.escalera.peldanos) : 0;
         int mostradores = d.mobiliario.Count * 6 * FormasMovU.TriangulosDeCaja;
         // Techo (1 placa) + lámparas: una cada 6 m sobre 39 x 107 m son 126 como mucho.
         int techo = (1 + 126) * FormasMovU.TriangulosDePlaca;
         int ascensor = 8 * FormasMovU.TriangulosDeCaja;
-        int jugador = NpcMeshFactory.Triangulos;
+        int jugador = NpcFigura.TriangulosDeReferencia;
 
-        int total = TriangulosDeUnPiso + gente * NpcMeshFactory.Triangulos +
+        int total = TriangulosDeUnPiso + gente * NpcFigura.TriangulosDeReferencia +
                     puertas + escalera + mostradores + techo + ascensor + jugador;
 
         Assert.LessOrEqual(total, PresupuestoRD4,

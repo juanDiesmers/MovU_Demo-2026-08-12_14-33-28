@@ -210,7 +210,8 @@ public static class PlantaBuilder
         foreach (Muro m in datos.muros) ArmarMuro(m);
         if (datos.bloques != null) foreach (Bloque b in datos.bloques) ArmarBloque(b);
         if (datos.escaleras != null) foreach (Escalera e in datos.escaleras) ArmarEscalera(e, geo.transform);
-        if (datos.ascensores != null) foreach (Asc a in datos.ascensores) ArmarAscensor(a);
+        if (datos.ascensores != null)
+            for (int k = 0; k < datos.ascensores.Count; k++) ArmarAscensor(datos.ascensores[k], geo.transform, k);
         if (datos.torniquetes != null) foreach (Torn t in datos.torniquetes) ArmarTorniquete(t);
         if (datos.muebles != null) foreach (Mueble m in datos.muebles) ArmarMueble(m);
         if (datos.bandejas != null) foreach (Linea l in datos.bandejas) ArmarBandeja(l);
@@ -589,12 +590,22 @@ public static class PlantaBuilder
         }
     }
 
-    private static void ArmarAscensor(Asc a)
+    /// <summary>Prefijo de los marcadores que deja cada puerta de ascensor: BuildingSetup
+    /// pone ahí la zona que abre el panel de pisos.</summary>
+    public const string PrefijoPuertaDeAscensor = "PuertaDeAscensor_";
+
+    private static void ArmarAscensor(Asc a, Transform padre, int indice)
     {
         float ancho = a.ancho > 0.5f ? a.ancho : 2.6f;
         Vector3 c = W(a.v, a.u, 0f);
         Vector3 hacia = W(a.v + 1f, a.u, 0f) - c; hacia.y = 0f; hacia.Normalize();
         Quaternion rot = Quaternion.LookRotation(hacia, Vector3.up);
+
+        // Marcador en el suelo, al ras de la puerta y mirando hacia afuera; su escala x es el ancho.
+        var marca = new GameObject(PrefijoPuertaDeAscensor + indice);
+        marca.transform.SetParent(padre, true);
+        marca.transform.SetPositionAndRotation(new Vector3(c.x, suelo, c.z), rot);
+        marca.transform.localScale = new Vector3(ancho, 1f, 1f);
         Vector3 frente = c + hacia * 0.04f;
 
         Caja(M("Marco"), new Vector3(frente.x, suelo + 1.55f, frente.z), new Vector3(ancho + 0.5f, 3.1f, 0.06f), rot);

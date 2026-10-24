@@ -1,0 +1,6592 @@
+{
+ "version": 2,
+ "fuente": "Plano de evacuación del piso 7 (foto del 21 oct 2026) sobre el núcleo del piso 9",
+ "ancho": 39.3,
+ "largo": 106.6,
+ "alturaTecho": 5.6,
+ "suelo": [
+  {
+   "v": 1.1,
+   "u": 1.3
+  },
+  {
+   "v": 89.68,
+   "u": 1.3
+  },
+  {
+   "v": 104.399,
+   "u": 38.2
+  },
+  {
+   "v": 1.1,
+   "u": 38.2
+  }
+ ],
+ "pisos": [
+  {
+   "tipo": "Terrazo",
+   "h": 0.008,
+   "pts": [
+    {
+     "v": 93.0,
+     "u": 19.0
+    },
+    {
+     "v": 96.74,
+     "u": 19.0
+    },
+    {
+     "v": 104.399,
+     "u": 38.2
+    },
+    {
+     "v": 93.0,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "BandaGris",
+   "h": 0.014,
+   "pts": [
+    {
+     "v": 93.12,
+     "u": 23.6
+    },
+    {
+     "v": 96.2,
+     "u": 23.6
+    },
+    {
+     "v": 96.2,
+     "u": 38.2
+    },
+    {
+     "v": 93.12,
+     "u": 38.2
+    }
+   ]
+  }
+ ],
+ "techos": [
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 104.399,
+     "u": 38.2
+    },
+    {
+     "v": 35.85,
+     "u": 38.2
+    },
+    {
+     "v": 35.85,
+     "u": 32.301
+    },
+    {
+     "v": 102.046,
+     "u": 32.301
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 102.046,
+     "u": 32.301
+    },
+    {
+     "v": 35.85,
+     "u": 32.301
+    },
+    {
+     "v": 35.85,
+     "u": 31.401
+    },
+    {
+     "v": 101.687,
+     "u": 31.401
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 35.85,
+     "u": 31.401
+    },
+    {
+     "v": 35.85,
+     "u": 1.3
+    },
+    {
+     "v": 89.68,
+     "u": 1.3
+    },
+    {
+     "v": 101.687,
+     "u": 31.401
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 33.952,
+     "u": 31.401
+    },
+    {
+     "v": 33.952,
+     "u": 1.3
+    },
+    {
+     "v": 35.85,
+     "u": 1.3
+    },
+    {
+     "v": 35.85,
+     "u": 31.401
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 33.952,
+     "u": 32.301
+    },
+    {
+     "v": 23.804,
+     "u": 32.301
+    },
+    {
+     "v": 23.804,
+     "u": 31.401
+    },
+    {
+     "v": 33.952,
+     "u": 31.401
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 23.804,
+     "u": 31.401
+    },
+    {
+     "v": 23.804,
+     "u": 1.3
+    },
+    {
+     "v": 33.952,
+     "u": 1.3
+    },
+    {
+     "v": 33.952,
+     "u": 31.401
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 1.1,
+     "u": 38.2
+    },
+    {
+     "v": 1.1,
+     "u": 32.301
+    },
+    {
+     "v": 23.804,
+     "u": 32.301
+    },
+    {
+     "v": 23.804,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 1.1,
+     "u": 32.301
+    },
+    {
+     "v": 1.1,
+     "u": 31.401
+    },
+    {
+     "v": 23.804,
+     "u": 31.401
+    },
+    {
+     "v": 23.804,
+     "u": 32.301
+    }
+   ]
+  },
+  {
+   "tipo": "TechoOscuro",
+   "h": 5.6,
+   "pts": [
+    {
+     "v": 1.1,
+     "u": 31.401
+    },
+    {
+     "v": 1.1,
+     "u": 1.3
+    },
+    {
+     "v": 23.804,
+     "u": 1.3
+    },
+    {
+     "v": 23.804,
+     "u": 31.401
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 4.2,
+   "nombre": "Lobby de ascensores",
+   "pts": [
+    {
+     "v": 93.0,
+     "u": 19.0
+    },
+    {
+     "v": 96.74,
+     "u": 19.0
+    },
+    {
+     "v": 104.399,
+     "u": 38.2
+    },
+    {
+     "v": 93.0,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Calidad de Aguas Almacén",
+   "pts": [
+    {
+     "v": 1.1,
+     "u": 17.7
+    },
+    {
+     "v": 8.9,
+     "u": 17.7
+    },
+    {
+     "v": 8.9,
+     "u": 38.2
+    },
+    {
+     "v": 1.1,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Cuarto de seguridad",
+   "pts": [
+    {
+     "v": 80.8,
+     "u": 14.6
+    },
+    {
+     "v": 83.0,
+     "u": 14.6
+    },
+    {
+     "v": 83.0,
+     "u": 18.7
+    },
+    {
+     "v": 80.8,
+     "u": 18.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Cuarto eléctrico",
+   "pts": [
+    {
+     "v": 22.5,
+     "u": 23.6
+    },
+    {
+     "v": 27.8,
+     "u": 23.6
+    },
+    {
+     "v": 27.8,
+     "u": 30.2
+    },
+    {
+     "v": 22.5,
+     "u": 30.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Cuarto de cableado",
+   "pts": [
+    {
+     "v": 27.8,
+     "u": 23.6
+    },
+    {
+     "v": 30.6,
+     "u": 23.6
+    },
+    {
+     "v": 30.6,
+     "u": 30.2
+    },
+    {
+     "v": 27.8,
+     "u": 30.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Baño accesible",
+   "pts": [
+    {
+     "v": 30.6,
+     "u": 23.6
+    },
+    {
+     "v": 36.3,
+     "u": 23.6
+    },
+    {
+     "v": 36.3,
+     "u": 30.2
+    },
+    {
+     "v": 30.6,
+     "u": 30.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Baños",
+   "pts": [
+    {
+     "v": 36.3,
+     "u": 23.6
+    },
+    {
+     "v": 46.3,
+     "u": 23.6
+    },
+    {
+     "v": 46.3,
+     "u": 38.2
+    },
+    {
+     "v": 36.3,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Docencia Calidad de Aguas",
+   "pts": [
+    {
+     "v": 1.1,
+     "u": 1.3
+    },
+    {
+     "v": 17.6,
+     "u": 1.3
+    },
+    {
+     "v": 17.6,
+     "u": 17.7
+    },
+    {
+     "v": 1.1,
+     "u": 17.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "ICP",
+   "pts": [
+    {
+     "v": 21.3,
+     "u": 12.2
+    },
+    {
+     "v": 27.8,
+     "u": 12.2
+    },
+    {
+     "v": 27.8,
+     "u": 18.7
+    },
+    {
+     "v": 21.3,
+     "u": 18.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Balanzas",
+   "pts": [
+    {
+     "v": 27.8,
+     "u": 12.2
+    },
+    {
+     "v": 31.7,
+     "u": 12.2
+    },
+    {
+     "v": 31.7,
+     "u": 18.7
+    },
+    {
+     "v": 27.8,
+     "u": 18.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Cuarto Análisis de Carbono Total",
+   "pts": [
+    {
+     "v": 31.7,
+     "u": 12.2
+    },
+    {
+     "v": 38.2,
+     "u": 12.2
+    },
+    {
+     "v": 38.2,
+     "u": 18.7
+    },
+    {
+     "v": 31.7,
+     "u": 18.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Cromatografía de Gases",
+   "pts": [
+    {
+     "v": 38.2,
+     "u": 12.2
+    },
+    {
+     "v": 45.3,
+     "u": 12.2
+    },
+    {
+     "v": 45.3,
+     "u": 18.7
+    },
+    {
+     "v": 38.2,
+     "u": 18.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Absorción Atómica",
+   "pts": [
+    {
+     "v": 45.3,
+     "u": 12.2
+    },
+    {
+     "v": 53.0,
+     "u": 12.2
+    },
+    {
+     "v": 53.0,
+     "u": 18.7
+    },
+    {
+     "v": 45.3,
+     "u": 18.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Microbiología",
+   "pts": [
+    {
+     "v": 53.0,
+     "u": 12.2
+    },
+    {
+     "v": 59.0,
+     "u": 12.2
+    },
+    {
+     "v": 59.0,
+     "u": 18.7
+    },
+    {
+     "v": 53.0,
+     "u": 18.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Hornos",
+   "pts": [
+    {
+     "v": 59.0,
+     "u": 12.2
+    },
+    {
+     "v": 69.8,
+     "u": 12.2
+    },
+    {
+     "v": 69.8,
+     "u": 18.7
+    },
+    {
+     "v": 59.0,
+     "u": 18.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Bioreactor",
+   "pts": [
+    {
+     "v": 69.8,
+     "u": 12.2
+    },
+    {
+     "v": 76.3,
+     "u": 12.2
+    },
+    {
+     "v": 76.3,
+     "u": 18.7
+    },
+    {
+     "v": 69.8,
+     "u": 18.7
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Laboratorio Calidad de Agua (Aguas Naturales)",
+   "pts": [
+    {
+     "v": 19.3,
+     "u": 1.3
+    },
+    {
+     "v": 35.3,
+     "u": 1.3
+    },
+    {
+     "v": 35.3,
+     "u": 12.2
+    },
+    {
+     "v": 19.3,
+     "u": 12.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Laboratorio Calidad de Agua",
+   "pts": [
+    {
+     "v": 35.3,
+     "u": 1.3
+    },
+    {
+     "v": 61.0,
+     "u": 1.3
+    },
+    {
+     "v": 61.0,
+     "u": 12.2
+    },
+    {
+     "v": 35.3,
+     "u": 12.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Laboratorio Calidad de Agua (Aguas Residuales)",
+   "pts": [
+    {
+     "v": 61.0,
+     "u": 1.3
+    },
+    {
+     "v": 80.0,
+     "u": 1.3
+    },
+    {
+     "v": 80.0,
+     "u": 12.2
+    },
+    {
+     "v": 61.0,
+     "u": 12.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Workspace (Módulo B)",
+   "pts": [
+    {
+     "v": 46.3,
+     "u": 23.6
+    },
+    {
+     "v": 65.0,
+     "u": 23.6
+    },
+    {
+     "v": 65.0,
+     "u": 38.2
+    },
+    {
+     "v": 46.3,
+     "u": 38.2
+    }
+   ]
+  },
+  {
+   "tipo": "TechoClaro",
+   "h": 3.3,
+   "nombre": "Workspace (Módulo A)",
+   "pts": [
+    {
+     "v": 65.0,
+     "u": 23.6
+    },
+    {
+     "v": 86.2,
+     "u": 23.6
+    },
+    {
+     "v": 86.2,
+     "u": 38.2
+    },
+    {
+     "v": 65.0,
+     "u": 38.2
+    }
+   ]
+  }
+ ],
+ "muros": [
+  {
+   "a": [
+    1.1,
+    1.3
+   ],
+   "b": [
+    89.68,
+    1.3
+   ],
+   "tipo": "fachada",
+   "g": 0.35,
+   "nombre": "Fachada norte"
+  },
+  {
+   "a": [
+    1.1,
+    1.3
+   ],
+   "b": [
+    1.1,
+    38.2
+   ],
+   "tipo": "fachada",
+   "g": 0.35,
+   "nombre": "Fachada del extremo"
+  },
+  {
+   "a": [
+    89.68,
+    1.3
+   ],
+   "b": [
+    104.399,
+    38.2
+   ],
+   "tipo": "fachada",
+   "g": 0.35,
+   "nombre": "Fachada inclinada",
+   "lamas": true
+  },
+  {
+   "a": [
+    1.1,
+    38.2
+   ],
+   "b": [
+    104.399,
+    38.2
+   ],
+   "tipo": "fachada",
+   "g": 0.35,
+   "nombre": "Fachada sur"
+  },
+  {
+   "a": [
+    1.1,
+    17.7
+   ],
+   "b": [
+    8.9,
+    17.7
+   ],
+   "tipo": "blanco",
+   "g": 0.3,
+   "nombre": "Muro Calidad de Aguas Almacén"
+  },
+  {
+   "a": [
+    8.9,
+    17.7
+   ],
+   "b": [
+    8.9,
+    19.55
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Calidad de Aguas Almacén"
+  },
+  {
+   "a": [
+    8.9,
+    22.0
+   ],
+   "b": [
+    8.9,
+    28.3
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Calidad de Aguas Almacén"
+  },
+  {
+   "a": [
+    17.2,
+    23.6
+   ],
+   "b": [
+    22.5,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Muro de lockers"
+  },
+  {
+   "a": [
+    22.5,
+    23.6
+   ],
+   "b": [
+    24.4,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente de cuartos técnicos"
+  },
+  {
+   "a": [
+    25.9,
+    23.6
+   ],
+   "b": [
+    28.5,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente de cuartos técnicos"
+  },
+  {
+   "a": [
+    29.9,
+    23.6
+   ],
+   "b": [
+    31.65,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente de cuartos técnicos"
+  },
+  {
+   "a": [
+    33.65,
+    23.6
+   ],
+   "b": [
+    36.3,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente de cuartos técnicos"
+  },
+  {
+   "a": [
+    22.5,
+    23.6
+   ],
+   "b": [
+    22.5,
+    30.2
+   ],
+   "tipo": "concreto",
+   "g": 0.25,
+   "nombre": "Muro de cuartos técnicos"
+  },
+  {
+   "a": [
+    27.8,
+    23.6
+   ],
+   "b": [
+    27.8,
+    30.2
+   ],
+   "tipo": "concreto",
+   "g": 0.25,
+   "nombre": "Muro de cuartos técnicos"
+  },
+  {
+   "a": [
+    30.6,
+    23.6
+   ],
+   "b": [
+    30.6,
+    30.2
+   ],
+   "tipo": "concreto",
+   "g": 0.25,
+   "nombre": "Muro de cuartos técnicos"
+  },
+  {
+   "a": [
+    21.91,
+    30.2
+   ],
+   "b": [
+    36.3,
+    30.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Fondo de cuartos | escalera"
+  },
+  {
+   "a": [
+    23.9,
+    30.2
+   ],
+   "b": [
+    23.9,
+    32.3
+   ],
+   "tipo": "concreto",
+   "g": 0.2,
+   "nombre": "Cierre sobre el tramo oculto"
+  },
+  {
+   "a": [
+    36.3,
+    23.6
+   ],
+   "b": [
+    36.3,
+    38.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Muro escalera | baños"
+  },
+  {
+   "a": [
+    36.3,
+    23.6
+   ],
+   "b": [
+    36.8,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Baños"
+  },
+  {
+   "a": [
+    38.6,
+    23.6
+   ],
+   "b": [
+    46.3,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Baños"
+  },
+  {
+   "a": [
+    38.8,
+    23.6
+   ],
+   "b": [
+    38.8,
+    25.5
+   ],
+   "tipo": "blanco",
+   "g": 0.2,
+   "nombre": "Vestíbulo de baños"
+  },
+  {
+   "a": [
+    38.8,
+    27.3
+   ],
+   "b": [
+    38.8,
+    32.0
+   ],
+   "tipo": "blanco",
+   "g": 0.2,
+   "nombre": "Vestíbulo de baños"
+  },
+  {
+   "a": [
+    38.8,
+    33.8
+   ],
+   "b": [
+    38.8,
+    38.2
+   ],
+   "tipo": "blanco",
+   "g": 0.2,
+   "nombre": "Vestíbulo de baños"
+  },
+  {
+   "a": [
+    38.8,
+    30.8
+   ],
+   "b": [
+    46.3,
+    30.8
+   ],
+   "tipo": "blanco",
+   "g": 0.2,
+   "nombre": "Baño mujeres | Baño hombres"
+  },
+  {
+   "a": [
+    46.3,
+    23.6
+   ],
+   "b": [
+    46.3,
+    38.2
+   ],
+   "tipo": "concreto",
+   "g": 0.3,
+   "nombre": "Muro Baños"
+  },
+  {
+   "a": [
+    80.8,
+    14.6
+   ],
+   "b": [
+    83.0,
+    14.6
+   ],
+   "tipo": "concreto",
+   "g": 0.25,
+   "nombre": "Fondo del cuarto de seguridad"
+  },
+  {
+   "a": [
+    80.8,
+    18.7
+   ],
+   "b": [
+    81.2,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Cuarto de seguridad"
+  },
+  {
+   "a": [
+    82.6,
+    18.7
+   ],
+   "b": [
+    83.0,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Cuarto de seguridad"
+  },
+  {
+   "a": [
+    83.0,
+    1.3
+   ],
+   "b": [
+    83.0,
+    19.0
+   ],
+   "tipo": "mostaza",
+   "g": 0.3,
+   "nombre": "Caja de la escalera principal (norte, muro mostaza)"
+  },
+  {
+   "a": [
+    89.0,
+    15.5
+   ],
+   "b": [
+    95.344,
+    15.5
+   ],
+   "tipo": "concreto",
+   "g": 0.25,
+   "nombre": "Cierre junto a la escalera principal"
+  },
+  {
+   "a": [
+    83.0,
+    19.0
+   ],
+   "b": [
+    84.0,
+    19.0
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Caja de la escalera principal"
+  },
+  {
+   "a": [
+    86.0,
+    19.0
+   ],
+   "b": [
+    92.6,
+    19.0
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Caja de la escalera principal"
+  },
+  {
+   "a": [
+    92.6,
+    19.0
+   ],
+   "b": [
+    96.74,
+    19.0
+   ],
+   "tipo": "vidrio",
+   "g": 0.2,
+   "nombre": "Vidrio de la escalera hacia el lobby",
+   "lamas": true
+  },
+  {
+   "a": [
+    93.0,
+    23.6
+   ],
+   "b": [
+    93.0,
+    38.2
+   ],
+   "tipo": "granito",
+   "g": 0.12,
+   "nombre": "Granito del lobby"
+  },
+  {
+   "a": [
+    8.9,
+    17.7
+   ],
+   "b": [
+    13.6,
+    17.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Docencia Calidad de Aguas"
+  },
+  {
+   "a": [
+    13.6,
+    17.7
+   ],
+   "b": [
+    14.2,
+    17.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Docencia Calidad de Aguas"
+  },
+  {
+   "a": [
+    16.6,
+    17.7
+   ],
+   "b": [
+    17.2,
+    17.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Docencia Calidad de Aguas"
+  },
+  {
+   "a": [
+    17.2,
+    17.7
+   ],
+   "b": [
+    17.6,
+    17.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Docencia Calidad de Aguas"
+  },
+  {
+   "a": [
+    21.3,
+    12.2
+   ],
+   "b": [
+    76.3,
+    12.2
+   ],
+   "tipo": "blanco",
+   "g": 0.25,
+   "nombre": "Fondo de los cuartos chicos"
+  },
+  {
+   "a": [
+    21.3,
+    12.2
+   ],
+   "b": [
+    21.3,
+    18.7
+   ],
+   "tipo": "blanco",
+   "g": 0.25,
+   "nombre": "Muro paso | ICP"
+  },
+  {
+   "a": [
+    76.3,
+    12.2
+   ],
+   "b": [
+    76.3,
+    18.7
+   ],
+   "tipo": "blanco",
+   "g": 0.25,
+   "nombre": "Muro Bioreactor | paso"
+  },
+  {
+   "a": [
+    21.3,
+    18.7
+   ],
+   "b": [
+    23.05,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente ICP"
+  },
+  {
+   "a": [
+    23.05,
+    18.7
+   ],
+   "b": [
+    23.65,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente ICP"
+  },
+  {
+   "a": [
+    25.45,
+    18.7
+   ],
+   "b": [
+    26.05,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente ICP"
+  },
+  {
+   "a": [
+    26.05,
+    18.7
+   ],
+   "b": [
+    27.8,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente ICP"
+  },
+  {
+   "a": [
+    27.8,
+    12.2
+   ],
+   "b": [
+    27.8,
+    18.7
+   ],
+   "tipo": "blanco",
+   "g": 0.25,
+   "nombre": "Muro | Balanzas"
+  },
+  {
+   "a": [
+    27.8,
+    18.7
+   ],
+   "b": [
+    28.25,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Balanzas"
+  },
+  {
+   "a": [
+    28.25,
+    18.7
+   ],
+   "b": [
+    28.85,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Balanzas"
+  },
+  {
+   "a": [
+    30.65,
+    18.7
+   ],
+   "b": [
+    31.25,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Balanzas"
+  },
+  {
+   "a": [
+    31.25,
+    18.7
+   ],
+   "b": [
+    31.7,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Balanzas"
+  },
+  {
+   "a": [
+    31.7,
+    12.2
+   ],
+   "b": [
+    31.7,
+    18.7
+   ],
+   "tipo": "blanco",
+   "g": 0.25,
+   "nombre": "Muro | Cuarto Análisis de Carbono Total"
+  },
+  {
+   "a": [
+    31.7,
+    18.7
+   ],
+   "b": [
+    33.45,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Cuarto Análisis de Carbono Total"
+  },
+  {
+   "a": [
+    33.45,
+    18.7
+   ],
+   "b": [
+    34.05,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Cuarto Análisis de Carbono Total"
+  },
+  {
+   "a": [
+    35.85,
+    18.7
+   ],
+   "b": [
+    36.45,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Cuarto Análisis de Carbono Total"
+  },
+  {
+   "a": [
+    36.45,
+    18.7
+   ],
+   "b": [
+    38.2,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Cuarto Análisis de Carbono Total"
+  },
+  {
+   "a": [
+    38.2,
+    12.2
+   ],
+   "b": [
+    38.2,
+    18.7
+   ],
+   "tipo": "blanco",
+   "g": 0.25,
+   "nombre": "Muro | Cromatografía de Gases"
+  },
+  {
+   "a": [
+    38.2,
+    18.7
+   ],
+   "b": [
+    40.25,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Cromatografía de Gases"
+  },
+  {
+   "a": [
+    40.25,
+    18.7
+   ],
+   "b": [
+    40.85,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Cromatografía de Gases"
+  },
+  {
+   "a": [
+    42.65,
+    18.7
+   ],
+   "b": [
+    43.25,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Cromatografía de Gases"
+  },
+  {
+   "a": [
+    43.25,
+    18.7
+   ],
+   "b": [
+    45.3,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Cromatografía de Gases"
+  },
+  {
+   "a": [
+    45.3,
+    12.2
+   ],
+   "b": [
+    45.3,
+    18.7
+   ],
+   "tipo": "blanco",
+   "g": 0.25,
+   "nombre": "Muro | Absorción Atómica"
+  },
+  {
+   "a": [
+    45.3,
+    18.7
+   ],
+   "b": [
+    47.65,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Absorción Atómica"
+  },
+  {
+   "a": [
+    47.65,
+    18.7
+   ],
+   "b": [
+    48.25,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Absorción Atómica"
+  },
+  {
+   "a": [
+    50.05,
+    18.7
+   ],
+   "b": [
+    50.65,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Absorción Atómica"
+  },
+  {
+   "a": [
+    50.65,
+    18.7
+   ],
+   "b": [
+    53.0,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Absorción Atómica"
+  },
+  {
+   "a": [
+    53.0,
+    12.2
+   ],
+   "b": [
+    53.0,
+    18.7
+   ],
+   "tipo": "blanco",
+   "g": 0.25,
+   "nombre": "Muro | Microbiología"
+  },
+  {
+   "a": [
+    53.0,
+    18.7
+   ],
+   "b": [
+    54.5,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Microbiología"
+  },
+  {
+   "a": [
+    54.5,
+    18.7
+   ],
+   "b": [
+    55.1,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Microbiología"
+  },
+  {
+   "a": [
+    56.9,
+    18.7
+   ],
+   "b": [
+    57.5,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Microbiología"
+  },
+  {
+   "a": [
+    57.5,
+    18.7
+   ],
+   "b": [
+    59.0,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Microbiología"
+  },
+  {
+   "a": [
+    59.0,
+    12.2
+   ],
+   "b": [
+    59.0,
+    18.7
+   ],
+   "tipo": "blanco",
+   "g": 0.25,
+   "nombre": "Muro | Hornos"
+  },
+  {
+   "a": [
+    59.0,
+    18.7
+   ],
+   "b": [
+    62.9,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Hornos"
+  },
+  {
+   "a": [
+    62.9,
+    18.7
+   ],
+   "b": [
+    63.5,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Hornos"
+  },
+  {
+   "a": [
+    65.3,
+    18.7
+   ],
+   "b": [
+    65.9,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Hornos"
+  },
+  {
+   "a": [
+    65.9,
+    18.7
+   ],
+   "b": [
+    69.8,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Hornos"
+  },
+  {
+   "a": [
+    69.8,
+    12.2
+   ],
+   "b": [
+    69.8,
+    18.7
+   ],
+   "tipo": "blanco",
+   "g": 0.25,
+   "nombre": "Muro | Bioreactor"
+  },
+  {
+   "a": [
+    69.8,
+    18.7
+   ],
+   "b": [
+    71.55,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Bioreactor"
+  },
+  {
+   "a": [
+    71.55,
+    18.7
+   ],
+   "b": [
+    72.15,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Bioreactor"
+  },
+  {
+   "a": [
+    73.95,
+    18.7
+   ],
+   "b": [
+    74.55,
+    18.7
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Bioreactor"
+  },
+  {
+   "a": [
+    74.55,
+    18.7
+   ],
+   "b": [
+    76.3,
+    18.7
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Bioreactor"
+  },
+  {
+   "a": [
+    35.3,
+    1.3
+   ],
+   "b": [
+    35.3,
+    9.9
+   ],
+   "tipo": "blanco",
+   "g": 0.3,
+   "nombre": "Muro entre laboratorios de Calidad de Agua"
+  },
+  {
+   "a": [
+    35.3,
+    11.5
+   ],
+   "b": [
+    35.3,
+    12.2
+   ],
+   "tipo": "blanco",
+   "g": 0.3,
+   "nombre": "Muro entre laboratorios de Calidad de Agua"
+  },
+  {
+   "a": [
+    61.0,
+    1.3
+   ],
+   "b": [
+    61.0,
+    9.9
+   ],
+   "tipo": "blanco",
+   "g": 0.3,
+   "nombre": "Muro entre laboratorios de Calidad de Agua"
+  },
+  {
+   "a": [
+    61.0,
+    11.5
+   ],
+   "b": [
+    61.0,
+    12.2
+   ],
+   "tipo": "blanco",
+   "g": 0.3,
+   "nombre": "Muro entre laboratorios de Calidad de Agua"
+  },
+  {
+   "a": [
+    46.3,
+    23.6
+   ],
+   "b": [
+    61.2,
+    23.6
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Workspace (Módulo B)"
+  },
+  {
+   "a": [
+    61.2,
+    23.6
+   ],
+   "b": [
+    61.8,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Workspace (Módulo B)"
+  },
+  {
+   "a": [
+    64.2,
+    23.6
+   ],
+   "b": [
+    64.8,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Workspace (Módulo B)"
+  },
+  {
+   "a": [
+    64.8,
+    23.6
+   ],
+   "b": [
+    65.0,
+    23.6
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Workspace (Módulo B)"
+  },
+  {
+   "a": [
+    65.0,
+    23.6
+   ],
+   "b": [
+    65.0,
+    38.2
+   ],
+   "tipo": "blanco",
+   "g": 0.3,
+   "nombre": "Muro Workspace (Módulo B) | Workspace (Módulo A)"
+  },
+  {
+   "a": [
+    65.0,
+    23.6
+   ],
+   "b": [
+    65.2,
+    23.6
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Workspace (Módulo A)"
+  },
+  {
+   "a": [
+    65.2,
+    23.6
+   ],
+   "b": [
+    65.8,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Workspace (Módulo A)"
+  },
+  {
+   "a": [
+    68.2,
+    23.6
+   ],
+   "b": [
+    68.8,
+    23.6
+   ],
+   "tipo": "madera",
+   "g": 0.3,
+   "nombre": "Frente Workspace (Módulo A)"
+  },
+  {
+   "a": [
+    68.8,
+    23.6
+   ],
+   "b": [
+    86.2,
+    23.6
+   ],
+   "tipo": "vitrina_negra",
+   "g": 0.3,
+   "nombre": "Frente Workspace (Módulo A)"
+  }
+ ],
+ "bloques": [
+  {
+   "v0": 8.9,
+   "v1": 19.7,
+   "u0": 28.3,
+   "u1": 38.2,
+   "tipo": "negro_brillante",
+   "nombre": "Ducto (caja negra)",
+   "alto": 5.6
+  },
+  {
+   "v0": 23.95,
+   "v1": 35.8,
+   "u0": 30.35,
+   "u1": 35.0,
+   "tipo": "concreto",
+   "nombre": "Macizo bajo el tramo oculto",
+   "alto": 3.3
+  },
+  {
+   "v0": 31.6,
+   "v1": 35.8,
+   "u0": 35.0,
+   "u1": 38.05,
+   "tipo": "concreto",
+   "nombre": "Macizo bajo el rellano",
+   "alto": 3.3
+  },
+  {
+   "v0": 80.0,
+   "v1": 80.8,
+   "u0": 1.3,
+   "u1": 18.7,
+   "tipo": "concreto",
+   "nombre": "Muro | Seguridad",
+   "alto": 5.6
+  },
+  {
+   "v0": 80.8,
+   "v1": 83.0,
+   "u0": 1.3,
+   "u1": 14.6,
+   "tipo": "concreto",
+   "nombre": "Ducto junto al cuarto de seguridad",
+   "alto": 5.6
+  },
+  {
+   "v0": 86.55,
+   "v1": 89.0,
+   "u0": 8.0,
+   "u1": 15.5,
+   "tipo": "concreto",
+   "nombre": "Columna del tramo oculto (escalera principal)",
+   "alto": 5.6
+  },
+  {
+   "v0": 83.15,
+   "v1": 89.0,
+   "u0": 1.45,
+   "u1": 8.0,
+   "tipo": "concreto",
+   "nombre": "Macizo bajo el rellano (escalera principal)",
+   "alto": 3.0
+  },
+  {
+   "v0": 86.2,
+   "v1": 93.0,
+   "u0": 23.6,
+   "u1": 38.2,
+   "tipo": "concreto",
+   "nombre": "Núcleo de ascensores",
+   "alto": 5.6
+  },
+  {
+   "v0": 17.6,
+   "v1": 19.3,
+   "u0": 1.3,
+   "u1": 18.7,
+   "tipo": "concreto",
+   "nombre": "Ducto Docencia | laboratorios",
+   "alto": 5.6
+  }
+ ],
+ "escaleras": [],
+ "ascensores": [
+  {
+   "v": 93.07,
+   "u": 26.6,
+   "ancho": 2.4
+  },
+  {
+   "v": 93.07,
+   "u": 31.0,
+   "ancho": 2.4
+  },
+  {
+   "v": 93.07,
+   "u": 35.4,
+   "ancho": 2.4
+  }
+ ],
+ "torniquetes": [],
+ "muebles": [
+  {
+   "tipo": "Meson",
+   "v0": 39.6,
+   "v1": 43.6,
+   "u0": 24.0,
+   "u1": 24.6,
+   "alto": 0.86,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Meson",
+   "v0": 39.6,
+   "v1": 43.6,
+   "u0": 31.2,
+   "u1": 31.8,
+   "alto": 0.86,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Divisor",
+   "v0": 40.37,
+   "v1": 40.43,
+   "u0": 27.8,
+   "u1": 30.65,
+   "alto": 2.0,
+   "y0": 0.15,
+   "solido": false
+  },
+  {
+   "tipo": "Divisor",
+   "v0": 40.37,
+   "v1": 40.43,
+   "u0": 35.0,
+   "u1": 38.05,
+   "alto": 2.0,
+   "y0": 0.15,
+   "solido": false
+  },
+  {
+   "tipo": "Divisor",
+   "v0": 42.17,
+   "v1": 42.23,
+   "u0": 27.8,
+   "u1": 30.65,
+   "alto": 2.0,
+   "y0": 0.15,
+   "solido": false
+  },
+  {
+   "tipo": "Divisor",
+   "v0": 42.17,
+   "v1": 42.23,
+   "u0": 35.0,
+   "u1": 38.05,
+   "alto": 2.0,
+   "y0": 0.15,
+   "solido": false
+  },
+  {
+   "tipo": "Divisor",
+   "v0": 43.97,
+   "v1": 44.03,
+   "u0": 27.8,
+   "u1": 30.65,
+   "alto": 2.0,
+   "y0": 0.15,
+   "solido": false
+  },
+  {
+   "tipo": "Divisor",
+   "v0": 43.97,
+   "v1": 44.03,
+   "u0": 35.0,
+   "u1": 38.05,
+   "alto": 2.0,
+   "y0": 0.15,
+   "solido": false
+  },
+  {
+   "tipo": "Sanitario",
+   "v0": 39.35,
+   "v1": 39.85,
+   "u0": 29.8,
+   "u1": 30.6,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Sanitario",
+   "v0": 39.35,
+   "v1": 39.85,
+   "u0": 37.2,
+   "u1": 38.0,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Sanitario",
+   "v0": 41.05,
+   "v1": 41.55,
+   "u0": 29.8,
+   "u1": 30.6,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Sanitario",
+   "v0": 41.05,
+   "v1": 41.55,
+   "u0": 37.2,
+   "u1": 38.0,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Sanitario",
+   "v0": 42.85,
+   "v1": 43.35,
+   "u0": 29.8,
+   "u1": 30.6,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Sanitario",
+   "v0": 42.85,
+   "v1": 43.35,
+   "u0": 37.2,
+   "u1": 38.0,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Sanitario",
+   "v0": 44.65,
+   "v1": 45.15,
+   "u0": 29.8,
+   "u1": 30.6,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Sanitario",
+   "v0": 44.65,
+   "v1": 45.15,
+   "u0": 37.2,
+   "u1": 38.0,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 1.5,
+   "v1": 2.5,
+   "u0": 19.5,
+   "u1": 36.8,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Monitor",
+   "v0": 1.95,
+   "v1": 2.01,
+   "u0": 20.02,
+   "u1": 20.58,
+   "alto": 0.38,
+   "y0": 0.78,
+   "solido": false
+  },
+  {
+   "tipo": "Monitor",
+   "v0": 1.95,
+   "v1": 2.01,
+   "u0": 21.67,
+   "u1": 22.23,
+   "alto": 0.38,
+   "y0": 0.78,
+   "solido": false
+  },
+  {
+   "tipo": "Monitor",
+   "v0": 1.95,
+   "v1": 2.01,
+   "u0": 23.32,
+   "u1": 23.88,
+   "alto": 0.38,
+   "y0": 0.78,
+   "solido": false
+  },
+  {
+   "tipo": "Monitor",
+   "v0": 1.95,
+   "v1": 2.01,
+   "u0": 24.97,
+   "u1": 25.53,
+   "alto": 0.38,
+   "y0": 0.78,
+   "solido": false
+  },
+  {
+   "tipo": "Monitor",
+   "v0": 1.95,
+   "v1": 2.01,
+   "u0": 26.62,
+   "u1": 27.18,
+   "alto": 0.38,
+   "y0": 0.78,
+   "solido": false
+  },
+  {
+   "tipo": "Monitor",
+   "v0": 1.95,
+   "v1": 2.01,
+   "u0": 28.27,
+   "u1": 28.83,
+   "alto": 0.38,
+   "y0": 0.78,
+   "solido": false
+  },
+  {
+   "tipo": "Monitor",
+   "v0": 1.95,
+   "v1": 2.01,
+   "u0": 29.92,
+   "u1": 30.48,
+   "alto": 0.38,
+   "y0": 0.78,
+   "solido": false
+  },
+  {
+   "tipo": "Monitor",
+   "v0": 1.95,
+   "v1": 2.01,
+   "u0": 31.57,
+   "u1": 32.13,
+   "alto": 0.38,
+   "y0": 0.78,
+   "solido": false
+  },
+  {
+   "tipo": "Monitor",
+   "v0": 1.95,
+   "v1": 2.01,
+   "u0": 33.22,
+   "u1": 33.78,
+   "alto": 0.38,
+   "y0": 0.78,
+   "solido": false
+  },
+  {
+   "tipo": "Monitor",
+   "v0": 1.95,
+   "v1": 2.01,
+   "u0": 34.87,
+   "u1": 35.43,
+   "alto": 0.38,
+   "y0": 0.78,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 4.3,
+   "v1": 5.5,
+   "u0": 24.5,
+   "u1": 34.5,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Meson",
+   "v0": 2.5,
+   "v1": 8.55,
+   "u0": 3.4,
+   "u1": 4.2,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 3.016,
+   "v1": 3.496,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 3.016,
+   "v1": 3.496,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 3.226,
+   "v1": 3.286,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 4.529,
+   "v1": 5.009,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 4.529,
+   "v1": 5.009,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 4.739,
+   "v1": 4.799,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 6.041,
+   "v1": 6.521,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 6.041,
+   "v1": 6.521,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 6.251,
+   "v1": 6.311,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 7.554,
+   "v1": 8.034,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 7.554,
+   "v1": 8.034,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 7.764,
+   "v1": 7.824,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Meson",
+   "v0": 10.15,
+   "v1": 16.2,
+   "u0": 3.4,
+   "u1": 4.2,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 10.666,
+   "v1": 11.146,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 10.666,
+   "v1": 11.146,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 10.876,
+   "v1": 10.936,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 12.179,
+   "v1": 12.659,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 12.179,
+   "v1": 12.659,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 12.389,
+   "v1": 12.449,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 13.691,
+   "v1": 14.171,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 13.691,
+   "v1": 14.171,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 13.901,
+   "v1": 13.961,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 15.204,
+   "v1": 15.684,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 15.204,
+   "v1": 15.684,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 15.414,
+   "v1": 15.474,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Meson",
+   "v0": 2.5,
+   "v1": 8.55,
+   "u0": 8.2,
+   "u1": 9.0,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 3.016,
+   "v1": 3.496,
+   "u0": 9.11,
+   "u1": 9.59,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 3.016,
+   "v1": 3.496,
+   "u0": 9.54,
+   "u1": 9.6,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 3.226,
+   "v1": 3.286,
+   "u0": 9.32,
+   "u1": 9.38,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 4.529,
+   "v1": 5.009,
+   "u0": 9.11,
+   "u1": 9.59,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 4.529,
+   "v1": 5.009,
+   "u0": 9.54,
+   "u1": 9.6,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 4.739,
+   "v1": 4.799,
+   "u0": 9.32,
+   "u1": 9.38,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 6.041,
+   "v1": 6.521,
+   "u0": 9.11,
+   "u1": 9.59,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 6.041,
+   "v1": 6.521,
+   "u0": 9.54,
+   "u1": 9.6,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 6.251,
+   "v1": 6.311,
+   "u0": 9.32,
+   "u1": 9.38,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 7.554,
+   "v1": 8.034,
+   "u0": 9.11,
+   "u1": 9.59,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 7.554,
+   "v1": 8.034,
+   "u0": 9.54,
+   "u1": 9.6,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 7.764,
+   "v1": 7.824,
+   "u0": 9.32,
+   "u1": 9.38,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Meson",
+   "v0": 10.15,
+   "v1": 16.2,
+   "u0": 8.2,
+   "u1": 9.0,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 10.666,
+   "v1": 11.146,
+   "u0": 9.11,
+   "u1": 9.59,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 10.666,
+   "v1": 11.146,
+   "u0": 9.54,
+   "u1": 9.6,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 10.876,
+   "v1": 10.936,
+   "u0": 9.32,
+   "u1": 9.38,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 12.179,
+   "v1": 12.659,
+   "u0": 9.11,
+   "u1": 9.59,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 12.179,
+   "v1": 12.659,
+   "u0": 9.54,
+   "u1": 9.6,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 12.389,
+   "v1": 12.449,
+   "u0": 9.32,
+   "u1": 9.38,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 13.691,
+   "v1": 14.171,
+   "u0": 9.11,
+   "u1": 9.59,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 13.691,
+   "v1": 14.171,
+   "u0": 9.54,
+   "u1": 9.6,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 13.901,
+   "v1": 13.961,
+   "u0": 9.32,
+   "u1": 9.38,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 15.204,
+   "v1": 15.684,
+   "u0": 9.11,
+   "u1": 9.59,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 15.204,
+   "v1": 15.684,
+   "u0": 9.54,
+   "u1": 9.6,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 15.414,
+   "v1": 15.474,
+   "u0": 9.32,
+   "u1": 9.38,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Meson",
+   "v0": 22.1,
+   "v1": 27.0,
+   "u0": 12.4,
+   "u1": 13.1,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Meson",
+   "v0": 28.6,
+   "v1": 30.9,
+   "u0": 12.4,
+   "u1": 13.1,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Meson",
+   "v0": 32.5,
+   "v1": 37.4,
+   "u0": 12.4,
+   "u1": 13.1,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Meson",
+   "v0": 39.0,
+   "v1": 44.5,
+   "u0": 12.4,
+   "u1": 13.1,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Meson",
+   "v0": 46.1,
+   "v1": 52.2,
+   "u0": 12.4,
+   "u1": 13.1,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Meson",
+   "v0": 53.8,
+   "v1": 58.2,
+   "u0": 12.4,
+   "u1": 13.1,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Meson",
+   "v0": 59.8,
+   "v1": 69.0,
+   "u0": 12.4,
+   "u1": 13.1,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Meson",
+   "v0": 70.6,
+   "v1": 75.5,
+   "u0": 12.4,
+   "u1": 13.1,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Meson",
+   "v0": 20.7,
+   "v1": 26.5,
+   "u0": 3.4,
+   "u1": 4.2,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 21.427,
+   "v1": 21.907,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 21.427,
+   "v1": 21.907,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 21.637,
+   "v1": 21.697,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 23.36,
+   "v1": 23.84,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 23.36,
+   "v1": 23.84,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 23.57,
+   "v1": 23.63,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 25.293,
+   "v1": 25.773,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 25.293,
+   "v1": 25.773,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 25.503,
+   "v1": 25.563,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Meson",
+   "v0": 28.1,
+   "v1": 33.9,
+   "u0": 3.4,
+   "u1": 4.2,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 28.827,
+   "v1": 29.307,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 28.827,
+   "v1": 29.307,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 29.037,
+   "v1": 29.097,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 30.76,
+   "v1": 31.24,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 30.76,
+   "v1": 31.24,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 30.97,
+   "v1": 31.03,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 32.693,
+   "v1": 33.173,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 32.693,
+   "v1": 33.173,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 32.903,
+   "v1": 32.963,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Meson",
+   "v0": 36.7,
+   "v1": 47.35,
+   "u0": 3.4,
+   "u1": 4.2,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 37.221,
+   "v1": 37.701,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 37.221,
+   "v1": 37.701,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 37.431,
+   "v1": 37.491,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 38.742,
+   "v1": 39.222,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 38.742,
+   "v1": 39.222,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 38.952,
+   "v1": 39.012,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 40.264,
+   "v1": 40.744,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 40.264,
+   "v1": 40.744,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 40.474,
+   "v1": 40.534,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 41.785,
+   "v1": 42.265,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 41.785,
+   "v1": 42.265,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 41.995,
+   "v1": 42.055,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 43.306,
+   "v1": 43.786,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 43.306,
+   "v1": 43.786,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 43.516,
+   "v1": 43.576,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 44.828,
+   "v1": 45.308,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 44.828,
+   "v1": 45.308,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 45.038,
+   "v1": 45.098,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 46.349,
+   "v1": 46.829,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 46.349,
+   "v1": 46.829,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 46.559,
+   "v1": 46.619,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Meson",
+   "v0": 48.95,
+   "v1": 59.6,
+   "u0": 3.4,
+   "u1": 4.2,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 49.471,
+   "v1": 49.951,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 49.471,
+   "v1": 49.951,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 49.681,
+   "v1": 49.741,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 50.992,
+   "v1": 51.472,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 50.992,
+   "v1": 51.472,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 51.202,
+   "v1": 51.262,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 52.514,
+   "v1": 52.994,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 52.514,
+   "v1": 52.994,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 52.724,
+   "v1": 52.784,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 54.035,
+   "v1": 54.515,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 54.035,
+   "v1": 54.515,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 54.245,
+   "v1": 54.305,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 55.556,
+   "v1": 56.036,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 55.556,
+   "v1": 56.036,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 55.766,
+   "v1": 55.826,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 57.078,
+   "v1": 57.558,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 57.078,
+   "v1": 57.558,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 57.288,
+   "v1": 57.348,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 58.599,
+   "v1": 59.079,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 58.599,
+   "v1": 59.079,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 58.809,
+   "v1": 58.869,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Meson",
+   "v0": 62.4,
+   "v1": 69.7,
+   "u0": 3.4,
+   "u1": 4.2,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 63.072,
+   "v1": 63.553,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 63.072,
+   "v1": 63.553,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 63.282,
+   "v1": 63.343,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 64.898,
+   "v1": 65.377,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 64.898,
+   "v1": 65.377,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 65.108,
+   "v1": 65.168,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 66.723,
+   "v1": 67.203,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 66.723,
+   "v1": 67.203,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 66.933,
+   "v1": 66.993,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 68.548,
+   "v1": 69.028,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 68.548,
+   "v1": 69.028,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 68.758,
+   "v1": 68.818,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Meson",
+   "v0": 71.3,
+   "v1": 78.6,
+   "u0": 3.4,
+   "u1": 4.2,
+   "alto": 0.9,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 71.972,
+   "v1": 72.452,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 71.972,
+   "v1": 72.452,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 72.182,
+   "v1": 72.242,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 73.797,
+   "v1": 74.277,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 73.797,
+   "v1": 74.277,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 74.007,
+   "v1": 74.067,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 75.623,
+   "v1": 76.102,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 75.623,
+   "v1": 76.102,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 75.832,
+   "v1": 75.892,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 77.448,
+   "v1": 77.927,
+   "u0": 4.31,
+   "u1": 4.79,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 77.448,
+   "v1": 77.927,
+   "u0": 4.74,
+   "u1": 4.8,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 77.657,
+   "v1": 77.718,
+   "u0": 4.52,
+   "u1": 4.58,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 47.7,
+   "v1": 49.3,
+   "u0": 27.1,
+   "u1": 28.7,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 48.26,
+   "v1": 48.74,
+   "u0": 26.51,
+   "u1": 26.99,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 48.26,
+   "v1": 48.74,
+   "u0": 26.5,
+   "u1": 26.56,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 48.47,
+   "v1": 48.53,
+   "u0": 26.72,
+   "u1": 26.78,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 48.26,
+   "v1": 48.74,
+   "u0": 28.81,
+   "u1": 29.29,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 48.26,
+   "v1": 48.74,
+   "u0": 29.24,
+   "u1": 29.3,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 48.47,
+   "v1": 48.53,
+   "u0": 29.02,
+   "u1": 29.08,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 47.11,
+   "v1": 47.59,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 47.1,
+   "v1": 47.16,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 47.32,
+   "v1": 47.38,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 49.41,
+   "v1": 49.89,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 49.84,
+   "v1": 49.9,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 49.62,
+   "v1": 49.68,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 47.7,
+   "v1": 49.3,
+   "u0": 31.3,
+   "u1": 32.9,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 48.26,
+   "v1": 48.74,
+   "u0": 30.71,
+   "u1": 31.19,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 48.26,
+   "v1": 48.74,
+   "u0": 30.7,
+   "u1": 30.76,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 48.47,
+   "v1": 48.53,
+   "u0": 30.92,
+   "u1": 30.98,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 48.26,
+   "v1": 48.74,
+   "u0": 33.01,
+   "u1": 33.49,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 48.26,
+   "v1": 48.74,
+   "u0": 33.44,
+   "u1": 33.5,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 48.47,
+   "v1": 48.53,
+   "u0": 33.22,
+   "u1": 33.28,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 47.11,
+   "v1": 47.59,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 47.1,
+   "v1": 47.16,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 47.32,
+   "v1": 47.38,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 49.41,
+   "v1": 49.89,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 49.84,
+   "v1": 49.9,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 49.62,
+   "v1": 49.68,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 51.9,
+   "v1": 53.5,
+   "u0": 27.1,
+   "u1": 28.7,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 52.46,
+   "v1": 52.94,
+   "u0": 26.51,
+   "u1": 26.99,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 52.46,
+   "v1": 52.94,
+   "u0": 26.5,
+   "u1": 26.56,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 52.67,
+   "v1": 52.73,
+   "u0": 26.72,
+   "u1": 26.78,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 52.46,
+   "v1": 52.94,
+   "u0": 28.81,
+   "u1": 29.29,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 52.46,
+   "v1": 52.94,
+   "u0": 29.24,
+   "u1": 29.3,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 52.67,
+   "v1": 52.73,
+   "u0": 29.02,
+   "u1": 29.08,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 51.31,
+   "v1": 51.79,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 51.3,
+   "v1": 51.36,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 51.52,
+   "v1": 51.58,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 53.61,
+   "v1": 54.09,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 54.04,
+   "v1": 54.1,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 53.82,
+   "v1": 53.88,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 51.9,
+   "v1": 53.5,
+   "u0": 31.3,
+   "u1": 32.9,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 52.46,
+   "v1": 52.94,
+   "u0": 30.71,
+   "u1": 31.19,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 52.46,
+   "v1": 52.94,
+   "u0": 30.7,
+   "u1": 30.76,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 52.67,
+   "v1": 52.73,
+   "u0": 30.92,
+   "u1": 30.98,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 52.46,
+   "v1": 52.94,
+   "u0": 33.01,
+   "u1": 33.49,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 52.46,
+   "v1": 52.94,
+   "u0": 33.44,
+   "u1": 33.5,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 52.67,
+   "v1": 52.73,
+   "u0": 33.22,
+   "u1": 33.28,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 51.31,
+   "v1": 51.79,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 51.3,
+   "v1": 51.36,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 51.52,
+   "v1": 51.58,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 53.61,
+   "v1": 54.09,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 54.04,
+   "v1": 54.1,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 53.82,
+   "v1": 53.88,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 56.1,
+   "v1": 57.7,
+   "u0": 27.1,
+   "u1": 28.7,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 56.66,
+   "v1": 57.14,
+   "u0": 26.51,
+   "u1": 26.99,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 56.66,
+   "v1": 57.14,
+   "u0": 26.5,
+   "u1": 26.56,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 56.87,
+   "v1": 56.93,
+   "u0": 26.72,
+   "u1": 26.78,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 56.66,
+   "v1": 57.14,
+   "u0": 28.81,
+   "u1": 29.29,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 56.66,
+   "v1": 57.14,
+   "u0": 29.24,
+   "u1": 29.3,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 56.87,
+   "v1": 56.93,
+   "u0": 29.02,
+   "u1": 29.08,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 55.51,
+   "v1": 55.99,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 55.5,
+   "v1": 55.56,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 55.72,
+   "v1": 55.78,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 57.81,
+   "v1": 58.29,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 58.24,
+   "v1": 58.3,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 58.02,
+   "v1": 58.08,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 56.1,
+   "v1": 57.7,
+   "u0": 31.3,
+   "u1": 32.9,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 56.66,
+   "v1": 57.14,
+   "u0": 30.71,
+   "u1": 31.19,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 56.66,
+   "v1": 57.14,
+   "u0": 30.7,
+   "u1": 30.76,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 56.87,
+   "v1": 56.93,
+   "u0": 30.92,
+   "u1": 30.98,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 56.66,
+   "v1": 57.14,
+   "u0": 33.01,
+   "u1": 33.49,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 56.66,
+   "v1": 57.14,
+   "u0": 33.44,
+   "u1": 33.5,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 56.87,
+   "v1": 56.93,
+   "u0": 33.22,
+   "u1": 33.28,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 55.51,
+   "v1": 55.99,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 55.5,
+   "v1": 55.56,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 55.72,
+   "v1": 55.78,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 57.81,
+   "v1": 58.29,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 58.24,
+   "v1": 58.3,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 58.02,
+   "v1": 58.08,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 60.3,
+   "v1": 61.9,
+   "u0": 27.1,
+   "u1": 28.7,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 60.86,
+   "v1": 61.34,
+   "u0": 26.51,
+   "u1": 26.99,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 60.86,
+   "v1": 61.34,
+   "u0": 26.5,
+   "u1": 26.56,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 61.07,
+   "v1": 61.13,
+   "u0": 26.72,
+   "u1": 26.78,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 60.86,
+   "v1": 61.34,
+   "u0": 28.81,
+   "u1": 29.29,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 60.86,
+   "v1": 61.34,
+   "u0": 29.24,
+   "u1": 29.3,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 61.07,
+   "v1": 61.13,
+   "u0": 29.02,
+   "u1": 29.08,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 59.71,
+   "v1": 60.19,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 59.7,
+   "v1": 59.76,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 59.92,
+   "v1": 59.98,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 62.01,
+   "v1": 62.49,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 62.44,
+   "v1": 62.5,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 62.22,
+   "v1": 62.28,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 60.3,
+   "v1": 61.9,
+   "u0": 31.3,
+   "u1": 32.9,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 60.86,
+   "v1": 61.34,
+   "u0": 30.71,
+   "u1": 31.19,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 60.86,
+   "v1": 61.34,
+   "u0": 30.7,
+   "u1": 30.76,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 61.07,
+   "v1": 61.13,
+   "u0": 30.92,
+   "u1": 30.98,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 60.86,
+   "v1": 61.34,
+   "u0": 33.01,
+   "u1": 33.49,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 60.86,
+   "v1": 61.34,
+   "u0": 33.44,
+   "u1": 33.5,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 61.07,
+   "v1": 61.13,
+   "u0": 33.22,
+   "u1": 33.28,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 59.71,
+   "v1": 60.19,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 59.7,
+   "v1": 59.76,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 59.92,
+   "v1": 59.98,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 62.01,
+   "v1": 62.49,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 62.44,
+   "v1": 62.5,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 62.22,
+   "v1": 62.28,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 66.4,
+   "v1": 68.0,
+   "u0": 27.1,
+   "u1": 28.7,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 66.96,
+   "v1": 67.44,
+   "u0": 26.51,
+   "u1": 26.99,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 66.96,
+   "v1": 67.44,
+   "u0": 26.5,
+   "u1": 26.56,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 67.17,
+   "v1": 67.23,
+   "u0": 26.72,
+   "u1": 26.78,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 66.96,
+   "v1": 67.44,
+   "u0": 28.81,
+   "u1": 29.29,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 66.96,
+   "v1": 67.44,
+   "u0": 29.24,
+   "u1": 29.3,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 67.17,
+   "v1": 67.23,
+   "u0": 29.02,
+   "u1": 29.08,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 65.81,
+   "v1": 66.29,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 65.8,
+   "v1": 65.86,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 66.02,
+   "v1": 66.08,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 68.11,
+   "v1": 68.59,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 68.54,
+   "v1": 68.6,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 68.32,
+   "v1": 68.38,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 66.4,
+   "v1": 68.0,
+   "u0": 31.3,
+   "u1": 32.9,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 66.96,
+   "v1": 67.44,
+   "u0": 30.71,
+   "u1": 31.19,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 66.96,
+   "v1": 67.44,
+   "u0": 30.7,
+   "u1": 30.76,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 67.17,
+   "v1": 67.23,
+   "u0": 30.92,
+   "u1": 30.98,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 66.96,
+   "v1": 67.44,
+   "u0": 33.01,
+   "u1": 33.49,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 66.96,
+   "v1": 67.44,
+   "u0": 33.44,
+   "u1": 33.5,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 67.17,
+   "v1": 67.23,
+   "u0": 33.22,
+   "u1": 33.28,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 65.81,
+   "v1": 66.29,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 65.8,
+   "v1": 65.86,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 66.02,
+   "v1": 66.08,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 68.11,
+   "v1": 68.59,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 68.54,
+   "v1": 68.6,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 68.32,
+   "v1": 68.38,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 70.6,
+   "v1": 72.2,
+   "u0": 27.1,
+   "u1": 28.7,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 71.16,
+   "v1": 71.64,
+   "u0": 26.51,
+   "u1": 26.99,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 71.16,
+   "v1": 71.64,
+   "u0": 26.5,
+   "u1": 26.56,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 71.37,
+   "v1": 71.43,
+   "u0": 26.72,
+   "u1": 26.78,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 71.16,
+   "v1": 71.64,
+   "u0": 28.81,
+   "u1": 29.29,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 71.16,
+   "v1": 71.64,
+   "u0": 29.24,
+   "u1": 29.3,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 71.37,
+   "v1": 71.43,
+   "u0": 29.02,
+   "u1": 29.08,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 70.01,
+   "v1": 70.49,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 70.0,
+   "v1": 70.06,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 70.22,
+   "v1": 70.28,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 72.31,
+   "v1": 72.79,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 72.74,
+   "v1": 72.8,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 72.52,
+   "v1": 72.58,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 70.6,
+   "v1": 72.2,
+   "u0": 31.3,
+   "u1": 32.9,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 71.16,
+   "v1": 71.64,
+   "u0": 30.71,
+   "u1": 31.19,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 71.16,
+   "v1": 71.64,
+   "u0": 30.7,
+   "u1": 30.76,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 71.37,
+   "v1": 71.43,
+   "u0": 30.92,
+   "u1": 30.98,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 71.16,
+   "v1": 71.64,
+   "u0": 33.01,
+   "u1": 33.49,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 71.16,
+   "v1": 71.64,
+   "u0": 33.44,
+   "u1": 33.5,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 71.37,
+   "v1": 71.43,
+   "u0": 33.22,
+   "u1": 33.28,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 70.01,
+   "v1": 70.49,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 70.0,
+   "v1": 70.06,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 70.22,
+   "v1": 70.28,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 72.31,
+   "v1": 72.79,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 72.74,
+   "v1": 72.8,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 72.52,
+   "v1": 72.58,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 74.8,
+   "v1": 76.4,
+   "u0": 27.1,
+   "u1": 28.7,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 75.36,
+   "v1": 75.84,
+   "u0": 26.51,
+   "u1": 26.99,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 75.36,
+   "v1": 75.84,
+   "u0": 26.5,
+   "u1": 26.56,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 75.57,
+   "v1": 75.63,
+   "u0": 26.72,
+   "u1": 26.78,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 75.36,
+   "v1": 75.84,
+   "u0": 28.81,
+   "u1": 29.29,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 75.36,
+   "v1": 75.84,
+   "u0": 29.24,
+   "u1": 29.3,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 75.57,
+   "v1": 75.63,
+   "u0": 29.02,
+   "u1": 29.08,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 74.21,
+   "v1": 74.69,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 74.2,
+   "v1": 74.26,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 74.42,
+   "v1": 74.48,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 76.51,
+   "v1": 76.99,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 76.94,
+   "v1": 77.0,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 76.72,
+   "v1": 76.78,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 74.8,
+   "v1": 76.4,
+   "u0": 31.3,
+   "u1": 32.9,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 75.36,
+   "v1": 75.84,
+   "u0": 30.71,
+   "u1": 31.19,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 75.36,
+   "v1": 75.84,
+   "u0": 30.7,
+   "u1": 30.76,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 75.57,
+   "v1": 75.63,
+   "u0": 30.92,
+   "u1": 30.98,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 75.36,
+   "v1": 75.84,
+   "u0": 33.01,
+   "u1": 33.49,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 75.36,
+   "v1": 75.84,
+   "u0": 33.44,
+   "u1": 33.5,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 75.57,
+   "v1": 75.63,
+   "u0": 33.22,
+   "u1": 33.28,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 74.21,
+   "v1": 74.69,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 74.2,
+   "v1": 74.26,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 74.42,
+   "v1": 74.48,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 76.51,
+   "v1": 76.99,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 76.94,
+   "v1": 77.0,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 76.72,
+   "v1": 76.78,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 79.0,
+   "v1": 80.6,
+   "u0": 27.1,
+   "u1": 28.7,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 79.56,
+   "v1": 80.04,
+   "u0": 26.51,
+   "u1": 26.99,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 79.56,
+   "v1": 80.04,
+   "u0": 26.5,
+   "u1": 26.56,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 79.77,
+   "v1": 79.83,
+   "u0": 26.72,
+   "u1": 26.78,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 79.56,
+   "v1": 80.04,
+   "u0": 28.81,
+   "u1": 29.29,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 79.56,
+   "v1": 80.04,
+   "u0": 29.24,
+   "u1": 29.3,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 79.77,
+   "v1": 79.83,
+   "u0": 29.02,
+   "u1": 29.08,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 78.41,
+   "v1": 78.89,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 78.4,
+   "v1": 78.46,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 78.62,
+   "v1": 78.68,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 80.71,
+   "v1": 81.19,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 81.14,
+   "v1": 81.2,
+   "u0": 27.66,
+   "u1": 28.14,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 80.92,
+   "v1": 80.98,
+   "u0": 27.87,
+   "u1": 27.93,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Mesa",
+   "v0": 79.0,
+   "v1": 80.6,
+   "u0": 31.3,
+   "u1": 32.9,
+   "alto": 0.75,
+   "y0": 0.0,
+   "solido": true
+  },
+  {
+   "tipo": "Silla",
+   "v0": 79.56,
+   "v1": 80.04,
+   "u0": 30.71,
+   "u1": 31.19,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 79.56,
+   "v1": 80.04,
+   "u0": 30.7,
+   "u1": 30.76,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 79.77,
+   "v1": 79.83,
+   "u0": 30.92,
+   "u1": 30.98,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 79.56,
+   "v1": 80.04,
+   "u0": 33.01,
+   "u1": 33.49,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 79.56,
+   "v1": 80.04,
+   "u0": 33.44,
+   "u1": 33.5,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 79.77,
+   "v1": 79.83,
+   "u0": 33.22,
+   "u1": 33.28,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 78.41,
+   "v1": 78.89,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 78.4,
+   "v1": 78.46,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 78.62,
+   "v1": 78.68,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 80.71,
+   "v1": 81.19,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.08,
+   "y0": 0.42,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 81.14,
+   "v1": 81.2,
+   "u0": 31.86,
+   "u1": 32.34,
+   "alto": 0.5,
+   "y0": 0.5,
+   "solido": false
+  },
+  {
+   "tipo": "Silla",
+   "v0": 80.92,
+   "v1": 80.98,
+   "u0": 32.07,
+   "u1": 32.13,
+   "alto": 0.42,
+   "y0": 0.0,
+   "solido": false
+  }
+ ],
+ "rotulos": [
+  {
+   "texto": "{n}",
+   "v": 93.08,
+   "u": 33.2,
+   "h": 2.3,
+   "mira": "+v",
+   "tam": 9.0,
+   "color": "8C7444"
+  }
+ ],
+ "bandejas": [
+  {
+   "a": [
+    9.4,
+    20.25
+   ],
+   "b": [
+    92.5,
+    20.25
+   ],
+   "y": 4.9,
+   "ancho": 0.6
+  },
+  {
+   "a": [
+    9.4,
+    22.15
+   ],
+   "b": [
+    92.5,
+    22.15
+   ],
+   "y": 5.05,
+   "ancho": 0.35
+  }
+ ],
+ "luces": [
+  {
+   "a": [
+    9.4,
+    19.25
+   ],
+   "b": [
+    92.0,
+    19.25
+   ],
+   "y": 5.5
+  },
+  {
+   "a": [
+    9.4,
+    23.05
+   ],
+   "b": [
+    86.0,
+    23.05
+   ],
+   "y": 5.5
+  },
+  {
+   "a": [
+    9.4,
+    25.5
+   ],
+   "b": [
+    17.0,
+    25.5
+   ],
+   "y": 5.5
+  },
+  {
+   "a": [
+    94.85,
+    25.0
+   ],
+   "b": [
+    95.15,
+    25.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    94.85,
+    29.0
+   ],
+   "b": [
+    95.15,
+    29.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    94.85,
+    33.0
+   ],
+   "b": [
+    95.15,
+    33.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    94.85,
+    37.0
+   ],
+   "b": [
+    95.15,
+    37.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    97.35,
+    25.0
+   ],
+   "b": [
+    97.65,
+    25.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    97.35,
+    29.0
+   ],
+   "b": [
+    97.65,
+    29.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    97.35,
+    33.0
+   ],
+   "b": [
+    97.65,
+    33.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    97.35,
+    37.0
+   ],
+   "b": [
+    97.65,
+    37.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    99.85,
+    33.0
+   ],
+   "b": [
+    100.15,
+    33.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    99.85,
+    37.0
+   ],
+   "b": [
+    100.15,
+    37.0
+   ],
+   "y": 4.19
+  },
+  {
+   "a": [
+    2.3,
+    24.95
+   ],
+   "b": [
+    7.7,
+    24.95
+   ],
+   "y": 3.29
+  },
+  {
+   "a": [
+    2.3,
+    30.95
+   ],
+   "b": [
+    7.7,
+    30.95
+   ],
+   "y": 3.29
+  },
+  {
+   "a": [
+    37.5,
+    27.9
+   ],
+   "b": [
+    45.099999999999994,
+    27.9
+   ],
+   "y": 3.29
+  },
+  {
+   "a": [
+    37.5,
+    33.9
+   ],
+   "b": [
+    45.099999999999994,
+    33.9
+   ],
+   "y": 3.29
+  },
+  {
+   "a": [
+    2.3,
+    6.5
+   ],
+   "b": [
+    16.400000000000002,
+    6.5
+   ],
+   "y": 3.29
+  },
+  {
+   "a": [
+    2.3,
+    12.5
+   ],
+   "b": [
+    16.400000000000002,
+    12.5
+   ],
+   "y": 3.29
+  },
+  {
+   "a": [
+    20.5,
+    3.75
+   ],
+   "b": [
+    34.099999999999994,
+    3.75
+   ],
+   "y": 3.29
+  },
+  {
+   "a": [
+    20.5,
+    9.75
+   ],
+   "b": [
+    34.099999999999994,
+    9.75
+   ],
+   "y": 3.29
+  },
+  {
+   "a": [
+    36.5,
+    3.75
+   ],
+   "b": [
+    59.8,
+    3.75
+   ],
+   "y": 3.29
+  },
+  {
+   "a": [
+    36.5,
+    9.75
+   ],
+   "b": [
+    59.8,
+    9.75
+   ],
+   "y": 3.29
+  },
+  {
+   "a": [
+    62.2,
+    3.75
+   ],
+   "b": [
+    78.8,
+    3.75
+   ],
+   "y": 3.29
+  },
+  {
+   "a": [
+    62.2,
+    9.75
+   ],
+   "b": [
+    78.8,
+    9.75
+   ],
+   "y": 3.29
+  },
+  {
+   "a": [
+    47.5,
+    27.9
+   ],
+   "b": [
+    63.8,
+    27.9
+   ],
+   "y": 3.29
+  },
+  {
+   "a": [
+    47.5,
+    33.9
+   ],
+   "b": [
+    63.8,
+    33.9
+   ],
+   "y": 3.29
+  },
+  {
+   "a": [
+    66.2,
+    27.9
+   ],
+   "b": [
+    85.0,
+    27.9
+   ],
+   "y": 3.29
+  },
+  {
+   "a": [
+    66.2,
+    33.9
+   ],
+   "b": [
+    85.0,
+    33.9
+   ],
+   "y": 3.29
+  }
+ ],
+ "lamparas": [
+  {
+   "v": 11,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 19,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 27,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 35,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 43,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 51,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 59,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 67,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 75,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 83,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 91,
+   "u": 21.15,
+   "y": 4.8,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 13.0,
+   "u": 25.5,
+   "y": 4.8,
+   "rango": 11.0,
+   "intensidad": 1.3
+  },
+  {
+   "v": 21.0,
+   "u": 27.0,
+   "y": 4.8,
+   "rango": 9.0,
+   "intensidad": 1.2
+  },
+  {
+   "v": 21.8,
+   "u": 34.0,
+   "y": 4.8,
+   "rango": 9.0,
+   "intensidad": 1.2
+  },
+  {
+   "v": 96.0,
+   "u": 27.0,
+   "y": 3.9,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 99.5,
+   "u": 33.5,
+   "y": 3.9,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 95.5,
+   "u": 21.0,
+   "y": 3.9,
+   "rango": 13.0,
+   "intensidad": 1.6
+  },
+  {
+   "v": 5.0,
+   "u": 27.95,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 25.15,
+   "u": 26.9,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 33.45,
+   "u": 26.9,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 41.3,
+   "u": 30.9,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 5.22,
+   "u": 9.5,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 13.47,
+   "u": 9.5,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 24.55,
+   "u": 15.45,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 29.75,
+   "u": 15.45,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 34.95,
+   "u": 15.45,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 41.75,
+   "u": 15.45,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 49.15,
+   "u": 15.45,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 56.0,
+   "u": 15.45,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 64.4,
+   "u": 15.45,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 73.05,
+   "u": 15.45,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 23.3,
+   "u": 6.75,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 31.3,
+   "u": 6.75,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 39.58,
+   "u": 6.75,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 48.15,
+   "u": 6.75,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 56.72,
+   "u": 6.75,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 65.75,
+   "u": 6.75,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 75.25,
+   "u": 6.75,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 50.97,
+   "u": 30.9,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 60.33,
+   "u": 30.9,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 68.53,
+   "u": 30.9,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 75.6,
+   "u": 30.9,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  },
+  {
+   "v": 82.67,
+   "u": 30.9,
+   "y": 2.9499999999999997,
+   "rango": 11.0,
+   "intensidad": 1.25
+  }
+ ]
+}

@@ -14,6 +14,8 @@ using UnityEngine.InputSystem;
 //   - "objetos": el catálogo. Los que traen "inicial": true se tienen desde el
 //     principio.
 //   - "misiones[].entrega": el objeto que se recibe al completar esa misión.
+//   - "misiones[].deja": el que se deja al llegar (el informe, el portátil que
+//     se devuelve). Así el inventario no crece sin fin a lo largo del día.
 //
 // Patrón Manager + Observer: guarda el estado y publica eventos; la interfaz
 // (InventoryUI) y el sonido (AudioManager) se suscriben.
@@ -174,20 +176,36 @@ public class InventoryManager : MonoBehaviour
         {
             Quitar(mision.def.entrega);
         }
+        // Y lo que se deja al llegar vuelve a estar en el bolsillo (también si se
+        // repite una misión ya completada).
+        if (mision != null && mision.def != null && !string.IsNullOrEmpty(mision.def.deja) && !Tiene(mision.def.deja))
+        {
+            Agregar(mision.def.deja);
+        }
     }
 
     private void AlCompletarMision(MisionEnCurso mision)
     {
         if (!activo || mision == null || mision.def == null) return;
-        if (string.IsNullOrEmpty(mision.def.entrega)) return;
 
-        if (Agregar(mision.def.entrega) && HUDController.Instance != null)
+        string dejado = "";
+        if (!string.IsNullOrEmpty(mision.def.deja))
+        {
+            ObjetoDef d = Buscar(mision.def.deja);
+            if (Quitar(mision.def.deja) && d != null) dejado = $"<b>- {d.nombre}</b>";
+        }
+        string recibido = "";
+        if (!string.IsNullOrEmpty(mision.def.entrega) && Agregar(mision.def.entrega))
         {
             ObjetoDef o = Buscar(mision.def.entrega);
-            string texto = string.IsNullOrEmpty(mision.def.mensajeDeEntrega)
-                ? $"Recibiste: <b>{o.nombre}</b>"
-                : $"{mision.def.mensajeDeEntrega}  <b>+ {o.nombre}</b>";
-            HUDController.Instance.MostrarSubtitulo(texto, 6f);
+            if (o != null) recibido = $"<b>+ {o.nombre}</b>";
         }
+        if (dejado == "" && recibido == "" || HUDController.Instance == null) return;
+
+        string cambios = (dejado + "  " + recibido).Trim();
+        string texto = string.IsNullOrEmpty(mision.def.mensajeDeEntrega)
+            ? cambios
+            : $"{mision.def.mensajeDeEntrega}  {cambios}";
+        HUDController.Instance.MostrarSubtitulo(texto, 6f);
     }
 }

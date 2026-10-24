@@ -130,11 +130,9 @@ public static class NavUtil
             ElevatorTrigger salida = ascensores[i];
             if (salida == null || salida.Piso != pisoDesde) continue;
 
-            // El ascensor conserva el XZ: se llega al mismo punto del piso destino.
+            // Se sale por la misma puerta del piso destino (o, sin puertas, por el mismo XZ).
             Vector3 pieSalida = salida.PuntoDeAcceso;
-            Vector3 pieLlegada = new Vector3(pieSalida.x,
-                                             FloorManager.Instance.AlturaDelSuelo(pisoHasta),
-                                             pieSalida.z);
+            Vector3 pieLlegada = ElevatorTrigger.Llegada(salida, pisoHasta, out float _);
 
             if (!Ruta(desde, pieSalida, out float tramo1)) continue;
             if (!Ruta(pieLlegada, hasta, out float tramo2)) continue;

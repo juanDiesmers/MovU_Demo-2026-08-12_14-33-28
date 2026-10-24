@@ -49,6 +49,20 @@ public static class MovUCapturas
     [MenuItem("MovU/Contenido/Capturar planta y vistas de un piso genérico (Temp)")]
     public static void CapturarGenerico() => Capturar(FloorManager.PlantaGenerica, "generico", VistasGenerico);
 
+    private static readonly (string nombre, float u, float v, float yaw)[] VistasPisos =
+    {
+        ("lobby_ascensores", 0.78f, 0.935f, 180f),
+        ("pasillo_centro", 0.54f, 0.55f, 180f),
+        ("pasillo_hacia_lobby", 0.54f, 0.25f, 0f),
+    };
+
+    [MenuItem("MovU/Contenido/Capturar plantas y vistas de los pisos 4 a 12 (Temp)")]
+    public static void CapturarPisos()
+    {
+        foreach (int n in PisosConPlanoBuilder.Numeros)
+            Capturar(PisosConPlanoBuilder.Planta(n), "piso" + n, VistasPisos);
+    }
+
     [MenuItem("MovU/Contenido/Capturar planta y vistas del piso 13 (Temp)")]
     public static void Capturar13() => Capturar("piso13", "piso13", Vistas13);
 

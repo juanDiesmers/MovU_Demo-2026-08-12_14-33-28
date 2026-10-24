@@ -117,7 +117,19 @@ public class FloorManager : MonoBehaviour
     public static readonly HashSet<string> PlantasConEscalera = new HashSet<string> { PlantaBase, PlantaGenerica, "piso13" };
 
     /// <summary>True si en este piso está la escalera funcional.</summary>
-    public bool TieneEscalera(int indice) => PlantasConEscalera.Contains(PlantaDe(indice));
+    public bool TieneEscalera(int indice) => PlantaConEscalera(PlantaDe(indice));
+
+    /// <summary>
+    /// True si la planta lleva la escalera funcional: la del 9, la genérica, la del 13
+    /// y las de los pisos 4 a 12 trazadas desde sus planos ("piso4"... "piso12"),
+    /// que tienen el mismo núcleo. El piso 3 no (su escalera no lleva a pisos del juego).
+    /// </summary>
+    public static bool PlantaConEscalera(string planta)
+    {
+        if (string.IsNullOrEmpty(planta)) return false;
+        if (PlantasConEscalera.Contains(planta)) return true;
+        return planta.StartsWith("piso") && int.TryParse(planta.Substring(4), out int n) && n >= 4 && n <= 13;
+    }
 
     /// <summary>El primer piso con la planta del piso 9: contra él se mide todo.</summary>
     public int IndiceBase

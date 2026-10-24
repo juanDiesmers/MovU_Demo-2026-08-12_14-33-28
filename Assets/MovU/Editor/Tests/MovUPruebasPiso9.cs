@@ -84,6 +84,37 @@ public class MovUPruebasPiso9
     public void Piso13_CadaPuertaQuedaEnUnVano()
         => PuertasEnVano(LeerPlanta(Piso13Builder.Config.rutaPlanta), 11);
 
+    // --- Pisos 4 a 8 y 10 a 12, trazados desde sus planos (Tools/pisos_planta.py) ---
+
+    [TestCase(4)] [TestCase(5)] [TestCase(6)] [TestCase(7)] [TestCase(8)] [TestCase(10)] [TestCase(11)] [TestCase(12)]
+    public void PisoConPlano_NadaDelContenidoCaeDentroDeAlgoSolido(int numero)
+    {
+        Assert.IsTrue(PisosConPlanoBuilder.HayPlanta(numero), $"Falta la planta del piso {numero}: corre Tools/pisos_planta.py.");
+        NadaCaeDentro(LeerPlanta(PisosConPlanoBuilder.Config(numero).rutaPlanta), numero - 2, false);
+    }
+
+    [TestCase(4)] [TestCase(5)] [TestCase(6)] [TestCase(7)] [TestCase(8)] [TestCase(10)] [TestCase(11)] [TestCase(12)]
+    public void PisoConPlano_CadaPuertaQuedaEnUnVano(int numero)
+        => PuertasEnVano(LeerPlanta(PisosConPlanoBuilder.Config(numero).rutaPlanta), numero - 2);
+
+    [TestCase(4)] [TestCase(5)] [TestCase(6)] [TestCase(7)] [TestCase(8)] [TestCase(10)] [TestCase(11)] [TestCase(12)]
+    public void PisoConPlano_TieneSusEspaciosEscalerasYAscensores(int numero)
+    {
+        ContenidoPiso d = LeerContenido();
+        List<PoiDef> pois = d.pois.FindAll(p => p.piso == numero - 2);
+        foreach (string id in new[] { "banos", "escalera_emergencia", "escalera_principal", "ascensores" })
+            Assert.IsTrue(pois.Exists(p => p.id == $"p{numero}_{id}"), $"Falta el POI 'p{numero}_{id}'.");
+        int espacios = pois.FindAll(p => p.categoria != "Bano" && p.categoria != "Escalera" && p.categoria != "Ascensor").Count;
+        Assert.GreaterOrEqual(espacios, 3, $"El piso {numero} debería tener al menos tres espacios con POI.");
+        // Cada POI de un espacio con puerta tiene la suya.
+        foreach (PoiDef p in pois)
+        {
+            if (p.categoria == "Ascensor" || p.id.EndsWith("free_plaza")) continue;
+            if (p.id.EndsWith("calidad_de_agua")) continue;      // se entra por los laboratorios vecinos
+            Assert.IsTrue(d.puertas.Exists(q => q.poi == p.id && q.piso == numero - 2), $"El POI '{p.id}' no tiene puerta.");
+        }
+    }
+
     [Test]
     public void Piso13_TieneSusLaboratoriosConNombreReal()
     {

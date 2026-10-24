@@ -31,6 +31,8 @@ public class ContenidoPiso
     public List<MisionDef> misiones = new List<MisionDef>();
     public List<NpcDef> npcs = new List<NpcDef>();
     public MultitudDef multitud = new MultitudDef();
+    [Tooltip("Gente de los demás pisos: una multitud por piso, con su propio recorrido.")]
+    public List<MultitudDef> multitudes = new List<MultitudDef>();
     public List<PuntoUV> recorridos = new List<PuntoUV>();
 
     // --- Ambientacion, inventario y escalera (octubre de 2026) -----------
@@ -136,6 +138,9 @@ public class MisionDef
     public string entrega = "";
     [Tooltip("Lo que se le dice al jugador al recibir el objeto.")]
     public string mensajeDeEntrega = "";
+    [Tooltip("id del objeto que el jugador deja al llegar (lo lleva desde una misión anterior: " +
+             "el informe que se entrega, el portátil que se devuelve). Vacio = ninguno.")]
+    public string deja = "";
 }
 
 /// <summary>Un objeto del inventario (el carne, el portatil prestado...).</summary>
@@ -272,6 +277,10 @@ public class MultitudDef
     public int piso = 1;
     public int estudiantes = 0;
     public int visitantes = 0;
+    [Tooltip("Puntos (u, v) por donde caminan. Vacío = los 'recorridos' generales (los del piso 9).")]
+    public List<PuntoUV> recorrido = new List<PuntoUV>();
+    [Tooltip("Centros (u, v) de parejas de estudiantes que conversan quietos.")]
+    public List<PuntoUV> parejas = new List<PuntoUV>();
 }
 
 /// <summary>Convierte entre (u, v) de la planta y metros de mundo.</summary>

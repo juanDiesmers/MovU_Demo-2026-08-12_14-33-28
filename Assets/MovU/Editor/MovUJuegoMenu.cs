@@ -90,6 +90,8 @@ public static class MovUJuegoMenu
         superficie.navMeshData = null;
         if (AssetDatabase.LoadAssetAtPath<NavMeshData>(ruta) != null) AssetDatabase.DeleteAsset(ruta);
 
+        AjustarEscalonDelAgente(superficie.agentTypeID);
+
         EditorUtility.DisplayProgressBar("MovU", "Horneando el NavMesh...", 0.5f);
         try
         {
@@ -570,5 +572,37 @@ public static class MovUJuegoMenu
     {
         if (interactivo) Dialogo(mensaje);
         else Debug.LogError("[MovU] " + mensaje);
+    }
+
+    /// <summary>
+    /// El agente del NavMesh tiene que subir lo mismo que el personaje: si no, la ruta
+    /// óptima (y la flecha de guía) pasa por encima de mesas, sanitarios o tabiques
+    /// bajos que el CharacterController no puede subir. Unity trae 0,75 m por defecto;
+    /// el personaje sube 0,35 m. Se ajusta en ProjectSettings/NavMeshAreas.asset.
+    /// </summary>
+    private static void AjustarEscalonDelAgente(int agentTypeID)
+    {
+        float escalon = 0.35f;
+        var pc = Object.FindFirstObjectByType<PlayerController>(FindObjectsInactive.Include);
+        var cc = pc != null ? pc.GetComponent<CharacterController>() : null;
+        if (cc != null) escalon = cc.stepOffset;
+
+        Object[] ajustes = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/NavMeshAreas.asset");
+        if (ajustes == null || ajustes.Length == 0) return;
+        var so = new SerializedObject(ajustes[0]);
+        SerializedProperty lista = so.FindProperty("m_Settings");
+        if (lista == null) return;
+        for (int i = 0; i < lista.arraySize; i++)
+        {
+            SerializedProperty e = lista.GetArrayElementAtIndex(i);
+            if (e.FindPropertyRelative("agentTypeID").intValue != agentTypeID) continue;
+            SerializedProperty sube = e.FindPropertyRelative("agentClimb");
+            if (sube == null || Mathf.Abs(sube.floatValue - escalon) < 0.001f) return;
+            Debug.Log($"[MovU] Escalón del agente del NavMesh: {sube.floatValue:F2} m -> {escalon:F2} m " +
+                      "(lo que sube el personaje).");
+            sube.floatValue = escalon;
+            so.ApplyModifiedPropertiesWithoutUndo();
+            return;
+        }
     }
 }

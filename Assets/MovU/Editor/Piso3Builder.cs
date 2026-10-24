@@ -59,10 +59,42 @@ public static class Piso3Builder
         Llevar(Piso13Builder.Planta, 0.8181f, 0.9127f, 270f);   // mismo sitio que la aparición del 9
     }
 
-    [MenuItem("MovU/Depuracion en Play/Ir al pasillo del piso 4 (genérico)")]
-    private static void IrAlGenerico()
+    [MenuItem("MovU/Depuracion en Play/Ir al pasillo del piso 4")]
+    private static void IrAlPiso4()
     {
-        Llevar(FloorManager.PlantaGenerica, 0.55f, 0.88f, 180f);
+        Llevar(PisosConPlanoBuilder.Planta(4), 0.55f, 0.88f, 180f);
+    }
+
+    /// <summary>
+    /// Desde el lobby de cada piso, ruta por el NavMesh a cada POI de ese mismo piso.
+    /// Revisa que en todos los pisos se pueda llegar a todos los espacios. No mueve al
+    /// jugador: el NavMesh de todos los pisos está siempre cargado.
+    /// </summary>
+    [MenuItem("MovU/Depuracion en Play/Probar rutas en cada piso (lobby a sus POI)")]
+    private static void ProbarRutasPorPiso()
+    {
+        if (!Application.isPlaying) { Debug.LogWarning("[Pisos] Esto funciona en Play."); return; }
+        FloorManager pisos = FloorManager.Instance;
+        ContenidoPiso d = ContenidoLoader.Datos;
+        if (pisos == null || d == null) return;
+        int bien = 0, mal = 0;
+        var sb = new System.Text.StringBuilder();
+        for (int i = 0; i < pisos.CantidadDePisos; i++)
+        {
+            if (!ContenidoLoader.AMundo(pisos, i + 1, 0.8181f, 0.9127f, out Vector3 lobby)) continue;
+            int bienPiso = 0;
+            var faltan = new System.Collections.Generic.List<string>();
+            foreach (PoiDef p in d.pois)
+            {
+                if (p.piso != i + 1 || p.rotuloU <= 0f) continue;          // los ascensores no tienen rótulo
+                if (!ContenidoLoader.AMundo(pisos, p.piso, p.u, p.v, out Vector3 destino)) continue;
+                if (NavUtil.Ruta(lobby, destino, out float largo)) { bien++; bienPiso++; }
+                else { mal++; faltan.Add(p.id); }
+            }
+            sb.AppendLine($"  piso {FloorManager.NumeroVisible(i)}: {bienPiso} con ruta" +
+                          (faltan.Count > 0 ? $", SIN RUTA: {string.Join(", ", faltan)}" : ""));
+        }
+        Debug.Log($"[Pisos] Rutas desde el lobby de cada piso: {bien} con ruta, {mal} sin ruta.\n{sb}");
     }
 
     /// <summary>

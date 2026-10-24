@@ -75,11 +75,11 @@ public class CameraRig : MonoBehaviour
         if (viewMode == ViewMode.FirstPerson)
         {
             cameraTransform.localPosition = Vector3.zero;
-            if (bodyRenderer != null) bodyRenderer.enabled = false;
+            MostrarCuerpo(false);
         }
         else
         {
-            if (bodyRenderer != null) bodyRenderer.enabled = true;
+            MostrarCuerpo(true);
             PlaceThirdPersonCamera();
         }
     }
@@ -102,6 +102,13 @@ public class CameraRig : MonoBehaviour
         }
 
         cameraTransform.localPosition = new Vector3(0f, thirdPersonHeight, -distance);
+    }
+
+    /// <summary>El cuerpo del jugador es una figura por partes que cuelga del Body.</summary>
+    private void MostrarCuerpo(bool visible)
+    {
+        if (bodyRenderer == null) return;
+        foreach (Renderer r in bodyRenderer.GetComponentsInChildren<Renderer>(true)) r.enabled = visible;
     }
 
     /// <summary>Cableado desde el editor al construir la escena.</summary>

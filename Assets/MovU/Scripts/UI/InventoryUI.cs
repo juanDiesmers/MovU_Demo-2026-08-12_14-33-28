@@ -23,7 +23,7 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    private const int Casillas = 5;
+    private const int Casillas = 6;   // el recorrido completo llega a llevar 6 cosas a la vez
     private const float Lado = 60f;
     private const float Separacion = 8f;
 

@@ -3,9 +3,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 // ============================================================================
-// ElevatorTrigger.cs — El cubo que cambia de piso
+// ElevatorTrigger.cs — Las puertas de ascensor que cambian de piso
 // ============================================================================
-// Un disparador junto al cubo. Cuando el jugador entra en su radio, aparece el
+// Una zona delante de cada puerta de ascensor del lobby (21 oct 2026; antes era
+// un cubo suelto en medio del lobby). El ascensor sale por la misma puerta en
+// el piso de destino. Cuando el jugador entra en su radio, aparece el
 // aviso; con E se abre el panel de pisos.
 //
 // Detecta al jugador por su CharacterController en vez de por tag, porque la
@@ -17,8 +19,52 @@ using UnityEngine.InputSystem;
 public class ElevatorTrigger : MonoBehaviour
 {
     [SerializeField] private FloorManager pisos;
+    [Tooltip("Cuál de las puertas del lobby es (0, 1, 2...). El ascensor sale por la misma puerta en el piso de destino.")]
+    [SerializeField] private int puerta = -1;
 
     private bool jugadorCerca;
+
+    /// <summary>Número de puerta en el lobby; -1 = el ascensor viejo de un solo cubo.</summary>
+    public int Puerta => puerta;
+
+    /// <summary>La zona en la que está parado el jugador (null si en ninguna).</summary>
+    public static ElevatorTrigger EnUso { get; private set; }
+
+    /// <summary>Lo usa BuildingSetup al crear la zona de cada puerta.</summary>
+    public void Configurar(FloorManager gestor, int numeroDePuerta)
+    {
+        pisos = gestor;
+        puerta = numeroDePuerta;
+    }
+
+    /// <summary>La puerta 'numero' del piso indicado; null si ese piso no la tiene.</summary>
+    public static ElevatorTrigger DeLaPuerta(int piso, int numero)
+    {
+        if (numero < 0) return null;
+        var lista = Todos;
+        for (int i = 0; i < lista.Count; i++)
+        {
+            ElevatorTrigger e = lista[i];
+            if (e != null && e.puerta == numero && e.Piso == piso) return e;
+        }
+        return null;
+    }
+
+    /// <summary>Dónde se aparece al salir de este ascensor viniendo de 'salida'
+    /// (la misma puerta del piso destino; si no la hay, el mismo XZ).</summary>
+    public static Vector3 Llegada(ElevatorTrigger salida, int pisoDestino, out float yaw)
+    {
+        ElevatorTrigger e = salida != null ? DeLaPuerta(pisoDestino, salida.puerta) : null;
+        if (e != null)
+        {
+            yaw = e.transform.eulerAngles.y;
+            return e.PuntoDeAcceso;
+        }
+        yaw = salida != null ? salida.transform.eulerAngles.y : 0f;
+        Vector3 p = salida != null ? salida.PuntoDeAcceso : Vector3.zero;
+        if (FloorManager.Instance != null) p.y = FloorManager.Instance.AlturaDelSuelo(pisoDestino);
+        return p;
+    }
 
     // ------------------------------------------------------------------
     // Registro de ascensores: lo usan la flecha de guia y el calculo de la
@@ -55,6 +101,7 @@ public class ElevatorTrigger : MonoBehaviour
         todos.Clear();
         registroListo = false;
         zonasConJugador = 0;
+        EnUso = null;
     }
 
     /// <summary>Hay que llamarlo al cargar una escena: el registro es por escena.</summary>
@@ -122,6 +169,7 @@ public class ElevatorTrigger : MonoBehaviour
         if (otro.GetComponentInParent<CharacterController>() == null) return;
         if (!jugadorCerca) zonasConJugador++;
         jugadorCerca = true;
+        EnUso = this;
         ElevatorPanel.Obtener().MostrarAviso(true);
     }
 
@@ -143,6 +191,7 @@ public class ElevatorTrigger : MonoBehaviour
     {
         if (jugadorCerca) zonasConJugador = Mathf.Max(0, zonasConJugador - 1);
         jugadorCerca = false;
+        if (EnUso == this) EnUso = null;
     }
 
     private void Update()
