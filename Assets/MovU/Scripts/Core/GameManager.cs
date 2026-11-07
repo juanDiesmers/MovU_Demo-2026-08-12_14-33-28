@@ -153,7 +153,27 @@ public class GameManager : MonoBehaviour
     {
         CurrentState = GameState.Completed;
         LogRunData(aborted: false);
+        // Progreso (RF-11). Las corridas automáticas ('auto') no dejan rastro.
+        if (mision != null && mision.def != null && TestSession.ParticipantId != "auto")
+        {
+            SaveSystem.GuardarMisionCompletada(TestSession.ParticipantId, mision.def.id);
+        }
         // El jugador conserva el control: la siguiente misión empieza donde esté.
+    }
+
+    /// <summary>
+    /// Menú de pausa → "Volver al menú": si hay una misión en curso queda
+    /// registrada como abortada y se recarga la escena (vuelve el menú principal).
+    /// </summary>
+    public void AbandonarYVolverAlMenu()
+    {
+        Time.timeScale = 1f;
+        if (misiones != null && misiones.ModoCatalogo &&
+            misiones.Estado == MissionManager.EstadoDeMisiones.EnCurso)
+        {
+            LogRunData(aborted: true);
+        }
+        RestartGame();
     }
 
     // ------------------------------------------------------------------

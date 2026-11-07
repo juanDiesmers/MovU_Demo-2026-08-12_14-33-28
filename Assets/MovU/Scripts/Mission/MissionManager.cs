@@ -184,6 +184,30 @@ public class MissionManager : MonoBehaviour
         Iniciar(siguiente, false);
     }
 
+    /// <summary>Empieza en la misión de ese índice (continuar una sesión guardada).</summary>
+    public void IniciarEn(int indice)
+    {
+        if (!ModoCatalogo) return;
+        if (estado == EstadoDeMisiones.EnCurso) return;
+        actual = null;
+        Iniciar(Mathf.Clamp(indice, 0, Mathf.Max(0, catalogo.Count - 1)), false);
+    }
+
+    /// <summary>Índice de la primera misión del catálogo que no está en 'completadas'; -1 si están todas.</summary>
+    public int PrimeraPendiente(ICollection<string> completadas)
+    {
+        for (int i = 0; i < catalogo.Count; i++)
+        {
+            if (completadas == null || !completadas.Contains(catalogo[i].id)) return i;
+        }
+        return -1;
+    }
+
+    public string IdDeMision(int indice)
+    {
+        return indice >= 0 && indice < catalogo.Count ? catalogo[indice].id : "";
+    }
+
     /// <summary>R: vuelve al punto de partida de la misión en curso, con tiempo y distancia en cero.</summary>
     public void ReiniciarMision()
     {

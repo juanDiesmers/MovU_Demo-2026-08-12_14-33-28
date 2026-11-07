@@ -126,6 +126,13 @@ public static class MovUBootstrap
         var escalera = raiz.AddComponent<StairsManager>();
         escalera.Construir(datos, pisos, jugador, techo);
 
+        // --- Entorno: el campus visto desde las ventanas ----------------
+        // Sin colliders y fuera del NavMesh; se monta después del horneado de respaldo.
+        if (datos.ajustes.entorno)
+        {
+            EntornoCampus.Construir(raiz.transform, pisos, datos.ajustes.entornoYawOriente);
+        }
+
         // --- Gestores ---------------------------------------------------
         var misiones = raiz.AddComponent<MissionManager>();
         misiones.ConfigurarCatalogo(datos.misiones);
@@ -154,6 +161,12 @@ public static class MovUBootstrap
 
         var sesion = raiz.AddComponent<TestSession>();
         sesion.Configurar(datos.ajustes.pedirParticipante);
+
+        // Carga + menú principal + pausa (RF-13), antes del panel de sesión.
+        if (datos.ajustes.menuPrincipal)
+        {
+            raiz.AddComponent<MenuPrincipal>().Configurar();
+        }
 
         Debug.Log($"[MovU] Juego montado sobre '{datos.nombre}': {PointOfInterest.Todos.Count} POIs " +
                   $"({pois} del JSON), {datos.misiones.Count} misiones, {npcs.Cantidad} NPC. " +

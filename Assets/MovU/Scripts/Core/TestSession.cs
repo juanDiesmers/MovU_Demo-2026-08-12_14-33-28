@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -42,6 +43,12 @@ public class TestSession : MonoBehaviour
     private string texto = "";
     private int condicion;
 
+    // Progreso guardado del participante escrito en el panel.
+    private string idDelProgreso = "\u0001";   // fuerza la primera lectura
+    private int completadas;
+    private int pendiente = -1;
+    private bool reanudar;
+
     private PlayerController jugador;
     private MouseLook mirada;
     private GUIStyle estiloTitulo, estiloTexto, estiloCampo, estiloBoton, estiloCaja;
@@ -71,9 +78,35 @@ public class TestSession : MonoBehaviour
     public void Empezar(string participante, int condicionDeGuia)
     {
         if (!EsperandoInicio) return;
+        MenuPrincipal.Saltar();
         texto = participante ?? "";
         condicion = Mathf.Clamp(condicionDeGuia, 0, Condiciones.Length - 1);
+        reanudar = false;
         empezar = true;
+    }
+
+    // ------------------------------------------------------------------
+    // Progreso guardado (RF-11): si el participante ya tiene misiones
+    // completadas, el panel ofrece continuar donde quedó.
+    // ------------------------------------------------------------------
+    private string IdActual()
+    {
+        string id = texto != null ? texto.Trim() : "";
+        return string.IsNullOrEmpty(id) ? "" : MetricsLogger.Limpiar(id);
+    }
+
+    private void ActualizarProgreso()
+    {
+        string id = IdActual();
+        if (id == idDelProgreso) return;
+        idDelProgreso = id;
+
+        completadas = SaveSystem.CargarCompletadas(id).Count;
+        MissionManager mm = MissionManager.Instance;
+        pendiente = (mm != null && completadas > 0)
+            ? mm.PrimeraPendiente(SaveSystem.CargarCompletadas(id))
+            : -1;
+        reanudar = completadas > 0 && pendiente >= 0;
     }
 
     private void OnDestroy()
@@ -88,21 +121,25 @@ public class TestSession : MonoBehaviour
         if (jugador == null) jugador = FindFirstObjectByType<PlayerController>();
         if (mirada == null) mirada = FindFirstObjectByType<MouseLook>();
 
-        // Enter también se lee por el Input System, por si el panel de IMGUI no
-        // recibiera eventos de teclado en algún equipo.
-        if (pedir && Keyboard.current != null &&
-            (Keyboard.current.enterKey.wasPressedThisFrame ||
-             Keyboard.current.numpadEnterKey.wasPressedThisFrame))
+        // Mientras el menú principal está en pantalla, el panel espera su turno.
+        if (!MenuPrincipal.Activo)
         {
-            empezar = true;
-        }
+            // Enter también se lee por el Input System, por si el panel de IMGUI no
+            // recibiera eventos de teclado en algún equipo.
+            if (pedir && Keyboard.current != null &&
+                (Keyboard.current.enterKey.wasPressedThisFrame ||
+                 Keyboard.current.numpadEnterKey.wasPressedThisFrame))
+            {
+                empezar = true;
+            }
 
-        if (empezar)
-        {
-            // Se arranca desde Update y no desde Start: para entonces el HUD, la
-            // flecha y el GameManager ya se suscribieron a los eventos de misión.
-            Comenzar();
-            return;
+            if (empezar)
+            {
+                // Se arranca desde Update y no desde Start: para entonces el HUD, la
+                // flecha y el GameManager ya se suscribieron a los eventos de misión.
+                Comenzar();
+                return;
+            }
         }
 
         // Mientras se llena el panel el personaje no debe moverse ni girar.
@@ -146,23 +183,39 @@ public class TestSession : MonoBehaviour
 
         Debug.Log($"[Sesión] Participante '{ParticipantId}', guía: {Condiciones[condicion]}.");
 
-        if (MissionManager.Instance != null) MissionManager.Instance.IniciarSiguiente();
-        enabled = false;                  // deja de dibujar y de ejecutar Update
+        MissionManager mm = MissionManager.Instance;
+        if (mm != null)
+        {
+            List<string> hechas = SaveSystem.CargarCompletadas(ParticipantId);
+            int desde = hechas.Count > 0 ? mm.PrimeraPendiente(hechas) : -1;
+            if (reanudar && desde >= 0)
+            {
+                Debug.Log($"[Sesión] Continúa en la misión {desde + 1} ({hechas.Count} ya completadas).");
+                mm.IniciarEn(desde);
+            }
+            else
+            {
+                SaveSystem.BorrarProgreso(ParticipantId);   // jornada nueva desde M01
+                mm.IniciarSiguiente();
+            }
+        }
+        enabled = false;                 // deja de dibujar y de ejecutar Update
     }
 
     // ------------------------------------------------------------------
     private void OnGUI()
     {
-        if (!EsperandoInicio || !pedir) return;
+        if (!EsperandoInicio || !pedir || MenuPrincipal.Activo) return;
 
         PrepararEstilos();
+        ActualizarProgreso();
 
         // Todo se dibuja como si la pantalla midiera 1080 de alto.
         float k = Screen.height / 1080f;
         GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(k, k, 1f));
         float anchoVirtual = Screen.width / k;
 
-        const float ancho = 780f, alto = 430f;
+        float ancho = 780f, alto = completadas > 0 ? 520f : 430f;
         var zona = new Rect((anchoVirtual - ancho) * 0.5f, (1080f - alto) * 0.5f, ancho, alto);
 
         Event e = Event.current;
@@ -191,6 +244,22 @@ public class TestSession : MonoBehaviour
         GUILayout.Space(18f);
         GUILayout.Label("Guía de orientación en esta sesión", estiloTexto);
         condicion = GUILayout.Toolbar(condicion, Condiciones, estiloBoton, GUILayout.Height(50f));
+
+        if (completadas > 0)
+        {
+            GUILayout.Space(14f);
+            if (pendiente >= 0)
+            {
+                int total = MissionManager.Instance != null ? MissionManager.Instance.TotalDeMisiones : 0;
+                reanudar = GUILayout.Toggle(reanudar,
+                    $"  Continuar en la misión {pendiente + 1} de {total} ({completadas} completadas)",
+                    estiloTexto);
+            }
+            else
+            {
+                GUILayout.Label("Este participante ya completó la jornada: se empezará de nuevo.", estiloTexto);
+            }
+        }
 
         GUILayout.FlexibleSpace();
         if (GUILayout.Button("Empezar  (Enter)", estiloBoton, GUILayout.Height(58f)))

@@ -680,3 +680,11 @@ Todos CC0 (dejar constancia de la fuente en el documento igual):
 - [Poly Pizza](https://poly.pizza/) — piezas sueltas de los dos anteriores
 - [ambientCG](https://ambientcg.com/) — texturas PBR (`Tiles012`, `Concrete010`, `Concrete012`)
 - [3D Textures](https://3dtextures.me/) — concreto y baldosa
+
+## 10. Datos del entorno del campus
+
+Las huellas de los edificios, las calles, las canchas, los parques y los árboles que se ven por las ventanas
+(`Assets/MovU/Resources/MovU/entorno_campus.json`) vienen de OpenStreetMap:
+**© colaboradores de OpenStreetMap, licencia ODbL** — <https://www.openstreetmap.org/copyright>.
+Consultado el 7 de noviembre de 2026 con la API Overpass, en un radio de unos 760 m alrededor del edificio 12
+(José Gabriel Maldonado S.J. – Laboratorios). Hay que citarlo en la memoria.

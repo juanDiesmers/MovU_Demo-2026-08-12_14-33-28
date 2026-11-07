@@ -48,6 +48,15 @@ public class AjustesDeContenido
 {
     [Tooltip("Pide el identificador del participante antes de la primera mision.")]
     public bool pedirParticipante = true;
+    [Tooltip("Fondo del campus visto desde las ventanas: cerros orientales, ciudad, cielo y nubes.")]
+    public bool entorno = true;
+    [Tooltip("Hacia dónde queda el ORIENTE (los cerros) en el mundo de Unity, como giro en grados " +
+             "desde +Z: 0 = +Z, 90 = +X, 180 = -Z, 270 = -X. El eje largo del edificio (+Z, con los ascensores) apunta 15° al sur del " +
+             "oriente según la huella de OpenStreetMap, por eso el valor es -15.")]
+    public float entornoYawOriente = -15f;
+    [Tooltip("Menú principal y pantalla de carga antes del panel de sesión (RF-13). " +
+             "Apágalo para arrancar directo en el panel.")]
+    public bool menuPrincipal = true;
     [Tooltip("Rotulos con el nombre de cada espacio sobre su puerta.")]
     public bool rotulos = true;
     public float distanciaRotulos = 16f;
