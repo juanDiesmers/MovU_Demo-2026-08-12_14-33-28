@@ -11,44 +11,40 @@ Ese registro es la evidencia experimental de la tesis.
 
 ---
 
-## 1. Estado actual (8 de octubre de 2026, tarde)
+## 1. Estado actual (10 de noviembre de 2026)
 
 | Parte | Estado |
 |---|---|
-| Mecánicas base (misiones, flecha de guía, métricas CSV, récord) | ✅ Funcionando en `DemoMaze` |
+| Mecánicas base (misiones, flecha de guía, métricas CSV, récord) | ✅ Funcionando en `DemoMaze` y en el edificio |
 | Personaje en 1ª / 3ª persona (`CameraRig`) | ✅ |
-| Planta caminable a partir del modelo de Meshy | ✅ |
-| Shader estilizado low-poly sin UVs | ✅ |
-| Edificio de 3 pisos + ascensor + carga por piso | ✅ `Edificio.unity` existe y se juega |
-| POIs del piso 9 como datos (`contenido_piso9.json`) | ✅ Jugado en Unity |
-| Dos misiones encadenadas sobre los POIs de DTI | ✅ Jugadas de principio a fin (a mano y con la caminata automática) |
-| NPC (personal de DTI, profesores, vigilante, aseo, estudiantes, visitantes) | ✅ En escena; dan indicaciones |
-| NavMesh de los tres pisos, horneado desde un menú | ✅ Horneado (`Scenes/Edificio_NavMesh.asset`) |
-| Flecha de guía entre pisos (lleva al ascensor o a la escalera) | ⚠️ El cálculo de a dónde manda está revisado; falta verla en pantalla en una misión entre pisos |
-| Métricas por misión: participante, cambios de piso, pisos equivocados, consultas a NPC | ✅ El CSV se escribe en cada misión |
-| Pruebas automáticas (Test Runner, modo edición) | ✅ 21 de 21 pasan |
-| Cielo raso con retícula y lámparas | ✅ Visto en Play |
-| Puertas de dos hojas en los 10 vanos del piso (se abren solas) | ✅ Vistas en Play; la distancia medida no cambia (desvío 1,00x en la ruta óptima) |
-| Escalera funcional: tramo caminable + puertas que suben y bajan de piso | ✅ Subida y bajada a pie y cruzada en los dos sentidos; **falta probarla con teclado** |
-| Inventario (carné, horario, lo que entregan las misiones) | ✅ Visto en Play |
-| Sonido (pasos, voces de NPC, puertas, avisos, ambiente) | ⚠️ Suena según el código y los archivos están bien formados, pero **nadie los ha escuchado todavía** |
-| Occlusion Culling horneado | ❌ Pendiente (ya hay menú: `MovU > Rendimiento`) |
-| Menú principal, opciones, pantalla de carga, guardado de progreso | ❌ Pendiente |
-| Escala definitiva del edificio | ⚠️ Por decidir (hoy 56x horizontal / 45x vertical) |
+| Edificio de 11 pisos (3 a 13) con plantas trazadas desde los planos de evacuación | ✅ `Edificio.unity`; 5.100 a 11.700 triángulos por piso |
+| Ascensores en las tres puertas reales de cada lobby + carga por piso | ✅ |
+| Escalera de emergencia y escalera principal funcionales (pisos 4 a 13) | ✅ Con la caminata automática; **falta probarlas con teclado** |
+| Contenido como datos (`contenido_piso9.json`): 139 POIs, 13 misiones, 165 puertas, 7 objetos | ✅ |
+| 185 personas (NPC) en los once pisos | ✅ Dan indicaciones; los visitantes no |
+| NavMesh común de los once pisos | ✅ Horneado (`Scenes/Edificio_NavMesh.asset`) |
+| Flecha de guía entre pisos (ascensor o escalera de emergencia, la más corta) | ✅ Las 13 misiones completas con la caminata automática; la escalera principal no entra en la ruta óptima |
+| Métricas por misión (`movu_metrics_v2.csv`, 36 columnas) | ✅ |
+| Guardado del progreso por participante y opciones (`SaveSystem`) | ✅ 7 nov; **falta verificarlo en el ejecutable** |
+| Pantalla de carga, menú principal, opciones y pausa con `P` (`MenuPrincipal`) | ✅ 7 nov |
+| Entorno del campus visto por las ventanas (OpenStreetMap) | ✅ 7 nov; sin colisión |
+| Compilados Windows / Linux / Mac (`MovU > Compilar`) | ⚠️ El comando existe; **ningún compilado se ha probado fuera del editor** |
+| Pruebas automáticas (Test Runner, modo edición) | ✅ 59 de 59 (21 oct); el guardado y el menú no tienen pruebas |
+| Sonido | ⚠️ **Nadie lo ha escuchado todavía** |
+| Occlusion Culling horneado | ⚠️ Sin confirmar (hay menú: `MovU > Rendimiento`) |
+| Modo de movilidad reducida (RF-14) y evento dinámico (RF-15) | ❌ Sin iniciar (alcance objetivo) |
 
-**Qué quiere decir "probado" aquí.** El 8 de octubre el edificio se jugó en Unity
-6000.3.21f1: dos corridas a mano por la mañana y, por la tarde, varias con la *caminata
+**Qué quiere decir "probado" aquí.** Casi todo se verificó en el editor con la *caminata
 automática* (`MovU > Depuracion en Play`), que mueve al personaje con su propio
-`CharacterController` a 3 m/s por la ruta del NavMesh. Eso prueba colisiones, puertas,
-llegada, inventario y métricas, sin errores ni avisos en consola. **No** prueba lo que
-depende de una persona: cómo se siente con teclado y ratón, y cómo suena.
+`CharacterController` por la ruta del NavMesh y toma el ascensor. Eso prueba colisiones,
+puertas, llegada, inventario y métricas. **No** prueba lo que depende de una persona: cómo se
+siente con teclado y ratón, cómo suena, ni cómo se comporta el ejecutable.
 
 Las corridas automáticas dejan filas en `movu_metrics_v2.csv` con el participante `auto`
-(filtrarlas antes de analizar). Los récords ("Mejor tiempo") no los tocan: se restauran al
-salir de Play.
+(filtrarlas antes de analizar) y no guardan progreso. Los récords se restauran al salir de Play.
 
-Último commit: `Actualizacion Hitos`. La ambientación, la escalera, el sonido y el
-inventario del 8 de octubre por la tarde están **sin commitear**.
+Último commit: `Compilar Windows, Linux y Mac con un solo comando (MovUBuilds)` (7 nov).
+Los documentos (GDD v0.6, SRS v0.4, SDD v0.3, SPMP v0.4 y memoria v0.3) están en Google Drive.
 
 ### Decisiones ya tomadas (no volver a discutirlas sin motivo)
 
@@ -127,7 +123,7 @@ La ruta que se usa hoy es `C:\TesisProyecto\MovU_Demo`.
 
 ```bash
 git lfs install
-git clone https://github.com/juanDiesmers/MovU_Demo.git C:\TesisProyecto\MovU_Demo
+git clone https://github.com/juanDiesmers/MovU.git C:\TesisProyecto\MovU_Demo
 cd C:\TesisProyecto\MovU_Demo
 git lfs pull            # sin esto los .obj llegan como punteros de texto de 130 bytes
 pip install numpy
@@ -245,10 +241,13 @@ Si esos números se ven raros, la escala está mal antes de que el juego siquier
 | `1`…`9` | Elegir piso con el panel abierto |
 | `Esc` | Cerrar el panel · soltar/capturar el cursor |
 | `R` | En el edificio: volver al inicio de la misión en curso (la abandonada queda registrada como abortada). En el demo: recargar la escena |
+| `P` | Pausa: continuar, opciones, volver al menú (la misión en curso queda como abortada) o salir. Congela el reloj |
 
-Al dar Play en el edificio aparece primero el **panel de sesión**: identificador del
-participante y condición de guía (libre o un modo fijo). Enter para empezar. Se quita con
-`"pedirParticipante": false` en el JSON.
+Al dar Play en el edificio aparecen la **pantalla de carga** y el **menú principal**
+(Comenzar · Opciones · Salir; se quitan con `"menuPrincipal": false`) y después el **panel de
+sesión**: identificador del participante y condición de guía (libre o un modo fijo). Si ese
+participante ya tiene misiones completadas, el panel ofrece continuar en la primera pendiente.
+Enter para empezar. El panel se quita con `"pedirParticipante": false` en el JSON.
 
 ### 3.5 Dónde quedan las métricas
 
@@ -269,7 +268,7 @@ Columnas nuevas, al final:
 | `Scene` | Escena en la que se jugó |
 | `ParticipantId` | Lo que el evaluador escribió en el panel de sesión. Sirve para cruzar con la encuesta SUS |
 | `MissionId`, `MissionIndex`, `PoiId` | Qué misión y a qué POI |
-| `StartFloor`, `TargetFloor` | Piso de partida y de destino, contando desde 1 **en el modelo** (no es el número que ve el jugador) |
+| `StartFloor`, `TargetFloor` | Piso de partida y de destino, con el número que ve el jugador (3 a 13) |
 | `FloorChanges` | Veces que cambió de piso |
 | `WrongFloorVisits` | Llegadas a un piso que no era el del destino |
 | `CaptureRadius` | Radio de la zona de llegada (1,5 m) |
@@ -278,10 +277,10 @@ Columnas nuevas, al final:
 | `RouteUsesElevator` | `true` si la ruta óptima cambia de piso |
 | `MinFPS` | El peor segundo de la misión (RD-1 pide que nunca baje de 30) |
 
-**Ruta óptima entre pisos** (era una decisión abierta): tramo hasta el ascensor del piso de
-partida + tramo desde el ascensor del piso de destino, eligiendo el ascensor que haga más
-corta la suma. El viaje en ascensor no suma distancia. Es una propuesta: si el equipo define
-otra cosa, se cambia en `NavUtil.RutaEntrePisos`.
+**Ruta óptima entre pisos:** la más corta entre ir por el ascensor (tramo hasta una puerta del
+piso de partida + tramo desde la misma puerta en el piso de destino; el viaje no suma distancia)
+e ir por la escalera de emergencia (13,0 m por piso). La escalera principal no entra. Se cambia
+en `NavUtil.RutaEntrePisos`.
 
 ---
 
@@ -640,32 +639,22 @@ limpieza). Los modelos crudos van en `_ModelosCrudos/`, que está en `.gitignore
 
 ## 8. Qué falta (en orden)
 
-1. **Jugarlo con teclado y con audífonos.** La caminata automática no dice si la escalera se
-   siente bien al subirla a mano ni cómo suenan los pasos y las voces. Los sonidos son de
-   síntesis: los que no convenzan se reemplazan por grabaciones CC0 con el mismo nombre.
-2. **Decidir si las pruebas van con puertas cerradas.** Tapan la vista al interior de los
-   salones; es una variable del experimento y hay que dejarla fija y escrita.
-3. **Una misión entre pisos**, para ver en pantalla la flecha de guía llevando a la escalera
-   o al ascensor, y validar con el equipo que la ruta óptima sea "la más corta de las dos".
-4. **Commit de lo del 8 de octubre.** `RellenoCorona.obj` y los `.wav` van por Git LFS.
-5. **Correr una vez** `MovU > Proyecto > Reserializar escenas y prefabs a texto` y commitear
-   el resultado, antes de que alguien más toque una escena.
-6. **Recorrido de campo del piso 9:** nombres reales de los salones A–E, G y H, y qué son los
-   espacios que quedaron sin identificar (el K del mapa, la zona de baños). También qué
-   puertas son de verdad dobles y cuáles no.
-7. **Decidir la escala definitiva** del edificio. Los POIs y las puertas van en `u, v`, pero
-   los anchos de puerta y las alturas de la escalera van en metros: hay que volver a medir.
-8. **Rendimiento:** `MovU > Rendimiento > Quitar sombras del sol` y medir con el Profiler
-   antes y después; hornear el Occlusion Culling. Quedan unos 2.600 triángulos de margen.
-9. **Lo que falta del núcleo (H4):** menú principal, opciones (el volumen ya es un ajuste),
-   pantalla de carga y guardado de las misiones completadas.
-10. **Mobiliario** (kits CC0 de Kenney), si alcanza el presupuesto de triángulos. Sin
-    collider, o volviendo a hornear el NavMesh.
-11. **Limpieza antes del próximo commit:**
-   - `Assets/MovU/Models/PlanoMovU_Estilizado.obj` (9,5 MB) y `PlantaMovU_Reconstruida.obj`
-     (1,3 MB) ya no los usa la escena. `MovU > Rendimiento > Informe de presupuesto` lista
-     los modelos que la escena abierta no usa.
-   - `_Previews/` y `planta_reconstruida.png` en la raíz — son diagnósticos.
+El contenido está congelado hasta la entrega. Lo que queda:
+
+1. **Probar un compilado fuera del editor** (`MovU > Compilar > Windows`) en el equipo de las
+   pruebas: arranque, menú, guardado (cerrar y volver a abrir), CSV en `AppData\LocalLow` y
+   FPS (RD-1 a RD-3).
+2. **Jugar con teclado, ratón y audífonos** al menos M01 a M05, las dos escaleras y el ascensor.
+3. **Pruebas con usuarios (H5):** formularios y hoja de resultados en Drive; guion y casos en el
+   documento de control de calidad (Anexo G).
+4. **Antes de la entrega:** poner en `ProjectSettings` el nombre del producto (hoy `MovU_Demo`),
+   la compañía (hoy `DefaultCompany`) y la versión (hoy `0.1.0`) **después** de las pruebas,
+   porque cambiarlos mueve la carpeta del CSV y del guardado. Publicar los compilados en
+   GitHub Releases (`Builds/` no se versiona), dejar el repositorio público y etiquetar `v1.0`.
+5. **Limpieza:** `_Previews/`, `planta_reconstruida.png` en la raíz y los modelos de Meshy que
+   ya no usa la escena (`MovU > Rendimiento > Informe de presupuesto` los lista).
+6. Si sobra tiempo, en este orden: movilidad reducida (RF-14), evento dinámico (RF-15),
+   escalera principal en la ruta óptima.
 
 Nota: el SSAO **ya está activo** en `Assets/Settings/PC_Renderer.asset`; no hay que activarlo.
 
